@@ -1,13 +1,10 @@
 {
   "files": {
-    "main.css": "/YourPet/static/css/main.b5320759.css",
-    "main.js": "/YourPet/static/js/main.bc974f4d.js",
+    "main.js": "/YourPet/static/js/main.dc12b418.js",
     "index.html": "/YourPet/index.html",
-    "main.b5320759.css.map": "/YourPet/static/css/main.b5320759.css.map",
-    "main.bc974f4d.js.map": "/YourPet/static/js/main.bc974f4d.js.map"
+    "main.dc12b418.js.map": "/YourPet/static/js/main.dc12b418.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5320759.css",
-    "static/js/main.bc974f4d.js"
+    "static/js/main.dc12b418.js"
   ]
 }

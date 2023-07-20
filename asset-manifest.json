@@ -1,10 +1,17 @@
 {
   "files": {
-    "main.js": "/YourPet/static/js/main.dc12b418.js",
+    "main.js": "/YourPet/static/js/main.65601194.js",
+    "static/js/544.39c27eab.chunk.js": "/YourPet/static/js/544.39c27eab.chunk.js",
+    "static/js/643.d454d804.chunk.js": "/YourPet/static/js/643.d454d804.chunk.js",
+    "static/js/427.98f245f0.chunk.js": "/YourPet/static/js/427.98f245f0.chunk.js",
+    "static/js/197.3332e090.chunk.js": "/YourPet/static/js/197.3332e090.chunk.js",
     "index.html": "/YourPet/index.html",
-    "main.dc12b418.js.map": "/YourPet/static/js/main.dc12b418.js.map"
+    "main.65601194.js.map": "/YourPet/static/js/main.65601194.js.map",
+    "544.39c27eab.chunk.js.map": "/YourPet/static/js/544.39c27eab.chunk.js.map",
+    "643.d454d804.chunk.js.map": "/YourPet/static/js/643.d454d804.chunk.js.map",
+    "427.98f245f0.chunk.js.map": "/YourPet/static/js/427.98f245f0.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.dc12b418.js"
+    "static/js/main.65601194.js"
   ]
 }

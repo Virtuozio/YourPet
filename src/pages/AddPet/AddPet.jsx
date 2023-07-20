@@ -1,7 +1,12 @@
+import AddPetForm from 'components/AddPetForm/AddPetForm';
 import React from 'react';
 
 const AddPet = () => {
-  return <div>AddPet</div>;
+  return (
+    <>
+      <AddPetForm />
+    </>
+  );
 };
 
 export default AddPet;

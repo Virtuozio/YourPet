@@ -1,7 +1,16 @@
+import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
+import PetsData from 'components/PetsData/PetsData';
+import UserData from 'components/UserData/UserData';
 import React from 'react';
 
 const User = () => {
-  return <div>User</div>;
+  return (
+    <>
+      <UserData />
+      <PetsData />
+      <ModalCongrats />
+    </>
+  );
 };
 
 export default User;

@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 // import { useAuth } from 'hooks';
 const Main = lazy(() => import('pages/Main/Main'));
@@ -10,6 +10,7 @@ const Login = lazy(() => import('pages/Login/Login'));
 const News = lazy(() => import('pages/News/News'));
 const Notices = lazy(() => import('pages/Notices/Notices'));
 const User = lazy(() => import('pages/User/User'));
+const Error = lazy(() => import('pages/Error/Error'));
 
 export const App = () => {
   // const { isLoggedIn } = useAuth();
@@ -26,7 +27,7 @@ export const App = () => {
         <Route path="/user" element={<User />} />
         <Route path="/add-pet" element={<AddPet />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Error />} />
     </Routes>
   );
 };

@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/513.45c9b1e6.chunk.js","mappings":"mIAMA,UAJa,WACX,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,QACd,C","sources":["pages/User/User.jsx"],"sourcesContent":["import React from 'react';\n\nconst User = () => {\n  return <div>User</div>;\n};\n\nexport default User;\n"],"names":["_jsx","children"],"sourceRoot":""}

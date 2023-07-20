@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/197.6e9d524f.chunk.js","mappings":"mIAMA,UAJa,WACX,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,QACd,C","sources":["pages/News/News.jsx"],"sourcesContent":["import React from 'react';\n\nconst News = () => {\n  return <div>News</div>;\n};\n\nexport default News;\n"],"names":["_jsx","children"],"sourceRoot":""}

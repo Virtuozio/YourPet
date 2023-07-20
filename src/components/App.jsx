@@ -1,23 +1,21 @@
 import { lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
-import Notices from 'pages/Notices/Notices';
-import User from 'pages/User/User';
-import AddPet from 'pages/AddPet/AddPet';
-import OurFriends from 'pages/OurFriends/OurFriends';
-import Main from 'pages/Main/Main';
 // import { useAuth } from 'hooks';
-const Home = lazy(() => import('pages/Home/Home'));
+const Main = lazy(() => import('pages/Main/Main'));
+const OurFriends = lazy(() => import('pages/OurFriends/OurFriends'));
+const AddPet = lazy(() => import('pages/AddPet/AddPet'));
 const Register = lazy(() => import('pages/Register/Register'));
 const Login = lazy(() => import('pages/Login/Login'));
 const News = lazy(() => import('pages/News/News'));
+const Notices = lazy(() => import('pages/Notices/Notices'));
+const User = lazy(() => import('pages/User/User'));
 
 export const App = () => {
   // const { isLoggedIn } = useAuth();
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 

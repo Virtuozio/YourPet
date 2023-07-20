@@ -1,7 +1,12 @@
+import AuthForm from 'components/AuthForm/AuthForm';
 import React from 'react';
 
 const Register = () => {
-  return <div>Register</div>;
+  return (
+    <>
+      <AuthForm />
+    </>
+  );
 };
 
 export default Register;

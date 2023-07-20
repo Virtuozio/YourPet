@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/457.37d1b9b9.chunk.js","mappings":"mIAMA,UAJe,WACb,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,UACd,C","sources":["pages/AddPet/AddPet.jsx"],"sourcesContent":["import React from 'react';\n\nconst AddPet = () => {\n  return <div>AddPet</div>;\n};\n\nexport default AddPet;\n"],"names":["_jsx","children"],"sourceRoot":""}

@@ -1,113 +1,59 @@
-# React homework template
+Welcome to YourPet: Connecting Pet Lovers and their Furry Companions!
 
-Этот проект был создан при помощи
-[Create React App](https://github.com/facebook/create-react-app). Для знакомства
-и настройки дополнительных возможностей
-[обратись к документации](https://facebook.github.io/create-react-app/docs/getting-started).
+Introduction: YourPet is a vibrant and interactive online platform designed
+exclusively for pet enthusiasts, connecting pet lovers with a shared passion for
+their beloved furry companions. Whether you're a seasoned pet owner or just
+embarking on your journey to pet parenthood, YourPet offers a delightful space
+where you can learn, share, and connect with a thriving community of like-minded
+individuals.
 
-## Создание репозитория по шаблону
+Discover the World of YourPet: At YourPet, we believe that pets bring immense
+joy and unconditional love to our lives, and our website is a celebration of
+that bond. By joining our platform, you'll gain access to an array of features
+that cater to all your pet-related needs:
 
-Используй этот репозиторий организации GoIT как шаблон для создания репозитория
-своего проекта. Для этого нажми на кнопку `«Use this template»` и выбери опцию
-`«Create a new repository»`, как показано на изображении.
+1. Create Pet Profiles: Show off your adorable companions to the world by
+   creating personalized pet profiles. Share their pictures, stories, and unique
+   quirks to delight and connect with other pet parents.
 
-![Creating repo from a template step 1](./assets/template-step-1.png)
+2. Pet Care Resources: As responsible pet owners, we understand the significance
+   of providing the best care to our pets. Access a vast repository of expert
+   articles, tips, and guides on pet nutrition, grooming, health, training, and
+   overall well-being.
 
-На следующем шаге откроется страница создания нового репозитория. Заполни поле
-его имени, убедись что репозиторий публичный, после чего нажми кнопку
-`«Create repository from template»`.
+3. Community Forums: Engage in lively discussions on our community forums, where
+   you can seek advice, share anecdotes, and learn from experienced pet owners.
+   Connect with individuals who share your specific interests, whether it's
+   training techniques, pet-friendly travel, or adopting rescues.
 
-![Creating repo from a template step 2](./assets/template-step-2.png)
+4. Events and Meetups: Stay informed about upcoming pet-related events, meetups,
+   and workshops in your area. These gatherings offer an opportunity to
+   socialize with fellow pet lovers and let your furry friends play and interact
+   in a safe environment.
 
-После того как репозиторий будет создан, необходимо перейти в настройки
-созданного репозитория на вкладку `Settings` > `Actions` > `General` как
-показано на изображении.
+5. Lost & Found Alerts: We understand how distressing it can be to lose a pet.
+   YourPet offers a dedicated section where you can report lost or found pets,
+   increasing the chances of reuniting families with their beloved companions.
 
-![Settings GitHub Actions permissions step 1](./assets/gh-actions-perm-1.png)
+6. Adoption Center: For those considering expanding their furry family, our
+   adoption center collaborates with reputable shelters and rescues. Find your
+   perfect match among adorable pets waiting for their forever homes.
 
-Проскролив страницу до самого конца, в секции `«Workflow permissions»` выбери
-опцию `«Read and write permissions»` и поставь галочку в чекбоксе. Это
-необходимо для автоматизации процесса деплоя проекта.
+7. Pet-Friendly Recommendations: Explore a curated list of pet-friendly
+   establishments, including cafes, parks, and accommodations, making outings
+   with your pets a seamless and enjoyable experience.
 
-![Settings GitHub Actions permissions step 2](./assets/gh-actions-perm-2.png)
+Our Mission: At YourPet, our mission is to foster a positive and supportive
+community for pet lovers, ensuring that every pet receives the love and care
+they deserve. We aim to promote responsible pet ownership, educate on
+pet-related matters, and encourage the adoption of animals in need. Our platform
+strives to be a reliable and heartwarming source of information and connections
+for all pet lovers.
 
-Теперь у тебя есть личный репозиторий проекта, со структурой файлов и папок
-репозитория-шаблона. Далее работай с ним как с любым другим личным репозиторием,
-клонируй его себе на компьютер, пиши код, делай коммиты и отправляй их на
-GitHub.
+Join YourPet Today: We invite you to embark on this exciting journey with us and
+make YourPet your go-to destination for everything related to pet companionship.
+Together, we'll celebrate the joy, laughter, and affection our pets bring into
+our lives, strengthening the bond between humans and their furry friends.
 
-## Подготовка к работе
-
-1. Убедись что на компьютере установлена LTS-версия Node.js.
-   [Скачай и установи](https://nodejs.org/en/) её если необходимо.
-2. Установи базовые зависимости проекта командой `npm install`.
-3. Запусти режим разработки, выполнив команду `npm start`.
-4. Перейди в браузере по адресу [http://localhost:3000](http://localhost:3000).
-   Эта страница будет автоматически перезагружаться после сохранения изменений в
-   файлах проекта.
-
-## Деплой
-
-Продакшн версия проекта будет автоматически проходить линтинг, собираться и
-деплоиться на GitHub Pages, в ветку `gh-pages`, каждый раз когда обновляется
-ветка `main`. Например, после прямого пуша или принятого пул-реквеста. Для этого
-необходимо в файле `package.json` отредактировать поле `homepage`, заменив
-`your_username` и `your_repo_name` на свои, и отправить изменения на GitHub.
-
-```json
-"homepage": "https://your_username.github.io/your_repo_name/"
-```
-
-Далее необходимо зайти в настройки GitHub-репозитория (`Settings` > `Pages`) и
-выставить раздачу продакшн версии файлов из папки `/root` ветки `gh-pages`, если
-это небыло сделано автоматически.
-
-![GitHub Pages settings](./assets/repo-settings.png)
-
-### Статус деплоя
-
-Статус деплоя крайнего коммита отображается иконкой возле его идентификатора.
-
-- **Желтый цвет** - выполняется сборка и деплой проекта.
-- **Зеленый цвет** - деплой завершился успешно.
-- **Красный цвет** - во время линтинга, сборки или деплоя произошла ошибка.
-
-Более детальную информацию о статусе можно посмотреть кликнув по иконке, и в
-выпадающем окне перейти по ссылке `Details`.
-
-![Deployment status](./assets/deploy-status.png)
-
-### Живая страница
-
-Через какое-то время, обычно пару минут, живую страницу можно будет посмотреть
-по адресу указанному в отредактированном свойстве `homepage`. Например, вот
-ссылка на живую версию для этого репозитория
-[https://goitacademy.github.io/react-homework-template](https://goitacademy.github.io/react-homework-template).
-
-Если открывается пустая страница, убедись что во вкладке `Console` нет ошибок
-связанных с неправильными путями к CSS и JS файлам проекта (**404**). Скорее
-всего у тебя неправильное значение свойства `homepage` в файле `package.json`.
-
-### Маршрутизация
-
-Если приложение использует библиотеку `react-router-dom` для маршрутизации,
-необходимо дополнительно настроить компонент `<BrowserRouter>`, передав в пропе
-`basename` точное название твоего репозитория. Слеш в начале строки обязателен.
-
-```jsx
-<BrowserRouter basename="/your_repo_name">
-  <App />
-</BrowserRouter>
-```
-
-## Как это работает
-
-![How it works](./assets/how-it-works.png)
-
-1. После каждого пуша в ветку `main` GitHub-репозитория, запускается специальный
-   скрипт (GitHub Action) из файла `.github/workflows/deploy.yml`.
-2. Все файлы репозитория копируются на сервер, где проект инициализируется и
-   проходит линтинг и сборку перед деплоем.
-3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
-   отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
-   скрипта будет указано в чем проблема.
+Remember, at YourPet, it's not just a website; it's a loving community of pet
+enthusiasts!

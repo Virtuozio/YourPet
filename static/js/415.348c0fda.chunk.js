@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkyour_pet=self.webpackChunkyour_pet||[]).push([[415],{415:function(e,u,n){n.r(u);n(791);var r=n(184);u.default=function(){return(0,r.jsx)("div",{children:"Main, hi Bodya"})}}}]);
+//# sourceMappingURL=415.348c0fda.chunk.js.map

@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 // import { useAuth } from 'hooks';
+const Home = lazy(() => import('pages/Home/Home'));
 const Main = lazy(() => import('pages/Main/Main'));
 const OurFriends = lazy(() => import('pages/OurFriends/OurFriends'));
 const AddPet = lazy(() => import('pages/AddPet/AddPet'));
@@ -17,6 +18,7 @@ export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 

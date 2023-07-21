@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkyour_pet=self.webpackChunkyour_pet||[]).push([[643],{549:function(n,r,u){u(791);var e=u(184);r.Z=function(){return(0,e.jsx)("div",{children:"AuthForm"})}},643:function(n,r,u){u.r(r);var e=u(549),t=(u(791),u(184));r.default=function(){return(0,t.jsx)(t.Fragment,{children:(0,t.jsx)(e.Z,{})})}}}]);
-//# sourceMappingURL=643.16a5a16b.chunk.js.map

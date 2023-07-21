@@ -1,4 +1,34 @@
 @import-normalize; /* bring in normalize.css styles */
+@font-face {
+  font-family: 'Manrope-Regular';
+  src: url('../assets/fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: 00;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope-Medium';
+  src: url('../assets/fonts/Manrope-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope-SemiBold';
+  src: url('../assets/fonts/Manrope-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope-Bold';
+  src: url('../assets/fonts/Manrope-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Manrope-ExtraBold';
+  src: url('../assets/fonts/Manrope-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
 
 body {
   margin: 0;

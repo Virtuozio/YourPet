@@ -30,7 +30,7 @@ export const TitleWrapp = styled.div`
 
 export const Title = styled.h1`
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Manrope-Bold', sans-serif;
   text-align: left;
   font-weight: 700;
   font-size: 32px;
@@ -43,8 +43,10 @@ export const Title = styled.h1`
 
   @media screen and (min-width: 1280px) {
     position: absolute;
-    top: 128px;
-    width: calc(100% + 300px);
+    top: 108px;
+    width: calc(100% + 200px);
+
+    font-family: 'Manrope-ExtraBold', sans-serif;
     font-weight: 800;
     line-height: 1.3;
   }

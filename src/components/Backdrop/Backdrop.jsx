@@ -16,16 +16,16 @@ export const Backdrop = ({ children, closeModal }) => {
   }, [closeModal]);
 
   const handleClose = e => {
-    if (e.target.nodeName !== 'DIV') {
+    if (e.target.nodeName !== 'BUTTON') {
       return;
     }
     closeModal();
   };
 
   return (
-    <Overlay onClick={handleClose}>
+    <Overlay>
       <Modal>
-        <CloseBtn type="button" onClick={handleClose}>
+        <CloseBtn type="button" onClick={closeModal}>
           <LiaTimesSolid />
         </CloseBtn>
         {children}

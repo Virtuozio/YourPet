@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   margin: 0;
-  font-family: Manrope-Bold;
   font-size: 24px;
+  font-weight: 700;
   text-align: center;
 
   @media screen and (min-width: 768px) {

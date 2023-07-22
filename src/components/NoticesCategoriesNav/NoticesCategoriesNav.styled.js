@@ -11,7 +11,6 @@ const Btn = styled(NavLink)`
   padding: 8px 16px;
 
   color: #54adff;
-  font-family: Manrope-Medium;
 
   background-color: #cce4fb;
   border: none;

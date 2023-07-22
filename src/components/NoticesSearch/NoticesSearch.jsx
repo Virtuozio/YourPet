@@ -7,7 +7,6 @@ import { SearchIcon, CrossIcon } from 'utils/icons';
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
 
-
   const submitHandler = e => {
     e.preventDefault();
 

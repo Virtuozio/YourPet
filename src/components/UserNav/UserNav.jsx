@@ -1,7 +1,13 @@
 import React from 'react';
+import Link from './UserNav.styled';
+import icon from '../UserNav/user.png';
 
 const UserNav = () => {
-  return <div>UserNav</div>;
+  return (
+    <Link>
+      <img src={icon} alt="" /> Anna
+    </Link>
+  );
 };
 
 export default UserNav;

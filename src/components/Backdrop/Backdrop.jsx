@@ -15,13 +15,6 @@ export const Backdrop = ({ children, closeModal }) => {
     return () => window.removeEventListener('keydown', onPessKeyDown);
   }, [closeModal]);
 
-  const handleClose = e => {
-    if (e.target.nodeName !== 'BUTTON') {
-      return;
-    }
-    closeModal();
-  };
-
   return (
     <Overlay>
       <Modal>

@@ -13,7 +13,7 @@ const UserData = () => {
       <BiEditAlt onClick={() => toggleModal()} />
       {showModal && (
         <Backdrop closeModal={toggleModal}>
-          <UserForm />
+          <UserForm closeModal={toggleModal} />
         </Backdrop>
       )}
 

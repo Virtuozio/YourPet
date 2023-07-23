@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-const UserPhoto = styled.div`
+const UserPhoto = styled.img`
   display: block;
   margin: auto;
   width: 182px;
   height: 182px;
   border-radius: 40px;
-  background-color: orange;
   margin-bottom: 15px;
 `;
 
@@ -43,6 +42,7 @@ const FileInputLabel = styled.label`
 `;
 
 const InputContainer = styled.div`
+position: relative;
 display:flex;
 align-items; center;
 justify-content: space-between;
@@ -97,4 +97,20 @@ const SubmitButton = styled.button`
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
   }
 `;
-export { UserPhoto, FileInput, FileInputLabel, InputContainer, SubmitButton };
+
+const Error = styled.p`
+  position: absolute;
+  top: -100%;
+  left: 25%;
+  color: red;
+  font-size: 10px;
+`;
+
+export {
+  UserPhoto,
+  FileInput,
+  FileInputLabel,
+  InputContainer,
+  SubmitButton,
+  Error,
+};

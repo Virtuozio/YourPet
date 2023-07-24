@@ -54,6 +54,22 @@ export const logIn = createAsyncThunk(
 );
 
 /*
+ * PATCH @ /users/avatar
+ * body: { avatar }
+ */
+export const avatar = createAsyncThunk(
+  'auth/login',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.patch('/users/avatar', credentials);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+/*
  * POST @ /users/logout
  * headers: Authorization: Bearer token
  */

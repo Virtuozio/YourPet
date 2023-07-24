@@ -28,8 +28,8 @@ export const App = () => {
         <Route path="/friends" element={<OurFriends />} />
         <Route path="/user" element={<User />} />
         <Route path="/add-pet" element={<AddPet />} />
+        <Route path="*" element={<Error />} />
       </Route>
-      <Route path="*" element={<Error />} />
     </Routes>
   );
 };

@@ -70,7 +70,6 @@ const Btn = styled.button`
     border-style: solid;
     border-radius: 40px;
 
-    font-family: Manrope-Bold;
     font-size: 16px;
   }
 `;

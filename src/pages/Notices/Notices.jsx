@@ -6,6 +6,7 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import React from 'react';
 
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
+import ModalNotice from 'components/ModalNotice/ModalNotice';
 
 const Notices = () => {
   return (
@@ -23,6 +24,7 @@ const Notices = () => {
         </Container>
       </Filters>
       <NoticesCategoriesList />
+      <ModalNotice />
     </Wrapper>
   );
 };

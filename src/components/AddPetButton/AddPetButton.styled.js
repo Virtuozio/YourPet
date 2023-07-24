@@ -78,7 +78,6 @@ const Btn = styled(Link)`
     padding: 8px 18px;
     border-radius: 40px;
 
-    font-family: Manrope-Bold;
     font-size: 16px;
   }
 `;

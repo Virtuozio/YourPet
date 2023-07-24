@@ -1,12 +1,35 @@
 import styled from 'styled-components';
 
+const StyledForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    gap: 63px;
+  }
+  @media screen and (min-width: 1200px) {
+    flex-direction: column;
+  }
+`;
+
+const FieldsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 22px;
+  @media screen and (min-width: 768px) {
+    margin-top: 0;
+  }
+`;
+
 const UserPhoto = styled.img`
   display: block;
   margin: auto;
   width: 182px;
   height: 182px;
   border-radius: 40px;
-  margin-bottom: 15px;
 `;
 
 const FileInput = styled.input`
@@ -42,36 +65,45 @@ const FileInputLabel = styled.label`
 `;
 
 const InputContainer = styled.div`
-position: relative;
-display:flex;
-align-items; center;
-justify-content: space-between;
-margin-bottom: 20px;
-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  label {
     font-size: 14px;
-font-weight: 600;
-line-height: normal;
-letter-spacing: 0.56px;
-}
-input{
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.56px;
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+      letter-spacing: 0.72px;
+    }
+  }
+  input {
     display: flex;
-width: 190px;
-padding: 4px 12px;
-align-items: center;
-gap: 191px;
-border-radius: 20px;
-border: 1px solid  #54ADFF;
-font-size: 12px;
-font-weight: 400;
-line-height: normal;
-letter-spacing: 0.48px;
- transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-&:hover,
-&:focus {
-   border-color: #FFC107;
-   outline: transparent;
-}
-}
+    width: 190px;
+    padding: 4px 12px;
+    align-items: center;
+    gap: 191px;
+    border-radius: 20px;
+    border: 1px solid #54adff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.48px;
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover,
+    &:focus {
+      border-color: #ffc107;
+      outline: transparent;
+    }
+    @media screen and (min-width: 768px) {
+      width: 255px;
+      height: 30px;
+      font-size: 16px;
+    }
+  }
 `;
 const SubmitButton = styled.button`
   display: flex;
@@ -104,13 +136,21 @@ const Error = styled.p`
   left: 25%;
   color: red;
   font-size: 10px;
+  @media screen and (min-width: 768px) {
+    top: -65%;
+  }
+  @media screen and (min-width: 1200px) {
+    left: 32%;
+  }
 `;
 
 export {
+  FieldsContainer,
   UserPhoto,
   FileInput,
   FileInputLabel,
   InputContainer,
   SubmitButton,
   Error,
+  StyledForm,
 };

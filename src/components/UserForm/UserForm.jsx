@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import 'flatpickr/dist/flatpickr.min.css';
-import { BsCamera } from 'react-icons/bs';
+import { BsCamera, BsCheckLg, BsX } from 'react-icons/bs';
 import {
+  StyledForm,
   UserPhoto,
   FileInput,
   FileInputLabel,
   InputContainer,
   SubmitButton,
   Error,
+  FieldsContainer,
 } from './UserForm.styled';
 import validationSchema from 'utils/validationSchema';
+import defaultImg from '../../utils/Photo default.jpg';
 
 const initialValues = {
   name: '',
@@ -20,9 +23,16 @@ const initialValues = {
   city: '',
 };
 
-const UserForm = ({ closeModal }) => {
+const UserForm = ({ disabled, confirmClose, showConfirm }) => {
   const [image, setImage] = useState();
 
+  const handleClose = e => {
+    if (e.target.id === 'confirm') {
+      confirmClose(true);
+    } else if (e.target.id === 'cancel') {
+      confirmClose(false);
+    }
+  };
   const handleImageUpload = e => {
     const [file] = e.target.files;
     if (file) {
@@ -31,8 +41,8 @@ const UserForm = ({ closeModal }) => {
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    closeModal();
+    const updatedData = { avatar: image, ...values };
+    console.log(updatedData);
   };
   return (
     <Formik
@@ -41,45 +51,98 @@ const UserForm = ({ closeModal }) => {
       validationSchema={validationSchema}
     >
       <Form>
-        <UserPhoto src={image} />
-        <div>
-          <FileInputLabel htmlFor="file">
-            <BsCamera />
-            Edit photo
-          </FileInputLabel>
-          <FileInput
-            type="file"
-            id="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-          />
-        </div>
-        <InputContainer>
-          <label htmlFor="name">Name:</label>
-          <Field type="text" name="name" placeholder="Kate" />
-          <ErrorMessage name="name" component={Error} />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="email">Email:</label>
-          <Field type="email" name="email" placeholder="Kate@mail.com" />
-          <ErrorMessage name="email" component={Error} />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="birthday">Birthday:</label>
-          <Field name="birthday" type="text" placeholder="dd.mm.yyyy" />
-          <ErrorMessage name="birthday" component={Error} />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="phone">Phone:</label>
-          <Field type="tel" name="phone" placeholder="+380..." />
-          <ErrorMessage name="phone" component={Error} />
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="city">City:</label>
-          <Field type="text" name="city" placeholder="Ternopil" />
-          <ErrorMessage name="city" component={Error} />
-        </InputContainer>
-        <SubmitButton type="submit">Save</SubmitButton>
+        <StyledForm>
+          <div>
+            <UserPhoto src={image ? image : defaultImg} />
+            {!disabled && !showConfirm && (
+              <div style={{ marginTop: '15px' }}>
+                <FileInputLabel htmlFor="file">
+                  <BsCamera />
+                  Edit photo
+                </FileInputLabel>
+                <FileInput
+                  type="file"
+                  id="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+              </div>
+            )}
+            {showConfirm && (
+              <div
+                style={{
+                  marginTop: '15px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <BsCheckLg
+                  id="confirm"
+                  style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
+                  onClick={handleClose}
+                />
+                <BsX
+                  id="cancel"
+                  style={{ fill: '#F43F5E', width: '24px', height: '24px' }}
+                  onClick={handleClose}
+                />
+              </div>
+            )}
+          </div>
+          <FieldsContainer>
+            <InputContainer>
+              <label htmlFor="name">Name:</label>
+              <Field
+                type="text"
+                name="name"
+                placeholder="Kate"
+                disabled={disabled}
+              />
+              <ErrorMessage name="name" component={Error} />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="email">Email:</label>
+              <Field
+                type="email"
+                name="email"
+                placeholder="Kate@mail.com"
+                disabled={disabled}
+              />
+              <ErrorMessage name="email" component={Error} />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="birthday">Birthday:</label>
+              <Field
+                name="birthday"
+                type="text"
+                placeholder="dd.mm.yyyy"
+                disabled={disabled}
+              />
+              <ErrorMessage name="birthday" component={Error} />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="phone">Phone:</label>
+              <Field
+                type="tel"
+                name="phone"
+                placeholder="+380..."
+                disabled={disabled}
+              />
+              <ErrorMessage name="phone" component={Error} />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="city">City:</label>
+              <Field
+                type="text"
+                name="city"
+                placeholder="Ternopil"
+                disabled={disabled}
+              />
+              <ErrorMessage name="city" component={Error} />
+            </InputContainer>
+            {!disabled && <SubmitButton type="submit">Save</SubmitButton>}
+          </FieldsContainer>
+        </StyledForm>
       </Form>
     </Formik>
   );

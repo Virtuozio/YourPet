@@ -17,7 +17,10 @@ const Notices = () => {
         <NoticesCategoriesNav />
         <Container>
           <NoticesFilters />
-          <AddPetButton text="Add pet" />
+          <AddPetButton
+            text="Add pet"
+            path="/add-pet"
+          />
         </Container>
       </Filters>
       <NoticesCategoriesList />

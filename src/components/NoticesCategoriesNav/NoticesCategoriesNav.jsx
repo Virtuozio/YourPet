@@ -7,7 +7,7 @@ const NoticesCategoriesNav = () => {
   const items = filters.map(({ filter, path }, el) => {
     return (
       <li key={el}>
-        <Btn>{filter}</Btn>
+        <Btn to={`/notices/${path}`}>{filter}</Btn>
       </li>
     );
   });

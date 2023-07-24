@@ -8,9 +8,8 @@ import { Btn } from './NoticesFilters.styled';
 const NoticesFilters = () => {
   const [screenWidth] = useWindowSize();
   return (
-    <Btn id="FiltersBtn" type="button" aria-label="Show filters">
-      {screenWidth >= 768 && 'Filter'}
-      <FilterIcon />
+    <Btn id="filtersBtn" type="button" aria-label="Show filters">
+      {screenWidth >= 768 && 'Filter'} <FilterIcon />
     </Btn>
   );
 };

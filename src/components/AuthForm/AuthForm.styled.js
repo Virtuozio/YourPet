@@ -71,7 +71,6 @@ align-items: center;
 
 
 export const Btn = styled.button`
-
 width: 100%;
 padding: 10px 28px;
 margin-top: 18px;
@@ -82,6 +81,7 @@ border-color: rgba(84, 173, 255, 1);
 background-color: rgba(84, 173, 255, 1);
 font-size: 20px;
 color: #fff;
+cursor: pointer;
 
 
 `

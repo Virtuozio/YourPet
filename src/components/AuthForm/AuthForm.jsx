@@ -1,65 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
-
-import {
-  Div,
-  Form,
-  InputContainer,
-  InputLine,
-  Btn,
-  Icon,
-} from './AuthForm.styled';
-import {
-  MdOutlineVisibilityOff,
-  MdOutlineVisibility,
-  MdOutlineDone,
-  RxCross2,
-} from 'react-icons/md';
+import { Div, Form, InputLine, Btn } from './AuthForm.styled';
 
 const AuthForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(prevShowPassword => !prevShowPassword);
-  };
-
   return (
     <>
       <Div>
         <h1>Login</h1>
         <Form>
-          <InputContainer>
-            <InputLine
-              id="email"
-              placeholder="Email"
-              variant="outlined"
-              name="email"
-              type="email"
-              autoComplete="off"
-              required
-            />
-          </InputContainer>
-          <InputContainer>
-            <InputLine
-              id="password"
-              placeholder="Password"
-              variant="outlined"
-              name="password"
-              autoComplete="off"
-              type={showPassword ? 'text' : 'password'}
-              required
-            />
-            <Icon
-              onClick={togglePasswordVisibility}
-              style={{ width: '24px', height: '24px' }}
-            >
-              {showPassword ? (
-                <MdOutlineVisibilityOff />
-              ) : (
-                <MdOutlineVisibility />
-              )}
-            </Icon>
-          </InputContainer>
+          <InputLine
+            id="email"
+            placeholder="Email"
+            variant="outlined"
+            name="email"
+            type="email"
+            autoComplete="off"
+            required
+          />
+          <InputLine
+            id="password"
+            placeholder="Password"
+            variant="outlined"
+            name="password"
+            autoComplete="off"
+            required
+            // endAdornment={
+            //   <IconButton>
+            //     <VisibilityOffIcon />
+            //   </IconButton>
+            // }
+          />
           <Btn type="submit">Login</Btn>
         </Form>
         <p>

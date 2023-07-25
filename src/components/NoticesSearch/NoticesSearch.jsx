@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 
-import { Form, Input, SubmitBtn, ClearBtn } from './NoticesSearch.styled';
-import { SearchIcon, CrossIcon } from 'utils/icons';
+import { Form, Input, SubmitBtn, ClearBtn, SearchIco, CrossSmall } from './NoticesSearch.styled';
+// import { SearchIcon, CrossIcon } from 'utils/icons';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
@@ -30,7 +30,7 @@ const NoticesSearch = () => {
         value={query}
       />
       <SubmitBtn type="submit" aria-label="Submit" query={query}>
-        <SearchIcon />
+        <SearchIco />
       </SubmitBtn>
       <ClearBtn
         type="button"
@@ -38,7 +38,7 @@ const NoticesSearch = () => {
         query={query}
         aria-label="Discard query"
       >
-        <CrossIcon />
+        <CrossSmall />
       </ClearBtn>
     </Form>
   );

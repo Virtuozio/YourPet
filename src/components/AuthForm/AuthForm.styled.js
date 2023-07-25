@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+
 export const Div = styled.div`
   margin: 0 auto;
   width: 608px;
@@ -9,10 +10,10 @@ export const Div = styled.div`
   box-shadow: rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   margin-bottom: 100px;
-
-  input:not(:last-child) {
+/* 
+  div:not(:last-child) {
     margin-bottom: 32px;
-  }
+  } */
 
   h1 {
     font-family: Manrope;
@@ -37,8 +38,34 @@ export const Div = styled.div`
   }
 `;
 
-export const InputLine = styled('Input')`
+
+export const InputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+:not(:last-child){
+  margin-bottom: 32px;
+}
+`;
+
+export const Icon = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 24px;
+  height: 24px; */
+  right: 12px;
+  /* top: 20px; */
+  color: rgba(84, 173, 255, 1);
+  cursor: pointer;
+  transition: 250ms;
+`;
+
+export const InputLine = styled.input`
   font-family: Manrope;
+  position: relative;
   color: rgba(136, 136, 136, 1);
   font-size: 16px;
   width: 100%;
@@ -98,3 +125,5 @@ export const Btn = styled.button`
     background-position: 100% 50%;
   }
 `;
+
+

@@ -1,9 +1,5 @@
 import React from 'react';
 
-import InputAdornment from '@mui/material/InputAdornment';
-import { IconButton, Input, useTheme } from '@mui/material';
-
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Div, Form, InputLine, Btn } from './AuthForm.styled';
 
 const AuthForm = () => {
@@ -28,11 +24,11 @@ const AuthForm = () => {
             name="password"
             autoComplete="off"
             required
-            endAdornment={
-              <IconButton>
-                <VisibilityOffIcon />
-              </IconButton>
-            }
+            // endAdornment={
+            //   <IconButton>
+            //     <VisibilityOffIcon />
+            //   </IconButton>
+            // }
           />
           <Btn type="submit">Login</Btn>
         </Form>
@@ -60,11 +56,6 @@ const AuthForm = () => {
             name="password"
             autoComplete="off"
             required
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton edge="end"></IconButton>
-              </InputAdornment>
-            }
           />
           <InputLine
             id="confirmPassword"
@@ -73,11 +64,11 @@ const AuthForm = () => {
             name="confirm-password"
             autoComplete="off"
             required
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton edge="end"></IconButton>
-              </InputAdornment>
-            }
+            // endAdornment={
+            //   <InputAdornment position="end">
+            //     <IconButton edge="end"></IconButton>
+            //   </InputAdornment>
+            // }
           />
           <Btn type="submit" color="primary">
             Registration

@@ -85,9 +85,24 @@ font-size: 20px;
 color: #fff;
 cursor: pointer;
   background: rgba(84, 173, 255, 1);
- transition: background 0.3s, background-position 0.3s;
+  translate: 0 0;
+ /* transition: background 0.3s, background-position 0.3s; */
 
 
+::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    border-radius: 40px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 :hover{
     background: linear-gradient(245deg, rgba(65, 158, 241, 1) 30%, rgba(155, 208, 255, 1));

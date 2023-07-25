@@ -1,12 +1,26 @@
 import React from 'react';
 import { Div, Form, InputLine, Btn } from './AuthForm.styled';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
 
 const AuthForm = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+  };
   return (
     <>
       <Div>
         <h1>Login</h1>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <InputLine
             id="email"
             placeholder="Email"

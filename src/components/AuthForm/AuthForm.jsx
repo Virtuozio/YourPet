@@ -13,24 +13,40 @@ import {
 import {
   MdOutlineVisibilityOff,
   MdOutlineVisibility,
-  MdOutlineDone,
-  RxCross2,
+  // MdOutlineDone,
+  // RxCross2,
 } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router';
 
 const AuthForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    dispatch(
+      logIn({
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+    form.reset();
+    navigate('/user');
+  };
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevShowPassword => !prevShowPassword);
   };
 
-
   return (
     <>
       <Div>
         <h1>Login</h1>
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <InputContainer>
             <InputLine
               id="email"

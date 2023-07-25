@@ -2,8 +2,10 @@ import React from 'react';
 import { Div, Form, InputLine, Btn } from './AuthForm.styled';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router';
 
 const AuthForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const AuthForm = () => {
       })
     );
     form.reset();
+    navigate('/user');
   };
   return (
     <>

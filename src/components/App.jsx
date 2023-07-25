@@ -1,6 +1,9 @@
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { useAuth } from 'hooks';
+import { refreshUser } from 'redux/auth/authOperations';
 // import { useAuth } from 'hooks';
 const Home = lazy(() => import('pages/Home/Home'));
 const Main = lazy(() => import('pages/Main/Main'));
@@ -14,13 +17,23 @@ const User = lazy(() => import('pages/User/User'));
 const Error = lazy(() => import('pages/Error/Error'));
 
 export const App = () => {
-  // const { isLoggedIn } = useAuth();
-  return (
+  const dispatch = useDispatch();
+  const { isRefreshing, isLoggedIn } = useAuth();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {isLoggedIn ? null : (
+          <>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </>
+        )}
 
         <Route path="/main" element={<Main />} />
         <Route path="/news" element={<News />} />

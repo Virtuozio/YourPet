@@ -1,51 +1,69 @@
 import React from 'react';
-import { Div, Form, InputLine, Btn } from './AuthForm.styled';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/authOperations';
-import { useNavigate } from 'react-router';
+
+import { useState } from 'react';
+
+import {
+  Div,
+  Form,
+  InputContainer,
+  InputLine,
+  Btn,
+  Icon,
+} from './AuthForm.styled';
+import {
+  MdOutlineVisibilityOff,
+  MdOutlineVisibility,
+  MdOutlineDone,
+  RxCross2,
+} from 'react-icons/md';
 
 const AuthForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
-    form.reset();
-    navigate('/user');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
   };
+
+
   return (
     <>
       <Div>
         <h1>Login</h1>
-        <Form onSubmit={handleSubmit}>
-          <InputLine
-            id="email"
-            placeholder="Email"
-            variant="outlined"
-            name="email"
-            type="email"
-            autoComplete="off"
-            required
-          />
-          <InputLine
-            id="password"
-            placeholder="Password"
-            variant="outlined"
-            name="password"
-            autoComplete="off"
-            required
-            // endAdornment={
-            //   <IconButton>
-            //     <VisibilityOffIcon />
-            //   </IconButton>
-            // }
-          />
+
+        <Form>
+          <InputContainer>
+            <InputLine
+              id="email"
+              placeholder="Email"
+              variant="outlined"
+              name="email"
+              type="email"
+              autoComplete="off"
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputLine
+              id="password"
+              placeholder="Password"
+              variant="outlined"
+              name="password"
+              autoComplete="off"
+              type={showPassword ? 'text' : 'password'}
+              required
+            />
+            <Icon
+              onClick={togglePasswordVisibility}
+              style={{ width: '24px', height: '24px' }}
+            >
+              {showPassword ? (
+                <MdOutlineVisibilityOff />
+              ) : (
+                <MdOutlineVisibility />
+              )}
+            </Icon>
+          </InputContainer>
+
           <Btn type="submit">Login</Btn>
         </Form>
         <p>
@@ -56,36 +74,59 @@ const AuthForm = () => {
       <Div>
         <h1>Registration</h1>
         <Form>
-          <InputLine
-            id="email"
-            placeholder="Email"
-            variant="outlined"
-            name="email"
-            type="email"
-            autoComplete="off"
-            required
-          />
-          <InputLine
-            id="password"
-            placeholder="Password"
-            variant="outlined"
-            name="password"
-            autoComplete="off"
-            required
-          />
-          <InputLine
-            id="confirmPassword"
-            placeholder="Confirm password"
-            variant="outlined"
-            name="confirm-password"
-            autoComplete="off"
-            required
-            // endAdornment={
-            //   <InputAdornment position="end">
-            //     <IconButton edge="end"></IconButton>
-            //   </InputAdornment>
-            // }
-          />
+          <InputContainer>
+            <InputLine
+              id="email"
+              placeholder="Email"
+              variant="outlined"
+              name="email"
+              type="email"
+              autoComplete="off"
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputLine
+              id="password"
+              placeholder="Password"
+              variant="outlined"
+              name="password"
+              autoComplete="off"
+              type={showPassword ? 'text' : 'password'}
+              required
+            />
+            <Icon
+              onClick={togglePasswordVisibility}
+              style={{ width: '24px', height: '24px' }}
+            >
+              {showPassword ? (
+                <MdOutlineVisibilityOff />
+              ) : (
+                <MdOutlineVisibility />
+              )}
+            </Icon>
+          </InputContainer>
+          <InputContainer>
+            <InputLine
+              id="confirmPassword"
+              placeholder="Confirm password"
+              variant="outlined"
+              name="confirm-password"
+              autoComplete="off"
+              type={showPassword ? 'text' : 'password'}
+              required
+            />
+            <Icon
+              onClick={togglePasswordVisibility}
+              style={{ width: '24px', height: '24px' }}
+            >
+              {showPassword ? (
+                <MdOutlineVisibilityOff />
+              ) : (
+                <MdOutlineVisibility />
+              )}
+            </Icon>
+          </InputContainer>
           <Btn type="submit" color="primary">
             Registration
           </Btn>

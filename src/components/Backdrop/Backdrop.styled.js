@@ -46,6 +46,7 @@ export const CloseBtn = styled.button`
   &:hover {
     svg {
       transform: scale(0.8);
+      fill: #ffc107;
     }
   }
 `;

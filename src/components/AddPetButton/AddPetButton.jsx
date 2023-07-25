@@ -6,14 +6,13 @@ import { Btn, PlusIconSmall, PlusIcon } from './AddPetButton.styled';
 const AddPetButton = ({ text, path }) => {
   const [screenWidth] = useWindowSize();
 
-  
-  return (<Btn
-    to={path}
-    >
-    {screenWidth < 768 && <PlusIcon />}
+  return (
+    <Btn to={path}>
+      {screenWidth < 768 && <PlusIcon />}
       {text}
       {screenWidth >= 768 && <PlusIconSmall />}
-  </Btn>);
+    </Btn>
+  );
 };
 
 export default AddPetButton;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Div, Form, InputLine, Btn } from './AuthForm.styled';
 
 const AuthForm = () => {

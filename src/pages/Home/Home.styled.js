@@ -44,7 +44,7 @@ export const Title = styled.h1`
   @media screen and (min-width: 1280px) {
     position: absolute;
     top: 108px;
-    width: calc(100% + 200px);
+    width: calc(100% + 210px);
 
     font-family: 'Manrope-ExtraBold', sans-serif;
     font-weight: 800;
@@ -57,7 +57,7 @@ export const HomeBackgr = styled.div`
   left: -20px;
 
   width: calc(100% + 40px);
-  height: 438px;
+  height: 408px;
 
   background-image: url(${mobileBg1x});
   background-size: cover;
@@ -113,26 +113,26 @@ export const HomeBackgr = styled.div`
 
   @media screen and (min-width: 1280px) {
     width: 100%;
-    max-height: 616px;
+    height: 768px;
     left: auto;
 
     background: url(${desktopBg1x});
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: -90px;
-  }
+    background-position-y: -43px;
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    width: 100%;
-    max-height: 616px;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      width: 100%;
+      height: 723px;
 
-    background: url(${desktopBg2x});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: -90px;
+      background: url(${desktopBg2x});
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: -90px;
+    }
   }
 `;

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import InputAdornment from '@mui/material/InputAdornment';
-import { IconButton, Input, useTheme } from '@mui/material';
 
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { IconButton } from '@mui/material';
+// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Div, Form, InputLine, Btn } from './AuthForm.styled';
 
 const AuthForm = () => {

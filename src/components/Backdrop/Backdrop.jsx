@@ -15,17 +15,10 @@ export const Backdrop = ({ children, closeModal }) => {
     return () => window.removeEventListener('keydown', onPessKeyDown);
   }, [closeModal]);
 
-  const handleClose = e => {
-    if (e.target.nodeName !== 'DIV') {
-      return;
-    }
-    closeModal();
-  };
-
   return (
-    <Overlay onClick={handleClose}>
+    <Overlay>
       <Modal>
-        <CloseBtn type="button" onClick={handleClose}>
+        <CloseBtn type="button" onClick={closeModal}>
           <LiaTimesSolid />
         </CloseBtn>
         {children}

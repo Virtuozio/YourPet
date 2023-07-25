@@ -1,9 +1,8 @@
 import React from 'react';
 import { useWindowSize } from 'hooks/useResize';
 
-import { FilterIcon } from 'utils/icons';
 
-import { Btn } from './NoticesFilters.styled';
+import { Btn, FilterIcon } from './NoticesFilters.styled';
 
 const NoticesFilters = () => {
   const [screenWidth] = useWindowSize();

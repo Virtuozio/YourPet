@@ -42,12 +42,15 @@ a{
 
 
 export const InputLine = styled('Input')`
+font-family: Manrope;
+color: rgba(136, 136, 136, 1);
 font-size: 16px;
 width: 100%;
 padding: 12px 16px;
 border-style: solid;
 border-color: rgba(84, 173, 255, 1);
 border-radius: 40px;
+box-sizing: border-box;
 
 
 
@@ -72,16 +75,24 @@ align-items: center;
 
 export const Btn = styled.button`
 width: 100%;
+height: auto;
 padding: 10px 28px;
 margin-top: 18px;
 margin-bottom: 16px;
-border-style: solid;
+border: none;
 border-radius: 40px;
-border-color: rgba(84, 173, 255, 1);
-background-color: rgba(84, 173, 255, 1);
 font-size: 20px;
 color: #fff;
 cursor: pointer;
+  background: rgba(84, 173, 255, 1);
+ transition: background 0.3s, background-position 0.3s;
+
+
+
+:hover{
+    background: linear-gradient(245deg, rgba(65, 158, 241, 1) 30%, rgba(155, 208, 255, 1));
+    background-position: 100% 50%;
+}
 
 
 `

@@ -33,6 +33,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const NoticeCategoryItem = ({ noticesListInfo }) => {
   // const { name, type, date, location } = noticesListInfo
+  console.log(noticesListInfo);
   return (
     <NoticeList>
       <ThemeProvider

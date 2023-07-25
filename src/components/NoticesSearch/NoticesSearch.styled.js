@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { RxCross1 } from 'react-icons/rx';
+import { CiSearch } from 'react-icons/ci';
+
 const Form = styled.form`
   position: relative;
 
@@ -60,10 +63,13 @@ const SubmitBtn = styled.button`
   transform: ${({ query }) => query && 'translateX(-27px)'};
 
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
 
-  & svg {
-    fill: #54adff;
-  }
+const SearchIco = styled(CiSearch)`
+  color: #54adff;
+  width: 24px;
+  height: 24px;
+  stroke-width: 0.35;
 `;
 
 const ClearBtn = styled(SubmitBtn)`
@@ -74,9 +80,15 @@ const ClearBtn = styled(SubmitBtn)`
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  & svg {
-    stroke: #ffc107;
-  }
+  // & svg {
+  //   stroke: #ffc107;
+  // }
 `;
 
-export { Form, Input, SubmitBtn, ClearBtn };
+const CrossSmall = styled(RxCross1)`
+  color: #ffc107;
+  width: 24px;
+  height: 24px;
+`;
+
+export { Form, Input, SubmitBtn, ClearBtn, SearchIco, CrossSmall };

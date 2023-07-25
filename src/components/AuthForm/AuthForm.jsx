@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useState } from 'react';
 
 import {
@@ -23,10 +24,12 @@ const AuthForm = () => {
     setShowPassword(prevShowPassword => !prevShowPassword);
   };
 
+
   return (
     <>
       <Div>
         <h1>Login</h1>
+
         <Form>
           <InputContainer>
             <InputLine
@@ -60,6 +63,7 @@ const AuthForm = () => {
               )}
             </Icon>
           </InputContainer>
+
           <Btn type="submit">Login</Btn>
         </Form>
         <p>

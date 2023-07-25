@@ -14,3 +14,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+:root {
+  --main-font: 'Manrope', sans-serif;
+  --secondary-font: 'Inter', sans-serif;
+  --weather-fonts: 'Roboto', sans-serif;
+
+  --primary-text-color: #111321;
+
+  --primary-bg-color: #fdf7f2;
+  --secondary-bg-color: #111;
+
+  --header-items-color: #ffc107;
+  --labels-bg-color: #cce4fb;
+  --success-color: #00c3ad;
+  --error-color: #f43f5e;
+  --btn-bg-color: #54adff;
+  --hover-btn-bg-color: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+
+  --duration: 250ms;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}

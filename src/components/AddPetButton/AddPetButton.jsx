@@ -1,8 +1,8 @@
 import React from 'react';
 import { useWindowSize } from 'hooks/useResize';
 
-import { Btn } from './AddPetButton.styled';
-import { PlusIcon, PlusSmallIcon } from 'utils/icons';
+import { Btn, PlusIconSmall, PlusIcon } from './AddPetButton.styled';
+// import { PlusIcon, PlusSmallIcon } from 'utils/icons';
 
 const AddPetButton = ({ text, path }) => {
   // const location = useLocation();
@@ -14,7 +14,7 @@ const AddPetButton = ({ text, path }) => {
     >
     {screenWidth < 768 && <PlusIcon />}
       {text}
-      {screenWidth >= 768 && <PlusSmallIcon />}
+      {screenWidth >= 768 && <PlusIconSmall />}
   </Btn>);
 };
 

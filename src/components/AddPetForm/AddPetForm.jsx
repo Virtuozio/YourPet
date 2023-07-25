@@ -21,9 +21,9 @@ import {
 const AddPetForm = () => {
   const [allSettings, setAllSettings] = useState({ category: '' });
   const [currentForm, setcurrentForm] = useState({
-    first: false,
+    first: true,
     second: false,
-    third: true,
+    third: false,
   });
 
   const handleCancel = e => {

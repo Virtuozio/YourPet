@@ -2,10 +2,8 @@ import React from 'react';
 import { useWindowSize } from 'hooks/useResize';
 
 import { Btn, PlusIconSmall, PlusIcon } from './AddPetButton.styled';
-// import { PlusIcon, PlusSmallIcon } from 'utils/icons';
 
 const AddPetButton = ({ text, path }) => {
-  // const location = useLocation();
   const [screenWidth] = useWindowSize();
 
   

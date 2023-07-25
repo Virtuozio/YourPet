@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/YourPet/static/css/main.c26d3f10.css",
+    "main.css": "/YourPet/static/css/main.075aec85.css",
     "main.js": "/YourPet/static/js/main.a7881be8.js",
     "static/js/332.8bee9353.chunk.js": "/YourPet/static/js/332.8bee9353.chunk.js",
     "static/js/415.e70b7f75.chunk.js": "/YourPet/static/js/415.e70b7f75.chunk.js",
@@ -29,7 +29,7 @@
     "static/media/bg.png": "/YourPet/static/media/bg.af62e455691827c6c024.png",
     "static/media/Photo default.jpg": "/YourPet/static/media/Photo default.1f5f01ed6c627d4d4e3e.jpg",
     "index.html": "/YourPet/index.html",
-    "main.c26d3f10.css.map": "/YourPet/static/css/main.c26d3f10.css.map",
+    "main.075aec85.css.map": "/YourPet/static/css/main.075aec85.css.map",
     "main.a7881be8.js.map": "/YourPet/static/js/main.a7881be8.js.map",
     "332.8bee9353.chunk.js.map": "/YourPet/static/js/332.8bee9353.chunk.js.map",
     "415.e70b7f75.chunk.js.map": "/YourPet/static/js/415.e70b7f75.chunk.js.map",
@@ -49,7 +49,7 @@
     "355.3609dc0b.chunk.js.map": "/YourPet/static/js/355.3609dc0b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c26d3f10.css",
+    "static/css/main.075aec85.css",
     "static/js/main.a7881be8.js"
   ]
 }

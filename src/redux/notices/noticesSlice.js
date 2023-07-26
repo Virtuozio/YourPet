@@ -1,7 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices } from './noticesOperations';
+import {
+  addNotice,
+  fetchNotices,
+  getAllOwnNotices,
+  deleteNotice,
+  // getNoticeById,
+} from './noticesOperations';
 const noticesInitialState = {
   notices: [],
+  noticesFavorite: [],
+  noticeAdd: {},
   isLoading: false,
   error: null,
 };
@@ -25,7 +33,42 @@ const noticesSlice = createSlice({
         state.notices = payload;
       })
       .addCase(fetchNotices.pending, handlePending)
-      .addCase(fetchNotices.rejected, handleRejected);
+      .addCase(fetchNotices.rejected, handleRejected)
+      .addCase(addNotice.fulfilled, (state, { payload }) => {
+        state.notices.push(payload.result);
+        state.isLoadingNotices = false;
+        state.errorNotices = null;
+        state.noticeAdd = payload.result;
+      })
+      .addCase(addNotice.pending, handlePending)
+      .addCase(addNotice.rejected, handleRejected)
+      .addCase(deleteNotice.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.notices.findIndex(
+          notice => notice.id === payload.id
+        );
+        state.notices.splice(index, 1);
+      })
+      .addCase(deleteNotice.pending, handlePending)
+      .addCase(deleteNotice.rejected, handleRejected)
+      .addCase(getAllOwnNotices.pending, handlePending)
+      .addCase(getAllOwnNotices.fulfilled, (state, { payload }) => {
+        state.isLoadingNotices = false;
+        state.errorNotices = null;
+        state.notices = payload.result;
+      })
+      .addCase(getAllOwnNotices.rejected, handleRejected);
+    // .addCase(getNoticeById.fulfilled, (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.error = null;
+    //   const index = state.noticesFavorite.findIndex(
+    //     notice => notice.id === payload.id
+    //   );
+    //   state.notices.splice(index, 1);
+    // })
+    // .addCase(getNoticeById.pending, handlePending)
+    // .addCase(getNoticeById.rejected, handleRejected);
   },
 });
 

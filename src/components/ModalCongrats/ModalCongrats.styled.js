@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Section = styled.div`
@@ -40,7 +41,11 @@ const Text = styled.p`
   }
 `;
 
-const Btn = styled.button`
+const Btn = styled(Link)`
+  text-decoration: none;
+  box-sizing: border-box;
+  text-align: center;
+
   width: 248px;
   height: 40px;
   cursor: pointer;

@@ -1,21 +1,33 @@
 import React from 'react';
-import { Menu, Container } from './Nav.styled';
-import { Link } from 'react-router-dom';
+import { Menu, Link } from './Nav.styled';
+// import { Link } from 'react-router-dom';
+
+// const items = [
+//   { value: 'News', href: '/news' },
+//   { value: 'Find pet', href: '/notices' },
+//   { value: 'Our friends', href: '/friends' },
+// ];
+
+// export const MenuBurger = ({ header, items }) => {
+//   return (
+//     <ul>
+//       {items.map(item => (
+//         <li>
+//           <a href={item.href}>{item.value}</a>
+//         </li>
+//       ))}
+//     </ul>
+//   );
+// };
 
 const Nav = () => {
   return (
     <Menu>
-      <Container>
-        <Link to="/news">News</Link>
-      </Container>
+      <Link href="/news">News</Link>
 
-      <Container>
-        <Link to="/notices">Find pet</Link>
-      </Container>
+      <Link href="/notices">Find pet</Link>
 
-      <Container>
-        <Link to="/friends">Our friends</Link>
-      </Container>
+      <Link href="/friends">Our friends</Link>
     </Menu>
   );
 };

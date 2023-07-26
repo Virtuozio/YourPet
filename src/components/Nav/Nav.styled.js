@@ -8,10 +8,11 @@ export const Menu = styled.div`
   @media screen and (min-width: 1280px) {
     gap: 40px;
     display: flex;
+    margin-left: 160px;
   }
 `;
 
-export const Container = styled.p`
+export const Link = styled.a`
   @media screen and (min-width: 768px) {
   }
 
@@ -21,13 +22,7 @@ export const Container = styled.p`
     font-weight: 500;
     line-height: normal;
     letter-spacing: 0.8px;
-  }
-`;
-
-export const Link = styled.p`
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    text-decoration: none;
+    color: #111111;
   }
 `;

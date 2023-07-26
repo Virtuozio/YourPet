@@ -22,6 +22,9 @@ body {
     background-image: url('./assets/bg2x.png');
   }
 }
+.scroll-none {
+  overflow: hidden;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

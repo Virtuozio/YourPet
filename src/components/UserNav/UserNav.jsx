@@ -7,7 +7,7 @@ const UserNav = () => {
   return (
     <Container>
       <Link>
-        <img src={icon} alt="" />
+        <img src={icon} alt="icon" />
       </Link>
       <User>Anna</User>
     </Container>

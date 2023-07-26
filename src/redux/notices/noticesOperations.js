@@ -74,3 +74,39 @@ export const getAllOwnNotices = createAsyncThunk(
     }
   }
 );
+
+export const addToFavorite = createAsyncThunk(
+  'notices/addToFavorite',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/notices/user/favorite/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const removeFromFavorite = createAsyncThunk(
+  'notices/removeFromFavorite',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/notices/user/favorite/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchFavoriteNotices = createAsyncThunk(
+  'notices/fetchFavoriteNotices',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/notices/user/favorite');
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

@@ -4,11 +4,16 @@ import NoticesCategoriesNav from 'components/NoticesCategoriesNav/NoticesCategor
 import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
+import { useEffect } from 'react';
+import { fetchNotices } from 'redux/notices/noticesOperations';
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
-
 const Notices = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchNotices());
+  }, [dispatch]);
   return (
     <Wrapper>
       <Title>Find your favorite pet</Title>

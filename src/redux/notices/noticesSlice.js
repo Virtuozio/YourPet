@@ -4,7 +4,10 @@ import {
   fetchNotices,
   getAllOwnNotices,
   deleteNotice,
-  // getNoticeById,
+  getNoticeById,
+  removeFromFavorite,
+  addToFavorite,
+  fetchFavoriteNotices,
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -45,9 +48,7 @@ const noticesSlice = createSlice({
       .addCase(deleteNotice.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.notices.findIndex(
-          notice => notice.id === payload.id
-        );
+        const index = state.notices.find(notice => notice.id === payload.id);
         state.notices.splice(index, 1);
       })
       .addCase(deleteNotice.pending, handlePending)
@@ -58,17 +59,38 @@ const noticesSlice = createSlice({
         state.errorNotices = null;
         state.notices = payload.result;
       })
-      .addCase(getAllOwnNotices.rejected, handleRejected);
-    // .addCase(getNoticeById.fulfilled, (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   const index = state.noticesFavorite.findIndex(
-    //     notice => notice.id === payload.id
-    //   );
-    //   state.notices.splice(index, 1);
-    // })
-    // .addCase(getNoticeById.pending, handlePending)
-    // .addCase(getNoticeById.rejected, handleRejected);
+      .addCase(getAllOwnNotices.rejected, handleRejected)
+      .addCase(getNoticeById.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.notices.find(notice => notice.id === payload.id);
+      })
+      .addCase(getNoticeById.pending, handlePending)
+      .addCase(getNoticeById.rejected, handleRejected)
+      .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.noticesFavorite.find(
+          notice => notice.id === payload.id
+        );
+        state.noticesFavorite.splice(index, 1);
+      })
+      .addCase(removeFromFavorite.pending, handlePending)
+      .addCase(removeFromFavorite.rejected, handleRejected)
+      .addCase(addToFavorite.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.noticesFavorite.push(payload);
+      })
+      .addCase(addToFavorite.pending, handlePending)
+      .addCase(addToFavorite.rejected, handleRejected)
+      .addCase(fetchFavoriteNotices.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.noticesFavorite = payload;
+      })
+      .addCase(fetchFavoriteNotices.pending, handlePending)
+      .addCase(fetchFavoriteNotices.rejected, handleRejected);
   },
 });
 

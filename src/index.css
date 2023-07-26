@@ -6,8 +6,21 @@ body {
   margin: 0 auto;
 
   font-family: 'Manrope', sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url('./assets/bg.png');
+  background-color: #fef9f9;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+@media screen and (min-width: 768px) {
+  body {
+    background-image: url('./assets/bg2x.png');
+  }
 }
 .scroll-none {
   overflow: hidden;
@@ -16,4 +29,43 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+:root {
+  --main-font: 'Manrope', sans-serif;
+  --secondary-font: 'Inter', sans-serif;
+  --weather-fonts: 'Roboto', sans-serif;
+
+  --primary-text-color: #111321;
+
+  --primary-bg-color: #fdf7f2;
+  --secondary-bg-color: #111;
+
+  --header-items-color: #ffc107;
+  --labels-bg-color: #cce4fb;
+  --success-color: #00c3ad;
+  --error-color: #f43f5e;
+  --btn-bg-color: #54adff;
+  --hover-btn-bg-color: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+
+  --duration: 250ms;
+  --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
 }

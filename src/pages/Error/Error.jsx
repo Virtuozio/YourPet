@@ -1,16 +1,14 @@
 import React from 'react';
 // import { Pawprint } from 'utils/icons';
-import { Button, Container, Text, Image } from './Error.styled';
-import { Link } from 'react-router-dom';
+import { Button, Container, Text, ErrorBackgr } from './Error.styled';
+
 const Error = () => {
   return (
     <>
       <Container>
         <Text>Ooops! This page not found :(</Text>
-        <Image></Image>
-        <Button>
-          <Link to="/">To main page</Link>
-        </Button>
+        <ErrorBackgr></ErrorBackgr>
+        <Button href="./">To main page</Button>
       </Container>
     </>
   );

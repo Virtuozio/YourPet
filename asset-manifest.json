@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/YourPet/static/css/main.075aec85.css",
-    "main.js": "/YourPet/static/js/main.d6a804c9.js",
+    "main.js": "/YourPet/static/js/main.4ba571ca.js",
     "static/js/332.8bee9353.chunk.js": "/YourPet/static/js/332.8bee9353.chunk.js",
     "static/js/415.e70b7f75.chunk.js": "/YourPet/static/js/415.e70b7f75.chunk.js",
     "static/js/426.616e221a.chunk.js": "/YourPet/static/js/426.616e221a.chunk.js",
@@ -9,14 +9,14 @@
     "static/js/643.f1098dd5.chunk.js": "/YourPet/static/js/643.f1098dd5.chunk.js",
     "static/js/427.e08ef056.chunk.js": "/YourPet/static/js/427.e08ef056.chunk.js",
     "static/js/197.1f6b1eab.chunk.js": "/YourPet/static/js/197.1f6b1eab.chunk.js",
-    "static/js/969.16e17f57.chunk.js": "/YourPet/static/js/969.16e17f57.chunk.js",
-    "static/css/819.c6e9384d.chunk.css": "/YourPet/static/css/819.c6e9384d.chunk.css",
-    "static/js/819.a8455517.chunk.js": "/YourPet/static/js/819.a8455517.chunk.js",
+    "static/js/969.3aa34ce1.chunk.js": "/YourPet/static/js/969.3aa34ce1.chunk.js",
+    "static/css/682.38744278.chunk.css": "/YourPet/static/css/682.38744278.chunk.css",
+    "static/js/682.62206a39.chunk.js": "/YourPet/static/js/682.62206a39.chunk.js",
     "static/js/520.8b97f98c.chunk.js": "/YourPet/static/js/520.8b97f98c.chunk.js",
     "static/js/126.00887583.chunk.js": "/YourPet/static/js/126.00887583.chunk.js",
     "static/js/856.de7f1ea4.chunk.js": "/YourPet/static/js/856.de7f1ea4.chunk.js",
     "static/js/458.e9928403.chunk.js": "/YourPet/static/js/458.e9928403.chunk.js",
-    "static/js/445.9d8ec4c4.chunk.js": "/YourPet/static/js/445.9d8ec4c4.chunk.js",
+    "static/js/445.c429c0a9.chunk.js": "/YourPet/static/js/445.c429c0a9.chunk.js",
     "static/js/950.7dd36824.chunk.js": "/YourPet/static/js/950.7dd36824.chunk.js",
     "static/js/355.3609dc0b.chunk.js": "/YourPet/static/js/355.3609dc0b.chunk.js",
     "static/media/backgr-home-page-tablet2x.png": "/YourPet/static/media/backgr-home-page-tablet2x.d193774aa152a4a5ccfa.png",
@@ -32,7 +32,7 @@
     "static/media/pawprint.svg": "/YourPet/static/media/pawprint.f5561d20e479e2bdba742bb7f48e3029.svg",
     "index.html": "/YourPet/index.html",
     "main.075aec85.css.map": "/YourPet/static/css/main.075aec85.css.map",
-    "main.d6a804c9.js.map": "/YourPet/static/js/main.d6a804c9.js.map",
+    "main.4ba571ca.js.map": "/YourPet/static/js/main.4ba571ca.js.map",
     "332.8bee9353.chunk.js.map": "/YourPet/static/js/332.8bee9353.chunk.js.map",
     "415.e70b7f75.chunk.js.map": "/YourPet/static/js/415.e70b7f75.chunk.js.map",
     "426.616e221a.chunk.js.map": "/YourPet/static/js/426.616e221a.chunk.js.map",
@@ -40,19 +40,19 @@
     "643.f1098dd5.chunk.js.map": "/YourPet/static/js/643.f1098dd5.chunk.js.map",
     "427.e08ef056.chunk.js.map": "/YourPet/static/js/427.e08ef056.chunk.js.map",
     "197.1f6b1eab.chunk.js.map": "/YourPet/static/js/197.1f6b1eab.chunk.js.map",
-    "969.16e17f57.chunk.js.map": "/YourPet/static/js/969.16e17f57.chunk.js.map",
-    "819.c6e9384d.chunk.css.map": "/YourPet/static/css/819.c6e9384d.chunk.css.map",
-    "819.a8455517.chunk.js.map": "/YourPet/static/js/819.a8455517.chunk.js.map",
+    "969.3aa34ce1.chunk.js.map": "/YourPet/static/js/969.3aa34ce1.chunk.js.map",
+    "682.38744278.chunk.css.map": "/YourPet/static/css/682.38744278.chunk.css.map",
+    "682.62206a39.chunk.js.map": "/YourPet/static/js/682.62206a39.chunk.js.map",
     "520.8b97f98c.chunk.js.map": "/YourPet/static/js/520.8b97f98c.chunk.js.map",
     "126.00887583.chunk.js.map": "/YourPet/static/js/126.00887583.chunk.js.map",
     "856.de7f1ea4.chunk.js.map": "/YourPet/static/js/856.de7f1ea4.chunk.js.map",
     "458.e9928403.chunk.js.map": "/YourPet/static/js/458.e9928403.chunk.js.map",
-    "445.9d8ec4c4.chunk.js.map": "/YourPet/static/js/445.9d8ec4c4.chunk.js.map",
+    "445.c429c0a9.chunk.js.map": "/YourPet/static/js/445.c429c0a9.chunk.js.map",
     "950.7dd36824.chunk.js.map": "/YourPet/static/js/950.7dd36824.chunk.js.map",
     "355.3609dc0b.chunk.js.map": "/YourPet/static/js/355.3609dc0b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.075aec85.css",
-    "static/js/main.d6a804c9.js"
+    "static/js/main.4ba571ca.js"
   ]
 }

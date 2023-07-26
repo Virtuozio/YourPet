@@ -32,7 +32,7 @@ const EditBtn = styled.button`
   }
   &:hover {
     svg {
-      transform: scale(0.8);
+      fill: #ffc107;
     }
   }
   @media screen and (min-width: 768px) {
@@ -46,9 +46,23 @@ const Title = styled.h2`
   line-height: normal;
   letter-spacing: 0.8px;
   color: #000000;
+  margin-bottom: 24px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
   }
 `;
 
-export { UserCardContainer, EditBtn, Title };
+const MainContainer = styled.section`
+max-width; 100vw;
+  margin-top: 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+    gap: 32px;
+  }
+`;
+
+export { UserCardContainer, EditBtn, Title, MainContainer };

@@ -4,6 +4,7 @@ const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
     justify-content: space-evenly;
@@ -17,10 +18,13 @@ const StyledForm = styled.div`
 const FieldsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
   margin-top: 22px;
+  width: 264px;
   @media screen and (min-width: 768px) {
     margin-top: 0;
+    width: 355px;
   }
 `;
 
@@ -132,15 +136,15 @@ const SubmitButton = styled.button`
 
 const Error = styled.p`
   position: absolute;
-  top: -100%;
+  top: -60%;
   left: 25%;
   color: red;
   font-size: 10px;
   @media screen and (min-width: 768px) {
-    top: -65%;
+    top: -35%;
   }
   @media screen and (min-width: 1200px) {
-    left: 32%;
+    top: -40%;
   }
 `;
 

@@ -7,7 +7,7 @@ import {
   InputContainer,
   Icon,
   Btn,
-} from './AuthForm.styled';
+} from './LoginForm.styled';
 
 import { useState } from 'react';
 
@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router';
 
-const AuthForm = () => {
+const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const AuthForm = () => {
   return (
     <>
       <Div>
-        <h1>Registration</h1>
+        <h1>Login</h1>
         <Form onSubmit={handleSubmit}>
           <InputContainer>
             <InputLine
@@ -81,37 +81,15 @@ const AuthForm = () => {
               )}
             </Icon>
           </InputContainer>
-          <InputContainer>
-            <InputLine
-              id="confirmPassword"
-              placeholder="Confirm password"
-              variant="outlined"
-              name="confirm-password"
-              autoComplete="off"
-              type={showPassword ? 'text' : 'password'}
-              required
-            />
-            <Icon
-              onClick={togglePasswordVisibility}
-              style={{ width: '24px', height: '24px' }}
-            >
-              {showPassword ? (
-                <MdOutlineVisibilityOff />
-              ) : (
-                <MdOutlineVisibility />
-              )}
-            </Icon>
-          </InputContainer>
-          <Btn type="submit" color="primary">
-            Registration
-          </Btn>
+
+          <Btn type="submit">Login</Btn>
         </Form>
         <p>
-          Already have an account? <a href="/register">Login</a>
+          Don't have an account? <a href="/register">Register</a>
         </p>
       </Div>
     </>
   );
 };
 
-export default AuthForm;
+export default LoginForm;

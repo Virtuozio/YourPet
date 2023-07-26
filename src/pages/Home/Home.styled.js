@@ -136,3 +136,39 @@ export const HomeBackgr = styled.div`
     background-position-y: -90px;
   }
 `;
+
+export const NavBurger = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  // transform: translateX(-100%);
+  @media screen and (min-width: 768px) {
+    gap: 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+`;
+
+// NavBurger.classList.add('active')`
+// transform: translateX(0%);
+// `;
+
+export const Link = styled.a`
+  text-decoration: none;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 1.28px;
+  color: #111111;
+  @media screen and (min-width: 768px) {
+    font-size: 48px;
+    letter-spacing: 1.92px;
+  }
+`;

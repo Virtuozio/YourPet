@@ -5,20 +5,39 @@ import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import UserNav from 'components/UserNav/UserNav';
 import React from 'react';
-import { Div } from './Header.styled';
-const Header = () => {
+import { Div, MenuBurger, Container, User, CloseBurger } from './Header.styled';
+import burger from 'components/Header/menu-hamburger.png';
+import close from 'components/Header/cross-small.png';
+
+import { Link } from 'react-router-dom';
+
+const Header = ({ handleClick }) => {
+  console.log(handleClick);
+  /* Not Authorised */
+  /* <AuthNav /> */
+
+  /* Authorised */
   return (
-    <Div>
-      <Logo />
-      <Nav />
-
-      {/* Not Authorised */}
-      {/* <AuthNav /> */}
-
-      {/* Authorised */}
-      <UserNav />
-      {/* <Logout /> */}
-    </Div>
+    <Container>
+      <Div>
+        <Logo />
+        <Nav />
+      </Div>
+      <User>
+        <UserNav />
+        {/* <Logout /> */}
+        <MenuBurger onClick={handleClick}>
+          <Link to="/">
+            <img src={burger} alt="Menu Burger" />
+          </Link>
+        </MenuBurger>
+        <CloseBurger onClick={handleClick}>
+          <Link to="/">
+            <img src={close} alt="Menu Close" />
+          </Link>
+        </CloseBurger>
+      </User>
+    </Container>
   );
 };
 

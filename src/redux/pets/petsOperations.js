@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 axios.defaults.baseURL = 'https://yourpets.onrender.com/api';
 export const fetchPets = createAsyncThunk(
-  'pets/fetchAll',
+  'pets/fetchPets',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/pets');
+      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

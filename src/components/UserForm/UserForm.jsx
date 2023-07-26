@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import 'flatpickr/dist/flatpickr.min.css';
 import { BsCamera, BsCheckLg, BsX } from 'react-icons/bs';
@@ -25,14 +25,27 @@ const initialValues = {
 
 const UserForm = ({ disabled, confirmClose, showConfirm }) => {
   const [image, setImage] = useState();
+  const [errorsVisible, setErrorsVisible] = useState(true);
 
-  const handleClose = e => {
-    if (e.target.id === 'confirm') {
-      confirmClose(true);
-    } else if (e.target.id === 'cancel') {
-      confirmClose(false);
+  const handleClose = useCallback(
+    e => {
+      if (e.target.id === 'confirm') {
+        setImage();
+        confirmClose(true);
+        setErrorsVisible(false);
+      } else if (e.target.id === 'cancel') {
+        confirmClose(false);
+      }
+    },
+    [confirmClose]
+  );
+
+  useEffect(() => {
+    if (!disabled) {
+      setErrorsVisible(true);
     }
-  };
+  }, [disabled]);
+
   const handleImageUpload = e => {
     const [file] = e.target.files;
     if (file) {
@@ -98,7 +111,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
                 placeholder="Kate"
                 disabled={disabled}
               />
-              <ErrorMessage name="name" component={Error} />
+              {errorsVisible && <ErrorMessage name="name" component={Error} />}
             </InputContainer>
             <InputContainer>
               <label htmlFor="email">Email:</label>
@@ -108,7 +121,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
                 placeholder="Kate@mail.com"
                 disabled={disabled}
               />
-              <ErrorMessage name="email" component={Error} />
+              {errorsVisible && <ErrorMessage name="email" component={Error} />}
             </InputContainer>
             <InputContainer>
               <label htmlFor="birthday">Birthday:</label>
@@ -118,7 +131,9 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
                 placeholder="dd.mm.yyyy"
                 disabled={disabled}
               />
-              <ErrorMessage name="birthday" component={Error} />
+              {errorsVisible && (
+                <ErrorMessage name="birthday" component={Error} />
+              )}
             </InputContainer>
             <InputContainer>
               <label htmlFor="phone">Phone:</label>
@@ -128,7 +143,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
                 placeholder="+380..."
                 disabled={disabled}
               />
-              <ErrorMessage name="phone" component={Error} />
+              {errorsVisible && <ErrorMessage name="phone" component={Error} />}
             </InputContainer>
             <InputContainer>
               <label htmlFor="city">City:</label>
@@ -138,7 +153,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
                 placeholder="Ternopil"
                 disabled={disabled}
               />
-              <ErrorMessage name="city" component={Error} />
+              {errorsVisible && <ErrorMessage name="city" component={Error} />}
             </InputContainer>
             {!disabled && <SubmitButton type="submit">Save</SubmitButton>}
           </FieldsContainer>

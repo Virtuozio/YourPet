@@ -4,7 +4,7 @@ import React from 'react';
 import { BiEditAlt } from 'react-icons/bi';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { useState } from 'react';
-import { UserCardContainer, EditBtn, Title } from './UserData.styled';
+import { UserCardContainer, EditBtn } from './UserData.styled';
 import { useAuth } from 'hooks';
 
 const UserData = () => {
@@ -12,6 +12,7 @@ const UserData = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const { user } = useAuth();
   console.log(user);
+
   const confirmClose = confirm => {
     setShowConfirm(prevState => !prevState);
     setIsFormDisabled(confirm);
@@ -19,27 +20,24 @@ const UserData = () => {
 
   return (
     <>
-      <section>
-        <Title>My information:</Title>
-        <UserCardContainer>
-          {isFormDisabled ? (
-            <EditBtn onClick={() => setIsFormDisabled(false)}>
-              <BiEditAlt />
-            </EditBtn>
-          ) : (
-            <EditBtn onClick={() => setShowConfirm(true)}>
-              <LiaTimesSolid />
-            </EditBtn>
-          )}
-          <UserForm
-            disabled={isFormDisabled}
-            showConfirm={showConfirm}
-            confirmClose={confirmClose}
-          />
+      <UserCardContainer>
+        {isFormDisabled ? (
+          <EditBtn onClick={() => setIsFormDisabled(false)}>
+            <BiEditAlt />
+          </EditBtn>
+        ) : (
+          <EditBtn onClick={() => setShowConfirm(true)}>
+            <LiaTimesSolid />
+          </EditBtn>
+        )}
+        <UserForm
+          disabled={isFormDisabled}
+          showConfirm={showConfirm}
+          confirmClose={confirmClose}
+        />
 
-          {isFormDisabled && <Logout />}
-        </UserCardContainer>
-      </section>
+        {isFormDisabled && <Logout />}
+      </UserCardContainer>
     </>
   );
 };

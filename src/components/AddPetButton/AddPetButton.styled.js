@@ -9,27 +9,23 @@ const Btn = styled(Link)`
   box-sizing: border-box;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
   gap: 4px;
 
-  position: fixed;
-  top: 460px;
-  right: 20px;
-
   color: #ffffff;
   font-weight: 600;
 
-  width: 80px;
-  height: 80px;
+  width: 129px;
+  padding: 8px 20px;
 
   font-size: 12px;
   color: #fff;
 
   background: #54adff;
   border: none;
-  border-radius: 50%;
+  border-radius: 40px;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
 
   z-index: 1;
@@ -45,7 +41,6 @@ const Btn = styled(Link)`
     position: static;
     translate: 0 0;
 
-    flex-direction: row;
     gap: 8px;
 
     width: 129px;

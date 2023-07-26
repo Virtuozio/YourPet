@@ -15,8 +15,14 @@ export const Backdrop = ({ children, closeModal }) => {
     return () => window.removeEventListener('keydown', onPessKeyDown);
   }, [closeModal]);
 
+  const onModalOpen = event => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  }
+
   return (
-    <Overlay>
+    <Overlay onClick={onModalOpen}>
       <Modal>
         <CloseBtn type="button" onClick={closeModal}>
           <LiaTimesSolid />
@@ -26,3 +32,5 @@ export const Backdrop = ({ children, closeModal }) => {
     </Overlay>
   );
 };
+
+export default Backdrop;

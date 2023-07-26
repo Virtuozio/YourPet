@@ -85,7 +85,7 @@ const LoginForm = () => {
           <Btn type="submit">Login</Btn>
         </Form>
         <p>
-          Don't have an account? <a href="/register">Register</a>
+          Don't have an account? <a href="/YourPet/register">Register</a>
         </p>
       </Div>
     </>

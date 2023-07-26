@@ -72,6 +72,7 @@ export const avatar = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
+    console.log('Dadada');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

@@ -18,7 +18,7 @@ import {
   // RxCross2,
 } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/authOperations';
+import { register } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router';
 
 const AuthForm = () => {
@@ -31,7 +31,7 @@ const AuthForm = () => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      logIn({
+      register({
         email: form.elements.email.value,
         password: form.elements.password.value,
       })

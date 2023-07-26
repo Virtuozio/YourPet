@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-import { CiLogout } from 'react-icons/ci';
-import { Link } from 'react-router-dom';
+import { FiTrash2 } from 'react-icons/fi';
 
 const Section = styled.div`
-  min-width: 280px;
-  height: 302px;
+  width: 256px;
+  height: 329px;
 
   display: flex;
   flex-direction: column;
@@ -14,19 +13,36 @@ const Section = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    min-width: 608px;
-    height: 354px;
+    min-width: 545px;
+    height: 296px;
   }
 `;
 
 const Header = styled.p`
+  width: 200px;
+  text-align: center;
+
   color: #111111;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 24px;
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
-    font-size: 36px;
+    width: 100%;
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+`;
+
+const Text = styled.p`
+  color: #111111;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 44px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
     margin-bottom: 48px;
   }
 `;
@@ -73,11 +89,7 @@ const BtnCancel = styled.button`
   }
 `;
 
-const BtnYes = styled(Link)`
-  text-decoration: none;
-  box-sizing: border-box;
-  text-align: center;
-
+const BtnYes = styled.button`
   width: 256px;
   height: 40px;
   cursor: pointer;
@@ -109,11 +121,10 @@ const BtnYes = styled(Link)`
   }
 `;
 
-const LogoutIcon = styled(CiLogout)`
+const TrashIcon = styled(FiTrash2)`
   width: 24px;
   height: 24px;
-  fill: #fef9f9;
-  stroke-width: 0.5;
+  color: #fef9f9;
 `;
 
-export { Section, Header, LogoutIcon, BtnsWrapper, BtnCancel, BtnYes };
+export { Section, Header, TrashIcon, BtnsWrapper, BtnCancel, BtnYes, Text };

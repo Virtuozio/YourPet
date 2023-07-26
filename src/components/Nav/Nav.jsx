@@ -1,6 +1,6 @@
 import React from 'react';
-import { Menu, Link } from './Nav.styled';
-// import { Link } from 'react-router-dom';
+import { Menu, NavLink } from './Nav.styled';
+// import { NavLink } from 'react-router-dom';
 
 // const items = [
 //   { value: 'News', href: '/news' },
@@ -23,11 +23,11 @@ import { Menu, Link } from './Nav.styled';
 const Nav = () => {
   return (
     <Menu>
-      <Link href="/news">News</Link>
+      <NavLink to="/news">News</NavLink>
 
-      <Link href="/notices">Find pet</Link>
+      <NavLink to="/notices">Find pet</NavLink>
 
-      <Link href="/friends">Our friends</Link>
+      <NavLink to="/friends">Our friends</NavLink>
     </Menu>
   );
 };

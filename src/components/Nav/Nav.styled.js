@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { Link } from 'react-router-dom';
+
 export const Menu = styled.div`
   display: none;
   @media screen and (min-width: 768px) {
@@ -12,7 +14,7 @@ export const Menu = styled.div`
   }
 `;
 
-export const Link = styled.a`
+export const NavLink = styled(Link)`
   @media screen and (min-width: 768px) {
   }
 

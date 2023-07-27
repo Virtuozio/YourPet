@@ -1,29 +1,25 @@
 import styled from '@emotion/styled';
 
-
 export const Div = styled.div`
   margin: 0 auto;
-  width: 608px;
-  padding: 60px 75px;
   background-color: white;
   border: 1px solid rgba(84, 173, 255, 1);
   box-shadow: rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   margin-bottom: 100px;
-/* 
-  div:not(:last-child) {
-    margin-bottom: 32px;
-  } */
+  box-sizing: border-box;
+
+  width: 280px;
+  padding: 40px 12px;
 
   h1 {
     font-family: Manrope;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: 500;
     text-align: center;
     margin: 0;
     margin-bottom: 40px;
   }
-
   p {
     font-family: Manrope;
     font-weight: 400;
@@ -36,17 +32,60 @@ export const Div = styled.div`
     font-size: 12px;
     color: rgba(84, 173, 255, 1);
   }
-`;
 
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    padding: 60px 75px;
+
+    h1 {
+      font-family: Manrope;
+      font-size: 36px;
+      font-weight: 500;
+      text-align: center;
+      margin: 0;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-family: Manrope;
+      font-weight: 400;
+      font-size: 12px;
+      color: rgba(136, 136, 136, 1);
+      text-align: center;
+    }
+
+    a {
+      font-size: 12px;
+      color: rgba(84, 173, 255, 1);
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 608px;
+  }
+`;
 
 export const InputContainer = styled.div`
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
-:not(:last-child){
-  margin-bottom: 32px;
-}
+
+  :not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  @media screen and (min-width: 768px) {
+    :not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    :not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
 `;
 
 export const Icon = styled.span`
@@ -70,8 +109,7 @@ export const InputLine = styled.input`
   font-size: 16px;
   width: 100%;
   padding: 12px 16px;
-  border-style: solid;
-  border-color: rgba(84, 173, 255, 1);
+  border: 1px solid rgba(84, 173, 255, 1);
   border-radius: 40px;
   box-sizing: border-box;
 
@@ -85,14 +123,14 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const Btn = styled.button`
   width: 100%;
   height: auto;
   padding: 10px 28px;
-  margin-top: 18px;
-  margin-bottom: 16px;
+
   border: none;
   border-radius: 40px;
   font-size: 20px;
@@ -124,6 +162,17 @@ export const Btn = styled.button`
     );
     background-position: 100% 50%;
   }
+
+  margin-top: 56px;
+  margin-bottom: 24px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
 `;
-
-

@@ -81,7 +81,6 @@ const LoginForm = () => {
               )}
             </Icon>
           </InputContainer>
-
           <Btn type="submit">Login</Btn>
         </Form>
         <p>

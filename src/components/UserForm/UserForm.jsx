@@ -14,17 +14,18 @@ import {
 } from './UserForm.styled';
 import validationSchema from 'utils/validationSchema';
 import defaultImg from '../../utils/Photo default.jpg';
-
-const initialValues = {
-  name: '',
-  email: '',
-  birthday: '',
-  phone: '',
-  city: '',
-};
+import { useAuth } from 'hooks';
 
 const UserForm = ({ disabled, confirmClose, showConfirm }) => {
+  const { user } = useAuth();
   const [image, setImage] = useState();
+  const initialValues = {
+    name: user && user.name ? user.name : '',
+    email: user && user.email ? user.email : '',
+    birthday: user ? user.birthday : '',
+    phone: user ? user.phone : '',
+    city: user ? user.city : '',
+  };
   const [errorsVisible, setErrorsVisible] = useState(true);
 
   const handleClose = useCallback(

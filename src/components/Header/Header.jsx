@@ -12,7 +12,6 @@ import close from 'components/Header/cross-small.png';
 import { Link } from 'react-router-dom';
 
 const Header = ({ handleClick }) => {
-  console.log(handleClick);
   /* Not Authorised */
   /* <AuthNav /> */
 

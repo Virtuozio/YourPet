@@ -13,7 +13,10 @@ import { Title, Wrapper, Container, Filters } from './Notices.styled';
 // import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchNotices } from 'redux/notices/noticesOperations';
+import {
+  fetchFavoriteNotices,
+  fetchNotices,
+} from 'redux/notices/noticesOperations';
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
   // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
@@ -22,10 +25,10 @@ const Notices = () => {
   //   setIsModalOpen(prevState => !prevState);
   // };
 
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNotices());
+    dispatch(fetchFavoriteNotices());
   }, [dispatch]);
 
   return (

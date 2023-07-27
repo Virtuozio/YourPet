@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets } from 'redux/pets/petsOperations';
 import { selectIsRegistered } from 'redux/auth/authSelectors';
+
 const User = () => {
   const [modalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
   const dispatch = useDispatch();

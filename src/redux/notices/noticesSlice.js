@@ -80,7 +80,7 @@ const noticesSlice = createSlice({
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite.push(payload);
+        state.noticesFavorite = payload.result;
       })
       .addCase(addToFavorite.pending, handlePending)
       .addCase(addToFavorite.rejected, handleRejected)

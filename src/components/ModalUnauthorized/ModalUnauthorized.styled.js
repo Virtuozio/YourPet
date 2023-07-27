@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
 const Section = styled.div`
   width: 256px;
   height: 385px;
@@ -10,6 +12,7 @@ const Section = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 
   @media screen and (min-width: 768px) {
     width: 545px;
@@ -44,6 +47,8 @@ const Text = styled.p`
 
 const BtnsWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   gap: 12px;
 

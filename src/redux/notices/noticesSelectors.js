@@ -10,6 +10,8 @@ export const selectNoticeAdd = state => state.notices.noticeAdd;
 
 export const selectFilter = state => state.filter;
 
+export const selectFvoriteNotices = state => state.noticesFavorite;
+
 export const selectVisibleNotices = createSelector(
   [selectNotices, selectFilter],
   (notices, filter) => {

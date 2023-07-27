@@ -252,7 +252,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </StyledLink>
         </Button>
 
-        <Button type="button">
+        <Button type="button" onClick={toggleFavoriteMethod}>
           <p>Add to</p>
           <LiaHeart />
         </Button>

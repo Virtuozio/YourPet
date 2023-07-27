@@ -27,7 +27,7 @@ border-bottom-right-radius: 20px;
     width: 262px;
     height: 298px;
 }
-  }
+  
 `;
 
 const Title = styled.h2`
@@ -45,7 +45,8 @@ const Title = styled.h2`
     width: 321px;
   }
 `;
-const Info = styled.div`display: grid; 
+const Info = styled.div`
+display: grid; 
   grid-template-columns: auto auto; 
   grid-template-rows: 19px 19px 19px 
 grid; 

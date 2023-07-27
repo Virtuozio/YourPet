@@ -20,5 +20,8 @@ export const Container = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
+    margin-left: auto;
+  }
+  @media screen and (min-width: 1280px) {
   }
 `;

@@ -72,6 +72,7 @@ export const avatar = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
+    console.log('Dadada');
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -102,21 +103,3 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
-
-export const addToFavorite = async noticeId => {
-  try {
-    const response = await axios.patch(`/notices/favorite/${noticeId}`);
-    return response.data;
-  } catch (e) {
-    return console.error(e.message);
-  }
-};
-
-export const removeFromFavorite = async noticeId => {
-  try {
-    const response = await axios.delete(`/notices/favorite/${noticeId}`);
-    return response.data;
-  } catch (e) {
-    return console.error(e.message);
-  }
-};

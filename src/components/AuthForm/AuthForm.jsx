@@ -107,7 +107,7 @@ const AuthForm = () => {
           </Btn>
         </Form>
         <p>
-          Already have an account? <a href="/register">Login</a>
+          Already have an account? <a href="/YourPet/login">Login</a>
         </p>
       </Div>
     </>

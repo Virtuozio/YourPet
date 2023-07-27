@@ -44,7 +44,10 @@ import {
 
 // import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 import { useDispatch, useSelector } from 'react-redux';
-// import { selectNotices, selectFvoriteNotices } from 'redux/notices/noticesSelectors';
+import {
+  selectNotices,
+  selectFavoriteNotices,
+} from 'redux/notices/noticesSelectors';
 import { useState } from 'react';
 import {
   addToFavorite,
@@ -76,8 +79,8 @@ import {
 
 const NoticeCategoryItem = ({ notice }) => {
   // const notices = useSelector(selectNotices);
-  // const favoriteNoticesArray = useSelector(selectFvoriteNotices)
-  // console.log(favoriteNoticesArray);
+  const favoriteNoticesArray = useSelector(selectFavoriteNotices);
+  console.log(favoriteNoticesArray);
   // console.log(notice);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);

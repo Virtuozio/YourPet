@@ -4,8 +4,8 @@ import { CiLogout } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 
 const Section = styled.div`
-  min-width: 280px;
-  height: 302px;
+  width: 256px;
+  height: 242px;
 
   display: flex;
   flex-direction: column;
@@ -14,8 +14,8 @@ const Section = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    min-width: 608px;
-    height: 354px;
+    width: 545px;
+    height: 298px;
   }
 `;
 

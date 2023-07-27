@@ -5,13 +5,24 @@ import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import UserNav from 'components/UserNav/UserNav';
 import React from 'react';
-import { Div, MenuBurger, Container, User, CloseBurger } from './Header.styled';
+import {
+  Div,
+  MenuBurger,
+  Container,
+  User,
+  CloseBurger,
+  AuthBtn,
+  AuthContainer,
+} from './Header.styled';
 import burger from 'components/Header/menu-hamburger.png';
 import close from 'components/Header/cross-small.png';
+import { Pawprint } from 'utils/icons';
 
 import { Link } from 'react-router-dom';
+import { useAuth } from 'hooks';
 
 const Header = ({ handleClick }) => {
+  const { isLoggedIn } = useAuth();
   /* Not Authorised */
   /* <AuthNav /> */
 
@@ -23,9 +34,22 @@ const Header = ({ handleClick }) => {
         <Nav />
       </Div>
       <User>
-        <UserNav />
-        {/* <Logout /> */}
-        <MenuBurger onClick={handleClick}>
+        {isLoggedIn ? (
+          <UserNav />
+        ) : (
+          <AuthContainer>
+            <AuthBtn type="button" login="true">
+              <Link />
+              Log In
+              <Pawprint />
+            </AuthBtn>
+            <AuthBtn type="button">
+              <Link />
+              Registration
+            </AuthBtn>
+          </AuthContainer>
+        )}
+        {/* <MenuBurger onClick={handleClick}>
           <Link to="/">
             <img src={burger} alt="Menu Burger" />
           </Link>
@@ -34,7 +58,7 @@ const Header = ({ handleClick }) => {
           <Link to="/">
             <img src={close} alt="Menu Close" />
           </Link>
-        </CloseBurger>
+        </CloseBurger> */}
       </User>
     </Container>
   );

@@ -6,11 +6,17 @@ import { selectPets } from 'redux/pets/petsSelectors';
 
 const PetsList = () => {
   const pets = useSelector(selectPets);
-  console.log(pets);
+
   return (
-    <div>
-      <PetsItem />
-    </div>
+    <ul>
+      {pets.map(pet => {
+        return (
+          <li key={pet.id}>
+            <PetsItem pet={pet} />
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 

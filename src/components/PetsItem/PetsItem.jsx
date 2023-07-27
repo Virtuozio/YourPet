@@ -8,7 +8,7 @@ import {
   InfoContainer,
 } from './PetsItem.styled';
 
-const PetsItem = () => {
+const PetsItem = ({ name, birthday, type, comment }) => {
   return (
     <PetCard>
       <PetImage />
@@ -17,18 +17,17 @@ const PetsItem = () => {
           <BiTrash />
         </DeleteBtn>
         <PetInfo>
-          <b>Name:</b> Jack
+          <b>Name:</b>
+          {name}
         </PetInfo>
         <PetInfo>
-          <b>Date of birth:</b> 22.04.2018
+          <b>Date of birth:</b> {birthday}
         </PetInfo>
         <PetInfo>
-          <b>Type:</b> Persian cat
+          <b>Type:</b> {type}
         </PetInfo>
         <PetInfo>
-          <b>Comments:</b> Jack is a gray Persian cat with green eyes. He loves
-          to be pampered and groomed, and enjoys playing with toys. Although a
-          bitshy, he's a loyal and affectionate lap cat.
+          <b>Comments:</b> {comment}
         </PetInfo>
       </InfoContainer>
     </PetCard>

@@ -18,6 +18,8 @@ import { useAuth } from 'hooks';
 
 const UserForm = ({ disabled, confirmClose, showConfirm }) => {
   const { user } = useAuth();
+
+  console.log(user);
   const [image, setImage] = useState();
   const initialValues = {
     name: user && user.name ? user.name : '',

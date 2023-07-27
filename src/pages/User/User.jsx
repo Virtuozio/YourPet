@@ -36,6 +36,7 @@ const User = () => {
         <div>
           <div
             style={{
+              width: '818px',
               display: 'flex',
               justifyContent: 'space-between',
             }}

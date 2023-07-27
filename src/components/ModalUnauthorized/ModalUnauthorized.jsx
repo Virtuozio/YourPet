@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import { Pawprint } from 'utils/icons';
 
 import {
@@ -11,9 +12,13 @@ import {
   BtnsWrapper,
 } from './ModalUnauthorized.styled';
 
+
+
 const ModalUnauthorized = () => {
   return (
+    <div>
     <Section>
+      {/* <button onClick={onClose}>Close</button> */}
       <Header>Attention</Header>
       <Text>
         We would like to remind you that certain functionality is available only
@@ -30,7 +35,10 @@ const ModalUnauthorized = () => {
           Register
         </BtnRegister>
       </BtnsWrapper>
-    </Section>
+      
+      </Section>
+      </div>
+    
   );
 };
 

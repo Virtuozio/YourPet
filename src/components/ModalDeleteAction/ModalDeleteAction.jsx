@@ -15,7 +15,7 @@ const ModalDeleteAction = ({ closeModal }) => {
     <Section>
       <Header>Delete adverstiment?</Header>
       <Text>
-        Are you sure you want to delete <strong>“Cute dog looking for a home”</strong>? You can`t
+        Are you sure you want to delete <strong>PetName</strong>? You can`t
         undo this action.
       </Text>
       <BtnsWrapper>

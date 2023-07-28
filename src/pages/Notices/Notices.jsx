@@ -11,14 +11,17 @@ import React from 'react';
 
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
 // import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {
   fetchFavoriteNotices,
   fetchNotices,
 } from 'redux/notices/noticesOperations';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { toast } from 'react-hot-toast';
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
 
   // const closeModal = () => {
@@ -28,8 +31,8 @@ const Notices = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNotices());
-    dispatch(fetchFavoriteNotices());
-  }, [dispatch]);
+    if (isLoggedIn) dispatch(fetchFavoriteNotices());
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
@@ -51,7 +54,14 @@ const Notices = () => {
           <NoticesCategoriesNav />
           <Container>
             <NoticesFilters />
-            <AddPetButton text="Add pet" path="/add-pet" />
+            {isLoggedIn ? (
+              <AddPetButton text="Add pet" path="/add-pet" />
+            ) : (
+              <AddPetButton
+                text="Add pet"
+                onClick={() => toast.error('You have to be loggedIn')}
+              />
+            )}
           </Container>
         </Filters>
         <NoticesCategoriesList />

@@ -70,6 +70,10 @@ const Btn = styled(Link)`
   &:focus {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
+
+  & svg {
+    fill: #fef9f9;
+  }
 `;
 
 export { Section, Header, Text, Btn };

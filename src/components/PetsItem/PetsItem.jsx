@@ -8,12 +8,24 @@ import {
   InfoContainer,
 } from './PetsItem.styled';
 
+import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
+import Backdrop from 'components/Backdrop/Backdrop';
+import { useState } from 'react';
+
 const PetsItem = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+
+  const closeModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
+
   return (
+    <>
     <PetCard>
       <PetImage />
       <InfoContainer>
-        <DeleteBtn>
+        <DeleteBtn type="button" onClick={closeModal}>
           <BiTrash />
         </DeleteBtn>
         <PetInfo>
@@ -31,7 +43,14 @@ const PetsItem = () => {
           bitshy, he's a loyal and affectionate lap cat.
         </PetInfo>
       </InfoContainer>
-    </PetCard>
+      </PetCard>
+
+      {isModalOpen && (
+        <Backdrop closeModal={closeModal}>
+          <ModalDeleteAction closeModal={closeModal} />
+        </Backdrop>
+      )}
+      </>
   );
 };
 export default PetsItem;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNews } from './operations';
+import { getNews } from './newsOperations';
 
 const handlePending = state => {
   state.isLoadingNews = true;

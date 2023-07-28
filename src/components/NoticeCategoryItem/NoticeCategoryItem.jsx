@@ -44,10 +44,9 @@ import {
 
 // import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectNotices,
-  selectFavoriteNotices,
-} from 'redux/notices/noticesSelectors';
+import // selectNotices,
+// selectFavoriteNotices,
+'redux/notices/noticesSelectors';
 import { useState } from 'react';
 import {
   addToFavorite,
@@ -76,19 +75,32 @@ import {
   StyledLink,
   Container,
 } from '../ModalNotice/ModalNotice.styled';
+import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
+import { useEffect } from 'react';
 
 const NoticeCategoryItem = ({ notice }) => {
   // const notices = useSelector(selectNotices);
-  const favoriteNoticesArray = useSelector(selectFavoriteNotices);
-  console.log(favoriteNoticesArray);
+  // const favoriteNoticesArray = useSelector(selectFavoriteNotices);
+  // console.log(favoriteNoticesArray);
   // console.log(notice);
+  const [favorite, setFavorite] = useState(false);
+
+  const favNotices = useSelector(selectFavoriteNotices);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    const newFunc = favNotices => {
+      favNotices.forEach(favNotice => {
+        if (favNotice._id === notice._id) {
+          setFavorite(true);
+        }
+      });
+    };
+    newFunc(favNotices);
+  }, [favNotices, notice._id]);
   // const [favoritePet, setFavoritePet] = useState(false)
-  const [favorite, setFavorite] = useState(false);
   // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleFavoriteMethod = async () => {
@@ -152,7 +164,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>Cute {notice.type} looking fro a home</NoticeText>
+      <NoticeText>Cute {notice.name} looking fro a home</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>

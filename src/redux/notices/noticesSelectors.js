@@ -21,9 +21,9 @@ export const selectVisibleNotices = createSelector(
   }
 );
 
-export const selectIsFavoriteNotices = createSelector(
-  [selectNotices, selectFavoriteNotices],
-  (notices, favNotices) => {
-    return notices.filter(notice => notice._id.includes(favNotices._id));
-  }
-);
+// export const selectIsFavoriteNotices = createSelector(
+//   [selectNotices, selectFavoriteNotices],
+//   (notices, favNotices) => {
+//     return notices.filter(notice => notice._id.includes(favNotices._id));
+//   }
+// );

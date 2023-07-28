@@ -3,10 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NoticeList } from './NoticesCategoriesList.styled';
 
-import {
-  selectIsFavoriteNotices,
-  selectNotices,
-} from 'redux/notices/noticesSelectors';
+import { selectNotices } from 'redux/notices/noticesSelectors';
 import {
   // toast,
   Toaster,
@@ -14,9 +11,7 @@ import {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
-  // console.log(notices);
-  const favnotices = useSelector(selectIsFavoriteNotices);
-  console.log('fav', favnotices);
+
   return (
     <>
       <NoticeList>

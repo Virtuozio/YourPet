@@ -70,7 +70,7 @@ const noticesSlice = createSlice({
       .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite = payload.result;
+        // state.noticesFavorite = payload.result;
         // const index = state.noticesFavorite.find(
         //   notice => notice.id === payload.id
         // );

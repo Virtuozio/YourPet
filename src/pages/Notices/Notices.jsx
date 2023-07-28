@@ -13,7 +13,8 @@ import React from 'react';
 
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
 // import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
   fetchFavoriteNotices,
@@ -24,8 +25,11 @@ import Pagination from '@mui/material/Pagination';
 
 // import { makeStyles } from "@material-ui/core/styles";
 
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { toast } from 'react-hot-toast';
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
 
   // const closeModal = () => {
@@ -38,13 +42,14 @@ const Notices = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchNotices(`?page=${page}&limit=8` ));
-    dispatch(fetchFavoriteNotices());
-  }, [dispatch, page]);
+     if (isLoggedIn) dispatch(fetchFavoriteNotices());
+  }, [dispatch, page,isLoggedIn]);
 
    const handleChange = (e, p) => {
 
       setPage(p)
     }
+
 
   return (
     <>
@@ -66,7 +71,14 @@ const Notices = () => {
           <NoticesCategoriesNav />
           <Container>
             <NoticesFilters />
-            <AddPetButton text="Add pet" path="/add-pet" />
+            {isLoggedIn ? (
+              <AddPetButton text="Add pet" path="/add-pet" />
+            ) : (
+              <AddPetButton
+                text="Add pet"
+                onClick={() => toast.error('You have to be loggedIn')}
+              />
+            )}
           </Container>
         </Filters>
         <NoticesCategoriesList />

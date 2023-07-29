@@ -16,7 +16,11 @@ export const FormPetForOptions = styled.ul`
 
 export const PetForOption = styled.li``;
 
-export const OptionInner = styled.div.withConfig({
+export const InputOption = styled.input`
+  display: none;
+`;
+
+export const OptionInner = styled.label.withConfig({
   shouldForwardProp: prop => prop !== 'active',
 })`
   display: inline-block;
@@ -30,4 +34,9 @@ export const OptionInner = styled.div.withConfig({
 
   border-radius: 40px;
   cursor: pointer;
+
+  :checked {
+    color: #fef9f9;
+    background-color: #cce4fb;
+  }
 `;

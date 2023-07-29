@@ -12,7 +12,6 @@ const Layout = () => {
     setMenuActive(!menuActive);
   };
 
-  console.log(menuActive);
   return (
     <LayoutContainer>
       <Header handleClick={handleClick}></Header>

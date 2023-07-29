@@ -11,14 +11,12 @@ import {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
-
   return (
     <>
       <NoticeList>
         {notices.length !== 0 &&
           notices.map(item => (
             <NoticeCategoryItem
-              item
               key={item._id}
               notice={item}
               // mobile={12}

@@ -14,19 +14,24 @@ import {
 } from './UserForm.styled';
 import validationSchema from 'utils/validationSchema';
 import defaultImg from '../../utils/Photo default.jpg';
-import { useAuth } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { updateUserData } from 'redux/auth/authOperations';
 
-const UserForm = ({ disabled, confirmClose, showConfirm }) => {
-  const { user } = useAuth();
+const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
+  const dispatch = useDispatch();
+  // const { user } = useAuth();
+  const [errorsVisible, setErrorsVisible] = useState(true);
   const [image, setImage] = useState();
+
   const initialValues = {
-    name: user && user.name ? user.name : '',
-    email: user && user.email ? user.email : '',
+    avatar: user ? user.avatar : '',
+    name: user ? user.name : '',
+    email: user ? user.email : '',
     birthday: user ? user.birthday : '',
     phone: user ? user.phone : '',
     city: user ? user.city : '',
   };
-  const [errorsVisible, setErrorsVisible] = useState(true);
+  console.log(initialValues);
 
   const handleClose = useCallback(
     e => {
@@ -56,10 +61,12 @@ const UserForm = ({ disabled, confirmClose, showConfirm }) => {
 
   const handleSubmit = (values, actions) => {
     const updatedData = { avatar: image, ...values };
+    dispatch(updateUserData(updatedData));
     console.log(updatedData);
   };
   return (
     <Formik
+      enableReinitialize
       initialValues={initialValues}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}

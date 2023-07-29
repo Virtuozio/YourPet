@@ -10,19 +10,19 @@ import {
   Text,
 } from './ModalDeleteAction.styled';
 
-const ModalDeleteAction = ({ closeModal }) => {
+const ModalDeleteAction = ({ closeModal, approveAction }) => {
   return (
     <Section>
       <Header>Delete adverstiment?</Header>
       <Text>
-        Are you sure you want to delete <strong>“Cute dog looking for a home”</strong>? You can`t
-        undo this action.
+        Are you sure you want to delete <strong>PetName</strong>? You can`t undo
+        this action.
       </Text>
       <BtnsWrapper>
         <BtnCancel type="button" onClick={closeModal}>
           Cancel
         </BtnCancel>
-        <BtnYes type="button" onClick={closeModal}>
+        <BtnYes type="button" onClick={approveAction}>
           Yes
           <TrashIcon />
         </BtnYes>

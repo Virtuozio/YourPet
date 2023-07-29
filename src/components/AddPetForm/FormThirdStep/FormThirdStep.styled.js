@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 import { BsPlusLg, BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+
+import {
+  YOUR_PET,
+  LOST_FOUND,
+  IN_GOOD_HANDS,
+} from 'utils/constants/typesAddPet';
+
 import { FormLabel } from '../AddPetForm.styled';
 
 export const MainContainer = styled.div.withConfig({
@@ -8,7 +15,7 @@ export const MainContainer = styled.div.withConfig({
 })`
   @media screen and (min-width: 768px) {
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       display: flex;
       gap: 45px;
@@ -21,25 +28,26 @@ export const LeftContainer = styled.div``;
 export const TheSexWrapper = styled.div.withConfig({
   shouldForwardProp: prop => prop !== 'category',
 })`
+  position: relative;
   margin-bottom: 16px;
 
   @media screen and (min-width: 768px) {
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       margin-bottom: 48px;
     `}
   }
 `;
 
-export const FormGenderLabel = styled(FormLabel).withConfig({
+export const FormGenderTitle = styled(FormLabel).withConfig({
   shouldForwardProp: prop => prop !== 'category',
 })`
   margin-bottom: 4px;
 
   @media screen and (min-width: 768px) {
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       margin-bottom: 8px;
     `}
@@ -51,7 +59,7 @@ export const GenderTypesWrapper = styled.div`
   align-items: center;
 `;
 
-export const GenderType = styled.div.withConfig({
+export const GenderLabel = styled.label.withConfig({
   shouldForwardProp: prop => prop !== 'active',
 })`
   display: flex;
@@ -69,6 +77,10 @@ export const GenderType = styled.div.withConfig({
       : ''}
 `;
 
+export const GenderType = styled.input`
+  display: none;
+`;
+
 export const FemaleIcon = styled(BsGenderFemale)`
   font-size: 16px;
 `;
@@ -81,6 +93,7 @@ export const MaleIcon = styled(BsGenderMale)`
 export const LoaderImgWrapper = styled.div.withConfig({
   shouldForwardProp: prop => prop !== 'category',
 })`
+  position: relative;
   display: flex;
   justify-content: left;
   align-items: center;
@@ -92,7 +105,7 @@ export const LoaderImgWrapper = styled.div.withConfig({
     gap: 16px;
 
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       flex-direction: column;
       align-items: flex-start;
@@ -116,19 +129,25 @@ export const LoaderTitle = styled.h2.withConfig({
     line-height: 1.4;
 
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       width: 200px;
     `}
   }
 `;
 
-export const LoaderLabelImg = styled.label`
+export const LoaderLabelImg = styled.label.withConfig({
+  shouldForwardProp: prop => prop !== 'img',
+})`
   position: relative;
   width: 112px;
   height: 112px;
 
   background-color: #cce4fb;
+  background-image: url(${({ img }) => (img ? img : '')});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -164,7 +183,7 @@ export const RightContainer = styled.ul.withConfig({
 
   @media screen and (min-width: 768px) {
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       width: 395px;
     `}
@@ -174,6 +193,7 @@ export const RightContainer = styled.ul.withConfig({
 export const FormItem = styled.li.withConfig({
   shouldForwardProp: prop => prop !== 'category',
 })`
+  position: relative;
   &:last-child {
     margin-bottom: 24px;
   }
@@ -183,7 +203,7 @@ export const FormItem = styled.li.withConfig({
       margin-bottom: 0;
     }
     ${({ category }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       `
       &:last-child {
     margin-bottom: 0;
@@ -210,6 +230,8 @@ export const FormTextArea = styled.textarea.withConfig({
   border: 1px solid #54adff;
   border-radius: 20px;
 
+  resize: none;
+
   &:focus-visible {
     outline: none;
   }
@@ -234,9 +256,9 @@ export const FormTextArea = styled.textarea.withConfig({
 
     @media screen and (min-width: 768px) {
       ${({ category }) => {
-        if (category === 'lost/found' || category === 'in good hands') {
+        if (category === LOST_FOUND || category === IN_GOOD_HANDS) {
           return 'height: 195px; margin-bottom: 0';
-        } else if (category !== 'your pet') {
+        } else if (category !== YOUR_PET) {
           return 'margin-bottom: 60px;';
         }
       }}

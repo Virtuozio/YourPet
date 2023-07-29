@@ -5,18 +5,7 @@ import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import UserNav from 'components/UserNav/UserNav';
 import React, { useState } from 'react';
-import {
-  Div,
-  MenuBurger,
-  Container,
-  User,
-  CloseBurger,
-  AuthBtn,
-  AuthContainer,
-} from './Header.styled';
-import burger from 'components/Header/menu-hamburger.png';
-import close from 'components/Header/cross-small.png';
-import { Pawprint } from 'utils/icons';
+import { Container, User } from './Header.styled';
 import icon from '../UserNav/user.png';
 
 import { useAuth, useWindowSize } from 'hooks';

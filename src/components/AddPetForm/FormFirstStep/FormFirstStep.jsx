@@ -1,39 +1,87 @@
-import { useState } from 'react';
 import {
   FormPetForOptions,
+  InputOption,
   OptionInner,
   PetForOption,
 } from './FormFirstStep.styled';
 
-const FormFirstStep = ({ addToGeneralSetting }) => {
-  const [activeOption, setActiveOption] = useState('');
+import {
+  YOUR_PET,
+  SELL,
+  LOST_FOUND,
+  IN_GOOD_HANDS,
+} from 'utils/constants/typesAddPet';
 
-  const handleClickOption = e => {
-    const elemDiv = e.target;
-    if (elemDiv.nodeName !== 'DIV') return;
-    setActiveOption(elemDiv.textContent);
-    addToGeneralSetting(prevState => ({
-      ...prevState,
-      category: elemDiv.textContent,
-    }));
+const FormFirstStep = ({
+  category,
+  handleChange,
+  resetForm,
+  initialValues,
+  setFieldValue,
+}) => {
+  const handleInputChange = e => {
+    const { value } = e.target;
+    resetForm({ values: { ...initialValues } });
+    setFieldValue('category', value);
   };
 
   return (
-    <FormPetForOptions onClick={handleClickOption}>
+    <FormPetForOptions>
       <PetForOption>
-        <OptionInner active={activeOption === 'your pet'}>your pet</OptionInner>
+        <InputOption
+          type="radio"
+          name="category"
+          id="your-pet"
+          value="your-pet"
+          checked={category === YOUR_PET}
+          onChange={handleInputChange}
+        />
+        <OptionInner htmlFor="your-pet" active={category === YOUR_PET}>
+          your pet
+        </OptionInner>
       </PetForOption>
 
       <PetForOption>
-        <OptionInner active={activeOption === 'sell'}>sell</OptionInner>
+        <InputOption
+          type="radio"
+          name="category"
+          id="sell"
+          value="sell"
+          checked={category === SELL}
+          onChange={handleInputChange}
+        />
+        <OptionInner htmlFor="sell" active={category === SELL}>
+          sell
+        </OptionInner>
       </PetForOption>
+
       <PetForOption>
-        <OptionInner active={activeOption === 'lost/found'}>
+        <InputOption
+          type="radio"
+          name="category"
+          id="lost-found"
+          value="lost-found"
+          checked={category === LOST_FOUND}
+          onChange={handleInputChange}
+        />
+        <OptionInner htmlFor="lost-found" active={category === LOST_FOUND}>
           lost/found
         </OptionInner>
       </PetForOption>
+
       <PetForOption>
-        <OptionInner active={activeOption === 'in good hands'}>
+        <InputOption
+          type="radio"
+          name="category"
+          id="in-good-hands"
+          value="in-good-hands"
+          checked={category === IN_GOOD_HANDS}
+          onChange={handleInputChange}
+        />
+        <OptionInner
+          htmlFor="in-good-hands"
+          active={category === IN_GOOD_HANDS}
+        >
           in good hands
         </OptionInner>
       </PetForOption>

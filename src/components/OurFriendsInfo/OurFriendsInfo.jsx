@@ -114,7 +114,7 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               <b>Address</b>
-              <a href="">
+              <a href="/#">
                 <p>{address}</p>
               </a>
             </InfoBox>
@@ -123,7 +123,7 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               <b>Email</b>
-              <a href="">
+              <a href="/#">
                 <p>{email}</p>
               </a>
             </InfoBox>
@@ -132,7 +132,7 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               <b>Phone</b>
-              <a href="">
+              <a href="/#">
                 <p>{phone}</p>
               </a>
             </InfoBox>

@@ -8,7 +8,7 @@ export const selectError = state => state.notices.error;
 
 export const selectNoticeAdd = state => state.notices.noticeAdd;
 
-export const selectFilter = state => state.filter;
+export const selectFilter = state => state.searchNotices;
 
 export const selectFavoriteNotices = state => state.notices.noticesFavorite;
 

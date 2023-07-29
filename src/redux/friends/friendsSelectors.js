@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectIsLoadingFriends = state => state.friends.isLoadingFriends;
 
-export const selectAllFriends = state => state.friends.friends;
+export const selectAllFriends = state => state.friends;
 
 export const selectSearchFriends = state => state.searchFriends;
 

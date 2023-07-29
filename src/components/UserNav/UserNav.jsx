@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { User, Container, LogoutBtn, StyledLink } from './UserNav.styled';
 import icon from '../UserNav/user.png';
 import { useAuth } from 'hooks';

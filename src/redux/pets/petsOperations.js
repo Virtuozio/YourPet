@@ -17,7 +17,12 @@ export const addPet = createAsyncThunk(
   'pets/addPet',
   async (data, thunkAPI) => {
     try {
-      const response = await axios.post('/pets', data);
+      const response = await axios.post('/pets', data, {
+        withCredentials: false,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

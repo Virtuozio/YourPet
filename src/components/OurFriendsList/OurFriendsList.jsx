@@ -1,28 +1,20 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import { FriendsList } from './OurFriendsList.styled';
 import OurFriendsCard from 'components/OurFriendsCard/OurFriendsCard';
+import { selectAllFriends } from 'redux/friends/friendsSelectors';
+import { nanoid } from '@reduxjs/toolkit';
 
 const OurFriendsList = () => {
-  const [shelterData, setShelterData] = useState(null);
-
-  useEffect(() => {
-    fetch('https://yourpets.onrender.com/api/friends')
-      .then(response => response.json())
-      .then(data => setShelterData(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
-  console.log(shelterData);
+  const friends = useSelector(selectAllFriends);
 
   return (
     <>
       <FriendsList>
-        {shelterData ? (
-          shelterData.map((friendData, index) => (
-            <li>
-              <OurFriendsCard key={index} friendData={friendData} />
+        {friends.length !== 0 ? (
+          friends.map(friend => (
+            <li key={nanoid()}>
+              <OurFriendsCard friendData={friend} />
             </li>
           ))
         ) : (

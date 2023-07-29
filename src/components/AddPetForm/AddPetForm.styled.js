@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { FaPaw } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 
+import {
+  YOUR_PET
+} from 'utils/constants/typesAddPet';
+
 export const ContainerForm = styled.div`
   position: relative;
   left: 50%;
@@ -39,7 +43,7 @@ export const Title = styled.h1.withConfig({
 
     @media screen and (min-width: 768px) {
       ${({ category, page }) =>
-        category !== 'your pet' &&
+        category !== YOUR_PET &&
         !page.first &&
         `
       text-align: center;
@@ -58,7 +62,7 @@ export const FormStepsStage = styled.ul.withConfig({
 
   @media screen and (min-width: 768px) {
     ${({ category, page }) =>
-      category !== 'your pet' &&
+      category !== YOUR_PET &&
       !page.first &&
       `
       justify-content: center;
@@ -169,6 +173,15 @@ export const FormInput = styled.input`
   }
 `;
 
+export const ErrorInput = styled.p`
+  position: absolute;
+  bottom: -20px;
+  left: 16px;
+  color: #f43f5e;
+  font-size: 12px;
+  line-height: 1.36;
+`;
+
 export const BtnsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -202,7 +215,13 @@ const ButtonContainer = styled.button`
 
   border-radius: 40px;
   border-color: transparent;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 `;
+
 export const NextBtn = styled(ButtonContainer)`
   width: 248px;
   color: #fef9f9;

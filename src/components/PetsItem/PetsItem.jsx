@@ -8,30 +8,57 @@ import {
   InfoContainer,
 } from './PetsItem.styled';
 
-const PetsItem = () => {
+import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
+import Backdrop from 'components/Backdrop/Backdrop';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deletePet } from 'redux/pets/petsOperations';
+
+const PetsItem = ({ pet }) => {
+  const dispatch = useDispatch();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(prevState => !prevState);
+  };
+  const approveAction = () => {
+    setIsModalOpen(prevState => !prevState);
+    dispatch(deletePet(pet._id));
+  };
+
   return (
-    <PetCard>
-      <PetImage />
-      <InfoContainer>
-        <DeleteBtn>
-          <BiTrash />
-        </DeleteBtn>
-        <PetInfo>
-          <b>Name:</b> Jack
-        </PetInfo>
-        <PetInfo>
-          <b>Date of birth:</b> 22.04.2018
-        </PetInfo>
-        <PetInfo>
-          <b>Type:</b> Persian cat
-        </PetInfo>
-        <PetInfo>
-          <b>Comments:</b> Jack is a gray Persian cat with green eyes. He loves
-          to be pampered and groomed, and enjoys playing with toys. Although a
-          bitshy, he's a loyal and affectionate lap cat.
-        </PetInfo>
-      </InfoContainer>
-    </PetCard>
+    <>
+      <PetCard>
+        <PetImage src={pet.fileURL} alt={pet.name} />
+        <InfoContainer>
+          <DeleteBtn type="button" onClick={closeModal}>
+            <BiTrash />
+          </DeleteBtn>
+          <PetInfo>
+            <b>Name:</b> {pet.name}
+          </PetInfo>
+          <PetInfo>
+            <b>Date of birth:</b> {pet.date}
+          </PetInfo>
+          <PetInfo>
+            <b>Type:</b> {pet.type}
+          </PetInfo>
+          <PetInfo>
+            <b>Comments:</b> {pet.comments}
+          </PetInfo>
+        </InfoContainer>
+      </PetCard>
+
+      {isModalOpen && (
+        <Backdrop closeModal={closeModal}>
+          <ModalDeleteAction
+            closeModal={closeModal}
+            approveAction={approveAction}
+          />
+        </Backdrop>
+      )}
+    </>
   );
 };
 export default PetsItem;

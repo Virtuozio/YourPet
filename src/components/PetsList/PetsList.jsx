@@ -6,10 +6,10 @@ import { selectPets } from 'redux/pets/petsSelectors';
 
 const PetsList = () => {
   const pets = useSelector(selectPets);
-  console.log(pets);
   return (
     <div>
-      <PetsItem />
+      {pets.length !== 0 &&
+        pets.map(item => <PetsItem key={item._id} pet={item} />)}
     </div>
   );
 };

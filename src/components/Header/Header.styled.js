@@ -19,47 +19,27 @@ export const MenuBurger = styled.button`
   }
 `;
 
-export const User = styled.div`
-  display: flex;
-  gap: 38px;
-  margin-left: auto;
-  margin-right: 0;
+export const User = styled.a`
+  @media screen and (min-width: 768px) {
+    color: #ffc107;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.64px;
+    margin-left: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+  }
 `;
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-left: auto;
   margin-right: 0;
-`;
-
-export const AuthContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
-export const AuthBtn = styled.button`
-  display: flex;
-  width: 165px;
-  padding: 8px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 40px;
-  border: 2px solid #ffc107;
-  background: ${props => (props.login ? '#ffc107' : '#fef9f9')};
-
-  color: ${props => (props.login ? '#fef9f9' : '#ffc107')};
-  font-family: inherit;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.64px;
-
-  svg {
-    fill: #fef9f9;
-  }
 `;
 
 export const CloseBurger = styled.button``;

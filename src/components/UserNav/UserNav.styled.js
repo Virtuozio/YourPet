@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const User = styled.a`
@@ -44,9 +45,20 @@ export const LogoutBtn = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
   color: #fef9f9;
+  transition: background linear ease-in-out;
 
   svg {
     width: 24px;
     height: 24px;
   }
+
+  &:hover {
+    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 `;

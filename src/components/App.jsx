@@ -21,7 +21,6 @@ const Error = lazy(() => import('pages/Error/Error'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);

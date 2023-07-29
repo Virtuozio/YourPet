@@ -1,7 +1,7 @@
 import Header from 'components/Header/Header';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Link, NavBurger } from './Layout.styled';
+// import { Link, NavBurger } from './Layout.styled';
 import { useState } from 'react';
 
 import { LayoutContainer } from './Layout.styled';

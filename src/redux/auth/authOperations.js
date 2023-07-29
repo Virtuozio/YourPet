@@ -48,14 +48,15 @@ export const logIn = createAsyncThunk(
 );
 
 /*
- * PATCH @ /users/avatar
+ * PATCH @ /users/update/avatar
  * body: { avatar }
  */
-export const avatar = createAsyncThunk(
-  'auth/login',
+export const updateUserData = createAsyncThunk(
+  'auth/updateUserData',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.patch('/users/avatar', credentials);
+      const res = await axios.patch('/users/update/avatar', credentials);
+      setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -93,8 +94,19 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const res = await axios.get('/users/current');
+      return res.data.userI;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-      return res.data;
+export const currentUser = createAsyncThunk(
+  'auth/currentUser',
+  async (_, thunkAPI) => {
+    try {
+      const res = await axios.get('/users/current');
+      return res.data.userI;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

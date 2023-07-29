@@ -108,6 +108,7 @@ export const fetchFavoriteNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/notices/user/favorite');
+      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

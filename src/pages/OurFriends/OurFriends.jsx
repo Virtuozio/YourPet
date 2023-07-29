@@ -5,11 +5,11 @@ import { getFriends } from 'redux/friends/friendsOperations';
 import { selectAllFriends } from 'redux/friends/friendsSelectors';
 
 const OurFriends = () => {
-  const friends = useSelector(selectAllFriends);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFriends());
   }, [dispatch]);
+  const friends = useSelector(selectAllFriends);
   console.log(friends);
   return <div>OurFriends</div>;
 };

@@ -5,20 +5,20 @@ import {
   Header,
   BtnCancel,
   BtnYes,
-  BtnsWrapper,
+  BtnWrapper,
   TrashIcon,
-  Text,
+  DeleteText,
 } from './ModalDeleteAction.styled';
 
 const ModalDeleteAction = ({ closeModal, approveAction }) => {
   return (
     <Section>
       <Header>Delete adverstiment?</Header>
-      <Text>
+      <DeleteText>
         Are you sure you want to delete <strong>PetName</strong>? You can`t undo
         this action.
-      </Text>
-      <BtnsWrapper>
+      </DeleteText>
+      <BtnWrapper>
         <BtnCancel type="button" onClick={closeModal}>
           Cancel
         </BtnCancel>
@@ -26,7 +26,7 @@ const ModalDeleteAction = ({ closeModal, approveAction }) => {
           Yes
           <TrashIcon />
         </BtnYes>
-      </BtnsWrapper>
+      </BtnWrapper>
     </Section>
   );
 };

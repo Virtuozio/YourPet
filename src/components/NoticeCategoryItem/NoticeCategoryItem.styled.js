@@ -8,6 +8,8 @@ import {
   //   HiClock,
 } from 'react-icons/hi';
 
+import { RiDeleteBinLine } from "react-icons/ri";
+
 import { GiFemale, GiMale } from 'react-icons/gi';
 // import Paper from '@mui/material/Paper';
 // import Grid from '@mui/material/Unstable_Grid2';
@@ -105,6 +107,28 @@ export const HeartFill = styled(HiHeart)`
   height: 24px;
   color: #54adff;
 `;
+
+export const RemoveNoticeBtn = styled.button`
+display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 68px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #c5dff6;
+
+  border: none;
+`
+
+export const RemoveIcon = styled(RiDeleteBinLine)`
+  width: 24px;
+  height: 24px;
+  color: #54adff;
+`;
+
 
 export const FilterStatus = styled.div`
   width: 126px;

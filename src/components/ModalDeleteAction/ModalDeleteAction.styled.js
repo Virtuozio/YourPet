@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FiTrash2 } from 'react-icons/fi';
 
 const Section = styled.div`
-  width: 256px;
+  /* width: 256px; */
   height: 329px;
 
   display: flex;
@@ -13,7 +13,7 @@ const Section = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    min-width: 545px;
+    /* min-width: 545px; */
     height: 296px;
   }
 `;
@@ -34,7 +34,7 @@ const Header = styled.p`
   }
 `;
 
-const Text = styled.p`
+const DeleteText = styled.p`
   color: #111111;
   font-weight: 500;
   font-size: 14px;
@@ -47,7 +47,7 @@ const Text = styled.p`
   }
 `;
 
-const BtnsWrapper = styled.div`
+const BtnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -127,4 +127,4 @@ const TrashIcon = styled(FiTrash2)`
   color: #fef9f9;
 `;
 
-export { Section, Header, TrashIcon, BtnsWrapper, BtnCancel, BtnYes, Text };
+export { Section, Header, TrashIcon, BtnWrapper, BtnCancel, BtnYes, DeleteText };

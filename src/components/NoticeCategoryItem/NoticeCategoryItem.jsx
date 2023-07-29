@@ -1,12 +1,5 @@
 import React from 'react';
-import // HiHeart,
-// HiOutlineHeart,
-// HiOutlineLocationMarker,
-// HiOutlineClock,
-// HiClock,
-'react-icons/hi';
 
-// import { GiFemale, GiMale } from "react-icons/gi";
 import testImage from '../../assets/testdog.png';
 import {
   DateItem,
@@ -18,14 +11,11 @@ import {
   Location,
   LocationItem,
   Male,
-  // NoticeList,
   PetImage,
   SexItem,
   LoadMoreBtn,
   NoticeText,
-  // NoticeItem,
   HeartFill,
-  // CardDiv,
   NoticesCategoryItemStyled,
   AgeCount,
   ModalCloseBtn,
@@ -37,30 +27,26 @@ import {
   BtnRegister,
   BtnsWrapper,
   PawStyled,
-  // PetInfo,
+  RemoveNoticeBtn,
+  RemoveIcon,
 } from './NoticeCategoryItem.styled';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Unstable_Grid2';
 
-// import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 import { useDispatch, useSelector } from 'react-redux';
-import // selectNotices,
-// selectFavoriteNotices,
-'redux/notices/noticesSelectors';
 import { useState } from 'react';
+
 import {
   addToFavorite,
   removeFromFavorite,
+  deleteNotice
 } from 'redux/notices/noticesOperations';
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import toast from 'react-hot-toast';
-import { petAgeCount } from 'utils/petAgeCount';
+import { petAgeCount, modalDateFormat } from 'utils/petAgeCount';
 
 import Modal from '@mui/material/Modal';
 import { Pawprint } from '../../utils/icons';
 
-// import ModalNotice from '../ModalNotice/ModalNotice'
 import { LiaHeart } from 'react-icons/lia';
 import {
   Wrapper,
@@ -74,22 +60,37 @@ import {
   Button,
   StyledLink,
   Container,
+  AddButton,
+  RemoveButton,
 } from '../ModalNotice/ModalNotice.styled';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
 
+import { selectUser } from 'redux/auth/authSelectors';
+
+import {
+  Section,
+  Header,
+  BtnCancel,
+  BtnYes,
+  BtnWrapper,
+  TrashIcon,
+  DeleteText,
+} from '../ModalDeleteAction/ModalDeleteAction.styled';
+
+
 const NoticeCategoryItem = ({ notice }) => {
-  // const notices = useSelector(selectNotices);
-  // const favoriteNoticesArray = useSelector(selectFavoriteNotices);
-  // console.log(favoriteNoticesArray);
-  // console.log(notice);
+  
   const [favorite, setFavorite] = useState(false);
+
+  const currentUser = useSelector(selectUser);
 
   const favNotices = useSelector(selectFavoriteNotices);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     const newFunc = favNotices => {
       favNotices.forEach(favNotice => {
@@ -100,8 +101,7 @@ const NoticeCategoryItem = ({ notice }) => {
     };
     newFunc(favNotices);
   }, [favNotices, notice._id]);
-  // const [favoritePet, setFavoritePet] = useState(false)
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {
@@ -128,6 +128,16 @@ const NoticeCategoryItem = ({ notice }) => {
     }
   };
 
+  const handleRemoveOwnNotice = async () => {
+    if (isLoggedIn && currentUser._id === notice.owner) {
+      
+      dispatch(deleteNotice(notice._id));
+      toast.success('removed your own notice');
+    } else {
+      toast.error('You have to be loggedIn');
+    }
+  }
+
   const locationSlice = location => {
     if (location.length > 4) {
       return location.slice(0, 3) + '...';
@@ -135,9 +145,20 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
+  const nameFormat = (name) => {
+    if (name.length > 10) {
+      return name.slice(0, 10) + '...';
+    }
+    return name;
+  };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [deleteModal, setDeleteModal] = React.useState(false);
+  const deleteModalOpen = () => setDeleteModal(true);
+  const deleteModalClose = () => setDeleteModal(false);
 
   return (
     <NoticesCategoryItemStyled>
@@ -145,11 +166,19 @@ const NoticeCategoryItem = ({ notice }) => {
         <PetImage src={testImage} alt="test dog photo" />
         <HeartIcon
           type="button"
-          // onClick={() => { dispatch(toggleFavoriteMethod(notice._id)); } }>
           onClick={toggleFavoriteMethod}
         >
           {favorite ? <HeartFill /> : <Heart />}
         </HeartIcon>
+
+        {currentUser._id === notice.owner && 
+          <RemoveNoticeBtn
+            type='button'
+            onClick={deleteModalOpen}
+          >
+          <RemoveIcon/>
+          </RemoveNoticeBtn>
+          }
 
         <FilterStatus>In good hands</FilterStatus>
 
@@ -164,7 +193,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>Cute {notice.name} looking fro a home</NoticeText>
+      <NoticeText>Cute {nameFormat(notice.name)} looking fro a home</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>
@@ -217,15 +246,15 @@ const NoticeCategoryItem = ({ notice }) => {
                   <Title>Сute dog looking for a home</Title>
                   <Info>
                     <Tag>Name:</Tag>
-                    <Tag value="true">Rich</Tag>
+                    <Tag value="true">{notice.name}</Tag>
                     <Tag>Birthday:</Tag>
-                    <Tag value="true">21.09.2020</Tag>
+                    <Tag value="true">{modalDateFormat(notice.date)}</Tag>
                     <Tag>Type:</Tag>
-                    <Tag value="true">Pomeranian</Tag>
+                    <Tag value="true">{notice.type}</Tag>
                     <Tag>Place:</Tag>
-                    <Tag value="true">Lviv</Tag>
+                    <Tag value="true">{notice.location}</Tag>
                     <Tag>The sex:</Tag>
-                    <Tag value="true">male</Tag>
+                    <Tag value="true">{notice.sex}</Tag>
                     <Tag>Email:</Tag>
                     <StyledLink to="mailto:user@mail.com" privat="true">
                       user@mail.com{' '}
@@ -240,9 +269,7 @@ const NoticeCategoryItem = ({ notice }) => {
               <Comment>
                 <Text>
                   <Bold>Comments:</Bold>
-                  Rich would be the perfect addition to an active family that
-                  loves to play and go on walks. I bet he would love having a
-                  doggy playmate too!
+                  {notice.comments}
                 </Text>
               </Comment>
               <Container>
@@ -252,15 +279,46 @@ const NoticeCategoryItem = ({ notice }) => {
                   </StyledLink>
                 </Button>
 
-                <Button type="button" onClick={toggleFavoriteMethod}>
+                  {!favorite
+                  ? < AddButton type="button" onClick={toggleFavoriteMethod}>
                   <p>Add to</p>
                   <LiaHeart />
-                </Button>
+                  </AddButton>
+                  
+                  : <RemoveButton type="button" onClick={toggleFavoriteMethod}>
+                  <p>Remove from</p>
+                  <LiaHeart />
+                </RemoveButton>}
               </Container>
             </ModalBox>
           </Modal>
         </div>
       )}
+
+      
+        <div>
+         <Modal open={deleteModal} onClick={deleteModalClose}>
+            <ModalBox>
+                    <Section>
+                <Header>Delete adverstiment?</Header>
+                <DeleteText>
+                  Are you sure you want to delete <strong>{notice.name}</strong>? You can`t undo
+                  this action.
+                </DeleteText>
+                <BtnWrapper>
+                  <BtnCancel type="button" onClick={deleteModalClose}>
+                    Cancel
+                  </BtnCancel>
+                  <BtnYes type="button" onClick={handleRemoveOwnNotice}>
+                    Yes
+                    <TrashIcon />
+                  </BtnYes>
+                </BtnWrapper>
+                    </Section>
+           </ModalBox>
+          </Modal>
+          </div>
+      
     </NoticesCategoryItemStyled>
   );
 };

@@ -15,13 +15,13 @@ const Layout = () => {
   return (
     <LayoutContainer>
       <Header handleClick={handleClick}></Header>
-      {menuActive && (
+      {/* {menuActive && (
         <NavBurger>
           <Link href="/news">News</Link>
           <Link href="/notices">Find pet</Link>
           <Link href="/friends">Our friends</Link>
         </NavBurger>
-      )}
+      )} */}
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>

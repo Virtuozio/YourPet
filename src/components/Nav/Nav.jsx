@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, NavLink } from './Nav.styled';
+import { StyledLink } from './Nav.styled';
 // import { NavLink } from 'react-router-dom';
 
 // const items = [
@@ -22,13 +22,13 @@ import { Menu, NavLink } from './Nav.styled';
 
 const Nav = () => {
   return (
-    <Menu>
-      <NavLink to="/news">News</NavLink>
+    <>
+      <StyledLink to="/news">News</StyledLink>
 
-      <NavLink to="/notices">Find pet</NavLink>
+      <StyledLink to="/notices">Find pet</StyledLink>
 
-      <NavLink to="/friends">Our friends</NavLink>
-    </Menu>
+      <StyledLink to="/friends">Our friends</StyledLink>
+    </>
   );
 };
 

@@ -18,4 +18,50 @@ a{
     text-align: left;
 }
 
+li:hover, a:hover, p:hover{
+  color: rgba(84, 173, 255, 1);
+}
   `
+
+
+export const InfoBox = styled.div`
+
+:hover{
+  color: rgba(84, 173, 255, 1);
+}
+
+li{
+  display: flex;
+  align-items: flex-start;
+  p{
+    text-align: right;
+  }
+}
+
+
+  `
+
+
+
+export const ModalContent = styled.div`
+
+position: absolute;
+display: flex;
+padding: 12px;
+background-color: #fff;
+border: 1px solid rgba(84, 173, 255, 1);
+border-radius: 8px;
+text-align: justify;
+
+
+font-weight: 500;
+font-size: 12px;
+
+color: black;
+
+b{
+  margin-right: 12px;
+}
+
+
+`

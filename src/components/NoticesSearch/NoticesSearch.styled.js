@@ -48,7 +48,9 @@ const Input = styled.input`
   }
 `;
 
-const SubmitBtn = styled.button`
+const SubmitBtn = styled.button.withConfig({
+  shouldForwardProp: prop => prop !== 'query',
+})`
   position: absolute;
   top: 10px;
   right: 20px;
@@ -72,7 +74,9 @@ const SearchIco = styled(CiSearch)`
   stroke-width: 0.35;
 `;
 
-const ClearBtn = styled(SubmitBtn)`
+const ClearBtn = styled(SubmitBtn).withConfig({
+  shouldForwardProp: prop => prop !== 'query',
+})`
   right: 13px;
 
   transform: translateX(0);

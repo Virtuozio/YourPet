@@ -70,17 +70,17 @@ const noticesSlice = createSlice({
       .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.noticesFavorite.find(
-          notice => notice.id === payload.id
-        );
-        state.noticesFavorite.splice(index, 1);
+        // state.noticesFavorite = payload.result;
+        // const index = state.noticesFavorite.find(
+        //   notice => notice.id === payload.id
+        // );
+        // state.noticesFavorite.splice(index, 1);
       })
       .addCase(removeFromFavorite.pending, handlePending)
       .addCase(removeFromFavorite.rejected, handleRejected)
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite = payload.result;
       })
       .addCase(addToFavorite.pending, handlePending)
       .addCase(addToFavorite.rejected, handleRejected)

@@ -11,7 +11,6 @@ import {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
-  // console.log(notices);
 
   return (
     <>

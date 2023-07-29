@@ -2,11 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 axios.defaults.baseURL = 'https://yourpets.onrender.com/api';
 
+// const createSearchParams = params => new URLSearchParams(params).toString();
+
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
-  async (_, thunkAPI) => {
+  async (fetchInfo, thunkAPI) => {
     try {
-      const response = await axios.get('/notices');
+      // const { category, ...params } = credentials;
+      const response = await axios.get(`/notices${fetchInfo}` );
       // console.log(response);
       return response.data;
     } catch (e) {
@@ -81,7 +84,6 @@ export const addToFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.patch(`/notices/user/favorite/${id}`);
-      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -94,7 +96,6 @@ export const removeFromFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/notices/user/favorite/${id}`);
-      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

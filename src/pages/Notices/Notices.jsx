@@ -8,7 +8,6 @@ import React from 'react';
 
 
 // import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
-// import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
 // import Backdrop from 'components/Backdrop/Backdrop';
 
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
@@ -56,11 +55,6 @@ const Notices = () => {
       {/* {isModalOpen && (
         <Backdrop closeModal={closeModal}>
           <ModalUnauthorized closeModal={closeModal} />
-        </Backdrop>
-      )} */}
-      {/* {isModalOpen && (
-        <Backdrop closeModal={closeModal}>
-          <ModalDeleteAction closeModal={closeModal} />
         </Backdrop>
       )} */}
 

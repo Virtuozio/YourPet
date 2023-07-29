@@ -14,4 +14,6 @@ export const DetailsWrapper = styled.ul`
   }
 `;
 
-export const DetailsItem = styled.li``;
+export const DetailsItem = styled.li`
+  position: relative;
+`;

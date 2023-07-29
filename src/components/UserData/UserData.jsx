@@ -5,15 +5,17 @@ import { BiEditAlt } from 'react-icons/bi';
 import { LiaTimesSolid } from 'react-icons/lia';
 import { useState } from 'react';
 import { UserCardContainer, EditBtn } from './UserData.styled';
+import { useAuth } from 'hooks';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
   const [showConfirm, setShowConfirm] = useState(false);
-
   const confirmClose = confirm => {
     setShowConfirm(prevState => !prevState);
     setIsFormDisabled(confirm);
   };
+
+  const { user } = useAuth();
 
   return (
     <>
@@ -31,6 +33,7 @@ const UserData = () => {
           disabled={isFormDisabled}
           showConfirm={showConfirm}
           confirmClose={confirmClose}
+          user={user.name && user}
         />
 
         {isFormDisabled && <Logout />}

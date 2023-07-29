@@ -1,9 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ContentBox, InfoBox, ModalContent } from './OurFriendsInfo.styled';
 
 const OurFriendsInfo = ({ workDays, address, email, phone }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const toggleModal = () => {
     setIsModalOpen(prevIsModalOpen => !prevIsModalOpen);
@@ -19,14 +21,6 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
     }
   };
 
-  // if (!workDays || workDays.length === 0) {
-  //   return (
-  //     <ContentBox>
-  //       <p>Дані відсутні</p>
-  //     </ContentBox>
-  //   );
-  // }
-
   return (
     <>
       <ContentBox>
@@ -38,63 +32,63 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
                 <div className="modal">
                   <ModalContent>
                     {!workDays || workDays.length === 0 ? (
-                      <p>Дані відсутні</p>
+                      <p>Time is not available</p>
                     ) : (
                       <ul>
                         <li>
-                          <b>Пн:</b>
+                          <b>MN:</b>
                           <p>
                             {workDays[0].isOpen
                               ? `${workDays[0].from} - ${workDays[0].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Вт:</b>
+                          <b>TU:</b>
                           <p>
                             {workDays[1].isOpen
                               ? `${workDays[1].from} - ${workDays[1].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Ср:</b>
+                          <b>WE:</b>
                           <p>
                             {workDays[2].isOpen
                               ? `${workDays[2].from} - ${workDays[2].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Чт:</b>
+                          <b>TH:</b>
                           <p>
                             {workDays[3].isOpen
                               ? `${workDays[3].from} - ${workDays[3].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Пт:</b>
+                          <b>FR:</b>
                           <p>
                             {workDays[4].isOpen
                               ? `${workDays[4].from} - ${workDays[4].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Сб:</b>
+                          <b>SA:</b>
                           <p>
                             {workDays[5].isOpen
                               ? `${workDays[5].from} - ${workDays[5].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                         <li>
-                          <b>Вс:</b>
+                          <b>SU:</b>
                           <p>
                             {workDays[6].isOpen
                               ? `${workDays[6].from} - ${workDays[6].to}`
-                              : 'Зачинено'}
+                              : 'Closed'}
                           </p>
                         </li>
                       </ul>
@@ -113,28 +107,45 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
 
           <li>
             <InfoBox>
-              <b>Address</b>
-              <a href="">
-                <p>{address}</p>
-              </a>
+              {address ? (
+                <p>
+                  Address: <br />
+                  {address}
+                </p>
+              ) : (
+                <p>
+                  Address: <br /> not available
+                </p>
+              )}
             </InfoBox>
           </li>
 
           <li>
             <InfoBox>
-              <b>Email</b>
-              <a href="">
-                <p>{email}</p>
-              </a>
+              {email ? (
+                <p>
+                  Email: <br /> {email}
+                </p>
+              ) : (
+                <p>
+                  Email: <br /> not available
+                </p>
+              )}
             </InfoBox>
           </li>
 
           <li>
             <InfoBox>
-              <b>Phone</b>
-              <a href="">
-                <p>{phone}</p>
-              </a>
+              {phone ? (
+                <p>
+                  Phone: <br />
+                  {phone}
+                </p>
+              ) : (
+                <p>
+                  Phone: <br /> not available
+                </p>
+              )}
             </InfoBox>
           </li>
         </ul>

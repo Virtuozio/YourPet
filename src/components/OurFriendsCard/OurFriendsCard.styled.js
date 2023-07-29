@@ -6,11 +6,10 @@ export const Container = styled.div`
   background-color: white;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
   border-radius: 40px;
-  margin-bottom: 100px;
   box-sizing: border-box;
 
   width: 280px;
-  min-height: 239px;
+  min-height: 260px;
   padding: 40px 12px;
 
 
@@ -23,6 +22,14 @@ export const Container = styled.div`
 
   a{
     text-decoration: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 395px;
   }
 
   `
@@ -39,7 +46,8 @@ export const Company = styled.a`
 export const ContentBox = styled.div`
     display: flex;
     /* justify-content: center; */
-  
+    align-items: center;
+    
   `
 
 export const Logo = styled.img`

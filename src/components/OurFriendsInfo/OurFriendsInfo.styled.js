@@ -28,6 +28,7 @@ export const InfoBox = styled.div`
 
 :hover{
   color: rgba(84, 173, 255, 1);
+  cursor: pointer;
 }
 
 li{
@@ -64,4 +65,8 @@ b{
 }
 
 
+`
+
+export const Contact = styled.p`
+font-weight: 600px 1;
 `

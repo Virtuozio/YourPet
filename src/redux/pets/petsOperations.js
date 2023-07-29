@@ -20,7 +20,7 @@ export const addPet = createAsyncThunk(
       const response = await axios.post('/pets', data, {
         withCredentials: false,
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data',
         },
       });
       return response.data;

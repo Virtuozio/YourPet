@@ -155,14 +155,10 @@ const AddPetForm = () => {
               console.log('values :>> ', values);
               const formData = new FormData();
               for (const key in values) {
-                if (values.hasOwnProperty(key)) {
-                  console.log(key);
-                  console.log(values[key]);
-                  formData.append(`${key}`, `${values[key]}`);
-                  console.log(formData);
-                }
+                formData.append(key, values[key]);
+                console.log(formData);
               }
-              dispatch(addPet(formData));
+              dispatch(addPet(values));
             }
           })
           .catch(errs => {

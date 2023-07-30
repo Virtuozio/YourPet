@@ -25,7 +25,7 @@ const AuthForm = ({ values, errors, touched }) => {
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormikContext();
   // const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const validateIcon = (touched, errors, values, fieldName) => {
     const isValid = touched[fieldName] && !errors[fieldName];

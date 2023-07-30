@@ -52,7 +52,10 @@ export const App = () => {
           {/* <Route path=":categoryName" element={<NoticesCategoryList />} /> */}
         </Route>
         <Route path="/friends" element={<OurFriends />} />
-        <Route path="/add-pet" element={<AddPet />} />
+        <Route
+          path="/add-pet"
+          element={<PrivateRoute redirectTo="/login" component={<AddPet />} />}
+        />
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>

@@ -50,7 +50,7 @@ const FormSecondStep = ({
             name="title"
             placeholder="Title of add"
             value={values.title}
-            // onChange={handleChange}
+            onChange={handleChange}
             onBlur={handleBlur}
             style={errors.title && touched.title && { borderColor: '#f43f5e' }}
           />

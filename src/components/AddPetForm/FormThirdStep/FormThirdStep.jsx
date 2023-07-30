@@ -36,7 +36,7 @@ const FormThirdStep = ({
 
   useEffect(() => {
     if (values.file) {
-      setCurrentImg(values.file);
+      setCurrentImg(URL.createObjectURL(values.file));
     }
   }, [values.file]);
 
@@ -45,7 +45,7 @@ const FormThirdStep = ({
     if (file && file.size <= 3 * 1000 * 1000) {
       const urlFile = URL.createObjectURL(file);
       setCurrentImg(urlFile);
-      setFieldValue('file', urlFile);
+      setFieldValue('file', file);
     }
   };
 

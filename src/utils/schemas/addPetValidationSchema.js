@@ -51,7 +51,12 @@ const secValidNoYours = yup.object().shape({
 });
 
 const thirdValidYourPet = yup.object().shape({
-  file: yup.string().required('File is required'),
+  file: yup
+    .mixed()
+    .required('File is required')
+    .test('fileType', 'Invalid file type', value => {
+      return value instanceof File;
+    }),
   comments: yup.string().max(120, 'Too long comment'),
 });
 

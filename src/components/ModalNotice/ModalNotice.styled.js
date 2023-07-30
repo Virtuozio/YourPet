@@ -144,6 +144,101 @@ const Button = styled.button`
   }
 `;
 
+
+
+const AddButton = styled.button`
+  display: flex;
+  width: 256px;
+  height: 40px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  border: 2px solid #54adff;
+  background-color: transparent;
+  cursor: pointer;
+
+  svg {
+    fill: #54adff;
+
+  };
+  
+  &:first-child {
+    margin-bottom: 8px;
+  }
+  &:hover {
+    background: ${props =>
+      props.primary
+        ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
+    : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
+        
+        svg {
+    fill: #fff;
+
+  };
+    
+    p {
+      color: #fef9f9;
+    }
+  }
+  p {
+    color: ${props => (!props.primary ? '#54adff' : '#fef9f9')};
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.64px;
+  }
+  svg {
+    fill: #54adff;
+
+  }
+  @media screen and (min-width: 768px) {
+    width: 129px;
+    height: 40px;
+  }
+`;
+
+const RemoveButton = styled.button`
+  display: flex;
+  width: 256px;
+  height: 40px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 40px;
+  border: 2px solid #54adff;
+  background-color: ${props => (props.primary ? 'transparent' : '#54adff')};
+  cursor: pointer;
+  &:first-child {
+    margin-bottom: 8px;
+  }
+  &:hover {
+    background: ${props =>
+      props.primary
+        ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
+        : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
+    p {
+      color: #fef9f9;
+    }
+  }
+  p {
+    color: ${props => (props.primary ? '#54adff' : '#fef9f9')};
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.64px;
+  }
+  svg {
+    fill: #fff;
+  }
+  @media screen and (min-width: 768px) {
+    width: 190px;
+    height: 40px;
+  }
+`;
+
 const StyledLink = styled(Link)`
   color: #ffc107;
   font-size: 12px;
@@ -173,6 +268,8 @@ export {
   Text,
   Bold,
   Button,
+  AddButton,
+  RemoveButton,
   StyledLink,
   Container,
 };

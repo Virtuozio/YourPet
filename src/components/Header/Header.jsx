@@ -4,38 +4,47 @@ import Logo from 'components/Logo/Logo';
 // import Logout from 'components/Logout/Logout';
 import Nav from 'components/Nav/Nav';
 import UserNav from 'components/UserNav/UserNav';
-import React from 'react';
-import { Div, MenuBurger, Container, User, CloseBurger } from './Header.styled';
-import burger from 'components/Header/menu-hamburger.png';
-import close from 'components/Header/cross-small.png';
+import React, { useState } from 'react';
+import { Container, User } from './Header.styled';
+import icon from '../UserNav/user.png';
 
+import { useAuth, useWindowSize } from 'hooks';
 import { Link } from 'react-router-dom';
+import AuthNav from 'components/AuthNav/AuthNav';
+import { Menu } from 'components/Menu/Menu';
 
 const Header = ({ handleClick }) => {
+  const { isLoggedIn, user } = useAuth();
+  const size = useWindowSize();
+  const [openMenu, setOpenMenu] = useState(false);
   /* Not Authorised */
   /* <AuthNav /> */
 
   /* Authorised */
   return (
     <Container>
-      <Div>
-        <Logo />
-        <Nav />
-      </Div>
-      <User>
-        <UserNav />
-        {/* <Logout /> */}
-        <MenuBurger onClick={handleClick}>
-          <Link to="/">
-            <img src={burger} alt="Menu Burger" />
+      <Logo size={size} />
+      {size[0] >= 768 && size[0] < 1200 && isLoggedIn && (
+        <div
+          style={{ display: 'flex', alignItems: 'center', marginLeft: '399px' }}
+        >
+          <Link to="/user">
+            <img src={icon} alt="icon" />
           </Link>
-        </MenuBurger>
-        <CloseBurger onClick={handleClick}>
-          <Link to="/">
-            <img src={close} alt="Menu Close" />
-          </Link>
-        </CloseBurger>
-      </User>
+          <User>{user.name}</User>
+        </div>
+      )}
+      {size[0] < 1200 && (
+        <Menu size={size} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      )}
+      {size[0] >= 1200 && (
+        <>
+          <div style={{ display: 'flex', gap: '40px' }}>
+            <Nav />
+          </div>
+          <div>{isLoggedIn ? <UserNav /> : <AuthNav />}</div>
+        </>
+      )}
     </Container>
   );
 };

@@ -21,13 +21,12 @@ const Error = lazy(() => import('pages/Error/Error'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   return isRefreshing ? (
-        <Loader />
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -49,7 +48,9 @@ export const App = () => {
 
         <Route path="/main" element={<Main />} />
         <Route path="/news" element={<News />} />
-        <Route path="/notices" element={<Notices />} />
+        <Route path="/notices" element={<Notices />}>
+          {/* <Route path=":categoryName" element={<NoticesCategoryList />} /> */}
+        </Route>
         <Route path="/friends" element={<OurFriends />} />
         <Route path="/add-pet" element={<AddPet />} />
         <Route path="*" element={<Error />} />

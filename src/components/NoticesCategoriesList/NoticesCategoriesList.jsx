@@ -5,20 +5,17 @@ import { NoticeList } from './NoticesCategoriesList.styled';
 
 import { selectNotices } from 'redux/notices/noticesSelectors';
 import {
-  // toast,
   Toaster,
 } from 'react-hot-toast';
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
-
   return (
     <>
       <NoticeList>
         {notices.length !== 0 &&
           notices.map(item => (
             <NoticeCategoryItem
-              item
               key={item._id}
               notice={item}
               // mobile={12}

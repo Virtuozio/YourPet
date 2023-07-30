@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './authOperations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  updateUserData,
+  currentUser,
+} from './authOperations';
 
 const initialState = {
   user: { name: null, email: null },
@@ -40,6 +47,13 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(updateUserData.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      })
+      .addCase(currentUser.fulfilled, (state, action) => {
+        state.user = action.payload;
       });
   },
 });

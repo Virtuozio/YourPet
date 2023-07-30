@@ -9,12 +9,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPets } from 'redux/pets/petsOperations';
 import { selectIsRegistered } from 'redux/auth/authSelectors';
+import { currentUser } from 'redux/auth/authOperations';
 
 const User = () => {
   const [modalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPets());
+    dispatch(currentUser());
   }, [dispatch]);
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);
@@ -36,6 +38,7 @@ const User = () => {
         <div>
           <div
             style={{
+              width: '818px',
               display: 'flex',
               justifyContent: 'space-between',
             }}

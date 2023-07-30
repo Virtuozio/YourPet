@@ -1,3 +1,5 @@
+import { func } from "prop-types";
+
 export function petAgeCount(date) {
   const age = new Date(Date.now() - Date.parse(date)).getFullYear() - 1970 || 0;  
   if (age < 0) {
@@ -31,4 +33,8 @@ const years = [
   '13',
   '14',
   '15',
-]
+];
+
+export function modalDateFormat(date) {
+  return new Date(date).toLocaleDateString();
+}

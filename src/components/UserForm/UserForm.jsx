@@ -15,14 +15,13 @@ import {
 import validationSchema from 'utils/schemas/validationSchema';
 import defaultImg from '../../utils/Photo default.jpg';
 import { useDispatch } from 'react-redux';
-import { currentUser, updateUserData } from 'redux/auth/authOperations';
-import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
+import { updateUserData } from 'redux/auth/authOperations';
 
 const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   const dispatch = useDispatch();
   // const { user } = useAuth();
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState({ preview: '', data: '' });
 
   const initialValues = {
     avatar: user ? user.avatarURL : '',
@@ -59,16 +58,23 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   // }, [initialValues.avatar]);
 
   const handleFileChange = e => {
-    const img = e.currentTarget.files[0];
-    const avatarUrl = URL.createObjectURL(img);
-    setImage(avatarUrl);
+    const img = {
+      preview: URL.createObjectURL(e.currentTarget.files[0]),
+      data: e.currentTarget.files[0],
+    };
+
+    setImage(img);
   };
 
   const handleSubmit = values => {
     let formData = new FormData();
 
     for (const key in values) {
-      formData.append(`${key}`, values[key]);
+      if (key === 'avatar') {
+        formData.append('avatar', image.data);
+      } else {
+        formData.append(`${key}`, values[key]);
+      }
     }
     dispatch(updateUserData(formData));
   };
@@ -86,7 +92,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
             {disabled ? (
               <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
             ) : (
-              <UserPhoto src={image ? image : user.avatarURL} />
+              <UserPhoto src={image.preview ? image.preview : user.avatarURL} />
             )}
 
             {!disabled && !showConfirm && (

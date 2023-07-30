@@ -13,10 +13,12 @@ const UserNav = () => {
 
   return (
     <Container>
-      <StyledLink to="/user">
-        <img src={icon} alt="icon" />
-        <User>{user.name}</User>
-      </StyledLink>
+      {user && (
+        <StyledLink to="/user">
+          <img src={icon} alt="icon" />
+          <User>{user.name}</User>
+        </StyledLink>
+      )}
       <LogoutBtn onClick={() => toggleModal()}>
         Log Out
         <CiLogout />

@@ -15,7 +15,8 @@ import {
 import validationSchema from 'utils/schemas/validationSchema';
 import defaultImg from '../../utils/Photo default.jpg';
 import { useDispatch } from 'react-redux';
-import { updateUserData } from 'redux/auth/authOperations';
+import { currentUser, updateUserData } from 'redux/auth/authOperations';
+import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
 
 const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   const dispatch = useDispatch();
@@ -24,14 +25,13 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   const [image, setImage] = useState();
 
   const initialValues = {
-    avatar: user ? user.avatar : '',
+    avatar: user ? user.avatarURL : '',
     name: user ? user.name : '',
     email: user ? user.email : '',
     birthday: user ? user.birthday : '',
     phone: user ? user.phone : '',
     city: user ? user.city : '',
   };
-  console.log(initialValues);
 
   const handleClose = useCallback(
     e => {
@@ -52,18 +52,27 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
     }
   }, [disabled]);
 
-  const handleImageUpload = e => {
-    const [file] = e.target.files;
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+  // useEffect(() => {
+  //   if (initialValues.avatar) {
+  //     setImage(initialValues.avatar);
+  //   }
+  // }, [initialValues.avatar]);
+
+  const handleFileChange = e => {
+    const img = e.currentTarget.files[0];
+    const avatarUrl = URL.createObjectURL(img);
+    setImage(avatarUrl);
   };
 
-  const handleSubmit = (values, actions) => {
-    const updatedData = { avatar: image, ...values };
-    dispatch(updateUserData(updatedData));
-    console.log(updatedData);
+  const handleSubmit = values => {
+    let formData = new FormData();
+
+    for (const key in values) {
+      formData.append(`${key}`, values[key]);
+    }
+    dispatch(updateUserData(formData));
   };
+
   return (
     <Formik
       enableReinitialize
@@ -74,7 +83,12 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
       <Form>
         <StyledForm>
           <div>
-            <UserPhoto src={image ? image : defaultImg} />
+            {disabled ? (
+              <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
+            ) : (
+              <UserPhoto src={image ? image : user.avatarURL} />
+            )}
+
             {!disabled && !showConfirm && (
               <div style={{ marginTop: '15px' }}>
                 <FileInputLabel htmlFor="file">
@@ -85,7 +99,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
                   type="file"
                   id="file"
                   accept="image/*"
-                  onChange={handleImageUpload}
+                  onChange={handleFileChange}
                 />
               </div>
             )}

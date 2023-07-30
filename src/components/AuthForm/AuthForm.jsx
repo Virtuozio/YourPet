@@ -91,9 +91,9 @@ const AuthForm = ({ values, errors, touched }) => {
               style={{ width: '24px', height: '24px' }}
             >
               {showPassword ? (
-                <MdOutlineVisibilityOff />
-              ) : (
                 <MdOutlineVisibility />
+              ) : (
+                <MdOutlineVisibilityOff />
               )}
             </Icon>
             <Error name="password" component="div" />
@@ -116,9 +116,9 @@ const AuthForm = ({ values, errors, touched }) => {
               style={{ width: '24px', height: '24px' }}
             >
               {showPassword ? (
-                <MdOutlineVisibilityOff />
-              ) : (
                 <MdOutlineVisibility />
+              ) : (
+                <MdOutlineVisibilityOff />
               )}
             </Icon>
             <Error name="confirmPassword" component="div" />

@@ -119,9 +119,9 @@ const LoginForm = ({ values, errors, touched }) => {
               style={{ width: '24px', height: '24px' }}
             >
               {showPassword ? (
-                <MdOutlineVisibilityOff />
-              ) : (
                 <MdOutlineVisibility />
+              ) : (
+                <MdOutlineVisibilityOff />
               )}
             </Icon>
             <Error name="email" component="span" />

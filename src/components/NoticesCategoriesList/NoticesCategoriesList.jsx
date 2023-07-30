@@ -5,7 +5,6 @@ import { NoticeList } from './NoticesCategoriesList.styled';
 
 import { selectNotices } from 'redux/notices/noticesSelectors';
 import {
-  // toast,
   Toaster,
 } from 'react-hot-toast';
 

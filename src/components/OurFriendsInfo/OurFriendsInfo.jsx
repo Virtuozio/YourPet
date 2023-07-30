@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { ContentBox, InfoBox, ModalContent } from './OurFriendsInfo.styled';
 
 const OurFriendsInfo = ({ workDays, address, email, phone }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const toggleModal = () => {
     setIsModalOpen(prevIsModalOpen => !prevIsModalOpen);

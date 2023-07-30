@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { useFormik } from 'formik';
+// import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { register, logIn } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import { useState } from 'react';
 
 import {
@@ -15,7 +15,7 @@ import {
   Icon,
   Btn,
   Error,
-  ErrorMessageText,
+  // ErrorMessageText,
 } from './AuthForm.styled';
 
 import {
@@ -27,7 +27,7 @@ import {
 
 const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -81,6 +81,7 @@ const AuthForm = () => {
       <Div>
         <h1>Registration</h1>
         <Formik
+          enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}

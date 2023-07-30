@@ -19,25 +19,27 @@ const UserData = () => {
 
   return (
     <>
-      <UserCardContainer>
-        {isFormDisabled ? (
-          <EditBtn onClick={() => setIsFormDisabled(false)}>
-            <BiEditAlt />
-          </EditBtn>
-        ) : (
-          <EditBtn onClick={() => setShowConfirm(true)}>
-            <LiaTimesSolid />
-          </EditBtn>
-        )}
-        <UserForm
-          disabled={isFormDisabled}
-          showConfirm={showConfirm}
-          confirmClose={confirmClose}
-          user={user.name && user}
-        />
+      {user && (
+        <UserCardContainer>
+          {isFormDisabled ? (
+            <EditBtn onClick={() => setIsFormDisabled(false)}>
+              <BiEditAlt />
+            </EditBtn>
+          ) : (
+            <EditBtn onClick={() => setShowConfirm(true)}>
+              <LiaTimesSolid />
+            </EditBtn>
+          )}
+          <UserForm
+            disabled={isFormDisabled}
+            showConfirm={showConfirm}
+            confirmClose={confirmClose}
+            user={user.name && user}
+          />
 
-        {isFormDisabled && <Logout />}
-      </UserCardContainer>
+          {isFormDisabled && <Logout />}
+        </UserCardContainer>
+      )}
     </>
   );
 };

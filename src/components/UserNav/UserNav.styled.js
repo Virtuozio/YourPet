@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const User = styled.a`
+export const User = styled(Link)`
   @media screen and (min-width: 768px) {
     color: #ffc107;
     font-size: 16px;

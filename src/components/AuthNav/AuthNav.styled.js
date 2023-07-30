@@ -39,4 +39,8 @@ export const AuthBtn = styled(Link)`
       fill: #ffc107;
     }
   }
+
+  @media screen and (min-width: 768px) {
+    width: 165px;
+  }
 `;

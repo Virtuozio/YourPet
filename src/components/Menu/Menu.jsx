@@ -28,10 +28,8 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
   }, [setOpenMenu]);
 
   useEffect(() => {
-    if (openMenu) {
-      closeMenu();
-    }
-  });
+    closeMenu();
+  }, [url]);
 
   return (
     <>

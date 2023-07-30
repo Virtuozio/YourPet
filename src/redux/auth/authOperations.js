@@ -53,9 +53,9 @@ export const logIn = createAsyncThunk(
  */
 export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
-  async (credentials, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const res = await axios.patch('/users/update/avatar', credentials);
+      const res = await axios.patch('/users/update/avatar', formData);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {

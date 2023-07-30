@@ -29,7 +29,7 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
 
   useEffect(() => {
     closeMenu();
-  }, [url]);
+  }, [url, closeMenu]);
 
   return (
     <>

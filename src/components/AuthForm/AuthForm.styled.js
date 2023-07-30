@@ -105,6 +105,21 @@ export const Icon = styled.span`
   transition: 250ms;
 `;
 
+export const IconValid = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 17px;
+  top: 15px;
+  color: ${({ valid }) => (valid ? 'rgba(42, 187, 155, 1)' : 'rgba(255, 99, 71, 1)')};
+  cursor: pointer;
+  transition: 250ms;
+
+`;
+
+
+
 export const InputLine = styled(Field)`
   font-family: Manrope;
   position: relative;

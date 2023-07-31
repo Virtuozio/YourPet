@@ -45,7 +45,7 @@ const NewsSearch = ({ news }) => {
                 <Title>{title}</Title>
                 <Text>{text}</Text>
                 <NewsBottom>
-                  <p>{date}</p>
+                  <p>{date.slice(0, 10)}</p>
                   <NewsLink
                     href={url}
                     target="_blank"

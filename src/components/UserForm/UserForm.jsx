@@ -65,10 +65,11 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
     const img = e.currentTarget.files[0];
     const avatarUrl = URL.createObjectURL(img);
     setImage(avatarUrl);
+    confirmClose(true);
   };
 
   const handleSubmit = values => {
-    let formData = new FormData();
+    const formData = new FormData();
 
     for (const key in values) {
       formData.append(`${key}`, values[key]);
@@ -119,6 +120,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
                   style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
                   onClick={handleClose}
                 />
+                <span>Confirm</span>
                 <BsX
                   id="cancel"
                   style={{ fill: '#F43F5E', width: '24px', height: '24px' }}

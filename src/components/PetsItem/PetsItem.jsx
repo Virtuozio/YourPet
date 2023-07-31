@@ -22,9 +22,10 @@ const PetsItem = ({ pet }) => {
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
+
   const approveAction = () => {
-    setIsModalOpen(prevState => !prevState);
     dispatch(deletePet(pet._id));
+    setIsModalOpen(prevState => !prevState);
   };
 
   return (
@@ -55,6 +56,7 @@ const PetsItem = ({ pet }) => {
           <ModalDeleteAction
             closeModal={closeModal}
             approveAction={approveAction}
+            petName={pet.name}
           />
         </Backdrop>
       )}

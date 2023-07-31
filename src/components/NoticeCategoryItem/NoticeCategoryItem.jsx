@@ -159,7 +159,10 @@ const NoticeCategoryItem = ({ notice }) => {
   return (
     <NoticesCategoryItemStyled>
       <ImageContainer>
-        <PetImage src={testImage} alt="test dog photo" />
+        <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        />
         <HeartIcon type="button" onClick={toggleFavoriteMethod}>
           {favorite ? <HeartFill /> : <Heart />}
         </HeartIcon>

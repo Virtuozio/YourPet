@@ -97,8 +97,8 @@ const NoticeCategoryItem = ({ notice }) => {
         }
       });
     };
-    newFunc(favNotices);
-  }, [favNotices, notice._id]);
+    if (isLoggedIn) newFunc(favNotices);
+  }, [favNotices, notice._id, isLoggedIn]);
 
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {

@@ -38,7 +38,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.pending, handlePending)
       .addCase(fetchNotices.rejected, handleRejected)
       .addCase(addNotice.fulfilled, (state, { payload }) => {
-        state.notices.push(payload);
+        state.notices.unshift(payload);
         state.isLoadingNotices = false;
         state.errorNotices = null;
         state.noticeAdd = payload;

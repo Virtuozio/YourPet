@@ -4,6 +4,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 
 export const Div = styled.div`
   margin: 0 auto;
+  margin-top: 44px;
   background-color: white;
   border: 1px solid rgba(84, 173, 255, 1);
   box-shadow: rgba(136, 198, 253, 0.19);
@@ -38,6 +39,8 @@ export const Div = styled.div`
   @media screen and (min-width: 768px) {
     width: 608px;
     padding: 60px 75px;
+    margin-top: 80px;
+
 
     h1 {
       font-family: Manrope;
@@ -63,6 +66,7 @@ export const Div = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
+    /* margin-top: 80px; */
     width: 608px;
   }
 `;

@@ -9,7 +9,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   width: 280px;
-  min-height: 260px;
+  min-height: 316px;
   padding: 40px 12px;
 
 
@@ -35,13 +35,38 @@ export const Container = styled.div`
   `
 
 export const Company = styled.a`
-    font-family: Manrope;
-    font-size: 20px;
-    color: rgba(84, 173, 255, 1);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 16px;
-  `
+  position: relative;
+  font-family: Manrope;
+  font-size: 16px;
+  color: rgba(84, 173, 255, 1);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: 5px;
+    left: 25%;
+    bottom: -8px;
+    border-radius: 8px;
+    background-color: rgba(84, 173, 255, 1);
+    transform-origin: left center;
+    transform: scaleX(0); /* Приховуємо підкреслення */
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover::after {
+    transform: scaleX(1); /* Відображуємо підкреслення при наведенні */
+  }
+`;
+
+
+
+
 
 export const ContentBox = styled.div`
     display: flex;

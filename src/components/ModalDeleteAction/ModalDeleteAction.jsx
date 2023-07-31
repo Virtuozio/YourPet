@@ -13,7 +13,7 @@ import {
 // import { useDispatch } from 'react-redux';
 // import { deletePet } from 'redux/pets/petsOperations';
 
-const ModalDeleteAction = ({ closeModal, approveAction}) => {
+const ModalDeleteAction = ({ closeModal, approveAction, petName }) => {
   // const dispatch = useDispatch();
   // const handleDelete = () => {
   //   dispatch(deletePet());
@@ -22,8 +22,8 @@ const ModalDeleteAction = ({ closeModal, approveAction}) => {
     <Section>
       <Header>Delete adverstiment?</Header>
       <DeleteText>
-        Are you sure you want to delete <strong>PetName</strong>? You can`t undo
-        this action.
+        Are you sure you want to delete <strong>{petName}</strong>? You can`t
+        undo this action.
       </DeleteText>
       <BtnWrapper>
         <BtnCancel type="button" onClick={closeModal}>

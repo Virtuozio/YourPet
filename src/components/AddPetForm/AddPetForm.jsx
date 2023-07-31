@@ -29,6 +29,7 @@ import {
   PawIcon,
   Title,
 } from './AddPetForm.styled';
+import { addNotice } from 'redux/notices/noticesOperations';
 
 const AddPetForm = () => {
   const navigate = useNavigate();
@@ -84,6 +85,7 @@ const AddPetForm = () => {
   } = useFormik({
     initialValues,
     validationSchema: currentValidationSchema,
+
     onSubmit: () => {
       let formValues = {};
       let typeSchema = '';
@@ -151,7 +153,14 @@ const AddPetForm = () => {
               for (let key in values) {
                 formData.append(`${key}`, values[key]);
               }
-              dispatch(addPet(formData));
+
+              if (values.category === YOUR_PET) {
+                dispatch(addPet(formData));
+                navigate('/user');
+              } else {
+                dispatch(addNotice(formData));
+                navigate('/notices');
+              }
             }
           })
           .catch(errs => {

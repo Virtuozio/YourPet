@@ -17,7 +17,6 @@ const UserData = () => {
   };
 
   const { user } = useAuth();
-
   useEffect(() => {
     setIsFormDisabled(true);
   }, [user]);
@@ -39,7 +38,7 @@ const UserData = () => {
             disabled={isFormDisabled}
             showConfirm={showConfirm}
             confirmClose={confirmClose}
-            user={user.name && user}
+            user={user}
           />
 
           {isFormDisabled && <Logout />}

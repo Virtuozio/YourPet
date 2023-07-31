@@ -6,7 +6,6 @@ import { selectPets } from 'redux/pets/petsSelectors';
 
 const PetsList = () => {
   const pets = useSelector(selectPets);
-  console.log(pets);
   return (
     <div>
       {pets.length !== 0 &&

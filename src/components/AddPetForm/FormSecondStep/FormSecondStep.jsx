@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
@@ -13,8 +13,10 @@ const FormSecondStep = ({
   errors,
   touched,
   handleBlur,
+  isSubmitting,
 }) => {
   const datePickerRef = useRef('#birthday-date');
+  const [inputsErrors, setInputsErrors] = useState({});
 
   useEffect(() => {
     const datepicker = flatpickr(datePickerRef.current, {
@@ -39,6 +41,18 @@ const FormSecondStep = ({
     };
   }, [handleChange]);
 
+  useEffect(() => {
+    if (isSubmitting) {
+      setInputsErrors(touched);
+    }
+  }, [isSubmitting, touched]);
+
+  const handleInputBlur = e => {
+    const { name } = e.target;
+    setInputsErrors({ ...inputsErrors, [name]: true });
+    handleBlur(e);
+  };
+
   return (
     <DetailsWrapper>
       {values.category !== YOUR_PET && (
@@ -51,10 +65,12 @@ const FormSecondStep = ({
             placeholder="Title of add"
             value={values.title}
             onChange={handleChange}
-            onBlur={handleBlur}
-            style={errors.title && touched.title && { borderColor: '#f43f5e' }}
+            onBlur={handleInputBlur}
+            style={
+              errors.title && inputsErrors.title && { borderColor: '#f43f5e' }
+            }
           />
-          {errors.title && touched.title && (
+          {errors.title && inputsErrors.title && (
             <ErrorInput>{errors.title}</ErrorInput>
           )}
         </DetailsItem>
@@ -69,10 +85,12 @@ const FormSecondStep = ({
           placeholder="Type name pet"
           value={values.name}
           onChange={handleChange}
-          onBlur={handleBlur}
-          style={errors.name && touched.name && { borderColor: '#f43f5e' }}
+          onBlur={handleInputBlur}
+          style={errors.name && inputsErrors.name && { borderColor: '#f43f5e' }}
         />
-        {errors.name && touched.name && <ErrorInput>{errors.name}</ErrorInput>}
+        {errors.name && inputsErrors.name && (
+          <ErrorInput>{errors.name}</ErrorInput>
+        )}
       </DetailsItem>
 
       <DetailsItem>
@@ -84,10 +102,12 @@ const FormSecondStep = ({
           placeholder="Type date of birthday"
           value={values.date}
           onChange={handleChange}
-          onBlur={handleBlur}
-          style={errors.date && touched.date && { borderColor: '#f43f5e' }}
+          onBlur={handleInputBlur}
+          style={errors.date && inputsErrors.date && { borderColor: '#f43f5e' }}
         />
-        {errors.date && touched.date && <ErrorInput>{errors.date}</ErrorInput>}
+        {errors.date && inputsErrors.date && (
+          <ErrorInput>{errors.date}</ErrorInput>
+        )}
       </DetailsItem>
 
       <DetailsItem>
@@ -99,10 +119,12 @@ const FormSecondStep = ({
           placeholder="Type of pet"
           value={values.type}
           onChange={handleChange}
-          onBlur={handleBlur}
-          style={errors.type && touched.type && { borderColor: '#f43f5e' }}
+          onBlur={handleInputBlur}
+          style={errors.type && inputsErrors.type && { borderColor: '#f43f5e' }}
         />
-        {errors.type && touched.type && <ErrorInput>{errors.type}</ErrorInput>}
+        {errors.type && inputsErrors.type && (
+          <ErrorInput>{errors.type}</ErrorInput>
+        )}
       </DetailsItem>
     </DetailsWrapper>
   );

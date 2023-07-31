@@ -11,9 +11,7 @@ import {
 } from 'react-hot-toast';
 
 import { getNoticesByCategory, fetchFavoriteNotices, getAllOwnNotices } from 'redux/notices/noticesOperations';
-// import { filters } from "../NoticesCategoriesNav/filtersData";
 
-// import { selectVisibleNotices } from 'redux/notices/noticesSelectors';
 
 const getVisibeNotices = (notices, statusFilter) => {
   switch (statusFilter) {
@@ -36,49 +34,10 @@ const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
   const { categoryName } = useParams(); 
  const dispatch = useDispatch();
-  // const [filterId, setFilterId] = useState([]);
-  // const visibleNotices = useSelector(selectVisibleNotices);
-    // console.log(visibleNotices);
-    // const statusFilter = useSelector(getStatusFilter);
   
   
   const visibleNotices = getVisibeNotices(notices, categoryName);
-  // console.log(visibleNotices);
 
-    // useEffect(() => {
-    // if (categoryName === statusFilters.SELL) {
-    //   dispatch(fetchFavoriteNotices());
-    // } else if (categoryName === statusFilters.MY_ADS) {
-    //   dispatch(getAllOwnNotices());
-    // } else {
-    //   dispatch(getNoticesByCategory(categoryName));
-    // }
-
-    // if (isLoggedIn) {
-    //   const getFavorites = async () => {
-    //   const res = await getAllFavoriteNoticesWithoutR();
-    //   if (res?.result) setFavorites(res.result);
-    //   setIsFavorites(true);
-    // };
-
-    // const getOwn = async () => {
-    //   const res = await getAllOwnNoticesWithoutR();
-    //   if (res?.result) setOwns(res?.result);
-    //   setIsOwns(true);
-    // };
-
-    // getOwn();
-    // getFavorites();
-    // } else {
-    //   setIsFavorites(true);
-    //   setIsOwns(true);
-    // }
-
-    
-
-    // setFilterId([]);
-
-  // }, [categoryName]);
 
 
 
@@ -86,14 +45,7 @@ const NoticesCategoriesList = () => {
     <>
       <NoticeList>
         {
-          // notices
-          //     .filter(
-          //       item =>
-                  
-          //         (categoryName === statusFilters.FAVORITE_ADS ||
-          //           categoryName === statusFilters.MY_ADS ||
-          //           categoryName === item.category)
-          //     )
+          
           visibleNotices.map(item => (
             <NoticeCategoryItem
               key={item._id}

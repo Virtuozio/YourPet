@@ -44,54 +44,13 @@ const NoticesCategoriesNav = () => {
   
   
 const { categoryName } = useParams();
-  // const handleFilterChange = async (filter) => {
-  //   const response = await axios.get(`notices/users/search?category=${filter}&page=1&limit=8`);
-  //   console.log(response);
-  // };
+ 
   const dispatch = useDispatch();
   
   const handleFilterChange = async (filter) => {
     dispatch(getNoticesByCategory(filter));
     };
 
-  // return (
-  //   <div>
-  //     <button
-  //       selected={filter === statusFilters.SELL}
-  //       onClick={() => handleFilterChange(statusFilters.SELL)}
-  //     >
-  //       sell
-  //     </button>
-  //     <button
-  //       selected={filter === statusFilters.LOST_FOUND}
-  //       onClick={() => handleFilterChange(statusFilters.LOST_FOUND)}
-  //     >
-  //       lost/found
-  //     </button>
-  //     <button
-  //       selected={filter === statusFilters.IN_GOOD_HANDS}
-  //       onClick={() => handleFilterChange(statusFilters.IN_GOOD_HANDS)}
-  //     >
-  //       in good hands
-  //     </button>
-
-  //     {isLoggedIn &&
-  //       <>
-  //       <button
-  //       selected={filter === statusFilters.FAVORITE_ADS}
-  //       onClick={() => handleFilterChange(statusFilters.FAVORITE_ADS)}>
-  //       favorite ads
-  //     </button>
-        
-  //     <button
-  //       selected={filter === statusFilters.MY_ADS}
-  //       onClick={() => handleFilterChange(statusFilters.MY_ADS)}
-  //     >
-  //       my ads
-  //       </button>
-  //     </>}
-  //   </div>
-  // );
 
   const items = filters.map(({ filter, path }, el) => {
     if (!isLoggedIn && filter === 'favorite ads') {

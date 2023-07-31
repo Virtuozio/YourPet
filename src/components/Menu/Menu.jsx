@@ -22,14 +22,14 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
   const { isLoggedIn, user } = useAuth();
   const { toggleModal, showModal } = useModal(false);
   let url = useLocation();
-  console.log(url);
+  // console.log(url);
   const closeMenu = useCallback(() => {
     setOpenMenu(false);
   }, [setOpenMenu]);
 
   useEffect(() => {
     closeMenu();
-  }, [url]);
+  }, [url, closeMenu]);
 
   return (
     <>

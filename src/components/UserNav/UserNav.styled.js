@@ -10,6 +10,7 @@ export const User = styled(Link)`
     line-height: normal;
     letter-spacing: 0.64px;
     margin-left: 12px;
+    text-decoration: none;
   }
 
   @media screen and (min-width: 1280px) {

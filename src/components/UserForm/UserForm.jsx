@@ -15,8 +15,11 @@ import {
 import validationSchema from 'utils/schemas/validationSchema';
 import defaultImg from '../../utils/Photo default.jpg';
 import { useDispatch } from 'react-redux';
-import { currentUser, updateUserData } from 'redux/auth/authOperations';
-import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
+import {
+  // currentUser,
+  updateUserData,
+} from 'redux/auth/authOperations';
+// import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
 
 const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   const dispatch = useDispatch();

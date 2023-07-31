@@ -29,6 +29,23 @@ const PetPhoto = styled.img`
   }
 `;
 
+const CategoryItem = styled.div`
+position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
+left: 0;
+top: 16px;
+width: 132px;
+height: 32px;
+background-color: #CCE4FB;
+`
+
+const PhotoContainer = styled.div`
+position: relative;
+
+`
+
 const Title = styled.h2`
   width: 198px;
   color: #000;
@@ -256,6 +273,8 @@ export {
   Wrapper,
   PetPhoto,
   Title,
+  CategoryItem,
+  PhotoContainer,
   Info,
   Tag,
   Comment,

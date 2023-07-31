@@ -1,15 +1,16 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import React from 'react';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector,  useDispatch} from 'react-redux';
 import { NoticeList } from './NoticesCategoriesList.styled';
-
+import { useEffect, useState } from 'react';
 import { selectNotices, selectStatusFilter } from 'redux/notices/noticesSelectors';
 import { statusFilters } from "../../redux/notices/constans";
 import {
   Toaster,
 } from 'react-hot-toast';
 
+import { getNoticesByCategory, fetchFavoriteNotices, getAllOwnNotices } from 'redux/notices/noticesOperations';
 // import { filters } from "../NoticesCategoriesNav/filtersData";
 
 // import { selectVisibleNotices } from 'redux/notices/noticesSelectors';
@@ -34,17 +35,20 @@ const getVisibeNotices = (notices, statusFilter) => {
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
   const { categoryName } = useParams(); 
-
+ const dispatch = useDispatch();
+  // const [filterId, setFilterId] = useState([]);
   // const visibleNotices = useSelector(selectVisibleNotices);
     // console.log(visibleNotices);
     // const statusFilter = useSelector(getStatusFilter);
+  
+  
   const visibleNotices = getVisibeNotices(notices, categoryName);
   // console.log(visibleNotices);
 
     // useEffect(() => {
     // if (categoryName === statusFilters.SELL) {
-    //   dispatch(getAllFavoriteNotices());
-    // } else if (categoryName === Categories.MY_ADS) {
+    //   dispatch(fetchFavoriteNotices());
+    // } else if (categoryName === statusFilters.MY_ADS) {
     //   dispatch(getAllOwnNotices());
     // } else {
     //   dispatch(getNoticesByCategory(categoryName));
@@ -72,9 +76,8 @@ const NoticesCategoriesList = () => {
 
     
 
-  //   setFilterId([]);
+    // setFilterId([]);
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [categoryName]);
 
 
@@ -83,6 +86,14 @@ const NoticesCategoriesList = () => {
     <>
       <NoticeList>
         {
+          // notices
+          //     .filter(
+          //       item =>
+                  
+          //         (categoryName === statusFilters.FAVORITE_ADS ||
+          //           categoryName === statusFilters.MY_ADS ||
+          //           categoryName === item.category)
+          //     )
           visibleNotices.map(item => (
             <NoticeCategoryItem
               key={item._id}

@@ -115,3 +115,17 @@ export const fetchFavoriteNotices = createAsyncThunk(
     }
   }
 );
+
+export const getNoticesByCategory = createAsyncThunk(
+  'notices/getNoticesByCategory',
+  async (fetchInfo, thunkAPI) => {
+    try {
+      const response = await axios.get(`notices/users/search${fetchInfo}`);
+      console.log(response.data);
+      console.log(response.data.total);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

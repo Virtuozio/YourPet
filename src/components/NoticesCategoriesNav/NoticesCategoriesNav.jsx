@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  useDispatch,
   useSelector,
   // useDispatch
 } from 'react-redux';
@@ -11,12 +12,8 @@ import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 // import { statusFilters } from "../../redux/notices/constans";
 // import { selectStatusFilter } from "../../redux/notices/noticesSelectors";
 // import { setStatusFilter } from "../../redux/notices/filtersSlice";
-// import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
-import {
-  getNoticesByCategory
-} from 'redux/notices/noticesOperations';
+import { getNoticesByCategory } from 'redux/notices/noticesOperations';
 // const NoticesCategoriesNav = () => {
 //   const isLoggedIn = useSelector(selectIsLoggedIn);
 //   const items = filters.map(({ filter, path }, el) => {
@@ -44,24 +41,22 @@ const NoticesCategoriesNav = () => {
   // const filter = useSelector(selectStatusFilter);
 
   // const handleFilterChange = filter => dispatch(setStatusFilter(filter));
-  
-  
-const { categoryName } = useParams();
- 
+
+  // const { categoryName } = useParams();
+
   const dispatch = useDispatch();
-  
-  const handleFilterChange = async (filter) => {
-    dispatch(getNoticesByCategory(filter));
-    };
 
+  // const handleFilterChange = async filter => {
+  //   dispatch(getNoticesByCategory(filter));
+  // };
 
-//   // const { categoryName } = useParams();
-//   const handleFilterChange = async filter => {
-//     const response = await axios.get(
-//       `notices/users/search?category=${filter}&page=1&limit=8`
-//     );
-//     console.log(response);
-//   };
+  //   // const { categoryName } = useParams();
+  //   const handleFilterChange = async filter => {
+  //     const response = await axios.get(
+  //       `notices/users/search?category=${filter}&page=1&limit=8`
+  //     );
+  //     console.log(response);
+  //   };
 
   // return (
   //   <div>
@@ -112,8 +107,12 @@ const { categoryName } = useParams();
     }
     return (
       <li key={el}>
-        <Btn to={`/notices/${path}`}onClick={()=>dispatch(getNoticesByCategory(filter))}>{filter}</Btn>
-
+        <Btn
+          to={`/notices/${path}`}
+          onClick={() => dispatch(getNoticesByCategory(filter))}
+        >
+          {filter}
+        </Btn>
       </li>
     );
   });

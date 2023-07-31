@@ -1,22 +1,16 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import React from 'react';
 import { useParams } from 'react-router';
-import { useSelector,  useDispatch} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NoticeList } from './NoticesCategoriesList.styled';
 
-import { useEffect, useState } from 'react';
-import { selectNotices, selectStatusFilter } from 'redux/notices/noticesSelectors';
-import { statusFilters } from "../../redux/notices/constans";
+import { statusFilters } from '../../redux/notices/constans';
 
 import {
   selectNotices,
   // selectStatusFilter
 } from 'redux/notices/noticesSelectors';
-import { statusFilters } from '../../redux/notices/constans';
 import { Toaster } from 'react-hot-toast';
-
-import { getNoticesByCategory, fetchFavoriteNotices, getAllOwnNotices } from 'redux/notices/noticesOperations';
-
 
 const getVisibeNotices = (notices, statusFilter) => {
   switch (statusFilter) {
@@ -47,17 +41,13 @@ const getVisibeNotices = (notices, statusFilter) => {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
-  const { categoryName } = useParams(); 
- const dispatch = useDispatch();
-  
-  
-  const visibleNotices = getVisibeNotices(notices, categoryName);
   const { categoryName } = useParams();
+
+  const visibleNotices = getVisibeNotices(notices, categoryName);
 
   // const visibleNotices = useSelector(selectVisibleNotices);
   // console.log(visibleNotices);
   // const statusFilter = useSelector(getStatusFilter);
-  const visibleNotices = getVisibeNotices(notices, categoryName);
   console.log(visibleNotices);
   // console.log(visibleNotices);
 
@@ -92,22 +82,18 @@ const NoticesCategoriesList = () => {
 
   //   setFilterId([]);
 
-
   return (
     <>
       <NoticeList>
-        {
-          
-          visibleNotices.map(item => (
-            <NoticeCategoryItem
-              key={item._id}
-              notice={item}
-              // mobile={12}
-              // tablet={6}
-              // desktop={3}
-            ></NoticeCategoryItem>
-          ))}
-
+        {visibleNotices.map(item => (
+          <NoticeCategoryItem
+            key={item._id}
+            notice={item}
+            // mobile={12}
+            // tablet={6}
+            // desktop={3}
+          ></NoticeCategoryItem>
+        ))}
 
         <Toaster />
       </NoticeList>

@@ -8,7 +8,7 @@ import {
   removeFromFavorite,
   addToFavorite,
   fetchFavoriteNotices,
-  getNoticesByCategory
+  getNoticesByCategory,
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -35,8 +35,8 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notices = payload.listAllNotices; 
-        state.totalNotices = payload.total
+        state.notices = payload.listAllNotices;
+        state.totalNotices = payload.total;
       })
       .addCase(fetchNotices.pending, handlePending)
       .addCase(fetchNotices.rejected, handleRejected)
@@ -49,10 +49,12 @@ const noticesSlice = createSlice({
       .addCase(addNotice.pending, handlePending)
       .addCase(addNotice.rejected, handleRejected)
       .addCase(deleteNotice.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.isLoading = false;
         state.error = null;
-        const index = state.notices.find(notice => notice.id === payload.id);
-        state.notices.splice(index, 1);
+        state.notices = state.notices.filter(
+          notice => notice._id !== payload.item._id
+        );
       })
       .addCase(deleteNotice.pending, handlePending)
       .addCase(deleteNotice.rejected, handleRejected)
@@ -81,11 +83,11 @@ const noticesSlice = createSlice({
       })
       .addCase(removeFromFavorite.pending, handlePending)
       .addCase(removeFromFavorite.rejected, handleRejected)
-      
+
       .addCase(addToFavorite.pending, handlePending)
       .addCase(addToFavorite.rejected, handleRejected)
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
-        state.noticesFavorite.push(payload)
+        state.noticesFavorite.push(payload);
         state.isLoading = false;
         state.error = null;
       })
@@ -104,7 +106,6 @@ const noticesSlice = createSlice({
       })
       .addCase(getNoticesByCategory.pending, handlePending)
       .addCase(getNoticesByCategory.rejected, handleRejected);
-    
   },
 });
 

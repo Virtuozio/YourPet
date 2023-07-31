@@ -16,6 +16,7 @@ const Register = lazy(() => import('pages/Register/Register'));
 const Login = lazy(() => import('pages/Login/Login'));
 const News = lazy(() => import('pages/News/News'));
 const Notices = lazy(() => import('pages/Notices/Notices'));
+const NoticesCategoryList = lazy(()=> import('./NoticesCategoriesList/NoticesCategoriesList'))
 const User = lazy(() => import('pages/User/User'));
 const Error = lazy(() => import('pages/Error/Error'));
 export const App = () => {
@@ -49,7 +50,7 @@ export const App = () => {
         <Route path="/main" element={<Main />} />
         <Route path="/news" element={<News />} />
         <Route path="/notices" element={<Notices />}>
-          {/* <Route path=":categoryName" element={<NoticesCategoryList />} /> */}
+          <Route path=":categoryName" element={<NoticesCategoryList />} />
         </Route>
         <Route path="/friends" element={<OurFriends />} />
         <Route path="/add-pet" element={<AddPet />} />

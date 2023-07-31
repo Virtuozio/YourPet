@@ -1,8 +1,12 @@
 import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import React from 'react';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector,  useDispatch} from 'react-redux';
 import { NoticeList } from './NoticesCategoriesList.styled';
+
+import { useEffect, useState } from 'react';
+import { selectNotices, selectStatusFilter } from 'redux/notices/noticesSelectors';
+import { statusFilters } from "../../redux/notices/constans";
 
 import {
   selectNotices,
@@ -11,9 +15,8 @@ import {
 import { statusFilters } from '../../redux/notices/constans';
 import { Toaster } from 'react-hot-toast';
 
-// import { filters } from "../NoticesCategoriesNav/filtersData";
+import { getNoticesByCategory, fetchFavoriteNotices, getAllOwnNotices } from 'redux/notices/noticesOperations';
 
-// import { selectVisibleNotices } from 'redux/notices/noticesSelectors';
 
 const getVisibeNotices = (notices, statusFilter) => {
   switch (statusFilter) {
@@ -44,6 +47,11 @@ const getVisibeNotices = (notices, statusFilter) => {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
+  const { categoryName } = useParams(); 
+ const dispatch = useDispatch();
+  
+  
+  const visibleNotices = getVisibeNotices(notices, categoryName);
   const { categoryName } = useParams();
 
   // const visibleNotices = useSelector(selectVisibleNotices);
@@ -84,21 +92,22 @@ const NoticesCategoriesList = () => {
 
   //   setFilterId([]);
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [categoryName]);
 
   return (
     <>
       <NoticeList>
-        {visibleNotices.map(item => (
-          <NoticeCategoryItem
-            key={item._id}
-            notice={item}
-            // mobile={12}
-            // tablet={6}
-            // desktop={3}
-          ></NoticeCategoryItem>
-        ))}
+        {
+          
+          visibleNotices.map(item => (
+            <NoticeCategoryItem
+              key={item._id}
+              notice={item}
+              // mobile={12}
+              // tablet={6}
+              // desktop={3}
+            ></NoticeCategoryItem>
+          ))}
+
 
         <Toaster />
       </NoticeList>

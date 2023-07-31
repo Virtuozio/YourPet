@@ -62,6 +62,8 @@ import {
   Container,
   AddButton,
   RemoveButton,
+  CategoryItem,
+  PhotoContainer,
 } from '../ModalNotice/ModalNotice.styled';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
@@ -231,10 +233,15 @@ const NoticeCategoryItem = ({ notice }) => {
               <Wrapper>
                 <ModalCloseBtn>
                   <ModalCloseBtnIcon onClick={handleClose} />
-                </ModalCloseBtn>
-                <PetPhoto src={notice.image}>
-                  <span>In good hands</span>
-                </PetPhoto>
+                  </ModalCloseBtn>
+                  {/* <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        ><span>In good hands</span></PetImage> */}
+                  <PhotoContainer>
+                    <PetPhoto src={notice.fileURL}/>
+                    <CategoryItem>{notice.category}</CategoryItem>
+                  </PhotoContainer>
                 <div>
                   <Title>Сute dog looking for a home</Title>
                   <Info>

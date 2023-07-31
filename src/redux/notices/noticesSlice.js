@@ -8,6 +8,7 @@ import {
   removeFromFavorite,
   addToFavorite,
   fetchFavoriteNotices,
+  getNoticesByCategory
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -94,7 +95,16 @@ const noticesSlice = createSlice({
         state.noticesFavorite = payload;
       })
       .addCase(fetchFavoriteNotices.pending, handlePending)
-      .addCase(fetchFavoriteNotices.rejected, handleRejected);
+      .addCase(fetchFavoriteNotices.rejected, handleRejected)
+      .addCase(getNoticesByCategory.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.notices = payload.noticesList;
+        state.totalNotices = payload.total;
+      })
+      .addCase(getNoticesByCategory.pending, handlePending)
+      .addCase(getNoticesByCategory.rejected, handleRejected);
+    
   },
 });
 

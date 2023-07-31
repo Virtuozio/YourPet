@@ -9,7 +9,7 @@ export const fetchNotices = createAsyncThunk(
   async (fetchInfo, thunkAPI) => {
     try {
       // const { category, ...params } = credentials;
-      const response = await axios.get(`/notices${fetchInfo}` );
+      const response = await axios.get(`/notices${fetchInfo}`);
       console.log(response.data.total);
       return response.data;
     } catch (e) {
@@ -84,6 +84,7 @@ export const addToFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.patch(`/notices/user/favorite/${id}`);
+      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

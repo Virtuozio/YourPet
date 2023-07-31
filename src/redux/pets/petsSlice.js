@@ -27,13 +27,12 @@ const petsSlice = createSlice({
       .addCase(addPet.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.pets.push(payload);
+        state.pets.push(payload.item);
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.pets.findIndex(pet => pet.id === payload.id);
-        state.pets.splice(index, 1);
+        state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
       })
       .addCase(fetchPets.pending, handlePending)
       .addCase(addPet.pending, handlePending)

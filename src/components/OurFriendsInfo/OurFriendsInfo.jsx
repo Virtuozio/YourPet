@@ -1,11 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { ContentBox, InfoBox, ModalContent } from './OurFriendsInfo.styled';
+// import { useTranslation } from 'react-i18next';
+import {
+  ContentBox,
+  InfoBox,
+  ModalContent,
+  WorkTime,
+} from './OurFriendsInfo.styled';
 
 const OurFriendsInfo = ({ workDays, address, email, phone }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const toggleModal = () => {
     setIsModalOpen(prevIsModalOpen => !prevIsModalOpen);
@@ -27,7 +32,7 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
         <ul>
           <li>
             <InfoBox>
-              <b onClick={toggleModal}>Time</b>
+              <WorkTime onClick={toggleModal}>Time</WorkTime>
               {isModalOpen && (
                 <div className="modal">
                   <ModalContent>
@@ -108,14 +113,14 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               {address ? (
-                <p>
+                <b>
                   Address: <br />
-                  {address}
-                </p>
+                  <a href="https://goo.gl/maps/{address}">{address}</a>
+                </b>
               ) : (
-                <p>
-                  Address: <br /> not available
-                </p>
+                <b>
+                  Address: <br /> <p>not available</p>
+                </b>
               )}
             </InfoBox>
           </li>
@@ -123,13 +128,14 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               {email ? (
-                <p>
-                  Email: <br /> {email}
-                </p>
+                <b>
+                  Email: <br />
+                  <a href="mailto:{email}">{email}</a>
+                </b>
               ) : (
-                <p>
-                  Email: <br /> not available
-                </p>
+                <b>
+                  Email: <br /> <p>not available</p>
+                </b>
               )}
             </InfoBox>
           </li>
@@ -137,14 +143,14 @@ const OurFriendsInfo = ({ workDays, address, email, phone }) => {
           <li>
             <InfoBox>
               {phone ? (
-                <p>
+                <b>
                   Phone: <br />
-                  {phone}
-                </p>
+                  <a href="tel:{phone}">{phone}</a>
+                </b>
               ) : (
-                <p>
-                  Phone: <br /> not available
-                </p>
+                <b>
+                  Phone: <br /> <p>not available</p>
+                </b>
               )}
             </InfoBox>
           </li>

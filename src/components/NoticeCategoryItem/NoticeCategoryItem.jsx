@@ -37,7 +37,7 @@ import { useState } from 'react';
 import {
   addToFavorite,
   removeFromFavorite,
-  deleteNotice
+  deleteNotice,
 } from 'redux/notices/noticesOperations';
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -78,9 +78,7 @@ import {
   DeleteText,
 } from '../ModalDeleteAction/ModalDeleteAction.styled';
 
-
 const NoticeCategoryItem = ({ notice }) => {
-  
   const [favorite, setFavorite] = useState(false);
 
   const currentUser = useSelector(selectUser);
@@ -99,9 +97,8 @@ const NoticeCategoryItem = ({ notice }) => {
         }
       });
     };
-    newFunc(favNotices);
-  }, [favNotices, notice._id]);
-
+    if (isLoggedIn) newFunc(favNotices);
+  }, [favNotices, notice._id, isLoggedIn]);
 
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {
@@ -130,13 +127,12 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const handleRemoveOwnNotice = async () => {
     if (isLoggedIn && currentUser._id === notice.owner) {
-      
       dispatch(deleteNotice(notice._id));
       toast.success('removed your own notice');
     } else {
       toast.error('You have to be loggedIn');
     }
-  }
+  };
 
   const locationSlice = location => {
     if (location.length > 4) {
@@ -145,7 +141,7 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
-  const nameFormat = (name) => {
+  const nameFormat = name => {
     if (name.length > 10) {
       return name.slice(0, 10) + '...';
     }
@@ -163,24 +159,21 @@ const NoticeCategoryItem = ({ notice }) => {
   return (
     <NoticesCategoryItemStyled>
       <ImageContainer>
-        <PetImage src={testImage} alt="test dog photo" />
-        <HeartIcon
-          type="button"
-          onClick={toggleFavoriteMethod}
-        >
+        <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        />
+        <HeartIcon type="button" onClick={toggleFavoriteMethod}>
           {favorite ? <HeartFill /> : <Heart />}
         </HeartIcon>
 
-        {currentUser._id === notice.owner && 
-          <RemoveNoticeBtn
-            type='button'
-            onClick={deleteModalOpen}
-          >
-          <RemoveIcon/>
+        {currentUser._id === notice.owner && (
+          <RemoveNoticeBtn type="button" onClick={deleteModalOpen}>
+            <RemoveIcon />
           </RemoveNoticeBtn>
-          }
+        )}
 
-        <FilterStatus>In good hands</FilterStatus>
+        <FilterStatus>{notice.category}</FilterStatus>
 
         <LocationItem>
           <Location />
@@ -239,7 +232,7 @@ const NoticeCategoryItem = ({ notice }) => {
                 <ModalCloseBtn>
                   <ModalCloseBtnIcon onClick={handleClose} />
                 </ModalCloseBtn>
-                <PetPhoto>
+                <PetPhoto src={notice.image}>
                   <span>In good hands</span>
                 </PetPhoto>
                 <div>
@@ -279,46 +272,45 @@ const NoticeCategoryItem = ({ notice }) => {
                   </StyledLink>
                 </Button>
 
-                  {!favorite
-                  ? < AddButton type="button" onClick={toggleFavoriteMethod}>
-                  <p>Add to</p>
-                  <LiaHeart />
+                {!favorite ? (
+                  <AddButton type="button" onClick={toggleFavoriteMethod}>
+                    <p>Add to</p>
+                    <LiaHeart />
                   </AddButton>
-                  
-                  : <RemoveButton type="button" onClick={toggleFavoriteMethod}>
-                  <p>Remove from</p>
-                  <LiaHeart />
-                </RemoveButton>}
+                ) : (
+                  <RemoveButton type="button" onClick={toggleFavoriteMethod}>
+                    <p>Remove from</p>
+                    <LiaHeart />
+                  </RemoveButton>
+                )}
               </Container>
             </ModalBox>
           </Modal>
         </div>
       )}
 
-      
-        <div>
-         <Modal open={deleteModal} onClick={deleteModalClose}>
-            <ModalBox>
-                    <Section>
-                <Header>Delete adverstiment?</Header>
-                <DeleteText>
-                  Are you sure you want to delete <strong>{notice.name}</strong>? You can`t undo
-                  this action.
-                </DeleteText>
-                <BtnWrapper>
-                  <BtnCancel type="button" onClick={deleteModalClose}>
-                    Cancel
-                  </BtnCancel>
-                  <BtnYes type="button" onClick={handleRemoveOwnNotice}>
-                    Yes
-                    <TrashIcon />
-                  </BtnYes>
-                </BtnWrapper>
-                    </Section>
-           </ModalBox>
-          </Modal>
-          </div>
-      
+      <div>
+        <Modal open={deleteModal} onClick={deleteModalClose}>
+          <ModalBox>
+            <Section>
+              <Header>Delete adverstiment?</Header>
+              <DeleteText>
+                Are you sure you want to delete <strong>{notice.name}</strong>?
+                You can`t undo this action.
+              </DeleteText>
+              <BtnWrapper>
+                <BtnCancel type="button" onClick={deleteModalClose}>
+                  Cancel
+                </BtnCancel>
+                <BtnYes type="button" onClick={handleRemoveOwnNotice}>
+                  Yes
+                  <TrashIcon />
+                </BtnYes>
+              </BtnWrapper>
+            </Section>
+          </ModalBox>
+        </Modal>
+      </div>
     </NoticesCategoryItemStyled>
   );
 };

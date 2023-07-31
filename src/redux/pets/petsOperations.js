@@ -32,9 +32,9 @@ export const addPet = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   'pets/deletePet',
-  async (taskId, thunkAPI) => {
+  async (petId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/pets/${taskId}`);
+      const response = await axios.delete(`/pets/${petId}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

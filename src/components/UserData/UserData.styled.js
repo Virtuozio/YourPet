@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const PetsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: calc(100% - 129px);
+  @media screen and (min-width: 1200px) {
+    width: calc(821px - 129px);
+  }
+`;
+
 const UserCardContainer = styled.div`
   position: relative;
   padding: 16px;
@@ -65,4 +75,4 @@ max-width; 100vw;
   }
 `;
 
-export { UserCardContainer, EditBtn, Title, MainContainer };
+export { UserCardContainer, EditBtn, Title, MainContainer, PetsContainer };

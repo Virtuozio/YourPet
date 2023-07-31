@@ -2,41 +2,56 @@ import styled from '@emotion/styled';
 
 
 export const ContentBox = styled.div`
-  
 
 ul{
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-a{
-    font-family: Manrope;
-    font-size: 12px;
-    color: rgba(84, 173, 255, 1);
-    font-weight: 500;
-    text-align: left;
-}
-
-li:hover, a:hover, p:hover{
-  color: rgba(84, 173, 255, 1);
-}
   `
+
+export const WorkTime = styled.b`
+    font-size: 16px;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+:hover{
+      color: rgba(84, 173, 255, 1);
+      cursor: pointer;
+}
+`
+
 
 
 export const InfoBox = styled.div`
 
-:hover{
-  color: rgba(84, 173, 255, 1);
-  cursor: pointer;
-}
+
+a{
+    font-family: Manrope;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    color: inherit;
+    text-decoration: none;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
+    :hover{
+      color: rgba(84, 173, 255, 1);
+      cursor: pointer;
+    }
+  }
+
+  p{
+    font-size: 16px;
+  }
+
+b{
+    font-size: 16px;
+  }
 
 li{
   display: flex;
   align-items: flex-start;
-  p{
-    text-align: right;
-  }
 }
 
 

@@ -8,8 +8,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const PetPhoto = styled.div`
-position: relative;
+const PetPhoto = styled.img`
+  position: relative;
   width: 240px;
   height: 240px;
   border-radius: 0px 0px 40px 40px;
@@ -19,15 +19,14 @@ position: relative;
     top: 22px;
     left: 0;
     padding: 11px 22px 11px 12px;
-background-color: #CCE4FB;
-border-top-right-radius: 20px;
-border-bottom-right-radius: 20px;
+    background-color: #cce4fb;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 262px;
     height: 298px;
-}
-  
+  }
 `;
 
 const Title = styled.h2`
@@ -144,8 +143,6 @@ const Button = styled.button`
   }
 `;
 
-
-
 const AddButton = styled.button`
   display: flex;
   width: 256px;
@@ -161,9 +158,8 @@ const AddButton = styled.button`
 
   svg {
     fill: #54adff;
+  }
 
-  };
-  
   &:first-child {
     margin-bottom: 8px;
   }
@@ -171,13 +167,12 @@ const AddButton = styled.button`
     background: ${props =>
       props.primary
         ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
-    : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
-        
-        svg {
-    fill: #fff;
+        : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
 
-  };
-    
+    svg {
+      fill: #fff;
+    }
+
     p {
       color: #fef9f9;
     }
@@ -191,7 +186,6 @@ const AddButton = styled.button`
   }
   svg {
     fill: #54adff;
-
   }
   @media screen and (min-width: 768px) {
     width: 129px;

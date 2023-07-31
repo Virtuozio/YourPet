@@ -4,6 +4,7 @@ import { Form, Field, ErrorMessage } from 'formik';
 
 export const Div = styled.div`
   margin: 0 auto;
+  margin-top: 44px;
   background-color: white;
   border: 1px solid rgba(84, 173, 255, 1);
   box-shadow: rgba(136, 198, 253, 0.19);
@@ -38,6 +39,8 @@ export const Div = styled.div`
   @media screen and (min-width: 768px) {
     width: 608px;
     padding: 60px 75px;
+    margin-top: 80px;
+
 
     h1 {
       font-family: Manrope;
@@ -105,6 +108,19 @@ export const Icon = styled.span`
   transition: 250ms;
 `;
 
+export const IconValid = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 17px;
+  top: 15px;
+  color: ${({ valid }) => (valid ? 'rgba(42, 187, 155, 1)' : 'rgba(255, 99, 71, 1)')};
+  cursor: pointer;
+  transition: 250ms;
+
+`;
+
 export const InputLine = styled(Field)`
   font-family: Manrope;
   position: relative;
@@ -112,7 +128,7 @@ export const InputLine = styled(Field)`
   font-size: 16px;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid rgba(84, 173, 255, 1);
+  border: 1px solid ${({ error }) => (error ? 'rgba(255, 99, 71, 1)' : 'rgba(84, 173, 255, 1)')};   
   border-radius: 40px;
   box-sizing: border-box;
 

@@ -20,6 +20,8 @@ import {
   fetchNotices,
 } from 'redux/notices/noticesOperations';
 
+import { selectTotalNotices } from 'redux/notices/noticesSelectors';
+
 import Pagination from '@mui/material/Pagination';
 
 // import { makeStyles } from "@material-ui/core/styles";
@@ -29,6 +31,7 @@ import { toast } from 'react-hot-toast';
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const totalNotices = useSelector(selectTotalNotices)
   // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
 
   // const closeModal = () => {
@@ -36,6 +39,8 @@ const Notices = () => {
   // };
   // const pageSize = 4;
   const [page, setPage] = useState(1);
+
+  // const pageCount = Math(totalNotices / page)
 
 
   const dispatch = useDispatch();
@@ -66,7 +71,7 @@ const Notices = () => {
           <Container>
             <NoticesFilters />
             {isLoggedIn ? (
-              <AddPetButton text="Add pet" path="/add-pet" />
+              <AddPetButton text="Add pet" path="/add-pet"/>
             ) : (
               <AddPetButton
                 text="Add pet"
@@ -78,7 +83,7 @@ const Notices = () => {
         <NoticesCategoriesList />
        
         <Pagination
-          count={2}
+          count={Math.ceil(totalNotices / 8)}
           size="large"
           variant="outlined"
           color="primary"

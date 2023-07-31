@@ -11,6 +11,7 @@ import {
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
+  totalNotices: '',
   noticesFavorite: [],
   noticeAdd: {},
   isLoading: false,
@@ -33,15 +34,16 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notices = payload;
+        state.notices = payload.listAllNotices; 
+        state.totalNotices = payload.total
       })
       .addCase(fetchNotices.pending, handlePending)
       .addCase(fetchNotices.rejected, handleRejected)
       .addCase(addNotice.fulfilled, (state, { payload }) => {
-        state.notices.push(payload.result);
+        state.notices.unshift(payload);
         state.isLoadingNotices = false;
         state.errorNotices = null;
-        state.noticeAdd = payload.result;
+        state.noticeAdd = payload;
       })
       .addCase(addNotice.pending, handlePending)
       .addCase(addNotice.rejected, handleRejected)
@@ -78,12 +80,14 @@ const noticesSlice = createSlice({
       })
       .addCase(removeFromFavorite.pending, handlePending)
       .addCase(removeFromFavorite.rejected, handleRejected)
+      
+      .addCase(addToFavorite.pending, handlePending)
+      .addCase(addToFavorite.rejected, handleRejected)
       .addCase(addToFavorite.fulfilled, (state, { payload }) => {
+        state.noticesFavorite.push(payload)
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(addToFavorite.pending, handlePending)
-      .addCase(addToFavorite.rejected, handleRejected)
       .addCase(fetchFavoriteNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;

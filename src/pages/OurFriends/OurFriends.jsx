@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import OurFriendsList from 'components/OurFriendsList/OurFriendsList';
 import { useDispatch } from 'react-redux';
 import { getFriends } from 'redux/friends/friendsOperations';
+import { Title } from 'pages/OurFriends/OurFriends.styled';
 
 const OurFriends = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ const OurFriends = () => {
   }, [dispatch]);
   return (
     <>
+      <Title>Our Friends</Title>
+
       <OurFriendsList />
     </>
   );

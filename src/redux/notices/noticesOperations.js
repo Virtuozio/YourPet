@@ -10,7 +10,7 @@ export const fetchNotices = createAsyncThunk(
     try {
       // const { category, ...params } = credentials;
       const response = await axios.get(`/notices${fetchInfo}` );
-      // console.log(response);
+      console.log(response.data.total);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -21,17 +21,17 @@ export const fetchNotices = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
-    if (!newNotice.petAvatar) delete newNotice['petAvatar'];
-    let formImageData = new FormData();
+    // if (!newNotice.petAvatar) delete newNotice['petAvatar'];
+    // let formImageData = new FormData();
 
-    for (const key in newNotice) {
-      if (newNotice[key]) {
-        formImageData.append(key, newNotice[key]);
-      }
-    }
+    // for (const key in newNotice) {
+    //   if (newNotice[key]) {
+    //     formImageData.append(key, newNotice[key]);
+    //   }
+    // }
 
     try {
-      const res = await axios.post('/notices', formImageData);
+      const res = await axios.post('/notices', newNotice);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

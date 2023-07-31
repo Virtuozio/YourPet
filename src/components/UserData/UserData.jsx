@@ -6,6 +6,7 @@ import { LiaTimesSolid } from 'react-icons/lia';
 import { useState } from 'react';
 import { UserCardContainer, EditBtn } from './UserData.styled';
 import { useAuth } from 'hooks';
+import { useEffect } from 'react';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
@@ -16,6 +17,10 @@ const UserData = () => {
   };
 
   const { user } = useAuth();
+
+  useEffect(() => {
+    setIsFormDisabled(true);
+  }, [user]);
 
   return (
     <>

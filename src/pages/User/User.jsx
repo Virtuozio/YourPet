@@ -3,7 +3,11 @@ import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import PetsData from 'components/PetsData/PetsData';
 import UserData from 'components/UserData/UserData';
-import { Title, MainContainer } from 'components/UserData/UserData.styled';
+import {
+  Title,
+  MainContainer,
+  PetsContainer,
+} from 'components/UserData/UserData.styled';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,16 +40,10 @@ const User = () => {
           <UserData />
         </div>
         <div>
-          <div
-            style={{
-              width: '818px',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
+          <PetsContainer>
             <Title>My pets:</Title>
             <AddPetButton text={'Add pet'} path={'/add-pet'} />
-          </div>
+          </PetsContainer>
           <PetsData />
         </div>
       </MainContainer>

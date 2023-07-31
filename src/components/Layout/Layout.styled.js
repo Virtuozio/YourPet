@@ -14,7 +14,7 @@ export const LayoutContainer = styled.div`
     padding: 24px 32px 0;
   }
   @media screen and (min-width: 1200px) {
-    min-width: 1280px;
+    min-width: 1200px;
     padding: 20px 16px 0;
   }
 `;

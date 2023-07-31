@@ -37,7 +37,7 @@ const Notices = () => {
   const totalNotices = useSelector(selectTotalNotices)
   const { categoryName } = useParams(); 
 
-  console.log(totalNotices);
+  // console.log(totalNotices);
   // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
 
   // const closeModal = () => {
@@ -63,9 +63,21 @@ const Notices = () => {
       dispatch(fetchFavoriteNotices());
     } else if (categoryName === statusFilters.MY_ADS) {
       dispatch(getAllOwnNotices());
-    } else if(categoryName === statusFilters.SELL || categoryName === statusFilters.IN_GOOD_HANDS || categoryName === statusFilters.LOST_FOUND ){
+    } else if (categoryName === statusFilters.SELL) {
+      // setPage(1);
       dispatch(getNoticesByCategory(`?category=${categoryName}&page=${page}`));
-   } else {
+      // setPage(1);
+    } else if (categoryName === statusFilters.IN_GOOD_HANDS || categoryName === statusFilters.LOST_FOUND) {
+      // if (totalNotices < 8 ) {
+      //   dispatch(getNoticesByCategory(`?category=${categoryName}`));
+      // } else {
+        dispatch(getNoticesByCategory(`?category=${categoryName}`));
+      // }
+      setPage(1);
+      
+    } 
+    else {
+      // setPage(1);
      dispatch(fetchNotices(`?page=${page}&limit=8` ))
     }
 

@@ -10,7 +10,7 @@ export const fetchNotices = createAsyncThunk(
     try {
       // const { category, ...params } = credentials;
       const response = await axios.get(`/notices${fetchInfo}` );
-      console.log(response.data.total);
+      // console.log(response.data.total);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -121,8 +121,8 @@ export const getNoticesByCategory = createAsyncThunk(
   async (fetchInfo, thunkAPI) => {
     try {
       const response = await axios.get(`notices/users/search${fetchInfo}`);
-      console.log(response.data);
-      console.log(response.data.total);
+      // console.log(response.data);
+      // console.log(response.data.total);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

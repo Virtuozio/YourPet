@@ -173,7 +173,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </RemoveNoticeBtn>
         )}
 
-        <FilterStatus>In good hands</FilterStatus>
+        <FilterStatus>{notice.category}</FilterStatus>
 
         <LocationItem>
           <Location />

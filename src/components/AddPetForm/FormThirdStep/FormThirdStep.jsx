@@ -31,8 +31,16 @@ const FormThirdStep = ({
   errors,
   touched,
   handleBlur,
+  isSubmitting,
 }) => {
   const [currentImg, setCurrentImg] = useState('');
+  const [inputsErrors, setInputsErrors] = useState({});
+
+  useEffect(() => {
+    if (isSubmitting) {
+      setInputsErrors(touched);
+    }
+  }, [isSubmitting, touched]);
 
   useEffect(() => {
     if (values.file) {
@@ -47,6 +55,12 @@ const FormThirdStep = ({
       setCurrentImg(urlFile);
       setFieldValue('file', file);
     }
+  };
+
+  const handleInputBlur = e => {
+    const { name } = e.target;
+    setInputsErrors({ ...inputsErrors, [name]: true });
+    handleBlur(e);
   };
 
   return (
@@ -65,6 +79,7 @@ const FormThirdStep = ({
                     value="female"
                     checked={values.sex === 'female'}
                     onChange={handleChange}
+                    onBlur={handleInputBlur}
                   />
                   {values.sex === 'female' && (
                     <FemaleIcon
@@ -98,6 +113,7 @@ const FormThirdStep = ({
                     value="male"
                     checked={values.sex === 'male'}
                     onChange={handleChange}
+                    onBlur={handleInputBlur}
                   />
                   {values.sex === 'male' && (
                     <MaleIcon
@@ -123,7 +139,7 @@ const FormThirdStep = ({
                   Male
                 </GenderLabel>
               </GenderTypesWrapper>
-              {errors.file && (
+              {errors.sex && inputsErrors.sex && (
                 <ErrorInput style={{ left: 0 }}>{errors.sex}</ErrorInput>
               )}
             </TheSexWrapper>
@@ -141,8 +157,9 @@ const FormThirdStep = ({
               name="file"
               accept="image/*"
               onChange={handleChangeFileLoader}
+              onBlur={handleInputBlur}
             />
-            {errors.file && (
+            {errors.file && inputsErrors.file && (
               <ErrorInput style={{ left: 0 }}>{errors.file}</ErrorInput>
             )}
           </LoaderImgWrapper>
@@ -158,13 +175,13 @@ const FormThirdStep = ({
                 placeholder="Type location pet"
                 value={values.location}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                onBlur={handleInputBlur}
                 style={
                   errors.location &&
-                  touched.location && { borderColor: '#f43f5e' }
+                  inputsErrors.location && { borderColor: '#f43f5e' }
                 }
               />
-              {errors.location && touched.location && (
+              {errors.location && inputsErrors.location && (
                 <ErrorInput style={{ left: 0 }}>{errors.location}</ErrorInput>
               )}
             </FormItem>
@@ -178,12 +195,13 @@ const FormThirdStep = ({
                 placeholder="Type price of pet"
                 value={values.price}
                 onChange={handleChange}
-                onBlur={handleBlur}
+                onBlur={handleInputBlur}
                 style={
-                  errors.price && touched.price && { borderColor: '#f43f5e' }
+                  errors.price &&
+                  inputsErrors.price && { borderColor: '#f43f5e' }
                 }
               />
-              {errors.price && touched.price && (
+              {errors.price && inputsErrors.price && (
                 <ErrorInput style={{ left: 0 }}>{errors.price}</ErrorInput>
               )}
             </FormItem>
@@ -198,7 +216,7 @@ const FormThirdStep = ({
               rows="5"
               category={category}
               name="comments"
-              onBlur={handleBlur}
+              onBlur={handleInputBlur}
               value={values.comments}
               onChange={handleChange}
             />

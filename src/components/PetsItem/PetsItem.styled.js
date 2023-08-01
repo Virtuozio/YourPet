@@ -5,17 +5,17 @@ const PetCard = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 100%;
   padding: 16px 20px 40px 20px;
   border-radius: 20px;
   background: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
   @media screen and (min-width: 768px) {
-    width: 703px;
     padding: 20px 20px 77px 20px;
 
     flex-direction: row;
-    justify-content: space-between;
+    align-items: flex-start;
   }
 
   @media screen and (min-width: 1200px) {
@@ -76,12 +76,18 @@ const DeleteBtn = styled.button`
 `;
 
 const InfoContainer = styled.div`
-  @media screen and (min-width: 768px) {
-    width: 515px;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 580px;
-  }
+  width: 100%;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+  // @media screen and (min-width: 768px) {
+  //   width: 515px;
+  // }
+  // @media screen and (min-width: 1200px) {
+  //   width: 580px;
+  // }
 `;
 
 export { PetCard, PetImage, PetInfo, DeleteBtn, InfoContainer };

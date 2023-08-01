@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import 'flatpickr/dist/flatpickr.min.css';
 import { BsCamera, BsCheckLg, BsX } from 'react-icons/bs';
@@ -13,57 +13,68 @@ import {
   FieldsContainer,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
-import defaultImg from '../../utils/Photo default.jpg';
+import defaultImg from 'assets/Photo default.jpg';
 import { useDispatch } from 'react-redux';
-import { updateUserData } from 'redux/auth/authOperations';
+import {
+  // currentUser,
+  updateUserData,
+} from 'redux/auth/authOperations';
+// import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
 
-const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
+const UserForm = ({ disabled, user }) => {
   const dispatch = useDispatch();
   // const { user } = useAuth();
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState({ preview: '', data: '' });
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const initialValues = {
-    avatar: user ? user.avatar : '',
+    avatar: user ? user.avatarURL : '',
     name: user ? user.name : '',
     email: user ? user.email : '',
     birthday: user ? user.birthday : '',
     phone: user ? user.phone : '',
     city: user ? user.city : '',
   };
-  console.log(initialValues);
 
-  const handleClose = useCallback(
-    e => {
-      if (e.target.id === 'confirm') {
-        setImage();
-        confirmClose(true);
-        setErrorsVisible(false);
-      } else if (e.target.id === 'cancel') {
-        confirmClose(false);
-      }
-    },
-    [confirmClose]
-  );
+  const handleClose = e => {
+    if (e.currentTarget.id === 'cancel') {
+      setImage({ preview: '', data: '' });
+    }
+    setShowConfirm(false);
+  };
 
   useEffect(() => {
     if (!disabled) {
       setErrorsVisible(true);
+    } else {
+      setImage({ preview: '', data: '' });
     }
   }, [disabled]);
 
-  const handleImageUpload = e => {
-    const [file] = e.target.files;
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+  const handleFileChange = e => {
+    const img = {
+      preview: URL.createObjectURL(e.currentTarget.files[0]),
+      data: e.currentTarget.files[0],
+    };
+
+    setImage(img);
+    setShowConfirm(true);
   };
 
-  const handleSubmit = (values, actions) => {
-    const updatedData = { avatar: image, ...values };
-    dispatch(updateUserData(updatedData));
-    console.log(updatedData);
+  const handleSubmit = values => {
+    let formData = new FormData();
+
+    for (const key in values) {
+      if (key === 'avatar') {
+        formData.append('avatar', image.data);
+      } else {
+        formData.append(`${key}`, values[key]);
+      }
+    }
+    dispatch(updateUserData(formData));
   };
+
   return (
     <Formik
       enableReinitialize
@@ -74,7 +85,12 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
       <Form>
         <StyledForm>
           <div>
-            <UserPhoto src={image ? image : defaultImg} />
+            {disabled ? (
+              <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
+            ) : (
+              <UserPhoto src={image.preview ? image.preview : user.avatarURL} />
+            )}
+
             {!disabled && !showConfirm && (
               <div style={{ marginTop: '15px' }}>
                 <FileInputLabel htmlFor="file">
@@ -85,16 +101,17 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
                   type="file"
                   id="file"
                   accept="image/*"
-                  onChange={handleImageUpload}
+                  onChange={handleFileChange}
                 />
               </div>
             )}
-            {showConfirm && (
+            {showConfirm && !disabled && (
               <div
                 style={{
                   marginTop: '15px',
                   display: 'flex',
                   justifyContent: 'center',
+                  cursor: 'pointer',
                 }}
               >
                 <BsCheckLg
@@ -163,7 +180,11 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
               />
               {errorsVisible && <ErrorMessage name="city" component={Error} />}
             </InputContainer>
-            {!disabled && <SubmitButton type="submit">Save</SubmitButton>}
+            {!disabled && (
+              <SubmitButton type="submit" disabled={showConfirm}>
+                Save
+              </SubmitButton>
+            )}
           </FieldsContainer>
         </StyledForm>
       </Form>

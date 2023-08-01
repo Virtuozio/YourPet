@@ -22,9 +22,10 @@ const PetsItem = ({ pet }) => {
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
+
   const approveAction = () => {
-    setIsModalOpen(prevState => !prevState);
     dispatch(deletePet(pet._id));
+    setIsModalOpen(prevState => !prevState);
   };
 
   return (
@@ -35,18 +36,20 @@ const PetsItem = ({ pet }) => {
           <DeleteBtn type="button" onClick={closeModal}>
             <BiTrash />
           </DeleteBtn>
-          <PetInfo>
-            <b>Name:</b> {pet.name}
-          </PetInfo>
-          <PetInfo>
-            <b>Date of birth:</b> {pet.date}
-          </PetInfo>
-          <PetInfo>
-            <b>Type:</b> {pet.type}
-          </PetInfo>
-          <PetInfo>
-            <b>Comments:</b> {pet.comments}
-          </PetInfo>
+          <div>
+            <PetInfo>
+              <b>Name:</b> {pet.name}
+            </PetInfo>
+            <PetInfo>
+              <b>Date of birth:</b> {pet.date}
+            </PetInfo>
+            <PetInfo>
+              <b>Type:</b> {pet.type}
+            </PetInfo>
+            <PetInfo>
+              <b>Comments:</b> {pet.comments}
+            </PetInfo>
+          </div>
         </InfoContainer>
       </PetCard>
 
@@ -55,6 +58,7 @@ const PetsItem = ({ pet }) => {
           <ModalDeleteAction
             closeModal={closeModal}
             approveAction={approveAction}
+            petName={pet.name}
           />
         </Backdrop>
       )}

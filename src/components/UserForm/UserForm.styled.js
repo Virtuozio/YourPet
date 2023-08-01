@@ -5,13 +5,17 @@ const StyledForm = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   @media screen and (min-width: 768px) {
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    align-items: flex-start;
     gap: 63px;
+    width: calc(100% - 40px);
   }
   @media screen and (min-width: 1200px) {
     flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 `;
 
@@ -131,6 +135,9 @@ const SubmitButton = styled.button`
   &:hover,
   &:focus {
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+  }
+  &:disabled {
+    background: grey;
   }
 `;
 

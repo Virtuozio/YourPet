@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 
 export const MenuBurger = styled.button`
   border: none;
@@ -14,7 +13,7 @@ export const MenuBurger = styled.button`
     height: 24px;
   }
 `;
-export const CloseBurger = styled(Link)`
+export const CloseBurger = styled.button`
   border: none;
   margin: 0;
   padding: 0;

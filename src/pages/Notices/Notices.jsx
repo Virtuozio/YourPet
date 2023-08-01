@@ -5,8 +5,6 @@ import NoticesFilters from 'components/NoticesFilters/NoticesFilters';
 import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import React from 'react';
 
-
-
 // import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 // import Backdrop from 'components/Backdrop/Backdrop';
 
@@ -20,44 +18,74 @@ import {
   fetchNotices,
 } from 'redux/notices/noticesOperations';
 
+import { selectTotalNotices } from 'redux/notices/noticesSelectors';
+
 import Pagination from '@mui/material/Pagination';
 
 // import { makeStyles } from "@material-ui/core/styles";
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
+import { useParams } from 'react-router';
+import { statusFilters } from '../../redux/notices/constans';
+import {
+  getNoticesByCategory,
+  getAllOwnNotices,
+  getFavNoticesbyCategory
+} from 'redux/notices/noticesOperations';
+
+// import { selectUser } from 'redux/auth/authSelectors';
+// import toast from 'react-hot-toast';
+
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
+  const totalNotices = useSelector(selectTotalNotices);
+  const { categoryName } = useParams();
+  // const currentUser = useSelector(selectUser);
 
-  // const closeModal = () => {
-  //   setIsModalOpen(prevState => !prevState);
-  // };
-  // const pageSize = 4;
   const [page, setPage] = useState(1);
 
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(fetchNotices(`?page=${page}&limit=8` ));
-     if (isLoggedIn) dispatch(fetchFavoriteNotices());
-  }, [dispatch, page,isLoggedIn]);
-
-   const handleChange = (e, p) => {
-
-      setPage(p)
+    if (categoryName !== statusFilters.FAVORITE_ADS) {
+      dispatch(fetchFavoriteNotices());
     }
+    if (categoryName === statusFilters.FAVORITE_ADS) {
+      dispatch(getFavNoticesbyCategory());
+      setPage(1);
+    } else if (categoryName === statusFilters.MY_ADS) {
+      dispatch(getAllOwnNotices());
+    } else if (categoryName === statusFilters.SELL) {
+      dispatch(getNoticesByCategory(`?category=${categoryName}&page=${page}`));
+      
+    } else if (
+      categoryName === statusFilters.IN_GOOD_HANDS ||
+      categoryName === statusFilters.LOST_FOUND
+    ) {
+      dispatch(getNoticesByCategory(`?category=${categoryName}`));
+      setPage(1);
+    } 
+    // else if (totalNotices === 0) {
+    //   toast.error('You have to be loggedIn')
+    //   console.log(totalNotices);
+    // }
+    else {
+ 
+      dispatch(fetchNotices(`?page=${page}&limit=8`));
+    } 
 
+ 
+  }, [categoryName, dispatch, page]);
+
+  const handleChange = (e, p) => {
+    setPage(p);
+  };
 
   return (
     <>
-      {/* {isModalOpen && (
-        <Backdrop closeModal={closeModal}>
-          <ModalUnauthorized closeModal={closeModal} />
-        </Backdrop>
-      )} */}
-
       <Wrapper>
         <Title>Find your favorite pet</Title>
         <NoticesSearch />
@@ -76,13 +104,13 @@ const Notices = () => {
           </Container>
         </Filters>
         <NoticesCategoriesList />
-       
-        <Pagination
-          count={2}
-          size="large"
-          variant="outlined"
-          color="primary"
-       
+
+        {totalNotices > 8 && (
+          <Pagination
+            count={Math.ceil(totalNotices / 8)}
+            size="large"
+            variant="outlined"
+            color="primary"
             showFirstButton
             showLastButton
             // siblingCount={1}
@@ -93,10 +121,12 @@ const Notices = () => {
               justifyContent: 'center',
               alignItems: 'center',
               marginBottom: '100px',
-              
-            }} />
-         
+            }}
+          />
+        )}
+
         {/* <ModalNotice /> */}
+        <Toaster />
       </Wrapper>
     </>
   );

@@ -30,7 +30,7 @@ export const AuthBtn = styled(Link)`
   transition: all var(--duration) var(--cubic);
 
   svg {
-    fill: var(--label-active-color);
+    fill: var(--header-items-color);
   }
 
   &:hover {
@@ -44,7 +44,7 @@ export const AuthBtn = styled(Link)`
         : 'var(--label-active-color)'};
 
     svg {
-      fill: var(--header-items-color);
+      fill: var(--label-active-color);
     }
   }
 

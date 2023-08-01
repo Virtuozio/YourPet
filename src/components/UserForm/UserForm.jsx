@@ -39,10 +39,10 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
   const handleClose = useCallback(
     e => {
       if (e.target.id === 'confirm') {
-        setImage();
         confirmClose(true);
         setErrorsVisible(false);
       } else if (e.target.id === 'cancel') {
+        setImage();
         confirmClose(false);
       }
     },

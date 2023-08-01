@@ -25,82 +25,59 @@ import Pagination from '@mui/material/Pagination';
 // import { makeStyles } from "@material-ui/core/styles";
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 import { useParams } from 'react-router';
 import { statusFilters } from '../../redux/notices/constans';
 import {
   getNoticesByCategory,
   getAllOwnNotices,
+  getFavNoticesbyCategory
 } from 'redux/notices/noticesOperations';
+
+// import { selectUser } from 'redux/auth/authSelectors';
+// import toast from 'react-hot-toast';
+
 // import ModalNotice from 'components/ModalNotice/ModalNotice';
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const totalNotices = useSelector(selectTotalNotices);
   const { categoryName } = useParams();
+  // const currentUser = useSelector(selectUser);
 
-  // console.log(totalNotices);
-  // const [isModalOpen, setIsModalOpen] = useState(true); //поміняти значення на false*true//
-
-  // const closeModal = () => {
-  //   setIsModalOpen(prevState => !prevState);
-  // };
-  // const pageSize = 4;
   const [page, setPage] = useState(1);
 
-  // const pageCount = Math(totalNotices / page)
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoggedIn) dispatch(fetchFavoriteNotices());
-  }, [dispatch, page, isLoggedIn]);
-
-  useEffect(() => {
-    dispatch(fetchFavoriteNotices());
+    if (categoryName !== statusFilters.FAVORITE_ADS) {
+      dispatch(fetchFavoriteNotices());
+    }
     if (categoryName === statusFilters.FAVORITE_ADS) {
-      //
+      dispatch(getFavNoticesbyCategory());
+      setPage(1);
     } else if (categoryName === statusFilters.MY_ADS) {
       dispatch(getAllOwnNotices());
     } else if (categoryName === statusFilters.SELL) {
-      // setPage(1);
       dispatch(getNoticesByCategory(`?category=${categoryName}&page=${page}`));
-      // setPage(1);
+      
     } else if (
       categoryName === statusFilters.IN_GOOD_HANDS ||
       categoryName === statusFilters.LOST_FOUND
     ) {
-      // if (totalNotices < 8 ) {
-      //   dispatch(getNoticesByCategory(`?category=${categoryName}`));
-      // } else {
       dispatch(getNoticesByCategory(`?category=${categoryName}`));
-      // }
       setPage(1);
-    } else {
-      // setPage(1);
-      dispatch(fetchNotices(`?page=${page}&limit=8`));
-    }
-
-    // if (isLoggedIn) {
-    //   const getFavorites = async () => {
-    //   const res = await getAllFavoriteNoticesWithoutR();
-    //   if (res?.result) setFavorites(res.result);
-    //   setIsFavorites(true);
-    // };
-
-    // const getOwn = async () => {
-    //   const res = await getAllOwnNoticesWithoutR();
-    //   if (res?.result) setOwns(res?.result);
-    //   setIsOwns(true);
-    // };
-
-    // getOwn();
-    // getFavorites();
-    // } else {
-    //   setIsFavorites(true);
-    //   setIsOwns(true);
+    } 
+    // else if (totalNotices === 0) {
+    //   toast.error('You have to be loggedIn')
+    //   console.log(totalNotices);
     // }
+    else {
+ 
+      dispatch(fetchNotices(`?page=${page}&limit=8`));
+    } 
 
-    // setFilterId([]);
+ 
   }, [categoryName, dispatch, page]);
 
   const handleChange = (e, p) => {
@@ -109,12 +86,6 @@ const Notices = () => {
 
   return (
     <>
-      {/* {isModalOpen && (
-        <Backdrop closeModal={closeModal}>
-          <ModalUnauthorized closeModal={closeModal} />
-        </Backdrop>
-      )} */}
-
       <Wrapper>
         <Title>Find your favorite pet</Title>
         <NoticesSearch />
@@ -155,6 +126,7 @@ const Notices = () => {
         )}
 
         {/* <ModalNotice /> */}
+        <Toaster />
       </Wrapper>
     </>
   );

@@ -7,14 +7,13 @@ import {
   ButtonAbout,
   Buttons,
 } from './Footer.styled';
-// import Logo from '../Logo/Logo';
+
 import { AuthBtn } from '../AuthNav/AuthNav.styled';
 import { Pawprint } from '../../utils/icons';
 
 const Footer = () => {
   return (
     <Container>
-      {/* <Logo></Logo> */}
       <Nav>
         <MenuItem to="/News">News</MenuItem>
         <MenuItem to="/Notices">Find pet</MenuItem>

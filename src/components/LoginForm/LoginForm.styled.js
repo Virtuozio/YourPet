@@ -103,7 +103,8 @@ export const Icon = styled.span`
   height: 24px; */
   right: 12px;
   top: 12px;
-  color: rgba(84, 173, 255, 1);
+  color: ${({ error, valid }) =>
+  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
   cursor: pointer;
   transition: 250ms;
 `;
@@ -115,7 +116,8 @@ export const IconValid = styled.span`
   justify-content: center;
   right: 17px;
   top: 15px;
-  color: ${({ valid }) => (valid ? 'rgba(42, 187, 155, 1)' : 'rgba(255, 99, 71, 1)')};
+  color: ${({ error, valid }) =>
+  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
   cursor: pointer;
   transition: 250ms;
 
@@ -128,7 +130,8 @@ export const InputLine = styled(Field)`
   font-size: 16px;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid ${({ error }) => (error ? 'rgba(255, 99, 71, 1)' : 'rgba(84, 173, 255, 1)')};   
+  border: 1px solid ${({ error, valid }) =>
+  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
   border-radius: 40px;
   box-sizing: border-box;
 

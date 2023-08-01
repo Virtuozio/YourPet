@@ -1,6 +1,6 @@
 import AuthForm from 'components/AuthForm/AuthForm';
 import { Formik } from 'formik';
-import { register, logIn } from 'redux/auth/authOperations';
+import { register } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router';
 import validationRegistrationSchema from 'utils/schemas/registrationSchema';
@@ -10,19 +10,20 @@ const Register = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      const { email, password } = values;
-      await dispatch(register({ email, password }));
-      await dispatch(logIn({ email, password }));
+      const { name, email, password } = values;
+      await dispatch(register({ name, email, password }));
+
       // navigate('/user');
       resetForm();
     } catch (error) {
-      console.error('Registration or login failed:', error);
+      console.error('Registration failed:', error);
     }
     setSubmitting(false);
   };
   return (
     <Formik
       initialValues={{
+        name: '',
         email: '',
         password: '',
         confirmPassword: '',

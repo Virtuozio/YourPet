@@ -37,7 +37,7 @@ import { useState } from 'react';
 import {
   addToFavorite,
   removeFromFavorite,
-  deleteNotice
+  deleteNotice,
 } from 'redux/notices/noticesOperations';
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -62,6 +62,8 @@ import {
   Container,
   AddButton,
   RemoveButton,
+  CategoryItem,
+  PhotoContainer,
 } from '../ModalNotice/ModalNotice.styled';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
@@ -78,30 +80,27 @@ import {
   DeleteText,
 } from '../ModalDeleteAction/ModalDeleteAction.styled';
 
-
 const NoticeCategoryItem = ({ notice }) => {
-  
   const [favorite, setFavorite] = useState(false);
 
   const currentUser = useSelector(selectUser);
 
   const favNotices = useSelector(selectFavoriteNotices);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const newFunc = favNotices => {
+      console.log(favNotices);
       favNotices.forEach(favNotice => {
         if (favNotice._id === notice._id) {
           setFavorite(true);
         }
       });
     };
-    newFunc(favNotices);
-  }, [favNotices, notice._id]);
-
+    if (isLoggedIn) newFunc(favNotices);
+  }, [favNotices, notice._id, isLoggedIn]);
 
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {
@@ -110,6 +109,7 @@ const NoticeCategoryItem = ({ notice }) => {
       // if (!res) {
       //   return toast.error("can't add notice");
       // }
+      console.log(notice._id);
       dispatch(addToFavorite(notice._id));
       setFavorite(true);
       toast.success('added to your favorites');
@@ -130,13 +130,12 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const handleRemoveOwnNotice = async () => {
     if (isLoggedIn && currentUser._id === notice.owner) {
-      
       dispatch(deleteNotice(notice._id));
       toast.success('removed your own notice');
     } else {
       toast.error('You have to be loggedIn');
     }
-  }
+  };
 
   const locationSlice = location => {
     if (location.length > 4) {
@@ -145,9 +144,9 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
-  const nameFormat = (name) => {
-    if (name.length > 10) {
-      return name.slice(0, 10) + '...';
+  const nameFormat = name => {
+    if (name.length > 15) {
+      return name.slice(0, 15) + '...';
     }
     return name;
   };
@@ -163,24 +162,21 @@ const NoticeCategoryItem = ({ notice }) => {
   return (
     <NoticesCategoryItemStyled>
       <ImageContainer>
-        <PetImage src={testImage} alt="test dog photo" />
-        <HeartIcon
-          type="button"
-          onClick={toggleFavoriteMethod}
-        >
+        <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        />
+        <HeartIcon type="button" onClick={toggleFavoriteMethod}>
           {favorite ? <HeartFill /> : <Heart />}
         </HeartIcon>
 
-        {currentUser._id === notice.owner && 
-          <RemoveNoticeBtn
-            type='button'
-            onClick={deleteModalOpen}
-          >
-          <RemoveIcon/>
+        {currentUser._id === notice.owner && (
+          <RemoveNoticeBtn type="button" onClick={deleteModalOpen}>
+            <RemoveIcon />
           </RemoveNoticeBtn>
-          }
+        )}
 
-        <FilterStatus>In good hands</FilterStatus>
+        <FilterStatus>{notice.category}</FilterStatus>
 
         <LocationItem>
           <Location />
@@ -193,7 +189,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>Cute {nameFormat(notice.name)} looking fro a home</NoticeText>
+      <NoticeText>{nameFormat(notice.title)}</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>
@@ -239,9 +235,14 @@ const NoticeCategoryItem = ({ notice }) => {
                 <ModalCloseBtn>
                   <ModalCloseBtnIcon onClick={handleClose} />
                 </ModalCloseBtn>
-                <PetPhoto>
-                  <span>In good hands</span>
-                </PetPhoto>
+                {/* <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        ><span>In good hands</span></PetImage> */}
+                <PhotoContainer>
+                  <PetPhoto src={notice.fileURL} />
+                  <CategoryItem>{notice.category}</CategoryItem>
+                </PhotoContainer>
                 <div>
                   <Title>Сute dog looking for a home</Title>
                   <Info>
@@ -279,46 +280,45 @@ const NoticeCategoryItem = ({ notice }) => {
                   </StyledLink>
                 </Button>
 
-                  {!favorite
-                  ? < AddButton type="button" onClick={toggleFavoriteMethod}>
-                  <p>Add to</p>
-                  <LiaHeart />
+                {!favorite ? (
+                  <AddButton type="button" onClick={toggleFavoriteMethod}>
+                    <p>Add to</p>
+                    <LiaHeart />
                   </AddButton>
-                  
-                  : <RemoveButton type="button" onClick={toggleFavoriteMethod}>
-                  <p>Remove from</p>
-                  <LiaHeart />
-                </RemoveButton>}
+                ) : (
+                  <RemoveButton type="button" onClick={toggleFavoriteMethod}>
+                    <p>Remove from</p>
+                    <LiaHeart />
+                  </RemoveButton>
+                )}
               </Container>
             </ModalBox>
           </Modal>
         </div>
       )}
 
-      
-        <div>
-         <Modal open={deleteModal} onClick={deleteModalClose}>
-            <ModalBox>
-                    <Section>
-                <Header>Delete adverstiment?</Header>
-                <DeleteText>
-                  Are you sure you want to delete <strong>{notice.name}</strong>? You can`t undo
-                  this action.
-                </DeleteText>
-                <BtnWrapper>
-                  <BtnCancel type="button" onClick={deleteModalClose}>
-                    Cancel
-                  </BtnCancel>
-                  <BtnYes type="button" onClick={handleRemoveOwnNotice}>
-                    Yes
-                    <TrashIcon />
-                  </BtnYes>
-                </BtnWrapper>
-                    </Section>
-           </ModalBox>
-          </Modal>
-          </div>
-      
+      <div>
+        <Modal open={deleteModal} onClick={deleteModalClose}>
+          <ModalBox>
+            <Section>
+              <Header>Delete adverstiment?</Header>
+              <DeleteText>
+                Are you sure you want to delete <strong>{notice.name}</strong>?
+                You can`t undo this action.
+              </DeleteText>
+              <BtnWrapper>
+                <BtnCancel type="button" onClick={deleteModalClose}>
+                  Cancel
+                </BtnCancel>
+                <BtnYes type="button" onClick={handleRemoveOwnNotice}>
+                  Yes
+                  <TrashIcon />
+                </BtnYes>
+              </BtnWrapper>
+            </Section>
+          </ModalBox>
+        </Modal>
+      </div>
     </NoticesCategoryItemStyled>
   );
 };

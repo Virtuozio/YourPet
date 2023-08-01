@@ -9,8 +9,9 @@ export const fetchNotices = createAsyncThunk(
   async (fetchInfo, thunkAPI) => {
     try {
       // const { category, ...params } = credentials;
-      const response = await axios.get(`/notices${fetchInfo}` );
-      // console.log(response);
+      const response = await axios.get(`/notices${fetchInfo}`);
+      // console.log(response.data.total);
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -21,17 +22,17 @@ export const fetchNotices = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
-    if (!newNotice.petAvatar) delete newNotice['petAvatar'];
-    let formImageData = new FormData();
+    // if (!newNotice.petAvatar) delete newNotice['petAvatar'];
+    // let formImageData = new FormData();
 
-    for (const key in newNotice) {
-      if (newNotice[key]) {
-        formImageData.append(key, newNotice[key]);
-      }
-    }
+    // for (const key in newNotice) {
+    //   if (newNotice[key]) {
+    //     formImageData.append(key, newNotice[key]);
+    //   }
+    // }
 
     try {
-      const res = await axios.post('/notices', formImageData);
+      const res = await axios.post('/notices', newNotice);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -70,8 +71,8 @@ export const getAllOwnNotices = createAsyncThunk(
   'notices/getAllOwnNotices',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`/notices/users`);
-      console.log(response);
+      const response = await axios.get(`/notices/user/added`);
+      // console.log(response.data.noticesList);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -84,6 +85,7 @@ export const addToFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.patch(`/notices/user/favorite/${id}`);
+      // console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -96,6 +98,7 @@ export const removeFromFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/notices/user/favorite/${id}`);
+      console.log('resp', response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -108,7 +111,45 @@ export const fetchFavoriteNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/notices/user/favorite');
-      console.log(response.data);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getNoticesByCategory = createAsyncThunk(
+  'notices/getNoticesByCategory',
+  async (fetchInfo, thunkAPI) => {
+    try {
+      const response = await axios.get(`notices/users/search${fetchInfo}`);
+      // console.log(response.data);
+      // console.log(response.data.total);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const getNoticesBySearch = createAsyncThunk(
+  'search/getNoticesBySearch',
+  async (data, thunkAPI) => {
+    try {
+      const res = await axios.get(`/notices/users/search?title=${data}`);
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getFavNoticesbyCategory = createAsyncThunk(
+  'notices/getFavNoticesbyCategory',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/notices/user/favorite');
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

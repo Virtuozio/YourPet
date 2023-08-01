@@ -166,7 +166,7 @@ export const Link = styled.a`
   font-weight: 500;
   line-height: normal;
   letter-spacing: 1.28px;
-  color: #111111;
+  color: var(--secondary-bg-color);
   @media screen and (min-width: 768px) {
     font-size: 48px;
     letter-spacing: 1.92px;

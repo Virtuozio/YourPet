@@ -12,7 +12,6 @@ const Register = () => {
     try {
       const { name, email, password } = values;
       await dispatch(register({ name, email, password }));
-
       // navigate('/user');
       resetForm();
     } catch (error) {

@@ -6,38 +6,35 @@ import { LiaTimesSolid } from 'react-icons/lia';
 import { useState } from 'react';
 import { UserCardContainer, EditBtn } from './UserData.styled';
 import { useAuth } from 'hooks';
+import { useEffect } from 'react';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const confirmClose = confirm => {
-    setShowConfirm(prevState => !prevState);
-    setIsFormDisabled(confirm);
-  };
 
   const { user } = useAuth();
 
+  useEffect(() => {
+    setIsFormDisabled(true);
+  }, [user]);
+
   return (
     <>
-      <UserCardContainer>
-        {isFormDisabled ? (
-          <EditBtn onClick={() => setIsFormDisabled(false)}>
-            <BiEditAlt />
-          </EditBtn>
-        ) : (
-          <EditBtn onClick={() => setShowConfirm(true)}>
-            <LiaTimesSolid />
-          </EditBtn>
-        )}
-        <UserForm
-          disabled={isFormDisabled}
-          showConfirm={showConfirm}
-          confirmClose={confirmClose}
-          user={user.name && user}
-        />
+      {user && (
+        <UserCardContainer>
+          {isFormDisabled ? (
+            <EditBtn onClick={() => setIsFormDisabled(false)}>
+              <BiEditAlt />
+            </EditBtn>
+          ) : (
+            <EditBtn onClick={() => setIsFormDisabled(true)}>
+              <LiaTimesSolid />
+            </EditBtn>
+          )}
+          <UserForm disabled={isFormDisabled} user={user} />
 
-        {isFormDisabled && <Logout />}
-      </UserCardContainer>
+          {isFormDisabled && <Logout />}
+        </UserCardContainer>
+      )}
     </>
   );
 };

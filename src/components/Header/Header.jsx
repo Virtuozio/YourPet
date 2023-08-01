@@ -31,7 +31,12 @@ const Header = ({ handleClick }) => {
           <Link to="/user">
             <img src={icon} alt="icon" />
           </Link>
-          <User>{user.name}</User>
+          {user && <User>{user.name}</User>}
+        </div>
+      )}
+      {size[0] >= 768 && size[0] < 1200 && !isLoggedIn && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <AuthNav />
         </div>
       )}
       {size[0] < 1200 && (
@@ -42,7 +47,9 @@ const Header = ({ handleClick }) => {
           <div style={{ display: 'flex', gap: '40px' }}>
             <Nav />
           </div>
-          <div>{isLoggedIn ? <UserNav /> : <AuthNav />}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            {isLoggedIn ? <UserNav /> : <AuthNav />}
+          </div>
         </>
       )}
     </Container>

@@ -83,10 +83,6 @@ const ClearBtn = styled(SubmitBtn).withConfig({
   opacity: ${({ query }) => (query ? 1 : 0)};
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  // & svg {
-  //   stroke: #ffc107;
-  // }
 `;
 
 const CrossSmall = styled(RxCross1)`

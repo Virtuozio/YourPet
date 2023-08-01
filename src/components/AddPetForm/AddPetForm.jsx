@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -15,6 +15,7 @@ import {
 import FormFirstStep from './FormFirstStep/FormFirstStep';
 import FormSecondStep from './FormSecondStep/FormSecondStep';
 import FormThirdStep from './FormThirdStep/FormThirdStep';
+import { addPet } from 'redux/pets/petsOperations';
 
 import {
   ArrowLeftIcon,
@@ -28,7 +29,7 @@ import {
   PawIcon,
   Title,
 } from './AddPetForm.styled';
-import { addPet } from 'redux/pets/petsOperations';
+import { addNotice } from 'redux/notices/noticesOperations';
 
 const AddPetForm = () => {
   const navigate = useNavigate();
@@ -75,15 +76,18 @@ const AddPetForm = () => {
     values,
     errors,
     touched,
+    isSubmitting,
     handleBlur,
     setFieldValue,
     handleChange,
     handleSubmit,
     setErrors,
     resetForm,
+    setSubmitting,
   } = useFormik({
     initialValues,
     validationSchema: currentValidationSchema,
+
     onSubmit: () => {
       let formValues = {};
       let typeSchema = '';
@@ -102,16 +106,14 @@ const AddPetForm = () => {
 
       if (currentForm.first) {
         typeSchema = 'categoryValidation';
-        setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
         nextPageForm();
+        setSubmitting(false);
       } else if (currentForm.second) {
         if (category === YOUR_PET) {
           typeSchema = 'secValidYourPet';
-          setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
           formValues = { name, date, type };
         } else {
           typeSchema = 'secValidNoYours';
-          setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
           formValues = { title, name, date, type };
         }
 
@@ -122,27 +124,28 @@ const AddPetForm = () => {
           .then(() => {
             if (Object.keys(errors).length === 0) {
               nextPageForm();
+              setSubmitting(false);
             }
           })
           .catch(errs => {
             const formErrors = {};
-            errs.inner.forEach(
-              error => (formErrors[error.path] = error.message)
-            );
-            setErrors(formErrors);
+            errs.inner.forEach(error => {
+              formErrors[error.path] = error.message;
+              setErrors(prevErrors => ({
+                ...prevErrors,
+                [error.path]: error.message,
+              }));
+            });
           });
       } else if (currentForm.third) {
         if (category === YOUR_PET) {
           typeSchema = 'thirdValidYourPet';
-          setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
           formValues = { file, comments };
         } else if (category === SELL) {
           typeSchema = 'thirdValidSell';
-          setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
           formValues = { file, comments, price, sex, location };
         } else if (category === LOST_FOUND || category === IN_GOOD_HANDS) {
           typeSchema = 'thirdValidLostFoundAndGoodHands';
-          setCurrentValidationSchema(validationAddPetSchema[typeSchema]);
           formValues = { file, comments, sex, location };
         }
 
@@ -152,13 +155,19 @@ const AddPetForm = () => {
           })
           .then(() => {
             if (Object.keys(errors).length === 0) {
-              console.log('values :>> ', values);
               const formData = new FormData();
-              for (const key in values) {
-                formData.append(key, values[key]);
-                console.log(formData);
+
+              for (let key in values) {
+                formData.append(`${key}`, values[key]);
               }
-              dispatch(addPet(values));
+
+              if (values.category === YOUR_PET) {
+                dispatch(addPet(formData));
+                navigate('/user');
+              } else {
+                dispatch(addNotice(formData));
+                navigate('/notices');
+              }
             }
           })
           .catch(errs => {
@@ -171,6 +180,33 @@ const AddPetForm = () => {
       }
     },
   });
+
+  useEffect(() => {
+    if (currentForm.first) {
+      setCurrentValidationSchema(validationAddPetSchema.categoryValidation);
+    } else if (currentForm.second) {
+      if (values.category === YOUR_PET) {
+        setCurrentValidationSchema(validationAddPetSchema.secValidYourPet);
+      } else {
+        setCurrentValidationSchema(validationAddPetSchema.secValidNoYours);
+      }
+    } else if (currentForm.third) {
+      if (values.category === YOUR_PET) {
+        setCurrentValidationSchema(validationAddPetSchema.thirdValidYourPet);
+      } else if (values.category === SELL) {
+        setCurrentValidationSchema(validationAddPetSchema.thirdValidSell);
+      } else if (values.category === LOST_FOUND) {
+        setCurrentValidationSchema(
+          validationAddPetSchema.thirdValidLostFoundAndGoodHands
+        );
+      }
+    }
+  }, [
+    currentForm.first,
+    currentForm.second,
+    currentForm.third,
+    values.category,
+  ]);
 
   const handleCancel = () => {
     if (currentForm.first) {
@@ -248,6 +284,7 @@ const AddPetForm = () => {
               errors={errors}
               touched={touched}
               handleBlur={handleBlur}
+              isSubmitting={isSubmitting}
             />
           )}
           {currentForm.third && (
@@ -259,6 +296,7 @@ const AddPetForm = () => {
               touched={touched}
               handleBlur={handleBlur}
               setFieldValue={setFieldValue}
+              isSubmitting={isSubmitting}
             />
           )}
 

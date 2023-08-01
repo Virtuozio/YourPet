@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const User = styled.a`
+export const User = styled.p`
   @media screen and (min-width: 768px) {
+    text-decoration: none;
     color: #ffc107;
     font-size: 16px;
     font-style: normal;
@@ -10,6 +11,7 @@ export const User = styled.a`
     line-height: normal;
     letter-spacing: 0.64px;
     margin-left: 12px;
+    text-decoration: none;
   }
 
   @media screen and (min-width: 1280px) {

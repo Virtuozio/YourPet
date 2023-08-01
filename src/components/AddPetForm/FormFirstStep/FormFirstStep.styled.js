@@ -25,18 +25,20 @@ export const OptionInner = styled.label.withConfig({
 })`
   display: inline-block;
   padding: 8px 16px;
-  background-color: ${({ active }) => (active ? '#54ADFF' : '#cce4fb')};
+  background-color: ${({ active }) =>
+    active ? 'var(--btn-bg-color)' : 'var(--labels-bg-color)'};
 
   font-weight: 500;
   font-size: 14px;
   line-height: 1.36;
-  color: ${({ active }) => (active ? '#FEF9F9' : '#54adff')};
+  color: ${({ active }) =>
+    active ? 'var(--label-active-color)' : 'var(--btn-bg-color)'};
 
   border-radius: 40px;
   cursor: pointer;
 
   :checked {
-    color: #fef9f9;
-    background-color: #cce4fb;
+    color: var(--label-active-color);
+    background-color: var(--labels-bg-color);
   }
 `;

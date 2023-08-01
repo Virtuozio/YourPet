@@ -2,9 +2,7 @@ import styled from 'styled-components';
 import { FaPaw } from 'react-icons/fa';
 import { BsArrowLeft } from 'react-icons/bs';
 
-import {
-  YOUR_PET
-} from 'utils/constants/typesAddPet';
+import { YOUR_PET } from 'utils/constants/typesAddPet';
 
 export const ContainerForm = styled.div`
   position: relative;
@@ -83,11 +81,11 @@ export const FormStep = styled.li.withConfig({
   line-height: 1.36;
   color: ${({ active, done }) => {
     if (active) {
-      return '#54ADFF';
+      return 'var(--btn-bg-color)';
     } else if (done) {
-      return '#00C3AD';
+      return 'var(--success-color)';
     } else {
-      return '#888888';
+      return 'var(--text-input-color)';
     }
   }};
 
@@ -99,11 +97,11 @@ export const FormStep = styled.li.withConfig({
     height: 8px;
     background-color: ${({ active, done }) => {
       if (active) {
-        return '#54ADFF';
+        return 'var(--btn-bg-color)';
       } else if (done) {
-        return '#00C3AD';
+        return 'var(--success-color)';
       } else {
-        return '#cce4fb';
+        return 'var(--labels-bg-color)';
       }
     }};
     border-radius: 8px;
@@ -146,9 +144,9 @@ export const FormInput = styled.input`
 
   font-size: 14px;
   line-height: 1.5;
-  color: #888888;
+  color: var(--text-input-color);
 
-  border: 1px solid #54adff;
+  border: 1px solid var(--btn-bg-color);
   border-radius: 40px;
 
   &:focus-visible {
@@ -158,7 +156,7 @@ export const FormInput = styled.input`
   &::placeholder {
     font-size: 14px;
     line-height: 1.5;
-    color: #888888;
+    color: var(--text-input-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -177,7 +175,7 @@ export const ErrorInput = styled.p`
   position: absolute;
   bottom: -20px;
   left: 16px;
-  color: #f43f5e;
+  color: var(--error-color);
   font-size: 12px;
   line-height: 1.36;
 `;
@@ -207,7 +205,7 @@ const ButtonContainer = styled.button`
 
   padding: 9px 0;
 
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--main-font);
   font-size: 16px;
   font-weight: 700;
   line-height: 1.36;
@@ -224,15 +222,15 @@ const ButtonContainer = styled.button`
 
 export const NextBtn = styled(ButtonContainer)`
   width: 248px;
-  color: #fef9f9;
+  color: var(--label-active-color);
 
-  background-color: #54adff;
+  background-color: var(--btn-bg-color);
 `;
 
 export const PawIcon = styled(FaPaw)`
   font-size: 21px;
   stroke-width: 30px;
-  stroke: #fef9f9;
+  stroke: var(--label-active-color);
   fill: transparent;
   transform: rotate(25deg);
 `;
@@ -240,7 +238,7 @@ export const PawIcon = styled(FaPaw)`
 export const CancelBtn = styled(ButtonContainer)`
   width: 94px;
   padding: 0;
-  color: #54adff;
+  color: var(--btn-bg-color);
   background-color: transparent;
 
   @media screen and (min-width: 768px) {
@@ -250,5 +248,5 @@ export const CancelBtn = styled(ButtonContainer)`
 
 export const ArrowLeftIcon = styled(BsArrowLeft)`
   font-size: 24px;
-  fill: #54adff;
+  fill: var(--btn-bg-color);
 `;

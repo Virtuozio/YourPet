@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import 'flatpickr/dist/flatpickr.min.css';
 import { BsCamera, BsCheckLg, BsX } from 'react-icons/bs';
@@ -21,11 +21,13 @@ import {
 } from 'redux/auth/authOperations';
 // import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
 
-const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
+const UserForm = ({ disabled, user }) => {
   const dispatch = useDispatch();
   // const { user } = useAuth();
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState({ preview: '', data: '' });
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const initialValues = {
     avatar: user ? user.avatarURL : '',
     name: user ? user.name : '',
@@ -35,43 +37,40 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
     city: user ? user.city : '',
   };
 
-  const handleClose = useCallback(
-    e => {
-      if (e.target.id === 'confirm') {
-        setImage();
-        confirmClose(true);
-        setErrorsVisible(false);
-      } else if (e.target.id === 'cancel') {
-        confirmClose(false);
-      }
-    },
-    [confirmClose]
-  );
+  const handleClose = e => {
+    if (e.currentTarget.id === 'cancel') {
+      setImage({ preview: '', data: '' });
+    }
+    setShowConfirm(false);
+  };
 
   useEffect(() => {
     if (!disabled) {
       setErrorsVisible(true);
+    } else {
+      setImage({ preview: '', data: '' });
     }
   }, [disabled]);
 
-  // useEffect(() => {
-  //   if (initialValues.avatar) {
-  //     setImage(initialValues.avatar);
-  //   }
-  // }, [initialValues.avatar]);
-
   const handleFileChange = e => {
-    const img = e.currentTarget.files[0];
-    const avatarUrl = URL.createObjectURL(img);
-    setImage(avatarUrl);
-    confirmClose(true);
+    const img = {
+      preview: URL.createObjectURL(e.currentTarget.files[0]),
+      data: e.currentTarget.files[0],
+    };
+
+    setImage(img);
+    setShowConfirm(true);
   };
 
   const handleSubmit = values => {
-    const formData = new FormData();
+    let formData = new FormData();
 
     for (const key in values) {
-      formData.append(`${key}`, values[key]);
+      if (key === 'avatar') {
+        formData.append('avatar', image.data);
+      } else {
+        formData.append(`${key}`, values[key]);
+      }
     }
     dispatch(updateUserData(formData));
   };
@@ -89,7 +88,7 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
             {disabled ? (
               <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
             ) : (
-              <UserPhoto src={image ? image : user.avatarURL} />
+              <UserPhoto src={image.preview ? image.preview : user.avatarURL} />
             )}
 
             {!disabled && !showConfirm && (
@@ -106,12 +105,13 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
                 />
               </div>
             )}
-            {showConfirm && (
+            {showConfirm && !disabled && (
               <div
                 style={{
                   marginTop: '15px',
                   display: 'flex',
                   justifyContent: 'center',
+                  cursor: 'pointer',
                 }}
               >
                 <BsCheckLg
@@ -119,7 +119,6 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
                   style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
                   onClick={handleClose}
                 />
-                <span>Confirm</span>
                 <BsX
                   id="cancel"
                   style={{ fill: '#F43F5E', width: '24px', height: '24px' }}
@@ -181,7 +180,11 @@ const UserForm = ({ disabled, confirmClose, showConfirm, user }) => {
               />
               {errorsVisible && <ErrorMessage name="city" component={Error} />}
             </InputContainer>
-            {!disabled && <SubmitButton type="submit">Save</SubmitButton>}
+            {!disabled && (
+              <SubmitButton type="submit" disabled={showConfirm}>
+                Save
+              </SubmitButton>
+            )}
           </FieldsContainer>
         </StyledForm>
       </Form>

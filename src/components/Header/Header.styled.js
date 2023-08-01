@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const Div = styled.div`
   display: flex;
@@ -19,18 +20,20 @@ export const MenuBurger = styled.button`
   }
 `;
 
-export const User = styled.a`
-  @media screen and (min-width: 768px) {
-    color: #ffc107;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: 0.64px;
-    margin-left: 12px;
-  }
-
-  @media screen and (min-width: 1280px) {
+export const User = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  p {
+    @media screen and (min-width: 768px) {
+      color: var(--header-items-color);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 0.64px;
+      margin-left: 12px;
+    }
   }
 `;
 
@@ -39,5 +42,3 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-
-export const CloseBurger = styled.button``;

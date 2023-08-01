@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const PetsContainer = styled.div`
@@ -32,11 +33,11 @@ const EditBtn = styled.button`
   svg {
     width: 24px;
     height: 24px;
-    fill: #54adff;
+    fill: var(--btn-bg-color);
   }
   &:hover {
     svg {
-      fill: #ffc107;
+      fill: var(--header-items-color);
     }
   }
   @media screen and (min-width: 768px) {
@@ -68,4 +69,47 @@ max-width; 100vw;
   }
 `;
 
-export { UserCardContainer, EditBtn, Title, MainContainer, PetsContainer };
+const AddPetButton = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  color: #ffffff;
+  font-weight: 600;
+
+  width: 129px;
+  padding: 8px 20px;
+
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.64px;
+
+  background: var(--btn-bg-color);
+  border: none;
+  border-radius: 40px;
+  box-shadow: 3px 8px 14px 0px #88c6fd30;
+
+  transition: background var(--duration) var(--cubic);
+
+  &:hover,
+  &:focus {
+    background: var(--hover-btn-bg-color);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export {
+  UserCardContainer,
+  EditBtn,
+  Title,
+  MainContainer,
+  PetsContainer,
+  AddPetButton,
+};

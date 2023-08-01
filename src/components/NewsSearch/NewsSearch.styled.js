@@ -7,7 +7,7 @@ export const Title = styled.h2`
   line-height: 33px;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
-  color: #111111;
+  color: var(--secondary-bg-color);
 `;
 
 export const Img = styled.img`
@@ -54,7 +54,7 @@ export const NewsItem = styled.li`
   flex-direction: column;
   min-width: 280px;
   padding: 12px;
-  background-color: #fff;
+  background-color: var(--primary-bg-color);
   border-radius: 20px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
@@ -86,7 +86,7 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: #111111;
+  color: var(--primary-bg-color);
   margin-bottom: auto;
 `;
 

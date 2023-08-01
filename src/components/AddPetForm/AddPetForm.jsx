@@ -76,12 +76,14 @@ const AddPetForm = () => {
     values,
     errors,
     touched,
+    isSubmitting,
     handleBlur,
     setFieldValue,
     handleChange,
     handleSubmit,
     setErrors,
     resetForm,
+    setSubmitting,
   } = useFormik({
     initialValues,
     validationSchema: currentValidationSchema,
@@ -105,6 +107,7 @@ const AddPetForm = () => {
       if (currentForm.first) {
         typeSchema = 'categoryValidation';
         nextPageForm();
+        setSubmitting(false);
       } else if (currentForm.second) {
         if (category === YOUR_PET) {
           typeSchema = 'secValidYourPet';
@@ -121,14 +124,18 @@ const AddPetForm = () => {
           .then(() => {
             if (Object.keys(errors).length === 0) {
               nextPageForm();
+              setSubmitting(false);
             }
           })
           .catch(errs => {
             const formErrors = {};
-            errs.inner.forEach(
-              error => (formErrors[error.path] = error.message)
-            );
-            setErrors(formErrors);
+            errs.inner.forEach(error => {
+              formErrors[error.path] = error.message;
+              setErrors(prevErrors => ({
+                ...prevErrors,
+                [error.path]: error.message,
+              }));
+            });
           });
       } else if (currentForm.third) {
         if (category === YOUR_PET) {
@@ -277,6 +284,7 @@ const AddPetForm = () => {
               errors={errors}
               touched={touched}
               handleBlur={handleBlur}
+              isSubmitting={isSubmitting}
             />
           )}
           {currentForm.third && (
@@ -288,6 +296,7 @@ const AddPetForm = () => {
               touched={touched}
               handleBlur={handleBlur}
               setFieldValue={setFieldValue}
+              isSubmitting={isSubmitting}
             />
           )}
 

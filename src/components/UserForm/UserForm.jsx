@@ -13,7 +13,7 @@ import {
   FieldsContainer,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
-import defaultImg from '../../utils/Photo default.jpg';
+import defaultImg from 'assets/Photo default.jpg';
 import { useDispatch } from 'react-redux';
 import {
   // currentUser,

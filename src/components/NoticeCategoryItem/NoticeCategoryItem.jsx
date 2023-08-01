@@ -62,6 +62,8 @@ import {
   Container,
   AddButton,
   RemoveButton,
+  CategoryItem,
+  PhotoContainer,
 } from '../ModalNotice/ModalNotice.styled';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import { useEffect } from 'react';
@@ -84,7 +86,6 @@ const NoticeCategoryItem = ({ notice }) => {
   const currentUser = useSelector(selectUser);
 
   const favNotices = useSelector(selectFavoriteNotices);
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
@@ -107,6 +108,7 @@ const NoticeCategoryItem = ({ notice }) => {
       // if (!res) {
       //   return toast.error("can't add notice");
       // }
+      console.log(notice._id);
       dispatch(addToFavorite(notice._id));
       setFavorite(true);
       toast.success('added to your favorites');
@@ -141,12 +143,12 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
-  const nameFormat = name => {
-    if (name.length > 10) {
-      return name.slice(0, 10) + '...';
-    }
-    return name;
-  };
+  // const nameFormat = name => {
+  //   if (name.length > 10) {
+  //     return name.slice(0, 10) + '...';
+  //   }
+  //   return name;
+  // };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -173,7 +175,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </RemoveNoticeBtn>
         )}
 
-        <FilterStatus>In good hands</FilterStatus>
+        <FilterStatus>{notice.category}</FilterStatus>
 
         <LocationItem>
           <Location />
@@ -186,7 +188,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>Cute {nameFormat(notice.name)} looking fro a home</NoticeText>
+      <NoticeText>{notice.title}</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>
@@ -232,9 +234,14 @@ const NoticeCategoryItem = ({ notice }) => {
                 <ModalCloseBtn>
                   <ModalCloseBtnIcon onClick={handleClose} />
                 </ModalCloseBtn>
-                <PetPhoto src={notice.image}>
-                  <span>In good hands</span>
-                </PetPhoto>
+                {/* <PetImage
+          src={notice.fileURL ? notice.fileURL : testImage}
+          alt="test dog photo"
+        ><span>In good hands</span></PetImage> */}
+                <PhotoContainer>
+                  <PetPhoto src={notice.fileURL} />
+                  <CategoryItem>{notice.category}</CategoryItem>
+                </PhotoContainer>
                 <div>
                   <Title>Сute dog looking for a home</Title>
                   <Info>

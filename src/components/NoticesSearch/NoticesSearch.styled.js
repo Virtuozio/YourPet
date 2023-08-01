@@ -51,7 +51,6 @@ const Input = styled.input`
 const SubmitBtn = styled.button.withConfig({
   shouldForwardProp: prop => prop !== 'query',
 })`
-  position: absolute;
   top: 10px;
   right: 20px;
 

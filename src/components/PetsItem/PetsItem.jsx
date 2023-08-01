@@ -36,18 +36,20 @@ const PetsItem = ({ pet }) => {
           <DeleteBtn type="button" onClick={closeModal}>
             <BiTrash />
           </DeleteBtn>
-          <PetInfo>
-            <b>Name:</b> {pet.name}
-          </PetInfo>
-          <PetInfo>
-            <b>Date of birth:</b> {pet.date}
-          </PetInfo>
-          <PetInfo>
-            <b>Type:</b> {pet.type}
-          </PetInfo>
-          <PetInfo>
-            <b>Comments:</b> {pet.comments}
-          </PetInfo>
+          <div>
+            <PetInfo>
+              <b>Name:</b> {pet.name}
+            </PetInfo>
+            <PetInfo>
+              <b>Date of birth:</b> {pet.date}
+            </PetInfo>
+            <PetInfo>
+              <b>Type:</b> {pet.type}
+            </PetInfo>
+            <PetInfo>
+              <b>Comments:</b> {pet.comments}
+            </PetInfo>
+          </div>
         </InfoContainer>
       </PetCard>
 

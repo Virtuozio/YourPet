@@ -10,13 +10,9 @@ import { useEffect } from 'react';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const confirmClose = confirm => {
-    setShowConfirm(prevState => !prevState);
-    setIsFormDisabled(confirm);
-  };
 
   const { user } = useAuth();
+
   useEffect(() => {
     setIsFormDisabled(true);
   }, [user]);
@@ -30,16 +26,11 @@ const UserData = () => {
               <BiEditAlt />
             </EditBtn>
           ) : (
-            <EditBtn onClick={() => setShowConfirm(true)}>
+            <EditBtn onClick={() => setIsFormDisabled(true)}>
               <LiaTimesSolid />
             </EditBtn>
           )}
-          <UserForm
-            disabled={isFormDisabled}
-            showConfirm={showConfirm}
-            confirmClose={confirmClose}
-            user={user}
-          />
+          <UserForm disabled={isFormDisabled} user={user} />
 
           {isFormDisabled && <Logout />}
         </UserCardContainer>

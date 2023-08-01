@@ -36,10 +36,10 @@ const User = () => {
       )}
       <MainContainer>
         <div>
-          <Title>My information:</Title>
+          <Title style={{ marginBottom: '24px' }}>My information:</Title>
           <UserData />
         </div>
-        <div>
+        <div style={{ width: '100%' }}>
           <PetsContainer>
             <Title>My pets:</Title>
             <AddPetButton text={'Add pet'} path={'/add-pet'} />

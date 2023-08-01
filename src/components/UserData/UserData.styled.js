@@ -4,10 +4,7 @@ const PetsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width: calc(100% - 129px);
-  @media screen and (min-width: 1200px) {
-    width: calc(821px - 129px);
-  }
+  margin-bottom: 24px;
 `;
 
 const UserCardContainer = styled.div`
@@ -16,11 +13,8 @@ const UserCardContainer = styled.div`
   border-radius: 40px;
   background: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-  @media screen and (min-width: 768px) {
-    width: 704px;
-  }
+
   @media screen and (min-width: 1200px) {
-    width: 395px;
     height: max-content;
   }
 `;
@@ -56,7 +50,6 @@ const Title = styled.h2`
   line-height: normal;
   letter-spacing: 0.8px;
   color: #000000;
-  margin-bottom: 24px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
   }

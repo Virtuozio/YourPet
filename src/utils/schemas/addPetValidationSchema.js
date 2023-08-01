@@ -1,15 +1,46 @@
+import { SELL, YOUR_PET } from 'utils/constants/typesAddPet';
 import * as yup from 'yup';
 
 const fullFildsAddPetSchema = yup.object().shape({
   category: yup.string().required('Category is required'),
-  title: yup.string().required('Title is required'),
-  name: yup.string().required('Name is required'),
+  title: yup.string().when('category', {
+    is: value => value !== YOUR_PET,
+    then: yup.string().required('Title is required'),
+  }),
+  name: yup
+    .string()
+    .min(2, 'Too short value')
+    .max(16, 'Too long value, 16 symbols')
+    .matches(/^\p{L}+$/u, 'Only letters')
+    .required('Name is required'),
   date: yup.string().required('Birthday is required'),
-  type: yup.string().required('Type is required'),
-  file: yup.string().required(),
-  sex: '',
-  location: '',
-  price: yup.number().positive('Should be a positive value'),
+  type: yup
+    .string()
+    .min(2, 'Too short value')
+    .max(16, 'Too long value, 16 symbols')
+    .matches(/^\p{L}+$/u, 'Only letters')
+    .required('Type is required'),
+  file: yup
+    .mixed()
+    .required('File is required')
+    .test('fileType', 'Invalid file type', value => {
+      return value instanceof File;
+    }),
+  sex: yup.string().when('category', {
+    is: value => value !== YOUR_PET,
+    then: yup.string().required('Choose sex of pet'),
+  }),
+  location: yup.string().when('category', {
+    is: value => value !== YOUR_PET,
+    then: yup.string().required('Location is required'),
+  }),
+  price: yup.number().when('category', {
+    is: SELL,
+    then: yup
+      .number()
+      .positive('Should be a positive value')
+      .required('Price is required'),
+  }),
   comments: yup.string().max(120, 'Too long comment'),
 });
 
@@ -61,7 +92,12 @@ const thirdValidYourPet = yup.object().shape({
 });
 
 const thirdValidSell = yup.object().shape({
-  file: yup.string().required('File is required'),
+  file: yup
+    .mixed()
+    .required('File is required')
+    .test('fileType', 'Invalid file type', value => {
+      return value instanceof File;
+    }),
   sex: yup.string().required('Choose sex of pet'),
   location: yup.string().required('Location is required'),
   price: yup
@@ -72,7 +108,12 @@ const thirdValidSell = yup.object().shape({
 });
 
 const thirdValidLostFoundAndGoodHands = yup.object().shape({
-  file: yup.string().required('File is required'),
+  file: yup
+    .mixed()
+    .required('File is required')
+    .test('fileType', 'Invalid file type', value => {
+      return value instanceof File;
+    }),
   sex: yup.string().required('Choose sex of pet'),
   location: yup.string().required('Location is required'),
   comments: yup.string().max(120, 'Too long comment'),

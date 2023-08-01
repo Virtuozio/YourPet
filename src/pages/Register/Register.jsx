@@ -11,8 +11,8 @@ const Register = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const { email, password } = values;
-      await dispatch(register({ email, password }));
-      await dispatch(logIn({ email, password }));
+      dispatch(register({ email, password }));
+      dispatch(logIn({ email, password }));
       // navigate('/user');
       resetForm();
     } catch (error) {

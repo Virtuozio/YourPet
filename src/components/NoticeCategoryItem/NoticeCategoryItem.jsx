@@ -189,7 +189,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>{notice.title}</NoticeText>
+      <NoticeText>{nameFormat(notice.title)}</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>

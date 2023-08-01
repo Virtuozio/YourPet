@@ -51,6 +51,7 @@ const Input = styled.input`
 const SubmitBtn = styled.button.withConfig({
   shouldForwardProp: prop => prop !== 'query',
 })`
+  position: absolute;
   top: 10px;
   right: 20px;
 
@@ -82,10 +83,6 @@ const ClearBtn = styled(SubmitBtn).withConfig({
   opacity: ${({ query }) => (query ? 1 : 0)};
 
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  // & svg {
-  //   stroke: #ffc107;
-  // }
 `;
 
 const CrossSmall = styled(RxCross1)`

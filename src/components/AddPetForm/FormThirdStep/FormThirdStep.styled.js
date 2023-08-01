@@ -71,8 +71,8 @@ export const GenderLabel = styled.label.withConfig({
     active
       ? `
   border-radius: 40px;
-  background-color: #54ADFF;
-  color: #FEF9F9;
+  background-color: var(--btn-bg-color);
+  color: var(--label-active-color);
   `
       : ''}
 `;
@@ -143,7 +143,7 @@ export const LoaderLabelImg = styled.label.withConfig({
   width: 112px;
   height: 112px;
 
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   background-image: url(${({ img }) => (img ? img : '')});
   background-repeat: no-repeat;
   background-size: cover;
@@ -162,7 +162,7 @@ export const ImgPlus = styled(BsPlusLg)`
   top: 50%;
   transform: translate(-50%, -50%);
 
-  fill: #54adff;
+  fill: var(--btn-bg-color);
   font-size: 30px;
 
   @media screen and (min-width: 768px) {
@@ -222,12 +222,12 @@ export const FormTextArea = styled.textarea.withConfig({
 
   padding: 8px 16px;
 
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--main-font);
   font-size: 14px;
   line-height: 1.5;
-  color: #888888;
+  color: var(--text-input-color);
 
-  border: 1px solid #54adff;
+  border: 1px solid var(--btn-bg-color);
   border-radius: 20px;
 
   resize: none;
@@ -237,10 +237,10 @@ export const FormTextArea = styled.textarea.withConfig({
   }
 
   &::placeholder {
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--main-font);
     font-size: 14px;
     line-height: 1.5;
-    color: #888888;
+    color: var(--text-input-color);
   }
 
   @media screen and (min-width: 768px) {

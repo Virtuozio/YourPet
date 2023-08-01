@@ -4,6 +4,7 @@ import { FriendsList } from './OurFriendsList.styled';
 import OurFriendsCard from 'components/OurFriendsCard/OurFriendsCard';
 import { selectAllFriends } from 'redux/friends/friendsSelectors';
 import { nanoid } from '@reduxjs/toolkit';
+import Loader from '../Loader/Loader';
 
 const OurFriendsList = () => {
   const friends = useSelector(selectAllFriends);
@@ -18,7 +19,8 @@ const OurFriendsList = () => {
             </li>
           ))
         ) : (
-          <p>Loading...</p>
+          //   <p>Loading...</p>
+          <Loader />
         )}
       </FriendsList>
     </>

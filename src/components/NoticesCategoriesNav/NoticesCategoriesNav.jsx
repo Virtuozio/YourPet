@@ -105,11 +105,21 @@ const NoticesCategoriesNav = () => {
     if (!isLoggedIn && filter === 'my ads') {
       return null;
     }
+    // if (isLoggedIn && filter === 'favorite ads') {
+    //    <li key={el}>
+    //     <Btn
+    //       to={`/notices/${path}`}
+    //       onClick={() => dispatch(getNoticesByCategory(filter))}
+    //     >
+    //       {filter}
+    //     </Btn>
+    //   </li>   
+    // }
     return (
       <li key={el}>
         <Btn
           to={`/notices/${path}`}
-          onClick={() => dispatch(getNoticesByCategory(filter))}
+          // onClick={() => dispatch(getNoticesByCategory(filter))}
         >
           {filter}
         </Btn>

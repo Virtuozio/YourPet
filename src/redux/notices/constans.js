@@ -10,6 +10,6 @@ export const statusFilters = {
     SELL: "sell",
     LOST_FOUND: "lost-found",
     IN_GOOD_HANDS: "for-free",
-    FAVORITE_ADS: "favorite ads",
-    MY_ADS: "my-ads"
+    FAVORITE_ADS: "favorite",
+    MY_ADS: "my-pets"
 };

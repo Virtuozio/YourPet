@@ -11,8 +11,12 @@ import {
   // selectStatusFilter
 } from 'redux/notices/noticesSelectors';
 import { Toaster } from 'react-hot-toast';
+import { selectUser } from 'redux/auth/authSelectors';
+import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 
-const getVisibeNotices = (notices, statusFilter) => {
+
+const getVisibeNotices = (notices, statusFilter, currentUser, favNotices) => {
+    
   switch (statusFilter) {
     case statusFilters.SELL:
       return notices.filter(notice =>
@@ -27,13 +31,24 @@ const getVisibeNotices = (notices, statusFilter) => {
         notice.category.toLowerCase().includes(statusFilter.toLowerCase())
       );
     case statusFilters.FAVORITE_ADS:
-      return notices.filter(notice =>
-        notice.category.toLowerCase().includes(statusFilter.toLowerCase())
-      );
+      return notices
+      // notices.filter(notice =>
+      // {
+      //   let index = 0
+        // for (let index = 0; index < currentUser.favorites.length; index++) {
+        // notice._id === currentUser.favorites[0]._id);
+        // index += 1;
+          
+        // }
+        // }
+        // notice._id === currentUser.favorites[0]._id);
+      //  notice._id ===  favNotices._id
+        // console.log(notice._id)
+      
+      // );
     case statusFilters.MY_ADS:
       return notices.filter(notice =>
-        notice.category.toLowerCase().includes(statusFilter.toLowerCase())
-      );
+        notice.owner === currentUser._id);
     default:
       return notices;
   }
@@ -41,9 +56,11 @@ const getVisibeNotices = (notices, statusFilter) => {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
+  const currentUser = useSelector(selectUser);
   const { categoryName } = useParams();
+  const favNotices = useSelector(selectFavoriteNotices);
 
-  const visibleNotices = getVisibeNotices(notices, categoryName);
+  const visibleNotices = getVisibeNotices(notices, categoryName, currentUser, favNotices);
 
   // const visibleNotices = useSelector(selectVisibleNotices);
   // console.log(visibleNotices);

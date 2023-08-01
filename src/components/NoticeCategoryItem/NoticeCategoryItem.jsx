@@ -92,6 +92,7 @@ const NoticeCategoryItem = ({ notice }) => {
 
   useEffect(() => {
     const newFunc = favNotices => {
+      console.log(favNotices);
       favNotices.forEach(favNotice => {
         if (favNotice._id === notice._id) {
           setFavorite(true);
@@ -143,12 +144,12 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
-  // const nameFormat = name => {
-  //   if (name.length > 10) {
-  //     return name.slice(0, 10) + '...';
-  //   }
-  //   return name;
-  // };
+  const nameFormat = name => {
+    if (name.length > 15) {
+      return name.slice(0, 15) + '...';
+    }
+    return name;
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

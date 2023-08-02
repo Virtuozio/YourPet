@@ -7,11 +7,10 @@ export const Title = styled.h2`
   line-height: 33px;
   letter-spacing: -0.01em;
   margin-bottom: 16px;
-  color: #111111;
+  color: var(--secondary-bg-color);
 `;
 
 export const Img = styled.img`
-  background: url('../NewsSearch/default.png');
   background-position: center;
   background-size: cover;
   border-radius: 20px;
@@ -28,9 +27,8 @@ export const NewsList = styled.ul`
   grid-row-gap: 60px;
   grid-template-columns: repeat(1, 1fr);
   padding: 0;
-
+  width: 100%;
   &:before {
-    // display: block;
     content: '';
     width: 280px;
     color: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -52,37 +50,14 @@ export const NewsList = styled.ul`
 export const NewsItem = styled.li`
   display: flex;
   flex-direction: column;
-  min-width: 280px;
+
   padding: 12px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-
-  @media (min-width: 768px) {
-    min-width: 336px;
-  }
-  @media (min-width: 1280px) {
-    min-width: 395px;
-  }
 `;
 
-// export const Line = styled.div`
-//   border-radius: 40px;
-//   width: 200px;
-//   height: 8px;
-//   margin-bottom: 4px;
-
-//   @media (min-width: 768px) {
-//     width: 280px;
-//   }
-//   @media (min-width: 1280px) {
-//     width: 340px;
-//   }
-// `;
-
 export const Text = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
@@ -103,10 +78,10 @@ export const NewsLink = styled.a`
   font-size: 16px;
   line-height: 22px;
   text-align: right;
-  color: #54adff;
+  color: var(--btn-bg-color);
   text-decoration: none;
   &:hover,
   &:focus {
-    color: #ffc107;
+    color: var(--header-items-color);
   }
 `;

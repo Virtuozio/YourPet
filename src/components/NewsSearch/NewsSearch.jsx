@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { convertDateFormat } from 'utils/convertDateFormat';
+import { selectIsLoadingNews } from 'redux/news/newsSelectors';
+
 import { nanoid } from 'nanoid';
-import img from '../NewsSearch/default.png';
+
 import {
   Text,
-  // Line,
   NewsBottom,
   NewsItem,
   NewsLink,
@@ -12,9 +14,9 @@ import {
   Title,
   Img,
 } from './NewsSearch.styled';
-import { selectIsLoadingNews } from 'redux/news/newsSelectors';
-import Loader from '../Loader/Loader';
-import { convertDateFormat } from 'utils/convertDateFormat';
+
+import Loader from 'components/Loader/Loader';
+import Image from 'assets/default.png';
 
 const NewsSearch = ({ news }) => {
   const isLoad = useSelector(selectIsLoadingNews);
@@ -34,8 +36,7 @@ const NewsSearch = ({ news }) => {
           {sortNews.length > 0 &&
             sortNews.map(({ url, title, imgUrl, text, date }) => (
               <NewsItem key={nanoid()}>
-                {/* <Line /> */}
-                <Img src={imgUrl ? imgUrl : img} alt={title} />
+                <Img src={imgUrl ? imgUrl : Image} alt={title} />
                 <Title>{title}</Title>
                 <Text>{text}</Text>
                 <NewsBottom>

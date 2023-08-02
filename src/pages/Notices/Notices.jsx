@@ -45,6 +45,7 @@ import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const totalNotices = useSelector(selectTotalNotices);
+  console.log(totalNotices);
   const { categoryName } = useParams();
   // const currentUser = useSelector(selectUser);
 
@@ -57,12 +58,13 @@ const Notices = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    
     if (categoryName !== statusFilters.FAVORITE_ADS && isLoggedIn) {
       dispatch(fetchFavoriteNotices());
     }
     if (categoryName === statusFilters.FAVORITE_ADS) {
-      dispatch(getFavNoticesbyCategory());
-      setPage(1);
+      dispatch(getFavNoticesbyCategory(`?page=${page}`));
+      // setPage(1);
     } else if (categoryName === statusFilters.MY_ADS) {
       dispatch(getAllOwnNotices());
     } else if (categoryName === statusFilters.SELL) {
@@ -85,6 +87,7 @@ const Notices = () => {
 
   const handleChange = (e, p) => {
     setPage(p);
+    // dispatch(fetchFavoriteNotices());
   };
 
   return (

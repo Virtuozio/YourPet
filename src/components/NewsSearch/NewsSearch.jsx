@@ -18,12 +18,12 @@ import { convertDateFormat } from 'utils/convertDateFormat';
 
 const NewsSearch = ({ news }) => {
   const isLoad = useSelector(selectIsLoadingNews);
-  const [sortNews, setSortNews] = useState([]);
-  useEffect(() => {
-    if (news.length <= 0) return;
+  // const [sortNews, setSortNews] = useState([]);
+  // useEffect(() => {
+  //   if (news.length <= 0) return;
 
-    setSortNews(news);
-  }, [news]);
+  //   setSortNews(news);
+  // }, [news]);
 
   return (
     <>
@@ -31,8 +31,8 @@ const NewsSearch = ({ news }) => {
         <Loader />
       ) : (
         <NewsList>
-          {sortNews.length > 0 &&
-            sortNews.map(({ url, title, imgUrl, text, date }) => (
+          {news.length > 0 &&
+            news.map(({ url, title, imgUrl, text, date }) => (
               <NewsItem key={nanoid()}>
                 {/* <Line /> */}
                 <Img src={imgUrl ? imgUrl : img} alt={title} />
@@ -50,7 +50,7 @@ const NewsSearch = ({ news }) => {
                 </NewsBottom>
               </NewsItem>
             ))}
-          {sortNews.length === 0 && <div>No news found at your request</div>}
+          {news.length === 0 && <div>No news found at your request</div>}
         </NewsList>
       )}
     </>

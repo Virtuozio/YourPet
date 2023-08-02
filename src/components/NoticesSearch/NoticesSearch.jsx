@@ -13,19 +13,23 @@ import { useDispatch } from 'react-redux';
 import {
   fetchNotices,
   getNoticesBySearch,
+  getNoticesByCategory
 } from 'redux/notices/noticesOperations';
 import { useLocation } from 'react-router-dom';
 import { getNewsBySearch } from 'redux/news/newsOperations';
+import { useParams } from 'react-router';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
+  const { categoryName } = useParams();
+  console.log(categoryName);
   const dispatch = useDispatch();
   const location = useLocation();
   const submitHandler = e => {
     e.preventDefault();
     if (location.pathname === '/news')
       dispatch(getNewsBySearch(e.currentTarget.elements.query.value));
-    else dispatch(getNoticesBySearch(e.currentTarget.elements.query.value));
+    else dispatch(getNoticesBySearch({input: e.currentTarget.elements.query.value, category: categoryName}));
   };
 
   const onInputChange = e => {
@@ -35,7 +39,7 @@ const NoticesSearch = () => {
   };
   const handleClear = e => {
     setQuery('');
-    dispatch(fetchNotices(''));
+    dispatch(getNoticesByCategory(`?category=${categoryName}`));
   };
 
   return (

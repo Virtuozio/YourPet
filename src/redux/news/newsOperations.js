@@ -3,10 +3,10 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://yourpets.onrender.com/api';
 
-export const getNews = createAsyncThunk('news/getNews', async (_, thunkAPI) => {
+export const getNews = createAsyncThunk('news/getNews', async (data, thunkAPI) => {
   try {
-    const res = await axios.get('/news');
-    return res.data.getAllList;
+    const res = await axios.get(`/news${data}`);
+    return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }

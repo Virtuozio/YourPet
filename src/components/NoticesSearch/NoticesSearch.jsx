@@ -11,9 +11,9 @@ import {
 } from './NoticesSearch.styled';
 import { useDispatch } from 'react-redux';
 import {
-  fetchNotices,
+  // fetchNotices,
   getNoticesBySearch,
-  getNoticesByCategory
+  getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
 import { useLocation } from 'react-router-dom';
 import { getNewsBySearch } from 'redux/news/newsOperations';
@@ -29,7 +29,13 @@ const NoticesSearch = () => {
     e.preventDefault();
     if (location.pathname === '/news')
       dispatch(getNewsBySearch(e.currentTarget.elements.query.value));
-    else dispatch(getNoticesBySearch({input: e.currentTarget.elements.query.value, category: categoryName}));
+    else
+      dispatch(
+        getNoticesBySearch({
+          input: e.currentTarget.elements.query.value,
+          category: categoryName,
+        })
+      );
   };
 
   const onInputChange = e => {

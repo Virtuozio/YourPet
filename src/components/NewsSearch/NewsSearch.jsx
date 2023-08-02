@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { convertDateFormat } from 'utils/convertDateFormat';
 import { selectIsLoadingNews } from 'redux/news/newsSelectors';

@@ -79,7 +79,7 @@ import {
   TrashIcon,
   DeleteText,
 } from '../ModalDeleteAction/ModalDeleteAction.styled';
-import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
+// import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
 
 const NoticeCategoryItem = ({ notice, isFavorite }) => {
   const [favorite, setFavorite] = useState(false);
@@ -105,7 +105,7 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {
       // if (favNotices.includes(notice._id)) {
-        
+
       // }
       // if ( !favorite) {
       // const res = await addToFavorite(notice._id);

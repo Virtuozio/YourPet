@@ -4,25 +4,24 @@ import { FiTrash2 } from 'react-icons/fi';
 
 // import styled from 'styled-components';
 import styled from '@emotion/styled';
-import {
-  HiHeart,
-  HiOutlineHeart,
-  HiOutlineLocationMarker,
-  HiOutlineClock,
-  //   HiClock,
-} from 'react-icons/hi';
+import // HiHeart,
+// HiOutlineHeart,
+// HiOutlineLocationMarker,
+// HiOutlineClock,
+//   HiClock,
+'react-icons/hi';
 
-import { RiDeleteBinLine } from "react-icons/ri";
+// import { RiDeleteBinLine } from "react-icons/ri";
 
-import { GiFemale, GiMale } from 'react-icons/gi';
+// import { GiFemale, GiMale } from 'react-icons/gi';
 // import Paper from '@mui/material/Paper';
 // import Grid from '@mui/material/Unstable_Grid2';
 
-import { RxCross1 } from 'react-icons/rx';
+// import { RxCross1 } from 'react-icons/rx';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-import { Pawprint } from '../../utils/icons';
+// import Typography from '@mui/material/Typography';
+// import { Link } from 'react-router-dom';
+// import { Pawprint } from '../../utils/icons';
 // import { styled } from '@mui/material/styles';
 
 const Section = styled.div`
@@ -174,4 +173,13 @@ const ModalBox = styled(Box)`
   }
 `;
 
-export { Section, Header, TrashIcon, BtnWrapper, ModalBox, BtnCancel, BtnYes, DeleteText };
+export {
+  Section,
+  Header,
+  TrashIcon,
+  BtnWrapper,
+  ModalBox,
+  BtnCancel,
+  BtnYes,
+  DeleteText,
+};

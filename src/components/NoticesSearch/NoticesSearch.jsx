@@ -3,9 +3,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { getNewsBySearch } from 'redux/news/newsOperations';
-
-
 import {
   Form,
   Input,

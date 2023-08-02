@@ -1,31 +1,10 @@
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
 import { FiTrash2 } from 'react-icons/fi';
 
-// import styled from 'styled-components';
-import styled from '@emotion/styled';
-import // HiHeart,
-// HiOutlineHeart,
-// HiOutlineLocationMarker,
-// HiOutlineClock,
-//   HiClock,
-'react-icons/hi';
-
-// import { RiDeleteBinLine } from "react-icons/ri";
-
-// import { GiFemale, GiMale } from 'react-icons/gi';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Unstable_Grid2';
-
-// import { RxCross1 } from 'react-icons/rx';
 import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
-// import { Link } from 'react-router-dom';
-// import { Pawprint } from '../../utils/icons';
-// import { styled } from '@mui/material/styles';
 
 const Section = styled.div`
-  /* width: 256px; */
   height: 329px;
 
   display: flex;
@@ -35,7 +14,6 @@ const Section = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    /* min-width: 545px; */
     height: 296px;
   }
 `;
@@ -44,7 +22,7 @@ const Header = styled.p`
   width: 200px;
   text-align: center;
 
-  color: var(--primary-text-color);
+  color: #111111;
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 24px;
@@ -57,7 +35,7 @@ const Header = styled.p`
 `;
 
 const DeleteText = styled.p`
-  color: var(--primary-text-color);
+  color: #111111;
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 44px;
@@ -88,22 +66,22 @@ const BtnCancel = styled.button`
 
   background: transparent;
   border-width: 2px;
-  border-color: var(--btn-bg-color);
+  border-color: #54adff;
   border-style: solid;
   border-radius: 40px;
   font-size: 16px;
 
-  color: var(--btn-bg-color);
+  color: #54adff;
   font-size: 16px;
   font-weight: 700;
 
-  transition: background var(--duration) var(--cubic),
-    color var(--duration) var(--cubic);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-    color: var(--label-active-color);
+    color: #fef9f9;
   }
 
   @media screen and (min-width: 768px) {
@@ -117,7 +95,7 @@ const BtnYes = styled.button`
   cursor: pointer;
   padding: 9px 0px;
 
-  background: var(--btn-bg-color);
+  background: #54adff;
   border: none;
   border-radius: 40px;
   font-size: 16px;
@@ -127,11 +105,11 @@ const BtnYes = styled.button`
   align-items: center;
   gap: 8px;
 
-  color: var(--label-active-color);
+  color: #fef9f9;
   font-size: 16px;
   font-weight: 700;
 
-  transition: background var(--duration) var(--cubic);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
@@ -146,7 +124,31 @@ const BtnYes = styled.button`
 const TrashIcon = styled(FiTrash2)`
   width: 24px;
   height: 24px;
-  color: var(--label-active-color);
+  color: #fef9f9;
+`;
+
+const ModalBox = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  /* height: 445px; */
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 40px;
+    /* height: 429px; */
+  }
 `;
 
 export {
@@ -154,16 +156,8 @@ export {
   Header,
   TrashIcon,
   BtnWrapper,
+  ModalBox,
   BtnCancel,
   BtnYes,
   DeleteText,
 };
-
-//   @media screen and (min-width: 768px) {
-//     width: 608px;
-//     padding-left: 40px;
-//     padding-right: 40px;
-//     border-radius: 40px;
-//     /* height: 429px; */
-//   }
-// `;

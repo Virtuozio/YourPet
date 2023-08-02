@@ -103,10 +103,13 @@ export const Icon = styled.span`
   height: 24px; */
   right: 12px;
   top: 12px;
-  color: ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+  color: ${({ passwordValue }) =>
+    passwordValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
+
   cursor: pointer;
-  transition: 250ms;
+  transform: ${({ passwordValue }) =>
+    passwordValue ? 'translateX(-27px)' : 'none'};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const IconValid = styled.span`
@@ -117,10 +120,14 @@ export const IconValid = styled.span`
   right: 17px;
   top: 15px;
   color: ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+      error
+        ? 'var(--error-color)'
+        : valid
+        ? 'var(--success-color)'
+        : 'var(--btn-bg-color)'};
   cursor: pointer;
   transition: 250ms;
-
+  opacity: ${({ passwordValue }) => (passwordValue ? 1 : 0)};
 `;
 
 export const InputLine = styled(Field)`
@@ -131,7 +138,11 @@ export const InputLine = styled(Field)`
   width: 100%;
   padding: 12px 16px;
   border: 1px solid ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+      error
+        ? 'var(--error-color)'
+        : valid
+        ? 'var(--success-color)'
+        : 'var(--btn-bg-color)'};
   border-radius: 40px;
   box-sizing: border-box;
 
@@ -207,3 +218,22 @@ margin-top: 4px;
 margin-left: 16px;
 
 `
+
+
+
+export const IconEmail = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -23px;
+
+  /* top: 12px; */
+  color: ${({ emailValue }) =>
+    emailValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
+
+  cursor: pointer;
+  transform: ${({ emailValue }) =>
+    emailValue ? 'translateX(-27px)' : 'none'};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;

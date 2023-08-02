@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Form, Field, ErrorMessage } from 'formik';
 
-
 export const Div = styled.div`
   margin: 0 auto;
   margin-top: 44px;
@@ -40,7 +39,6 @@ export const Div = styled.div`
     width: 608px;
     padding: 60px 75px;
     margin-top: 80px;
-
 
     h1 {
       font-family: Manrope;
@@ -103,10 +101,13 @@ export const Icon = styled.span`
   height: 24px; */
   right: 12px;
   top: 12px;
-  color: ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+  color: ${({ passwordValue,  }) =>
+    passwordValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
+
   cursor: pointer;
-  transition: 250ms;
+  transform: ${({ passwordValue }) =>
+    passwordValue ? 'translateX(-27px)' : 'none'};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const IconValid = styled.span`
@@ -117,25 +118,15 @@ export const IconValid = styled.span`
   right: 17px;
   top: 15px;
   color: ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+      error
+        ? 'var(--error-color)'
+        : valid
+        ? 'var(--success-color)'
+        : 'var(--btn-bg-color)'};
   cursor: pointer;
   transition: 250ms;
-
+  opacity: ${({ passwordValue }) => (passwordValue ? 1 : 0)};
 `;
-
-export const IconError = styled.span`
-position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 17px;
-  top: 15px;
-  color: ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
-  cursor: pointer;
-  transition: 250ms;`
-
-
 
 export const InputLine = styled(Field)`
   font-family: Manrope;
@@ -144,18 +135,20 @@ export const InputLine = styled(Field)`
   font-size: 16px;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid ${({ error, valid }) =>
-  error ? 'rgba(255, 99, 71, 1)' : valid? 'rgba(42, 187, 155, 1)' : 'rgba(84, 173, 255, 1)'};
+  border: 1px solid
+    ${({ error, valid }) =>
+      error
+        ? 'var(--error-color)'
+        : valid
+        ? 'var(--success-color)'
+        : 'var(--btn-bg-color)'};
   border-radius: 40px;
   box-sizing: border-box;
 
   :focus {
     outline: 0;
   }
-
-  
 `;
-
 
 export const StyledForm = styled(Form)`
   display: flex;
@@ -216,12 +209,79 @@ export const Btn = styled.button`
   }
 `;
 
-
 export const Error = styled(ErrorMessage)`
-color: red;
-font-size: 12px;
-font-weight: 400;
-margin-top: 4px;
-margin-left: 16px;
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 4px;
+  margin-left: 16px;
+`;
 
-`
+
+
+
+
+
+
+
+
+export const IconName = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -23px;
+  /* top: 5px; */
+  color: ${({ nameValue }) =>
+    nameValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
+
+  cursor: pointer;
+  transform: ${({ nameValue }) =>
+    nameValue ? 'translateX(-27px)' : 'none'};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const IconEmail = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -23px;
+
+  /* top: 12px; */
+  color: ${({ emailValue }) =>
+    emailValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
+
+  cursor: pointer;
+  transform: ${({ emailValue }) =>
+    emailValue ? 'translateX(-27px)' : 'none'};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+// export const IconValidName = styled.span`
+//   position: absolute;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   right: 17px;
+//   top: 15px;
+//   color: ${({ error, valid }) =>
+//     error ? 'var(--error-color)' : valid ? 'var(--success-color)' : 'var(--btn-bg-color)'};
+//   cursor: pointer;
+//   transition: 250ms;
+//   opacity: ${({ nameValue }) => (nameValue ? 1 : 0)};
+// `;
+
+// export const IconValidEmail = styled.span`
+//   position: absolute;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   right: 17px;
+//   top: 15px;
+//   color: ${({ error, valid }) =>
+//     error ? 'var(--error-color)' : valid ? 'var(--success-color)' : 'var(--btn-bg-color)'};
+//   cursor: pointer;
+//   transition: 250ms;
+//   opacity: ${({ emailValue }) => (emailValue ? 1 : 0)};
+// `;

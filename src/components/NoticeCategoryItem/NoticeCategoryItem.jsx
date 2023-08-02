@@ -89,7 +89,7 @@ const NoticeCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [openPetInfo, setOpenPetInfo] = React.useState(false);

@@ -62,7 +62,7 @@ const NoticesCategoriesList = () => {
             ></NoticeCategoryItem>
           ))
         ) : (
-          <Text>Nope</Text>
+          <Text>Sorry, we can't find that</Text>
         )}
 
         <Toaster />

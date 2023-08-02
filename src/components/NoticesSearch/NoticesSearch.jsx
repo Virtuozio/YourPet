@@ -1,5 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import { getNewsBySearch } from 'redux/news/newsOperations';
+
 
 import {
   Form,
@@ -9,13 +14,11 @@ import {
   SearchIco,
   CrossSmall,
 } from './NoticesSearch.styled';
-import { useDispatch } from 'react-redux';
 import {
   // fetchNotices,
   getNoticesBySearch,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
-import { useLocation } from 'react-router-dom';
 import { getNewsBySearch } from 'redux/news/newsOperations';
 import { useParams } from 'react-router';
 

@@ -18,7 +18,7 @@ const Section = styled.div`
 `;
 
 const Header = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 24px;
@@ -30,7 +30,7 @@ const Header = styled.p`
 `;
 
 const Text = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 16px;
   margin-bottom: 40px;
@@ -51,11 +51,11 @@ const Btn = styled(Link)`
   cursor: pointer;
   padding: 8px 0px;
 
-  color: #fef9f9;
+  color: var(--label-active-color);
   font-weight: 700;
   font-size: 16px;
 
-  background: #54adff;
+  background: var(--btn-bg-color);
   border: none;
   border-radius: 40px;
 
@@ -64,7 +64,7 @@ const Btn = styled(Link)`
   align-items: center;
   gap: 12px;
 
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background var(--duration) var(--cubic);
 
   &:hover,
   &:focus {
@@ -72,7 +72,7 @@ const Btn = styled(Link)`
   }
 
   & svg {
-    fill: #fef9f9;
+    fill: var(--label-active-color);
   }
 `;
 

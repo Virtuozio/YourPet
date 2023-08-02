@@ -8,8 +8,12 @@ const Btn = styled(Link)`
   text-decoration: none;
   box-sizing: border-box;
 
+  position: fixed;
+  top: 460px;
+  right: 20px;
+
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -17,20 +21,25 @@ const Btn = styled(Link)`
   color: #ffffff;
   font-weight: 600;
 
-  width: 129px;
-  padding: 8px 20px;
+  width: 80px;
+  height: 80px;
+  padding: 20px 17px;
+  // padding-top: 20px;
+  // padding-right: 17px;
+  // padding-bottom: 16px;
+  // padding-left: 18px;
 
   font-size: 12px;
   color: #fff;
 
-  background: #54adff;
+  background: var(--btn-bg-color);
   border: none;
   border-radius: 40px;
   box-shadow: 3px 8px 14px 0px #88c6fd30;
 
   z-index: 1;
 
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background var(--duration) var(--cubic);
 
   &:hover,
   &:focus {
@@ -38,6 +47,7 @@ const Btn = styled(Link)`
   }
 
   @media screen and (min-width: 768px) {
+    flex-direction: row;
     position: static;
     translate: 0 0;
 

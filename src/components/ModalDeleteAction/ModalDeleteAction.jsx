@@ -13,14 +13,7 @@ import {
   ModalBox,
 } from './ModalDeleteAction.styled';
 
-// import { useDispatch } from 'react-redux';
-// import { deletePet } from 'redux/pets/petsOperations';
-
 const ModalDeleteAction = ({ closeModal, approveAction, petName }) => {
-  // const dispatch = useDispatch();
-  // const handleDelete = () => {
-  //   dispatch(deletePet());
-
   const [deleteModal, setDeleteModal] = React.useState(false);
   // const deleteModalOpen = () => setDeleteModal(true);
   const deleteModalClose = () => setDeleteModal(false);

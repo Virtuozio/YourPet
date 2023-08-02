@@ -10,19 +10,19 @@ const Btn = styled(NavLink)`
 
   padding: 8px 16px;
 
-  color: #54adff;
+  color: var(--btn-bg-color);
   font-weight: 500;
 
-  background: #cce4fb;
+  background: var(--labels-bg-color);
   border: none;
   border-radius: 40px;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration) var(--cubic),
+    background var(--duration) var(--cubic);
 
   &:hover,
   &:focus {
-    color: #fef9f9;
+    color: var(--label-active-color);
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
 

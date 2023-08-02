@@ -10,22 +10,32 @@ import {
   CrossSmall,
 } from './NoticesSearch.styled';
 import { useDispatch } from 'react-redux';
-import { getNoticesBySearch } from 'redux/notices/noticesOperations';
+import {
+  fetchNotices,
+  getNoticesBySearch,
+} from 'redux/notices/noticesOperations';
+import { useLocation } from 'react-router-dom';
+import { getNewsBySearch } from 'redux/news/newsOperations';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+  const location = useLocation();
   const submitHandler = e => {
     e.preventDefault();
-    dispatch(getNoticesBySearch(e.currentTarget.elements.query.value));
-
-    console.log(e.currentTarget.elements.query.value);
+    if (location.pathname === '/news')
+      dispatch(getNewsBySearch(e.currentTarget.elements.query.value));
+    else dispatch(getNoticesBySearch(e.currentTarget.elements.query.value));
   };
 
   const onInputChange = e => {
     const searchQuery = e.target.value;
 
     setQuery(searchQuery);
+  };
+  const handleClear = e => {
+    setQuery('');
+    dispatch(fetchNotices(''));
   };
 
   return (
@@ -38,16 +48,12 @@ const NoticesSearch = () => {
         onChange={onInputChange}
         value={query}
       />
-      <SubmitBtn
-        type="submit"
-        aria-label="Submit"
-        query={query}
-      >
+      <SubmitBtn type="submit" aria-label="Submit" query={query}>
         <SearchIco />
       </SubmitBtn>
       <ClearBtn
         type="button"
-        onClick={() => setQuery('')}
+        onClick={handleClear}
         query={query}
         aria-label="Discard query"
       >

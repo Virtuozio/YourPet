@@ -25,6 +25,11 @@ const Btn = styled(NavLink)`
     color: var(--label-active-color);
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
+
+  &.active {
+    color: #fef9f9;
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
 `;
 
 const List = styled.ul`

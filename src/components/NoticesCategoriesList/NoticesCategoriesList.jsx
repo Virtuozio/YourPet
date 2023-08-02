@@ -2,7 +2,7 @@ import NoticeCategoryItem from 'components/NoticeCategoryItem/NoticeCategoryItem
 import React from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import { NoticeList } from './NoticesCategoriesList.styled';
+import { NoticeList, Text } from './NoticesCategoriesList.styled';
 
 import { statusFilters } from '../../redux/notices/constans';
 
@@ -11,8 +11,10 @@ import {
   // selectStatusFilter
 } from 'redux/notices/noticesSelectors';
 import { Toaster } from 'react-hot-toast';
+import { selectUser } from 'redux/auth/authSelectors';
+import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 
-const getVisibeNotices = (notices, statusFilter) => {
+const getVisibeNotices = (notices, statusFilter, currentUser) => {
   switch (statusFilter) {
     case statusFilters.SELL:
       return notices.filter(notice =>
@@ -27,13 +29,9 @@ const getVisibeNotices = (notices, statusFilter) => {
         notice.category.toLowerCase().includes(statusFilter.toLowerCase())
       );
     case statusFilters.FAVORITE_ADS:
-      return notices.filter(notice =>
-        notice.category.toLowerCase().includes(statusFilter.toLowerCase())
-      );
+      return notices;
     case statusFilters.MY_ADS:
-      return notices.filter(notice =>
-        notice.category.toLowerCase().includes(statusFilter.toLowerCase())
-      );
+      return notices.filter(notice => notice.owner === currentUser._id);
     default:
       return notices;
   }
@@ -41,14 +39,16 @@ const getVisibeNotices = (notices, statusFilter) => {
 
 const NoticesCategoriesList = () => {
   const notices = useSelector(selectNotices);
+  const currentUser = useSelector(selectUser);
   const { categoryName } = useParams();
-
-  const visibleNotices = getVisibeNotices(notices, categoryName);
+  const favNotices = useSelector(selectFavoriteNotices);
+  console.log(favNotices);
+  const visibleNotices = getVisibeNotices(notices, categoryName, currentUser);
+  console.log(visibleNotices);
 
   // const visibleNotices = useSelector(selectVisibleNotices);
   // console.log(visibleNotices);
   // const statusFilter = useSelector(getStatusFilter);
-  console.log(visibleNotices);
   // console.log(visibleNotices);
 
   // useEffect(() => {
@@ -85,15 +85,19 @@ const NoticesCategoriesList = () => {
   return (
     <>
       <NoticeList>
-        {visibleNotices.map(item => (
-          <NoticeCategoryItem
-            key={item._id}
-            notice={item}
-            // mobile={12}
-            // tablet={6}
-            // desktop={3}
-          ></NoticeCategoryItem>
-        ))}
+        {notices.length > 0 ? (
+          notices.map(item => (
+            <NoticeCategoryItem
+              key={item._id}
+              notice={item}
+              // mobile={12}
+              // tablet={6}
+              // desktop={3}
+            ></NoticeCategoryItem>
+          ))
+        ) : (
+          <Text>Nope</Text>
+        )}
 
         <Toaster />
       </NoticeList>

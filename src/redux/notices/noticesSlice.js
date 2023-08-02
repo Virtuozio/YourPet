@@ -10,6 +10,7 @@ import {
   fetchFavoriteNotices,
   getNoticesByCategory,
   getNoticesBySearch,
+  getFavNoticesbyCategory,
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -62,7 +63,8 @@ const noticesSlice = createSlice({
       .addCase(getAllOwnNotices.fulfilled, (state, { payload }) => {
         state.isLoadingNotices = false;
         state.errorNotices = null;
-        state.notices = payload.result;
+        state.notices = payload.noticesList;
+        state.totalNotices = payload.total;
       })
       .addCase(getAllOwnNotices.rejected, handleRejected)
       .addCase(getNoticeById.fulfilled, (state, { payload }) => {
@@ -93,7 +95,9 @@ const noticesSlice = createSlice({
       .addCase(fetchFavoriteNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite = payload;
+        state.noticesFavorite = payload.favNoticesPag;
+        // state.notices = payload.usersFavNotices;
+        state.totalNotices = payload.total;
       })
       .addCase(fetchFavoriteNotices.pending, handlePending)
       .addCase(fetchFavoriteNotices.rejected, handleRejected)
@@ -112,7 +116,15 @@ const noticesSlice = createSlice({
         state.totalNotices = payload.total;
       })
       .addCase(getNoticesBySearch.pending, handlePending)
-      .addCase(getNoticesBySearch.rejected, handleRejected);
+      .addCase(getNoticesBySearch.rejected, handleRejected)
+      .addCase(getFavNoticesbyCategory.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.notices = payload.favNoticesPag;
+        state.totalNotices = payload.total;
+      })
+      .addCase(getFavNoticesbyCategory.pending, handlePending)
+      .addCase(getFavNoticesbyCategory.rejected, handleRejected);
   },
 });
 

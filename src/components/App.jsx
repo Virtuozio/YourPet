@@ -16,7 +16,9 @@ const Register = lazy(() => import('pages/Register/Register'));
 const Login = lazy(() => import('pages/Login/Login'));
 const News = lazy(() => import('pages/News/News'));
 const Notices = lazy(() => import('pages/Notices/Notices'));
-const NoticesCategoryList = lazy(()=> import('./NoticesCategoriesList/NoticesCategoriesList'))
+const NoticesCategoryList = lazy(() =>
+  import('./NoticesCategoriesList/NoticesCategoriesList')
+);
 const User = lazy(() => import('pages/User/User'));
 const Error = lazy(() => import('pages/Error/Error'));
 export const App = () => {

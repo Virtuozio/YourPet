@@ -143,12 +143,17 @@ const NoticeCategoryItem = ({ notice }) => {
     return location;
   };
 
-  // const nameFormat = name => {
-  //   if (name.length > 10) {
-  //     return name.slice(0, 10) + '...';
-  //   }
-  //   return name;
-  // };
+  const nameFormat = name => {
+    if (name.length > 15) {
+      return name.slice(0, 15) + '...';
+    }
+    return name;
+  };
+
+  const categoryFilter = category => {
+    if (category === 'for-free') return 'in good hands';
+    else return category;
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -175,7 +180,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </RemoveNoticeBtn>
         )}
 
-        <FilterStatus>{notice.category}</FilterStatus>
+        <FilterStatus>{categoryFilter(notice.category)}</FilterStatus>
 
         <LocationItem>
           <Location />
@@ -188,7 +193,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {notice.sex === 'female' ? <Female /> : <Male />} {notice.sex}
         </SexItem>
       </ImageContainer>
-      <NoticeText>{notice.title}</NoticeText>
+      <NoticeText>{nameFormat(notice.title)}</NoticeText>
       <LoadMoreBtn type="button" onClick={handleOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>

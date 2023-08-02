@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import {
+  addToFavorite,
+  removeFromFavorite,
+  deleteNotice,
+  fetchFavoriteNotices,
+} from 'redux/notices/noticesOperations';
+import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
+
+import Modal from '@mui/material/Modal';
+import toast from 'react-hot-toast';
+import { Pawprint } from 'utils/icons';
+import { LiaHeart } from 'react-icons/lia';
+
+import { petAgeCount, modalDateFormat } from 'utils/petAgeCount';
 
 import testImage from '../../assets/testdog.png';
+
+import { selectUser } from 'redux/auth/authSelectors';
+
 import {
   DateItem,
   Female,
@@ -31,23 +50,6 @@ import {
   RemoveIcon,
 } from './NoticeCategoryItem.styled';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-
-import {
-  addToFavorite,
-  removeFromFavorite,
-  deleteNotice,
-} from 'redux/notices/noticesOperations';
-
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import toast from 'react-hot-toast';
-import { petAgeCount, modalDateFormat } from 'utils/petAgeCount';
-
-import Modal from '@mui/material/Modal';
-import { Pawprint } from '../../utils/icons';
-
-import { LiaHeart } from 'react-icons/lia';
 import {
   Wrapper,
   PetPhoto,
@@ -65,10 +67,6 @@ import {
   CategoryItem,
   PhotoContainer,
 } from '../ModalNotice/ModalNotice.styled';
-import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
-import { useEffect } from 'react';
-
-import { selectUser } from 'redux/auth/authSelectors';
 
 import {
   Section,
@@ -79,9 +77,8 @@ import {
   TrashIcon,
   DeleteText,
 } from '../ModalDeleteAction/ModalDeleteAction.styled';
-// import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
 
-const NoticeCategoryItem = ({ notice, isFavorite }) => {
+const NoticeCategoryItem = ({ notice }) => {
   const [favorite, setFavorite] = useState(false);
 
   const currentUser = useSelector(selectUser);
@@ -95,7 +92,6 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
     const newFunc = favNotices => {
       favNotices.forEach(favNotice => {
         if (favNotice._id === notice._id) {
-          console.log('aqeweqweq');
           setFavorite(true);
         }
       });
@@ -104,29 +100,18 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
   }, [favNotices, notice._id, isLoggedIn]);
 
   const toggleFavoriteMethod = async () => {
-    if (isLoggedIn && !favorite) {
-      // if (favNotices.includes(notice._id)) {
-
-      // }
-      // if ( !favorite) {
-      // const res = await addToFavorite(notice._id);
-      // if (!res) {
-      //   return toast.error("can't add notice");
-      // }
-      dispatch(addToFavorite(notice._id));
-      setFavorite(true);
-      toast.success('added to your favorites');
-    } else if (isLoggedIn && favorite) {
-      //  } else if ( favorite) {
-      // const res = await removeFromFavorite(notice._id);
-      // if (!res) {
-      //   return toast.error("can't remove notice");
-      // }
-      dispatch(removeFromFavorite(notice._id));
-      setFavorite(false);
-      // categoryName === Categories.FAVORITE_ADS && getFilterId(item._id)
-      toast.success('removed from favorites');
-    } else {
+    try {
+      if (isLoggedIn && !favorite) {
+        dispatch(addToFavorite(notice._id));
+        setFavorite(true);
+        toast.success('added to your favorites');
+      } else if (isLoggedIn && favorite) {
+        dispatch(removeFromFavorite(notice._id));
+        setFavorite(false);
+        toast.success('removed from favorites');
+      }
+      dispatch(fetchFavoriteNotices());
+    } catch (e) {
       toast.error('You have to be loggedIn');
     }
   };
@@ -243,10 +228,6 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
                 <ModalCloseBtn>
                   <ModalCloseBtnIcon onClick={handleClose} />
                 </ModalCloseBtn>
-                {/* <PetImage
-          src={notice.fileURL ? notice.fileURL : testImage}
-          alt="test dog photo"
-        ><span>In good hands</span></PetImage> */}
                 <PhotoContainer>
                   <PetPhoto src={notice.fileURL} />
                   <CategoryItem>{notice.category}</CategoryItem>

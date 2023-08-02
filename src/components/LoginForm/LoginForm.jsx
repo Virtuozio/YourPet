@@ -62,7 +62,6 @@ const LoginForm = ({ values, errors, touched }) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
     formik.setFieldValue('password', passwordValue);
-    console.log(passwordValue);
   };
 
   return (

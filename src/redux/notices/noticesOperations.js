@@ -138,7 +138,7 @@ export const getNoticesBySearch = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       console.log('data :>> ', data);
-      const res = await axios.get(`/notices/users/search?title=${data}`);
+      const res = await axios.get(`/notices/users/search?title=${data.input}&category=${data.category}`);
       console.log('res', res.data);
       return res.data;
     } catch (error) {
@@ -149,9 +149,9 @@ export const getNoticesBySearch = createAsyncThunk(
 
 export const getFavNoticesbyCategory = createAsyncThunk(
   'notices/getFavNoticesbyCategory',
-  async (_, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await axios.get('/notices/user/favorite');
+      const response = await axios.get(`/notices/user/favorite${params}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

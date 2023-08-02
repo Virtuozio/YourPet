@@ -46,42 +46,7 @@ const NoticesCategoriesList = () => {
   const visibleNotices = getVisibeNotices(notices, categoryName, currentUser);
   console.log(visibleNotices);
 
-  // const visibleNotices = useSelector(selectVisibleNotices);
-  // console.log(visibleNotices);
-  // const statusFilter = useSelector(getStatusFilter);
-  // console.log(visibleNotices);
-
-  // useEffect(() => {
-  // if (categoryName === statusFilters.SELL) {
-  //   dispatch(getAllFavoriteNotices());
-  // } else if (categoryName === Categories.MY_ADS) {
-  //   dispatch(getAllOwnNotices());
-  // } else {
-  //   dispatch(getNoticesByCategory(categoryName));
-  // }
-
-  // if (isLoggedIn) {
-  //   const getFavorites = async () => {
-  //   const res = await getAllFavoriteNoticesWithoutR();
-  //   if (res?.result) setFavorites(res.result);
-  //   setIsFavorites(true);
-  // };
-
-  // const getOwn = async () => {
-  //   const res = await getAllOwnNoticesWithoutR();
-  //   if (res?.result) setOwns(res?.result);
-  //   setIsOwns(true);
-  // };
-
-  // getOwn();
-  // getFavorites();
-  // } else {
-  //   setIsFavorites(true);
-  //   setIsOwns(true);
-  // }
-
-  //   setFilterId([]);
-
+  
   return (
     <>
       <NoticeList>
@@ -90,6 +55,7 @@ const NoticesCategoriesList = () => {
             <NoticeCategoryItem
               key={item._id}
               notice={item}
+              isFavorite={favNotices.includes(item._id)}
               // mobile={12}
               // tablet={6}
               // desktop={3}

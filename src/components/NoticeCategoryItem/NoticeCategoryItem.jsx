@@ -79,8 +79,9 @@ import {
   TrashIcon,
   DeleteText,
 } from '../ModalDeleteAction/ModalDeleteAction.styled';
+import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
 
-const NoticeCategoryItem = ({ notice }) => {
+const NoticeCategoryItem = ({ notice, isFavorite }) => {
   const [favorite, setFavorite] = useState(false);
 
   const currentUser = useSelector(selectUser);
@@ -103,6 +104,9 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const toggleFavoriteMethod = async () => {
     if (isLoggedIn && !favorite) {
+      // if (favNotices.includes(notice._id)) {
+        
+      // }
       // if ( !favorite) {
       // const res = await addToFavorite(notice._id);
       // if (!res) {
@@ -302,6 +306,7 @@ const NoticeCategoryItem = ({ notice }) => {
       )}
 
       <div>
+        {/* <ModalDeleteAction approveAction={handleRemoveOwnNotice} petName={notice.name} /> */}
         <Modal open={deleteModal} onClick={deleteModalClose}>
           <ModalBox>
             <Section>

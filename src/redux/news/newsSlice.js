@@ -14,6 +14,7 @@ const newsSlice = createSlice({
   name: 'news',
   initialState: {
     news: [],
+    totalNews: 0,
     isLoadingNews: false,
     errorNews: null,
   },
@@ -24,14 +25,15 @@ const newsSlice = createSlice({
       .addCase(getNews.fulfilled, (state, action) => {
         state.isLoadingNews = false;
         state.errorNews = null;
-        state.news = action.payload;
+        state.news = action.payload.getAllList;
+        state.totalNews = action.payload.total;
       })
       .addCase(getNewsBySearch.pending, handlePending)
       .addCase(getNewsBySearch.rejected, handleRejected)
       .addCase(getNewsBySearch.fulfilled, (state, action) => {
         state.isLoadingNews = false;
         state.errorNews = null;
-        state.news = action.payload;
+        state.news = action.payload.newsList;
       }),
 });
 

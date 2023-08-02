@@ -16,6 +16,7 @@ const noticesInitialState = {
   notices: [],
   totalNotices: '',
   noticesFavorite: [],
+  // setFav: false,
   noticeAdd: {},
   isLoading: false,
   error: null,
@@ -97,7 +98,7 @@ const noticesSlice = createSlice({
         state.error = null;
         state.noticesFavorite = payload.favNoticesPag;
         // state.notices = payload.usersFavNotices;
-        state.totalNotices = payload.total;
+        // state.totalNotices = payload.total;
       })
       .addCase(fetchFavoriteNotices.pending, handlePending)
       .addCase(fetchFavoriteNotices.rejected, handleRejected)
@@ -122,6 +123,7 @@ const noticesSlice = createSlice({
         state.error = null;
         state.notices = payload.favNoticesPag;
         state.totalNotices = payload.total;
+        // state.setFav = true;
       })
       .addCase(getFavNoticesbyCategory.pending, handlePending)
       .addCase(getFavNoticesbyCategory.rejected, handleRejected);

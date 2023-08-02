@@ -88,6 +88,18 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const dispatch = useDispatch();
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [openPetInfo, setOpenPetInfo] = React.useState(false);
+  const PetInfoOpen = () => setOpenPetInfo(true);
+  const PetInfoClose = () => setOpenPetInfo(false);
+
+  const [deleteModal, setDeleteModal] = React.useState(false);
+  const deleteModalOpen = () => setDeleteModal(true);
+  const deleteModalClose = () => setDeleteModal(false);
+
   useEffect(() => {
     const newFunc = favNotices => {
       favNotices.forEach(favNotice => {
@@ -110,7 +122,8 @@ const NoticeCategoryItem = ({ notice }) => {
         setFavorite(false);
         toast.success('removed from favorites');
       }   else { 
-        toast.error('You have to be loggedIn');
+        // toast.error('You have to be loggedIn');
+        setOpen(true);
         dispatch(fetchFavoriteNotices());
     }    
       
@@ -144,16 +157,11 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const categoryFilter = category => {
     if (category === 'for-free') return 'in good hands';
+    if (category === 'lost-found') return 'lost/found'
     else return category;
   };
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  const [deleteModal, setDeleteModal] = React.useState(false);
-  const deleteModalOpen = () => setDeleteModal(true);
-  const deleteModalClose = () => setDeleteModal(false);
 
   return (
     <NoticesCategoryItemStyled>
@@ -186,11 +194,11 @@ const NoticeCategoryItem = ({ notice }) => {
         </SexItem>
       </ImageContainer>
       <NoticeText>{nameFormat(notice.title)}</NoticeText>
-      <LoadMoreBtn type="button" onClick={handleOpen}>
+      <LoadMoreBtn type="button" onClick={PetInfoOpen}>
         Learn more <PawStyled />
       </LoadMoreBtn>
 
-      {!isLoggedIn ? (
+      {!isLoggedIn && (
         <div>
           <Modal
             open={open}
@@ -223,13 +231,15 @@ const NoticeCategoryItem = ({ notice }) => {
             </ModalBox>
           </Modal>
         </div>
-      ) : (
+      )}
+      
+      {openPetInfo && (
         <div>
-          <Modal open={open} onClick={handleClose}>
+          <Modal open={openPetInfo} onClick={PetInfoClose}>
             <ModalBox>
               <Wrapper>
                 <ModalCloseBtn>
-                  <ModalCloseBtnIcon onClick={handleClose} />
+                  <ModalCloseBtnIcon onClick={PetInfoClose} />
                 </ModalCloseBtn>
                 <PhotoContainer>
                   <PetPhoto src={notice.fileURL} />

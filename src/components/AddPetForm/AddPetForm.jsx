@@ -166,7 +166,7 @@ const AddPetForm = () => {
                 navigate('/user');
               } else {
                 dispatch(addNotice(formData));
-                navigate('/notices');
+                navigate('/notices/');
               }
             }
           })

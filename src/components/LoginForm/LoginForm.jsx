@@ -9,6 +9,7 @@ import {
   InputContainer,
   Icon,
   IconValid,
+  IconEmail,
   Btn,
   Error,
 } from './LoginForm.styled';
@@ -23,20 +24,22 @@ import { RxCross2 } from 'react-icons/rx';
 const LoginForm = ({ values, errors, touched }) => {
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormikContext();
-  const valid = formik.touched.password && !formik.errors.password;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const validPassword = formik.touched.password && !formik.errors.password;
 
   const validateIcon = (touched, errors, values, fieldName) => {
     const valid = touched[fieldName] && !errors[fieldName];
 
     if (touched[fieldName] && errors[fieldName]) {
       return (
-        <IconValid valid={false}>
+        <IconValid valid={false} passwordValue={password.length}>
           <RxCross2 style={{ color: 'rgba(255, 99, 71, 1)' }} />
         </IconValid>
       );
     } else if (valid) {
       return (
-        <IconValid valid>
+        <IconValid valid passwordValue={password.length}>
           <MdOutlineDone />
         </IconValid>
       );
@@ -47,6 +50,19 @@ const LoginForm = ({ values, errors, touched }) => {
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevShowPassword => !prevShowPassword);
+  };
+
+  const onEmailChange = e => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    formik.setFieldValue('email', emailValue);
+  };
+
+  const onPasswordChange = e => {
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+    formik.setFieldValue('password', passwordValue);
+    console.log(passwordValue);
   };
 
   return (
@@ -64,17 +80,25 @@ const LoginForm = ({ values, errors, touched }) => {
               type="email"
               autoComplete="off"
               required
+              onChange={onEmailChange}
+              value={email}
               error={formik.touched.email && formik.errors.email}
               valid={formik.touched.email && !formik.errors.email}
             />
-            {validateIcon(
-              formik.touched,
-              formik.errors,
-              formik.values,
-              'email'
-            )}
+            <IconEmail emailValue={email.length}>
+              {formik.touched.email && formik.errors.email ? (
+                <IconValid valid={false} passwordValue={email.length}>
+                  <RxCross2 style={{ color: 'rgba(255, 99, 71, 1)' }} />
+                </IconValid>
+              ) : (
+                <IconValid valid passwordValue={email.length}>
+                  <MdOutlineDone />
+                </IconValid>
+              )}
+            </IconEmail>
             <Error name="email" component="span" />
           </InputContainer>
+
           <InputContainer>
             <InputLine
               id="password"
@@ -84,23 +108,33 @@ const LoginForm = ({ values, errors, touched }) => {
               autoComplete="off"
               type={showPassword ? 'text' : 'password'}
               required
+              onChange={onPasswordChange}
+              value={password}
               error={formik.touched.password && formik.errors.password}
-              valid={formik.touched.password && !formik.errors.password}
+              valid={validPassword}
             />
             <Icon
               onClick={togglePasswordVisibility}
-              style={{ width: '24px', height: '24px' }}
+              style={{
+                width: '24px',
+                height: '24px',
+              }}
+              passwordValue={password}
               error={formik.touched.password && formik.errors.password}
-              valid={valid}
+              valid={validPassword}
             >
-              {valid ? (
-                <MdOutlineDone />
-              ) : showPassword ? (
+              {showPassword ? (
                 <MdOutlineVisibility />
               ) : (
                 <MdOutlineVisibilityOff />
               )}
             </Icon>
+            {validateIcon(
+              formik.touched,
+              formik.errors,
+              formik.values,
+              'password'
+            )}
             <Error name="password" component="span" />
           </InputContainer>
           <Btn type="submit">Login</Btn>

@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../Logo/logo.png';
-import logoSmall from './logoSmall.png';
+import logo from 'assets/images/logo/logo.png';
+import logoSmall from 'assets/images/logo/logo-small.png';
 import { Link } from 'react-router-dom';
 
 const Logo = ({ size }) => {

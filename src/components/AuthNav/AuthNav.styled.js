@@ -15,28 +15,36 @@ export const AuthBtn = styled(Link)`
   align-items: center;
   gap: 8px;
   border-radius: 40px;
-  border: 2px solid #ffc107;
-  background: ${props => (props.login ? '#ffc107' : '#fef9f9')};
+  border: 2px solid var(--header-items-color);
+  background: ${props =>
+    props.$login ? 'var(  --header-items-color)' : 'var(--label-active-color)'};
   text-decoration: none;
 
-  color: ${props => (props.login ? '#fef9f9' : '#ffc107')};
+  color: ${props =>
+    props.$login ? 'var(--label-active-color)' : 'var(  --header-items-color)'};
   font-family: inherit;
   font-size: 16px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration) var(--cubic);
 
   svg {
-    fill: #fef9f9;
+    fill: var(--header-items-color);
   }
 
   &:hover {
-    background: ${props => (props.login ? '#fef9f9' : '#ffc107')};
-    color: ${props => (props.login ? '#ffc107' : '#fef9f9')};
+    background: ${props =>
+      props.$login
+        ? 'var(--label-active-color)'
+        : 'var(  --header-items-color)'};
+    color: ${props =>
+      props.$login
+        ? 'var(  --header-items-color)'
+        : 'var(--label-active-color)'};
 
     svg {
-      fill: #ffc107;
+      fill: var(--label-active-color);
     }
   }
 

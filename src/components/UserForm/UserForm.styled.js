@@ -57,17 +57,17 @@ const FileInputLabel = styled.label`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration) var(--cubic);
   svg {
     width: 24px;
     height: 24px;
-    fill: #54adff;
-    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    fill: var(--btn-bg-color);
+    transition: fill var(--duration) var(--cubic);
   }
   &:hover {
-    color: #ffc107;
+    color: var(--header-items-color);
     svg {
-      fill: #ffc107;
+      fill: var(--header-items-color);
     }
   }
 `;
@@ -95,15 +95,15 @@ const InputContainer = styled.div`
     align-items: center;
     gap: 191px;
     border-radius: 20px;
-    border: 1px solid #54adff;
+    border: 1px solid var(--btn-bg-color);
     font-size: 12px;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 0.48px;
-    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color var(--duration) var(--cubic);
     &:hover,
     &:focus {
-      border-color: #ffc107;
+      border-color: var(--header-items-color);
       outline: transparent;
     }
     @media screen and (min-width: 768px) {
@@ -121,9 +121,9 @@ const SubmitButton = styled.button`
   align-items: center;
   gap: 8px;
   border-radius: 40px;
-  background: #54adff;
+  background: var(--btn-bg-color);
   border-color: transparent;
-  color: #fef9f9;
+  color: var(--label-active-color);
   font-family: inherit;
   font-size: 14px;
   font-weight: 700;
@@ -131,10 +131,10 @@ const SubmitButton = styled.button`
   letter-spacing: 0.56px;
   cursor: pointer;
   margin: auto;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration) var(--cubic);
   &:hover,
   &:focus {
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--hover-btn-bg-color);
   }
   &:disabled {
     background: grey;

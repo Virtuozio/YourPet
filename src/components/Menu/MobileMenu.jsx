@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import AuthNav from 'components/AuthNav/AuthNav';
 import Nav from 'components/Nav/Nav';
-import icon from '../UserNav/user.png';
+import icon from 'assets/images/user/user.png';
 import { NavContainer, MenuNavBtn, Middle, User } from './Menu.styled';
 
 export const MobileMenu = ({ isLoggedIn, user }) => {

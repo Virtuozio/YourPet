@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const User = styled.p`
   @media screen and (min-width: 768px) {
     text-decoration: none;
-    color: #ffc107;
+    color: var(--header-items-color);
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -12,9 +12,6 @@ export const User = styled.p`
     letter-spacing: 0.64px;
     margin-left: 12px;
     text-decoration: none;
-  }
-
-  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -25,8 +22,6 @@ export const Container = styled.div`
     align-items: center;
     gap: 40px;
   }
-  @media screen and (min-width: 1280px) {
-  }
 `;
 
 export const LogoutBtn = styled.button`
@@ -35,7 +30,7 @@ export const LogoutBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: #54adff;
+  background-color: var(--btn-bg-color);
   border-radius: 40px;
   border-color: transparent;
   outline: transparent;
@@ -46,8 +41,8 @@ export const LogoutBtn = styled.button`
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
-  color: #fef9f9;
-  transition: background linear ease-in-out;
+  color: var(--label-active-color);
+  transition: background var(--duration) var(--cubic);
 
   svg {
     width: 24px;
@@ -55,7 +50,7 @@ export const LogoutBtn = styled.button`
   }
 
   &:hover {
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--hover-btn-bg-color);
   }
 `;
 

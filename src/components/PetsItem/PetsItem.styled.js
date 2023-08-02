@@ -5,7 +5,7 @@ const PetCard = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 100%;
+  width: calc(100% - 48px);
   padding: 16px 20px 40px 20px;
   border-radius: 20px;
   background: #fff;
@@ -66,11 +66,11 @@ const DeleteBtn = styled.button`
   svg {
     width: 24px;
     height: 24px;
-    fill: #54adff;
+    fill: var(--btn-bg-color);
   }
   &:hover {
     svg {
-      fill: #ffc107;
+      fill: var(--header-items-color);
     }
   }
 `;

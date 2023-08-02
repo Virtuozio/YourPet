@@ -5,13 +5,11 @@ import { Pawprint } from 'utils/icons';
 const AuthNav = () => {
   return (
     <>
-      {/* <AuthContainer> */}
       <AuthBtn to="/login" login="true">
         Log IN
         <Pawprint />
       </AuthBtn>
       <AuthBtn to="/register">Registration</AuthBtn>
-      {/* </AuthContainer> */}
     </>
   );
 };

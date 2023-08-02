@@ -88,9 +88,6 @@ export const User = styled.a`
 `;
 
 export const LogoutBtn = styled.button`
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
   width: 209px;
   height: 44px;
   display: inline-flex;
@@ -117,8 +114,9 @@ export const LogoutBtn = styled.button`
     height: 24px;
   }
 
-  @media screen and (min-width: 768px) {
-    top: 17px;
-    left: 560px;
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
   }
 `;

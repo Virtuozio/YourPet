@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
 const Section = styled.div`
   width: 256px;
   height: 385px;
@@ -21,7 +19,7 @@ const Section = styled.div`
 `;
 
 const Header = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 20px;
@@ -33,7 +31,7 @@ const Header = styled.p`
 `;
 
 const Text = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 40px;
@@ -67,11 +65,11 @@ const BtnLogIn = styled(Link)`
   cursor: pointer;
   padding: 8px 0px;
 
-  color: #fef9f9;
+  color: var(--label-active-color);
   font-weight: 700;
   font-size: 16px;
 
-  background: #ffc107;
+  background: var(--header-items-color);
   border: none;
   border-radius: 40px;
 
@@ -95,13 +93,13 @@ const BtnRegister = styled(Link)`
   cursor: pointer;
   padding: 8px 0px;
 
-  color: #ffc107;
+  color: var(--header-items-color);
   font-weight: 600;
   font-size: 16px;
 
   background: transparent;
   border-width: 2px;
-  border-color: #ffc107;
+  border-color: var(--header-items-color);
   border-style: solid;
   border-radius: 40px;
   font-size: 16px;

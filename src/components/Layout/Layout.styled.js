@@ -10,11 +10,11 @@ export const LayoutContainer = styled.div`
   position: relative;
 
   @media screen and (min-width: 768px) {
-    min-width: 768px;
+    width: 768px;
     padding: 24px 32px 0;
   }
   @media screen and (min-width: 1200px) {
-    min-width: 1200px;
+    width: 1200px;
     padding: 20px 16px 0;
   }
 `;

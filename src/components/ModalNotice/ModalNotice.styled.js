@@ -19,7 +19,7 @@ const PetPhoto = styled.img`
     top: 22px;
     left: 0;
     padding: 11px 22px 11px 12px;
-    background-color: #cce4fb;
+    background-color: var(--labels-bg-color);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
   }
@@ -30,21 +30,22 @@ const PetPhoto = styled.img`
 `;
 
 const CategoryItem = styled.div`
-position: absolute;
-display: flex;
-justify-content: center;
-align-items: center;
-left: 0;
-top: 16px;
-width: 132px;
-height: 32px;
-background-color: #CCE4FB;
-`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 16px;
+  width: 132px;
+  height: 32px;
+  background-color: var(--labels-bg-color);
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+`;
 
 const PhotoContainer = styled.div`
-position: relative;
-
-`
+  position: relative;
+`;
 
 const Title = styled.h2`
   width: 198px;
@@ -72,8 +73,8 @@ grid;
 
 const Tag = styled.div`
   color: #000;
-  font-size: ${props => (props.value ? '12px' : '14px')};
-  font-weight: ${props => (props.value ? '500' : '600')};
+  font-size: ${props => (props.$value ? '12px' : '14px')};
+  font-weight: ${props => (props.$value ? '500' : '600')};
   line-height: normal;
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -82,7 +83,6 @@ const Tag = styled.div`
 
 const Comment = styled.span`
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   width: 256px;
   margin-top: 13px;
@@ -130,22 +130,21 @@ const Button = styled.button`
   gap: 8px;
   border-radius: 40px;
   border: 2px solid #54adff;
-  background-color: ${props => (props.primary ? 'transparent' : '#54adff')};
+  background-color: ${props =>
+    props.$primary ? 'transparent' : 'var(--btn-bg-color)'};
   cursor: pointer;
   &:first-child {
     margin-bottom: 8px;
   }
   &:hover {
-    background: ${props =>
-      props.primary
-        ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
-        : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
+    background: var(--hover-btn-bg-color);
     p {
-      color: #fef9f9;
+      color: var(--label-active-color);
     }
   }
   p {
-    color: ${props => (props.primary ? '#54adff' : '#fef9f9')};
+    color: ${props =>
+      props.$primary ? 'var(--btn-bg-color)' : 'var(--label-active-color)'};
     font-size: 16px;
     font-weight: 700;
     line-height: normal;
@@ -169,40 +168,38 @@ const AddButton = styled.button`
   align-items: center;
   gap: 8px;
   border-radius: 40px;
-  border: 2px solid #54adff;
+  border: 2px solid var(--btn-bg-color);
   background-color: transparent;
   cursor: pointer;
 
   svg {
-    fill: #54adff;
+    fill: var(--btn-bg-color);
   }
 
   &:first-child {
     margin-bottom: 8px;
   }
   &:hover {
-    background: ${props =>
-      props.primary
-        ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
-        : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
+    background: var(--hover-btn-bg-color);
 
     svg {
       fill: #fff;
     }
 
     p {
-      color: #fef9f9;
+      color: var(--label-active-color);
     }
   }
   p {
-    color: ${props => (!props.primary ? '#54adff' : '#fef9f9')};
+    color: ${props =>
+      !props.$primary ? 'var(--btn-bg-color)' : 'var(--label-active-color)'};
     font-size: 16px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 0.64px;
   }
   svg {
-    fill: #54adff;
+    fill: var(--btn-bg-color);
   }
   @media screen and (min-width: 768px) {
     width: 129px;
@@ -220,22 +217,21 @@ const RemoveButton = styled.button`
   gap: 8px;
   border-radius: 40px;
   border: 2px solid #54adff;
-  background-color: ${props => (props.primary ? 'transparent' : '#54adff')};
+  background-color: ${props =>
+    props.$primary ? 'transparent' : 'var(--btn-bg-color)'};
   cursor: pointer;
   &:first-child {
     margin-bottom: 8px;
   }
   &:hover {
-    background: ${props =>
-      props.primary
-        ? 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'
-        : 'linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)'};
+    background: var(--hover-btn-bg-color);
     p {
-      color: #fef9f9;
+      color: var(--label-active-color);
     }
   }
   p {
-    color: ${props => (props.primary ? '#54adff' : '#fef9f9')};
+    color: ${props =>
+      props.$primary ? 'var(--btn-bg-color)' : 'var(--label-active-color)'};
     font-size: 16px;
     font-weight: 700;
     line-height: normal;
@@ -255,7 +251,7 @@ const StyledLink = styled(Link)`
   font-size: 12px;
   font-weight: 500;
   line-height: normal;
-  text-decoration-line: ${props => (props.privat ? 'underline' : 'none')};
+  text-decoration-line: ${props => (props.$privat ? 'underline' : 'none')};
   cursor: pointer;
 `;
 const Container = styled.div`

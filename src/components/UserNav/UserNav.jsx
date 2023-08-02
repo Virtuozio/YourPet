@@ -1,6 +1,6 @@
 import React from 'react';
 import { User, Container, LogoutBtn, StyledLink } from './UserNav.styled';
-import icon from '../UserNav/user.png';
+import icon from 'assets/images/user/user.png';
 import { useAuth } from 'hooks';
 import { CiLogout } from 'react-icons/ci';
 import useModal from 'hooks/useModal';

@@ -19,23 +19,30 @@ import {
   // currentUser,
   updateUserData,
 } from 'redux/auth/authOperations';
-// import { FormInput } from 'components/AddPetForm/AddPetForm.styled';
 
 const UserForm = ({ disabled, user }) => {
   const dispatch = useDispatch();
-  // const { user } = useAuth();
+
+  const [initialValues, setInitialValues] = useState({
+    avatar: user.avatarURL,
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city,
+  });
   const [errorsVisible, setErrorsVisible] = useState(true);
   const [image, setImage] = useState({ preview: '', data: '' });
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const initialValues = {
-    avatar: user ? user.avatarURL : '',
-    name: user ? user.name : '',
-    email: user ? user.email : '',
-    birthday: user ? user.birthday : '',
-    phone: user ? user.phone : '',
-    city: user ? user.city : '',
-  };
+  // const initialValues = {
+  //   avatar: user ? user.avatarURL : '',
+  //   name: user ? user.name : '',
+  //   email: user ? user.email : '',
+  //   birthday: user ? user.birthday : '',
+  //   phone: user ? user.phone : '',
+  //   city: user ? user.city : '',
+  // };
 
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {
@@ -62,6 +69,10 @@ const UserForm = ({ disabled, user }) => {
     setShowConfirm(true);
   };
 
+  const handleChange = event => {
+    setInitialValues(event.target.name, event.target.value);
+  };
+
   const handleSubmit = values => {
     let formData = new FormData();
 
@@ -80,114 +91,127 @@ const UserForm = ({ disabled, user }) => {
       enableReinitialize
       initialValues={initialValues}
       onSubmit={handleSubmit}
+      onChange={handleChange}
       validationSchema={validationSchema}
     >
-      <Form>
-        <StyledForm>
-          <div>
-            {disabled ? (
-              <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
-            ) : (
-              <UserPhoto src={image.preview ? image.preview : user.avatarURL} />
-            )}
-
-            {!disabled && !showConfirm && (
-              <div style={{ marginTop: '15px' }}>
-                <FileInputLabel htmlFor="file">
-                  <BsCamera />
-                  Edit photo
-                </FileInputLabel>
-                <FileInput
-                  type="file"
-                  id="file"
-                  accept="image/*"
-                  onChange={handleFileChange}
+      {formikProps => (
+        <Form>
+          <StyledForm>
+            <div>
+              {disabled ? (
+                <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
+              ) : (
+                <UserPhoto
+                  src={image.preview ? image.preview : user.avatarURL}
                 />
-              </div>
-            )}
-            {showConfirm && !disabled && (
-              <div
-                style={{
-                  marginTop: '15px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                }}
-              >
-                <BsCheckLg
-                  id="confirm"
-                  style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
-                  onClick={handleClose}
-                />
-                <BsX
-                  id="cancel"
-                  style={{ fill: '#F43F5E', width: '24px', height: '24px' }}
-                  onClick={handleClose}
-                />
-              </div>
-            )}
-          </div>
-          <FieldsContainer>
-            <InputContainer>
-              <label htmlFor="name">Name:</label>
-              <Field
-                type="text"
-                name="name"
-                placeholder="Kate"
-                disabled={disabled}
-              />
-              {errorsVisible && <ErrorMessage name="name" component={Error} />}
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="email">Email:</label>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Kate@mail.com"
-                disabled={disabled}
-              />
-              {errorsVisible && <ErrorMessage name="email" component={Error} />}
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="birthday">Birthday:</label>
-              <Field
-                name="birthday"
-                type="text"
-                placeholder="dd.mm.yyyy"
-                disabled={disabled}
-              />
-              {errorsVisible && (
-                <ErrorMessage name="birthday" component={Error} />
               )}
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="phone">Phone:</label>
-              <Field
-                type="tel"
-                name="phone"
-                placeholder="+380..."
-                disabled={disabled}
-              />
-              {errorsVisible && <ErrorMessage name="phone" component={Error} />}
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="city">City:</label>
-              <Field
-                type="text"
-                name="city"
-                placeholder="Ternopil"
-                disabled={disabled}
-              />
-              {errorsVisible && <ErrorMessage name="city" component={Error} />}
-            </InputContainer>
-            {!disabled && (
-              <SubmitButton type="submit" disabled={showConfirm}>
-                Save
-              </SubmitButton>
-            )}
-          </FieldsContainer>
-        </StyledForm>
-      </Form>
+
+              {!disabled && !showConfirm && (
+                <div style={{ marginTop: '15px' }}>
+                  <FileInputLabel htmlFor="file">
+                    <BsCamera />
+                    Edit photo
+                  </FileInputLabel>
+                  <FileInput
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
+              )}
+              {showConfirm && !disabled && (
+                <div
+                  style={{
+                    marginTop: '15px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <BsCheckLg
+                    id="confirm"
+                    style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
+                    onClick={handleClose}
+                  />
+                  <BsX
+                    id="cancel"
+                    style={{ fill: '#F43F5E', width: '24px', height: '24px' }}
+                    onClick={handleClose}
+                  />
+                </div>
+              )}
+            </div>
+            <FieldsContainer>
+              <InputContainer>
+                <label htmlFor="name">Name:</label>
+                <Field
+                  type="text"
+                  name="name"
+                  placeholder="Kate"
+                  disabled={disabled}
+                />
+                {errorsVisible && (
+                  <ErrorMessage name="name" component={Error} />
+                )}
+              </InputContainer>
+              <InputContainer>
+                <label htmlFor="email">Email:</label>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Kate@mail.com"
+                  disabled={disabled}
+                />
+                {errorsVisible && (
+                  <ErrorMessage name="email" component={Error} />
+                )}
+              </InputContainer>
+              <InputContainer>
+                <label htmlFor="birthday">Birthday:</label>
+                <Field
+                  name="birthday"
+                  type="text"
+                  placeholder="dd.mm.yyyy"
+                  disabled={disabled}
+                />
+                {errorsVisible && (
+                  <ErrorMessage name="birthday" component={Error} />
+                )}
+              </InputContainer>
+              <InputContainer>
+                <label htmlFor="phone">Phone:</label>
+                <Field
+                  type="tel"
+                  name="phone"
+                  placeholder="+380..."
+                  disabled={disabled}
+                />
+                {errorsVisible && (
+                  <ErrorMessage name="phone" component={Error} />
+                )}
+              </InputContainer>
+              <InputContainer>
+                <label htmlFor="city">City:</label>
+                <Field
+                  type="text"
+                  name="city"
+                  placeholder="Ternopil"
+                  disabled={disabled}
+                />
+                {errorsVisible && (
+                  <ErrorMessage name="city" component={Error} />
+                )}
+              </InputContainer>
+              {!disabled && (
+                <SubmitButton type="submit" disabled={showConfirm}>
+                  Save
+                </SubmitButton>
+              )}
+            </FieldsContainer>
+          </StyledForm>
+        </Form>
+      )}
     </Formik>
   );
 };

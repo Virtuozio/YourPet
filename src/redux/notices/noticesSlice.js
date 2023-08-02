@@ -10,7 +10,7 @@ import {
   fetchFavoriteNotices,
   getNoticesByCategory,
   getNoticesBySearch,
-  getFavNoticesbyCategory
+  getFavNoticesbyCategory,
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -91,14 +91,13 @@ const noticesSlice = createSlice({
         state.noticesFavorite.push(payload);
         state.isLoading = false;
         state.error = null;
-        
       })
       .addCase(fetchFavoriteNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite = payload.usersFavNotices;
+        state.noticesFavorite = payload.favNoticesPag;
         // state.notices = payload.usersFavNotices;
-        // state.totalNotices = payload.total;
+        state.totalNotices = payload.total;
       })
       .addCase(fetchFavoriteNotices.pending, handlePending)
       .addCase(fetchFavoriteNotices.rejected, handleRejected)
@@ -118,10 +117,10 @@ const noticesSlice = createSlice({
       })
       .addCase(getNoticesBySearch.pending, handlePending)
       .addCase(getNoticesBySearch.rejected, handleRejected)
-    .addCase(getFavNoticesbyCategory.fulfilled, (state, { payload }) => {
+      .addCase(getFavNoticesbyCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notices = payload.usersFavNotices;
+        state.notices = payload.favNoticesPag;
         state.totalNotices = payload.total;
       })
       .addCase(getFavNoticesbyCategory.pending, handlePending)

@@ -26,7 +26,7 @@ const Btn = styled(NavLink)`
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
 
-  &:active{
+  &.active {
     color: #fef9f9;
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }

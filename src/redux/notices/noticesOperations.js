@@ -111,6 +111,7 @@ export const fetchFavoriteNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/notices/user/favorite');
+      console.log('res data', response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -136,8 +137,9 @@ export const getNoticesBySearch = createAsyncThunk(
   'search/getNoticesBySearch',
   async (data, thunkAPI) => {
     try {
+      console.log('data :>> ', data);
       const res = await axios.get(`/notices/users/search?title=${data}`);
-      console.log(res.data);
+      console.log('res', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

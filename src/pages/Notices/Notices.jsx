@@ -31,8 +31,9 @@ import { statusFilters } from '../../redux/notices/constans';
 import {
   getNoticesByCategory,
   getAllOwnNotices,
-  getFavNoticesbyCategory
+  getFavNoticesbyCategory,
 } from 'redux/notices/noticesOperations';
+import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 
 // import { selectUser } from 'redux/auth/authSelectors';
 // import toast from 'react-hot-toast';
@@ -46,11 +47,14 @@ const Notices = () => {
 
   const [page, setPage] = useState(1);
 
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (categoryName !== statusFilters.FAVORITE_ADS) {
+    if (categoryName !== statusFilters.FAVORITE_ADS && isLoggedIn) {
       dispatch(fetchFavoriteNotices());
     }
     if (categoryName === statusFilters.FAVORITE_ADS) {
@@ -60,25 +64,21 @@ const Notices = () => {
       dispatch(getAllOwnNotices());
     } else if (categoryName === statusFilters.SELL) {
       dispatch(getNoticesByCategory(`?category=${categoryName}&page=${page}`));
-      
     } else if (
       categoryName === statusFilters.IN_GOOD_HANDS ||
       categoryName === statusFilters.LOST_FOUND
     ) {
       dispatch(getNoticesByCategory(`?category=${categoryName}`));
       setPage(1);
-    } 
+    }
     // else if (totalNotices === 0) {
     //   toast.error('You have to be loggedIn')
     //   console.log(totalNotices);
     // }
     else {
- 
       dispatch(fetchNotices(`?page=${page}&limit=8`));
-    } 
-
- 
-  }, [categoryName, dispatch, page]);
+    }
+  }, [categoryName, dispatch, page, isLoggedIn]);
 
   const handleChange = (e, p) => {
     setPage(p);
@@ -98,8 +98,16 @@ const Notices = () => {
             ) : (
               <AddPetButton
                 text="Add pet"
-                onClick={() => toast.error('You have to be loggedIn')}
+                onClick={
+                  () => {
+                    handleOpen(true);
+                  }
+                  // toast.error('You have to be loggedIn')
+                }
               />
+            )}
+            {open && (
+              <ModalUnauthorized open={open} handleClose={handleClose} />
             )}
           </Container>
         </Filters>

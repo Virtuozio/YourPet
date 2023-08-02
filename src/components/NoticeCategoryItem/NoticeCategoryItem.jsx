@@ -92,7 +92,6 @@ const NoticeCategoryItem = ({ notice }) => {
 
   useEffect(() => {
     const newFunc = favNotices => {
-      console.log(favNotices);
       favNotices.forEach(favNotice => {
         if (favNotice._id === notice._id) {
           setFavorite(true);
@@ -151,6 +150,11 @@ const NoticeCategoryItem = ({ notice }) => {
     return name;
   };
 
+  const categoryFilter = category => {
+    if (category === 'for-free') return 'in good hands';
+    else return category;
+  };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -176,7 +180,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </RemoveNoticeBtn>
         )}
 
-        <FilterStatus>{notice.category}</FilterStatus>
+        <FilterStatus>{categoryFilter(notice.category)}</FilterStatus>
 
         <LocationItem>
           <Location />

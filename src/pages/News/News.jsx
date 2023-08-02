@@ -10,6 +10,7 @@ import NewsSearch from '../../components/NewsSearch/NewsSearch';
 
 const News = () => {
   const news = useSelector(selectAllNews);
+  console.log(news);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNews());

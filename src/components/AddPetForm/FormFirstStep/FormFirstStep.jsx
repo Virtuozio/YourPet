@@ -74,7 +74,7 @@ const FormFirstStep = ({
           type="radio"
           name="category"
           id="in-good-hands"
-          value="in-good-hands"
+          value={IN_GOOD_HANDS}
           checked={category === IN_GOOD_HANDS}
           onChange={handleInputChange}
         />

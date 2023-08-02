@@ -6,8 +6,12 @@ import { filters } from './filtersData';
 
 import { Btn, List } from './NoticesCategoriesNav.styled';
 
-const NoticesCategoriesNav = () => {
+const NoticesCategoriesNav = ({ onFilterChange }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const handleFilterChange = (option) => {
+    onFilterChange(option);
+  };
 
   const items = filters.map(({ filter, path }, el) => {
     if (!isLoggedIn && filter === 'favorite ads') {
@@ -20,7 +24,7 @@ const NoticesCategoriesNav = () => {
 
     return (
       <li key={el}>
-        <Btn to={`/notices/${path}`}>{filter}</Btn>
+        <Btn to={`/notices/${path}`} onClick={() => handleFilterChange(filter)}>{filter}</Btn>
       </li>
     );
   });

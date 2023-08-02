@@ -10,7 +10,7 @@ import {
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 
 import Modal from '@mui/material/Modal';
-import toast from 'react-hot-toast';
+import {toast} from 'react-hot-toast';
 import { Pawprint } from 'utils/icons';
 import { LiaHeart } from 'react-icons/lia';
 
@@ -109,8 +109,11 @@ const NoticeCategoryItem = ({ notice }) => {
         dispatch(removeFromFavorite(notice._id));
         setFavorite(false);
         toast.success('removed from favorites');
-      }
-      dispatch(fetchFavoriteNotices());
+      }   else { 
+        toast.error('You have to be loggedIn');
+        dispatch(fetchFavoriteNotices());
+    }    
+      
     } catch (e) {
       toast.error('You have to be loggedIn');
     }
@@ -230,7 +233,7 @@ const NoticeCategoryItem = ({ notice }) => {
                 </ModalCloseBtn>
                 <PhotoContainer>
                   <PetPhoto src={notice.fileURL} />
-                  <CategoryItem>{notice.category}</CategoryItem>
+                  <CategoryItem>{categoryFilter(notice.category)}</CategoryItem>
                 </PhotoContainer>
                 <div>
                   <Title>Сute dog looking for a home</Title>
@@ -309,6 +312,7 @@ const NoticeCategoryItem = ({ notice }) => {
           </ModalBox>
         </Modal>
       </div>
+    
     </NoticesCategoryItemStyled>
   );
 };

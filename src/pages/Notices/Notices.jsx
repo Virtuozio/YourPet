@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -14,6 +14,19 @@ import NoticesSearch from 'components/NoticesSearch/NoticesSearch';
 import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 
 import { Title, Wrapper, Container, Filters } from './Notices.styled';
+import {
+  // selectFavoriteNotices,
+  selectTotalNotices,
+} from 'redux/notices/noticesSelectors';
+import Pagination from '@mui/material/Pagination';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import {
+  getNoticesByCategory,
+  getAllOwnNotices,
+  getFavNoticesbyCategory,
+  fetchAllFavNotices,
+} from 'redux/notices/noticesOperations';
 
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -22,26 +35,45 @@ const Notices = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // useEffect(() => {
-  //   if (categoryName !== statusFilters.FAVORITE_ADS && isLoggedIn) {
-  //     dispatch(fetchFavoriteNotices());
-  //   }
-  //   if (categoryName === statusFilters.FAVORITE_ADS) {
-  //     dispatch(getFavNoticesbyCategory(`?page=${page}`));
-  //   } else if (categoryName === statusFilters.MY_ADS) {
-  //     dispatch(getAllOwnNotices());
-  //   } else if (categoryName === statusFilters.SELL) {
-  //     dispatch(getNoticesByCategory(`?category=${categoryName}&page=${page}`));
-  //   } else if (
-  //     categoryName === statusFilters.IN_GOOD_HANDS ||
-  //     categoryName === statusFilters.LOST_FOUND
-  //   ) {
-  //     dispatch(getNoticesByCategory(`?category=${categoryName}`));
-  //     setPage(1);
-  //   } else {
-  //     dispatch(fetchNotices(`?page=${page}&limit=8`));
-  //   }
-  // }, [categoryName, dispatch, page, isLoggedIn]);
+
+  const dispatch = useDispatch();
+  const { categoryName } = useParams();
+  
+  const totalPages = useSelector(selectTotalNotices);
+  const [currentPage, setCurrentPage] = useState(1);
+
+
+  const handleFilterChange = (option) => {
+    // При зміні фільтрації, змінює сторінку пагінації на 1
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+    // код для отримання нових даних, використання фільтрів тощо
+  };
+
+  //   useEffect(() => {
+  //   dispatch(fetchAllFavNotices());
+  // }, [categoryName, dispatch]);
+  
+
+  useEffect(() => {
+    dispatch(fetchAllFavNotices());
+    if (categoryName !== 'favorite' && categoryName !== 'my-pets') {
+      if (categoryName === 'lost-found' || categoryName === 'for-free') {
+      }
+      dispatch(getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`));
+      
+    } else if (categoryName === 'favorite' && isLoggedIn) {
+      dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
+      
+    } else if (categoryName === 'my-pets' && isLoggedIn) {
+      dispatch(getAllOwnNotices());
+    }
+  }, [categoryName, dispatch, isLoggedIn, currentPage]);
+//
+
 
   return (
     <>
@@ -49,7 +81,7 @@ const Notices = () => {
         <Title>Find your favorite pet</Title>
         <NoticesSearch />
         <Filters>
-          <NoticesCategoriesNav />
+          <NoticesCategoriesNav onFilterChange={handleFilterChange} />
           <Container>
             <NoticesFilters />
             {isLoggedIn ? (
@@ -62,9 +94,29 @@ const Notices = () => {
             )}
           </Container>
         </Filters>
-        <NoticesCategoriesList />
+        <NoticesCategoriesList/>
 
         <Toaster />
+
+        {totalPages > 8 && (
+        <Pagination
+          count={Math.ceil(totalPages / 8)}
+          size="large"
+          variant="outlined"
+          color="primary"
+          showFirstButton
+          showLastButton
+          // count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '100px',
+          }}
+        />
+      )}
       </Wrapper>
     </>
   );

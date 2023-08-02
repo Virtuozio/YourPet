@@ -25,7 +25,10 @@ import Pagination from '@mui/material/Pagination';
 // import { makeStyles } from "@material-ui/core/styles";
 
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { Toaster, toast } from 'react-hot-toast';
+import {
+  Toaster,
+  // toast
+} from 'react-hot-toast';
 import { useParams } from 'react-router';
 import { statusFilters } from '../../redux/notices/constans';
 import {

@@ -43,7 +43,8 @@ const NoticesCategoriesList = () => {
   const { categoryName } = useParams();
   const favNotices = useSelector(selectFavoriteNotices);
   console.log(favNotices);
-  // const visibleNotices = getVisibeNotices(notices, categoryName, currentUser);
+  const visibleNotices = getVisibeNotices(notices, categoryName, currentUser);
+  console.log(visibleNotices);
 
   // const visibleNotices = useSelector(selectVisibleNotices);
   // console.log(visibleNotices);

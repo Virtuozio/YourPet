@@ -10,14 +10,7 @@ import {
   DeleteText,
 } from './ModalDeleteAction.styled';
 
-// import { useDispatch } from 'react-redux';
-// import { deletePet } from 'redux/pets/petsOperations';
-
 const ModalDeleteAction = ({ closeModal, approveAction, petName }) => {
-  // const dispatch = useDispatch();
-  // const handleDelete = () => {
-  //   dispatch(deletePet());
-  // };
   return (
     <Section>
       <Header>Delete adverstiment?</Header>

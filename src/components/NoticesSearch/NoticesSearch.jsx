@@ -1,5 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import { getNewsBySearch } from 'redux/news/newsOperations';
+import {
+  fetchNotices,
+  getNoticesBySearch,
+} from 'redux/notices/noticesOperations';
 
 import {
   Form,
@@ -9,13 +17,6 @@ import {
   SearchIco,
   CrossSmall,
 } from './NoticesSearch.styled';
-import { useDispatch } from 'react-redux';
-import {
-  fetchNotices,
-  getNoticesBySearch,
-} from 'redux/notices/noticesOperations';
-import { useLocation } from 'react-router-dom';
-import { getNewsBySearch } from 'redux/news/newsOperations';
 
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');

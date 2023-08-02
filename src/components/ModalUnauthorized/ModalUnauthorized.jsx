@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Pawprint } from 'utils/icons';
+import Modal from '@mui/material/Modal';
 
 import {
   ModalBox,
@@ -12,7 +13,6 @@ import {
   ModalCloseBtn,
   ModalCloseBtnIcon,
 } from './ModalUnauthorized.styled';
-import Modal from '@mui/material/Modal';
 
 const ModalUnauthorized = ({ open, handleClose }) => {
   return (

@@ -27,7 +27,7 @@ const Input = styled.input`
   padding-bottom: 13px;
   padding-left: 20px;
 
-  color: #888888;
+  color: var(--text-input-color);
 
   background-color: #fff;
   border-radius: 24px;
@@ -35,7 +35,7 @@ const Input = styled.input`
   outline: none;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow var(--duration) var(--cubic);
 
   &:focus,
   &:hover {
@@ -44,7 +44,7 @@ const Input = styled.input`
 
   &::placeholder {
     font-size: 14px;
-    font-style: 'Inter-Regular', sans-serif;
+    font-style: var(--secondary-font);
   }
 `;
 
@@ -64,11 +64,11 @@ const SubmitBtn = styled.button.withConfig({
 
   transform: ${({ query }) => query && 'translateX(-27px)'};
 
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration) var(--cubic);
 `;
 
 const SearchIco = styled(CiSearch)`
-  color: #54adff;
+  color: var(--btn-bg-color);
   width: 24px;
   height: 24px;
   stroke-width: 0.35;
@@ -82,11 +82,11 @@ const ClearBtn = styled(SubmitBtn).withConfig({
   transform: translateX(0);
   opacity: ${({ query }) => (query ? 1 : 0)};
 
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--duration) var(--cubic);
 `;
 
 const CrossSmall = styled(RxCross1)`
-  color: #ffc107;
+  color: var(--header-items-color);
   width: 24px;
   height: 24px;
 `;

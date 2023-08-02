@@ -12,19 +12,19 @@ const Btn = styled.button`
   width: 40px;
   height: 40px;
   padding: 9px 8px 7px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   font-weight: 700;
 
-  background: #cce4fb;
+  background: var(--labels-bg-color);
   border: none;
   border-radius: 50%;
 
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration) var(--cubic),
+    background var(--duration) var(--cubic);
 
   &:hover,
   &:focus {
-    color: #fef9f9;
+    color: var(--label-active-color);
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
 
@@ -34,7 +34,7 @@ const Btn = styled.button`
 
     background: transparent;
     border-width: 2px;
-    border-color: #54adff;
+    border-color: var(--btn-bg-color);
     border-style: solid;
     border-radius: 40px;
 
@@ -43,15 +43,15 @@ const Btn = styled.button`
 `;
 
 const FilterIcon = styled(CiFilter)`
-  fill: #54adff;
+  fill: var(--btn-bg-color);
   width: 24px;
   height: 24px;
   stroke-width: 0.5;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: fill var(--duration) var(--cubic);
 
   &:hover,
   &:focus {
-    fill: #fef9f9;
+    fill: var(--label-active-color);
   }
 `;
 

@@ -17,12 +17,13 @@ export const NoticeList = styled.ul`
 `;
 
 export const Text = styled.p`
-  color: #111111;
-  font-weight: 500;
-  font-size: 16px;
-  margin-top: 40px;
+  color: var(--primary-text-color);
+  font-weight: 700;
+  font-size: 24px;
+  margin: 40px auto;
+  text-align: center;
 
   @media screen and (min-width: 768px) {
-    font-size: 24px;
+    font-size: 48px;
   }
 `;

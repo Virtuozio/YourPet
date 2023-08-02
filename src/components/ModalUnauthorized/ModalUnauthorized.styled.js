@@ -10,7 +10,6 @@ const ModalBox = styled(Box)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 280px;
-  /* height: 445px; */
   padding-top: 60px;
   padding-bottom: 60px;
   padding-left: 20px;
@@ -24,12 +23,10 @@ const ModalBox = styled(Box)`
     padding-left: 40px;
     padding-right: 40px;
     border-radius: 40px;
-    /* height: 429px; */
   }
 `;
 const ModalTitle = styled.p`
   text-align: center;
-  /* font-family: Monrope; */
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 20px;
@@ -42,7 +39,7 @@ const ModalTitle = styled.p`
 const ModalText = styled.p`
   text-align: center;
 
-  font-family: Manrope;
+  font-family: var(--main-font);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -57,7 +54,7 @@ const ModalText = styled.p`
 `;
 
 const Header = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 24px;
   margin-bottom: 20px;
@@ -69,7 +66,7 @@ const Header = styled.p`
 `;
 
 const Text = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 40px;
@@ -103,12 +100,12 @@ const BtnLogIn = styled(Link)`
   cursor: pointer;
   padding: 8px 0px;
 
-  color: #fef9f9;
+  color: Var(--label-active-color);
   fill: #fff;
   font-weight: 700;
   font-size: 16px;
 
-  background: #ffc107;
+  background: var(--header-items-color);
   border: none;
   border-radius: 40px;
 
@@ -118,7 +115,7 @@ const BtnLogIn = styled(Link)`
   gap: 8px;
 
   &:hover {
-    background: #54adff;
+    background: var(--btn-bg-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -136,20 +133,20 @@ const BtnRegister = styled(Link)`
   cursor: pointer;
   padding: 8px 0px;
 
-  color: #ffc107;
+  color: var(--header-items-color);
   font-weight: 600;
   font-size: 16px;
 
   background: transparent;
   border-width: 2px;
-  border-color: #ffc107;
+  border-color: var(--header-items-color);
   border-style: solid;
   border-radius: 40px;
   font-size: 16px;
 
   &:hover {
-    color: #54adff;
-    border-color: #54adff;
+    color: var(--btn-bg-color);
+    border-color: var(--btn-bg-color);
     border-style: solid;
     border-radius: 40px;
   }
@@ -177,10 +174,10 @@ const ModalCloseBtn = styled.button`
 const ModalCloseBtnIcon = styled(RxCross1)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 
   &:hover {
-    color: #ffc107;
+    color: var(--header-items-color);
   }
 `;
 

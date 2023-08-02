@@ -38,7 +38,7 @@ const noticesSlice = createSlice({
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notices = payload.listAllNotices;
+        state.notices = payload.noticesList;
         state.totalNotices = payload.total;
       })
       .addCase(fetchNotices.pending, handlePending)
@@ -96,9 +96,7 @@ const noticesSlice = createSlice({
       .addCase(fetchFavoriteNotices.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.noticesFavorite = payload.favNoticesPag;
-        // state.notices = payload.usersFavNotices;
-        // state.totalNotices = payload.total;
+        state.noticesFavorite = payload.noticesList;
       })
       .addCase(fetchFavoriteNotices.pending, handlePending)
       .addCase(fetchFavoriteNotices.rejected, handleRejected)
@@ -121,7 +119,7 @@ const noticesSlice = createSlice({
       .addCase(getFavNoticesbyCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notices = payload.favNoticesPag;
+        state.notices = payload.noticesList;
         state.totalNotices = payload.total;
         // state.setFav = true;
       })

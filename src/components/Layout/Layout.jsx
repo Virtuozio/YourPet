@@ -1,5 +1,5 @@
 import Header from 'components/Header/Header';
-import Footer from 'components/Footer/Footer';
+// import Footer from 'components/Footer/Footer';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 // import { Link, NavBurger } from './Layout.styled';
@@ -26,7 +26,7 @@ const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </LayoutContainer>
   );
 };

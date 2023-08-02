@@ -22,7 +22,6 @@ import { useParams } from 'react-router';
 const NoticesSearch = () => {
   const [query, setQuery] = useState('');
   const { categoryName } = useParams();
-  console.log(categoryName);
   const dispatch = useDispatch();
   const location = useLocation();
   const submitHandler = e => {

@@ -95,6 +95,7 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
     const newFunc = favNotices => {
       favNotices.forEach(favNotice => {
         if (favNotice._id === notice._id) {
+          console.log('aqeweqweq');
           setFavorite(true);
         }
       });
@@ -112,7 +113,6 @@ const NoticeCategoryItem = ({ notice, isFavorite }) => {
       // if (!res) {
       //   return toast.error("can't add notice");
       // }
-      console.log(notice._id);
       dispatch(addToFavorite(notice._id));
       setFavorite(true);
       toast.success('added to your favorites');

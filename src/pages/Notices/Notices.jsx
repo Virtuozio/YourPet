@@ -45,7 +45,6 @@ import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const totalNotices = useSelector(selectTotalNotices);
-  console.log(totalNotices);
   const { categoryName } = useParams();
   // const currentUser = useSelector(selectUser);
 
@@ -58,7 +57,6 @@ const Notices = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     if (categoryName !== statusFilters.FAVORITE_ADS && isLoggedIn) {
       dispatch(fetchFavoriteNotices());
     }

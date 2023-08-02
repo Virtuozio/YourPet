@@ -2,16 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 axios.defaults.baseURL = 'https://yourpets.onrender.com/api';
 
-// const createSearchParams = params => new URLSearchParams(params).toString();
-
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
   async (fetchInfo, thunkAPI) => {
     try {
-      // const { category, ...params } = credentials;
       const response = await axios.get(`/notices${fetchInfo}`);
-      // console.log(response.data.total);
-
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -22,15 +17,6 @@ export const fetchNotices = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (newNotice, thunkAPI) => {
-    // if (!newNotice.petAvatar) delete newNotice['petAvatar'];
-    // let formImageData = new FormData();
-
-    // for (const key in newNotice) {
-    //   if (newNotice[key]) {
-    //     formImageData.append(key, newNotice[key]);
-    //   }
-    // }
-
     try {
       const res = await axios.post('/notices', newNotice);
       return res.data;
@@ -72,7 +58,6 @@ export const getAllOwnNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(`/notices/user/added`);
-      // console.log(response.data.noticesList);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -85,7 +70,6 @@ export const addToFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.patch(`/notices/user/favorite/${id}`);
-      // console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -98,7 +82,6 @@ export const removeFromFavorite = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/notices/user/favorite/${id}`);
-      console.log('resp', response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -111,7 +94,6 @@ export const fetchFavoriteNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/notices/user/favorite');
-      console.log('res data', response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -137,9 +119,9 @@ export const getNoticesBySearch = createAsyncThunk(
   'search/getNoticesBySearch',
   async (data, thunkAPI) => {
     try {
-      console.log('data :>> ', data);
-      const res = await axios.get(`/notices/users/search?title=${data.input}&category=${data.category}`);
-      console.log('res', res.data);
+      const res = await axios.get(
+        `/notices/users/search?title=${data.input}&category=${data.category}`
+      );
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -55,10 +55,10 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (formData, thunkAPI) => {
     try {
-      console.log(formData);
-      for (const value of formData.values()) {
-        console.log(value); // Outputs the key (property name)
-      }
+      // console.log(formData);
+      // for (const value of formData.values()) {
+      //   console.log(value); // Outputs the key (property name)
+      // }
       const res = await axios.patch('/users/update/avatar', formData, {
         withCredentials: false,
         headers: {

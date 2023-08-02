@@ -78,7 +78,6 @@ const AuthForm = ({ values, errors, touched }) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
     formik.setFieldValue('password', passwordValue);
-    console.log(passwordValue);
   };
 
   const onConfirmPasswordChange = e => {

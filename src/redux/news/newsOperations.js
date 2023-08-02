@@ -17,7 +17,6 @@ export const getNewsBySearch = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(`/news/search?title=${data}`);
-      console.log(res);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -120,7 +120,9 @@ const Bold = styled.b`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.button.withConfig({
+  shouldForwardProp: prop => prop !== 'active',
+})`
   display: flex;
   width: 256px;
   height: 40px;
@@ -130,8 +132,8 @@ const Button = styled.button`
   gap: 8px;
   border-radius: 40px;
   border: 2px solid #54adff;
-  background-color: ${props =>
-    props.$primary ? 'transparent' : 'var(--btn-bg-color)'};
+  background-color: ${({ primary }) =>
+    primary ? 'transparent' : 'var(--btn-bg-color)'};
   cursor: pointer;
   &:first-child {
     margin-bottom: 8px;
@@ -143,8 +145,8 @@ const Button = styled.button`
     }
   }
   p {
-    color: ${props =>
-      props.$primary ? 'var(--btn-bg-color)' : 'var(--label-active-color)'};
+    color: ${({ primary }) =>
+      primary ? 'var(--btn-bg-color)' : 'var(--label-active-color)'};
     font-size: 16px;
     font-weight: 700;
     line-height: normal;

@@ -1,11 +1,10 @@
 import React from 'react';
-import {
-  useSelector,
-} from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { filters } from './filtersData';
 
 import { Btn, List } from './NoticesCategoriesNav.styled';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -21,11 +20,7 @@ const NoticesCategoriesNav = () => {
 
     return (
       <li key={el}>
-        <Btn
-          to={`/notices/${path}`}
-        >
-          {filter}
-        </Btn>
+        <Btn to={`/notices/${path}`}>{filter}</Btn>
       </li>
     );
   });

@@ -13,10 +13,8 @@ const News = () => {
   const news = useSelector(selectAllNews);
   
   const totalNews = useSelector(selectTotalNews);
-  console.log(totalNews);
   
   const [page, setPage] = useState(1);
-  console.log(news);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getNews(`?page=${page}&limit=9`));

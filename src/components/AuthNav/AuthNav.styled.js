@@ -16,12 +16,12 @@ export const AuthBtn = styled(Link)`
   gap: 8px;
   border-radius: 40px;
   border: 2px solid var(--header-items-color);
-  background: ${props =>
-    props.$login ? 'var(  --header-items-color)' : 'var(--label-active-color)'};
+  background-color: ${props =>
+    props.login ? 'var(  --header-items-color)' : 'var(--label-active-color)'};
   text-decoration: none;
 
   color: ${props =>
-    props.$login ? 'var(--label-active-color)' : 'var(  --header-items-color)'};
+    props.login ? 'var(--label-active-color)' : 'var(  --header-items-color)'};
   font-family: inherit;
   font-size: 16px;
   font-weight: 700;
@@ -30,21 +30,21 @@ export const AuthBtn = styled(Link)`
   transition: all var(--duration) var(--cubic);
 
   svg {
-    fill: var(--header-items-color);
+    fill: var(--label-active-color);
   }
 
   &:hover {
-    background: ${props =>
-      props.$login
+    background-color: ${props =>
+      props.login
         ? 'var(--label-active-color)'
         : 'var(  --header-items-color)'};
     color: ${props =>
-      props.$login
+      props.login
         ? 'var(  --header-items-color)'
         : 'var(--label-active-color)'};
 
     svg {
-      fill: var(--label-active-color);
+      fill: var(--header-items-color);
     }
   }
 

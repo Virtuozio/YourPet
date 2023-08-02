@@ -19,9 +19,11 @@ import {
   // currentUser,
   updateUserData,
 } from 'redux/auth/authOperations';
+import { useAuth } from 'hooks';
 
-const UserForm = ({ disabled, user }) => {
+const UserForm = ({ disabled }) => {
   const dispatch = useDispatch();
+  const { user } = useAuth();
 
   const [initialValues, setInitialValues] = useState({
     avatar: user.avatarURL,
@@ -35,14 +37,18 @@ const UserForm = ({ disabled, user }) => {
   const [image, setImage] = useState({ preview: '', data: '' });
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // const initialValues = {
-  //   avatar: user ? user.avatarURL : '',
-  //   name: user ? user.name : '',
-  //   email: user ? user.email : '',
-  //   birthday: user ? user.birthday : '',
-  //   phone: user ? user.phone : '',
-  //   city: user ? user.city : '',
-  // };
+  useEffect(() => {
+    if (user) {
+      setInitialValues({
+        avatar: user.avatarURL || '',
+        name: user.name || '',
+        email: user.email || '',
+        birthday: user.birthday || '',
+        phone: user.phone || '',
+        city: user.city || '',
+      });
+    }
+  }, [user]);
 
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {

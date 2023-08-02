@@ -40,25 +40,19 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
           <MenuBackground>
             <Top>
               <Logo size={size} />
-              {size[0] < 768 && (
-                <CloseBurger onClick={closeMenu}>
-                  <LiaTimesSolid />
-                </CloseBurger>
-              )}
-
-              {size[0] >= 768 && isLoggedIn && (
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '24px' }}
-                >
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '24px' }}
+              >
+                {size[0] >= 768 && isLoggedIn && (
                   <LogoutBtn onClick={() => toggleModal()}>
                     Log Out
                     <CiLogout />
                   </LogoutBtn>
-                  <CloseBurger onClick={closeMenu}>
-                    <LiaTimesSolid />
-                  </CloseBurger>
-                </div>
-              )}
+                )}
+                <CloseBurger onClick={closeMenu}>
+                  <LiaTimesSolid />
+                </CloseBurger>
+              </div>
             </Top>
             {size[0] < 768 ? (
               <MobileMenu isLoggedIn={isLoggedIn} user={user} />

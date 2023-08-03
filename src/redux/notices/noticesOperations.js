@@ -89,6 +89,18 @@ export const removeFromFavorite = createAsyncThunk(
   }
 );
 
+export const removeFromFavoriteCategory = createAsyncThunk(
+  'notices/removeFromFavoriteWithOutR',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/notices/user/favorite/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavoriteNotices',
   async (_, thunkAPI) => {

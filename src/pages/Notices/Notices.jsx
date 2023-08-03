@@ -36,18 +36,16 @@ const Notices = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-  
+
   const totalPages = useSelector(selectTotalNotices);
   const [currentPage, setCurrentPage] = useState(1);
 
-
-  const handleFilterChange = (option) => {
+  const handleFilterChange = option => {
     // При зміні фільтрації, змінює сторінку пагінації на 1
     setCurrentPage(1);
-     scroll.scrollToTop();
+    scroll.scrollToTop();
   };
 
   const handlePageChange = (event, page) => {
@@ -56,27 +54,21 @@ const Notices = () => {
     // код для отримання нових даних, використання фільтрів тощо
   };
 
-  //   useEffect(() => {
-  //   dispatch(fetchAllFavNotices());
-  // }, [categoryName, dispatch]);
-  
-
   useEffect(() => {
     dispatch(fetchAllFavNotices());
     if (categoryName !== 'favorite' && categoryName !== 'my-pets') {
       if (categoryName === 'lost-found' || categoryName === 'for-free') {
       }
-      dispatch(getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`));
-      
+      dispatch(
+        getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
+      );
     } else if (categoryName === 'favorite' && isLoggedIn) {
       dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
-      
     } else if (categoryName === 'my-pets' && isLoggedIn) {
       dispatch(getAllOwnNotices());
     }
   }, [categoryName, dispatch, isLoggedIn, currentPage]);
-//
-
+  //
 
   return (
     <>
@@ -97,29 +89,29 @@ const Notices = () => {
             )}
           </Container>
         </Filters>
-        <NoticesCategoriesList/>
+        <NoticesCategoriesList />
 
         <Toaster />
 
         {totalPages > 8 && (
-        <Pagination
-          count={Math.ceil(totalPages / 8)}
-          size="large"
-          variant="outlined"
-          color="primary"
-          showFirstButton
-          showLastButton
-          // count={totalPages}
-          page={currentPage}
-          onChange={handlePageChange}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginBottom: '100px',
-          }}
-        />
-      )}
+          <Pagination
+            count={Math.ceil(totalPages / 8)}
+            size="large"
+            variant="outlined"
+            color="primary"
+            showFirstButton
+            showLastButton
+            // count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '100px',
+            }}
+          />
+        )}
       </Wrapper>
     </>
   );

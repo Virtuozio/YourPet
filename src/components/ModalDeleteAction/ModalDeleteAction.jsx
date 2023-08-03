@@ -11,7 +11,7 @@ import {
   DeleteText,
   ModalBox,
   ModalCloseBtn,
-  ModalCloseBtnIcon
+  ModalCloseBtnIcon,
 } from './ModalDeleteAction.styled';
 
 const ModalDeleteAction = ({
@@ -21,16 +21,19 @@ const ModalDeleteAction = ({
   handleRemoveOwnNotice,
 }) => {
   return (
-    <Modal open={deleteModal} onClick={deleteModalClose}>
+    <Modal open={deleteModal} onClose={deleteModalClose}>
       <ModalBox>
         <Section>
+          <ModalCloseBtn>
+            <ModalCloseBtnIcon onClick={deleteModalClose} />
+          </ModalCloseBtn>
           <Header>Delete adverstiment?</Header>
           <DeleteText>
             Are you sure you want to delete <strong>{notice.name}</strong>? You
             can`t undo this action.
           </DeleteText>
           <BtnWrapper>
-            <BtnCancel type="button" onClick={() => deleteModalClose}>
+            <BtnCancel type="button" onClick={deleteModalClose}>
               Cancel
             </BtnCancel>
             <BtnYes type="button" onClick={handleRemoveOwnNotice}>
@@ -41,7 +44,6 @@ const ModalDeleteAction = ({
         </Section>
       </ModalBox>
     </Modal>
-
   );
 };
 

@@ -10,6 +10,8 @@ import {
   TrashIcon,
   DeleteText,
   ModalBox,
+  ModalCloseBtn,
+  ModalCloseBtnIcon
 } from './ModalDeleteAction.styled';
 
 const ModalDeleteAction = ({
@@ -39,6 +41,7 @@ const ModalDeleteAction = ({
         </Section>
       </ModalBox>
     </Modal>
+
   );
 };
 

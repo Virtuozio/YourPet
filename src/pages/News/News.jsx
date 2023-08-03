@@ -38,7 +38,7 @@ const News = () => {
       <NoticesSearch handleSearch={handleSearch} />
       <NewsSearch news={news} />
 
-      {/* {totalNews > 8 && ( */}
+      {totalNews > 8 && 
       <Pagination
         count={Math.ceil(totalNews / 9)}
         size="large"
@@ -54,7 +54,7 @@ const News = () => {
           marginBottom: '100px',
           marginTop: '50px',
         }}
-      />
+      />}
     </div>
   );
 };

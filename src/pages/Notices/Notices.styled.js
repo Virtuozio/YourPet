@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 40px;
+  scroll-behavior: smooth;
 
   @media screen and (min-width: 768px) {
     padding-top: 80px;

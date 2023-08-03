@@ -6,6 +6,7 @@ import {
   removeFromFavorite,
   deleteNotice,
   fetchFavoriteNotices,
+  removeFromFavoriteCategory,
 } from 'redux/notices/noticesOperations';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
 import {toast} from 'react-hot-toast';
@@ -41,9 +42,13 @@ import {
 import ModalUnauthorized from 'components/ModalUnauthorized/ModalUnauthorized';
 import ModalDeleteAction from 'components/ModalDeleteAction/ModalDeleteAction';
 import ModalNotice from 'components/ModalNotice/ModalNotice';
+import { animateScroll as scroll } from 'react-scroll';
+import { useParams } from 'react-router';
 
 const NoticeCategoryItem = ({ notice }) => {
   const [favorite, setFavorite] = useState(false);
+
+  const { categoryName } = useParams();
 
   const currentUser = useSelector(selectUser);
   const favNotices = useSelector(selectFavoriteNotices);
@@ -82,11 +87,18 @@ const NoticeCategoryItem = ({ notice }) => {
         dispatch(addToFavorite(notice._id));
         setFavorite(true);
         toast.success('added to your favorites');
-      } else if (isLoggedIn && favorite) {
+      } else if (isLoggedIn && favorite && categoryName !== 'favorite') {
         dispatch(removeFromFavorite(notice._id));
         setFavorite(false);
+        
         toast.success('removed from favorites');
-      }   else { 
+      } else if (categoryName === 'favorite') {
+        dispatch(removeFromFavoriteCategory(notice._id));
+        setFavorite(false);
+        scroll.scrollToTop();
+      }
+      
+      else { 
         // toast.error('You have to be loggedIn');
         setOpen(true);
         dispatch(fetchFavoriteNotices());
@@ -125,6 +137,11 @@ const NoticeCategoryItem = ({ notice }) => {
     if (category === 'lost-found') return 'lost/found'
     else return category;
   };
+
+  // const phoneFormat = phone => {
+  //   if (phone === '+380000000000') return 'not specified'
+  //   return phone
+  // }
 
 
 

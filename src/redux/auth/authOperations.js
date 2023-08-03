@@ -18,6 +18,7 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/register', credentials);
+      console.log(res);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -55,9 +56,7 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (formData, thunkAPI) => {
     try {
-      // for (const value of formData.values()) {
-      // }
-      const res = await axios.patch('/users/update/avatar', formData, {
+      const res = await axios.patch('/users/info/update', formData, {
         withCredentials: false,
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -94,7 +93,6 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }

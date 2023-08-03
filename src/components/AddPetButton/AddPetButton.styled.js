@@ -9,8 +9,8 @@ const Btn = styled(Link)`
   box-sizing: border-box;
 
   position: fixed;
-  top: 460px;
-  right: 20px;
+  top: 420px;
+  right: 5px;
 
   display: flex;
   flex-direction: column;

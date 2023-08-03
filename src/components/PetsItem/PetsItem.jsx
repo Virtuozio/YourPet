@@ -56,9 +56,10 @@ const PetsItem = ({ pet }) => {
       {isModalOpen && (
         <Backdrop closeModal={closeModal}>
           <ModalDeleteAction
-            closeModal={closeModal}
-            approveAction={approveAction}
-            petName={pet.name}
+            deleteModal={isModalOpen}
+            deleteModalClose={closeModal}
+            handleRemoveOwnNotice={approveAction}
+            notice={pet}
           />
         </Backdrop>
       )}

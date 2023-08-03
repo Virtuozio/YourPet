@@ -63,6 +63,7 @@ export const updateUserData = createAsyncThunk(
         },
       });
       setAuthHeader(res.data.token);
+      console.log('res', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

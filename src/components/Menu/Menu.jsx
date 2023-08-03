@@ -15,13 +15,16 @@ import { CiLogout } from 'react-icons/ci';
 import Backdrop from 'components/Backdrop/Backdrop';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import useModal from 'hooks/useModal';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 
-export const Menu = ({ size, openMenu, setOpenMenu }) => {
+export const Menu = ({ size }) => {
+  const [openMenu, setOpenMenu] = useState(false);
   const { isLoggedIn, user } = useAuth();
   const { toggleModal, showModal } = useModal(false);
+
   let url = useLocation();
+
   const closeMenu = useCallback(() => {
     setOpenMenu(false);
   }, [setOpenMenu]);
@@ -40,40 +43,28 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
           <MenuBackground>
             <Top>
               <Logo size={size} />
-              {size[0] < 768 && (
-                <CloseBurger onClick={closeMenu}>
-                  <LiaTimesSolid />
-                </CloseBurger>
-              )}
-
-              {size[0] >= 768 && isLoggedIn && (
-                <div
-                  style={{ display: 'flex', alignItems: 'center', gap: '24px' }}
-                >
+              <div
+                style={{ display: 'flex', alignItems: 'center', gap: '24px' }}
+              >
+                {size[0] >= 768 && isLoggedIn && (
                   <LogoutBtn onClick={() => toggleModal()}>
                     Log Out
                     <CiLogout />
                   </LogoutBtn>
-                  <CloseBurger onClick={closeMenu}>
-                    <LiaTimesSolid />
-                  </CloseBurger>
-                </div>
-              )}
+                )}
+                <CloseBurger onClick={closeMenu}>
+                  <LiaTimesSolid />
+                </CloseBurger>
+              </div>
             </Top>
             {size[0] < 768 ? (
               <MobileMenu isLoggedIn={isLoggedIn} user={user} />
             ) : (
               <Nav />
             )}
-            {isLoggedIn && size[0] < 768 && (
-              <LogoutBtn onClick={() => toggleModal()}>
-                Log Out
-                <CiLogout />
-              </LogoutBtn>
-            )}
 
             {size >= 768 && <Nav />}
-            {showModal && (
+            {showModal && isLoggedIn && (
               <Backdrop closeModal={toggleModal}>
                 <ModalApproveAction closeModal={toggleModal} />
               </Backdrop>

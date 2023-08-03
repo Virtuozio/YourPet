@@ -27,6 +27,7 @@ import {
   getFavNoticesbyCategory,
   fetchAllFavNotices,
 } from 'redux/notices/noticesOperations';
+import { animateScroll as scroll } from 'react-scroll';
 
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -46,10 +47,12 @@ const Notices = () => {
   const handleFilterChange = (option) => {
     // При зміні фільтрації, змінює сторінку пагінації на 1
     setCurrentPage(1);
+     scroll.scrollToTop();
   };
 
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
+    scroll.scrollToTop();
     // код для отримання нових даних, використання фільтрів тощо
   };
 

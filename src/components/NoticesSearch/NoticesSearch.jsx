@@ -25,12 +25,12 @@ const NoticesSearch = ({ handleSearch }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const submitHandler = e => {
-    const searchQuery = e.currentTarget.elements.query.value;
-    handleSearch(searchQuery);
     e.preventDefault();
-    if (location.pathname === '/news')
+    const searchQuery = e.currentTarget.elements.query.value;
+    if (location.pathname === '/news') {
+      handleSearch(searchQuery);
       dispatch(getNewsBySearch(`?title=${searchQuery}&page=1&limit=9`));
-    else
+    } else
       dispatch(
         getNoticesBySearch({
           input: searchQuery,

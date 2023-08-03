@@ -37,7 +37,7 @@ const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDa
                   <CategoryItem>{categoryFilter(notice.category)}</CategoryItem>
                 </PhotoContainer>
                 <div>
-                  <Title>Сute dog looking for a home</Title>
+                  <Title>{notice.title}</Title>
                   <Info>
                     <Tag>Name:</Tag>
                     <Tag value="true">{notice.name}</Tag>

@@ -16,35 +16,40 @@ import {
   getNoticesBySearch,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
-import { getNewsBySearch } from 'redux/news/newsOperations';
+import { getNews, getNewsBySearch } from 'redux/news/newsOperations';
 import { useParams } from 'react-router';
 
-const NoticesSearch = () => {
-  const [query, setQuery] = useState('');
-  const { categoryName } = useParams();
+const NoticesSearch = ({ handleSearch }) => {
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const [query, setQuery] = useState('');
+
+  const { categoryName } = useParams();
+
   const submitHandler = e => {
     e.preventDefault();
-    if (location.pathname === '/news')
-      dispatch(getNewsBySearch(e.currentTarget.elements.query.value));
-    else
+    const searchQuery = e.currentTarget.elements.query.value;
+    if (location.pathname === '/news') {
+      handleSearch(searchQuery);
+      dispatch(getNewsBySearch(`?title=${searchQuery}&page=1&limit=9`));
+    } else
       dispatch(
         getNoticesBySearch({
-          input: e.currentTarget.elements.query.value,
           category: categoryName,
+          input: searchQuery,
         })
       );
   };
 
   const onInputChange = e => {
     const searchQuery = e.target.value;
-
     setQuery(searchQuery);
   };
-  const handleClear = e => {
+  const handleClear = () => {
     setQuery('');
-    dispatch(getNoticesByCategory(`?category=${categoryName}`));
+    if (location.pathname === '/news') dispatch(getNews(`?page=${1}&limit=9`));
+    else dispatch(getNoticesByCategory(`?category=${categoryName}`));
   };
 
   return (

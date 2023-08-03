@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 const phoneRegExp = /^(\+380\d{9})$/;
 
 const validationSchema = Yup.object().shape({
+  avatar: Yup.mixed().required('File is required'),
   name: Yup.string().required('Please, enter your name'),
   email: Yup.string()
     .email('Enter correct email')

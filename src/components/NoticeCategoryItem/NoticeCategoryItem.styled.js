@@ -7,19 +7,11 @@ import {
   HiOutlineClock,
   //   HiClock,
 } from 'react-icons/hi';
-
 import { RiDeleteBinLine } from "react-icons/ri";
 
 import { GiFemale, GiMale } from 'react-icons/gi';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Unstable_Grid2';
-
-import { RxCross1 } from 'react-icons/rx';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 import { Pawprint } from '../../utils/icons';
-// import { styled } from '@mui/material/styles';
+
 
 export const NoticesCategoryItemStyled = styled.li`
   display: flex;
@@ -91,7 +83,7 @@ export const HeartIcon = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #c5dff6;
+  background-color: var(--labels-bg-color);
 
   border: none;
 `;
@@ -99,13 +91,13 @@ export const HeartIcon = styled.button`
 export const Heart = styled(HiOutlineHeart)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 export const HeartFill = styled(HiHeart)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 export const RemoveNoticeBtn = styled.button`
@@ -118,7 +110,7 @@ display: flex;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #c5dff6;
+  background-color: var(--labels-bg-color);
 
   border: none;
 `
@@ -126,7 +118,7 @@ display: flex;
 export const RemoveIcon = styled(RiDeleteBinLine)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 
@@ -142,7 +134,7 @@ export const FilterStatus = styled.div`
   top: 16px;
   left: 0;
 
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 `;
@@ -157,12 +149,12 @@ export const LocationItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
-  white-space: nowrap; /* Текст не переносится */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
-  text-overflow: ellipsis; /* Добавляем многоточие */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     left: 24px;
@@ -172,7 +164,7 @@ export const LocationItem = styled.div`
 export const Location = styled(HiOutlineLocationMarker)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -187,12 +179,12 @@ export const DateItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
-  white-space: nowrap; /* Текст не переносится */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
-  text-overflow: ellipsis; /* Добавляем многоточие */
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     left: 128px;
@@ -202,7 +194,7 @@ export const DateItem = styled.div`
 export const AgeCount = styled(HiOutlineClock)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   /* margin-left: 9px; */
   /* margin-right: 8px; */
 `;
@@ -217,7 +209,7 @@ export const SexItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -228,7 +220,7 @@ export const SexItem = styled.div`
 export const Female = styled(GiFemale)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -236,7 +228,7 @@ export const Female = styled(GiFemale)`
 export const Male = styled(GiMale)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -250,11 +242,11 @@ export const LoadMoreBtn = styled.button`
   height: 38px;
   outline: none;
   border-width: 2px;
-  border-color: #54adff;
+  border-color: var(--btn-bg-color);
   border-style: solid;
   border-radius: 40px;
-  color: #54adff;
-  fill: #54adff;
+  color: var(--btn-bg-color);
+  fill: var(--btn-bg-color);
   cursor: pointer;
   margin-bottom: 24px;
 
@@ -268,7 +260,7 @@ export const LoadMoreBtn = styled.button`
 
   &:hover {
     color: #fff;
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--hover-btn-bg-color);
     fill: #fff;
   }
 
@@ -286,162 +278,6 @@ export const NoticeText = styled.p`
   margin-bottom: 20px;
 `;
 
-export const ModalBox = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  /* height: 445px; */
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-
-  @media screen and (min-width: 768px) {
-    width: 608px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 40px;
-    /* height: 429px; */
-  }
-`;
-
-export const ModalCloseBtn = styled.button`
-  position: absolute;
-  right: 16px;
-  top: 16px;
-
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-
-  @media screen and (min-width: 768px) {
-    right: 24px;
-    top: 24px;
-  }
-`;
-
-export const ModalCloseBtnIcon = styled(RxCross1)`
-  width: 24px;
-  height: 24px;
-  color: #54adff;
-
-  &:hover {
-    color: #ffc107;
-  }
-`;
-
-export const ModalTitle = styled(Typography)`
-  text-align: center;
-  /* font-family: Monrope; */
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 20px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 36px;
-    margin-bottom: 40px;
-  }
-`;
-export const ModalText = styled(Typography)`
-  text-align: center;
-
-  font-family: Manrope;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.56px;
-
-  margin-bottom: 40px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 20px;
-  }
-`;
-
-export const BtnsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 12px;
-
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    gap: 20px;
-  }
-`;
-
-export const BtnLogIn = styled(Link)`
-  text-decoration: none;
-  box-sizing: border-box;
-
-  width: 240px;
-  height: 40px;
-  cursor: pointer;
-  padding: 8px 0px;
-
-  color: #fef9f9;
-  fill: #fff;
-  font-weight: 700;
-  font-size: 16px;
-
-  background: #ffc107;
-  border: none;
-  border-radius: 40px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  &:hover {
-    background: #54adff;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 165px;
-  }
-`;
-
-export const BtnRegister = styled(Link)`
-  text-decoration: none;
-  box-sizing: border-box;
-  text-align: center;
-
-  width: 240px;
-  height: 40px;
-  cursor: pointer;
-  padding: 8px 0px;
-
-  color: #ffc107;
-  font-weight: 600;
-  font-size: 16px;
-
-  background: transparent;
-  border-width: 2px;
-  border-color: #ffc107;
-  border-style: solid;
-  border-radius: 40px;
-  font-size: 16px;
-
-  &:hover {
-    color: #54adff;
-    border-color: #54adff;
-    border-style: solid;
-    border-radius: 40px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 165px;
-  }
-`;
 
 export const PawStyled = styled(Pawprint)`
   margin-left: 8px;

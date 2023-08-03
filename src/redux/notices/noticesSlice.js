@@ -12,6 +12,7 @@ import {
   getNoticesBySearch,
   getFavNoticesbyCategory,
   fetchAllFavNotices,
+  removeFromFavoriteCategory
 } from './noticesOperations';
 const noticesInitialState = {
   notices: [],
@@ -87,6 +88,9 @@ const noticesSlice = createSlice({
         state.noticesFavorite = state.noticesFavorite.filter(
           notice => notice._id !== payload._id
         );
+        // state.notices = state.notices.filter(
+        //   notice => notice._id !== payload._id
+        // );
       })
       .addCase(removeFromFavorite.pending, handlePending)
       .addCase(removeFromFavorite.rejected, handleRejected)
@@ -138,10 +142,24 @@ const noticesSlice = createSlice({
         state.error = null;
         state.notices = payload.noticesList;
         state.totalNotices = payload.total;
+        
         // state.setFav = true;
       })
       .addCase(getFavNoticesbyCategory.pending, handlePending)
-      .addCase(getFavNoticesbyCategory.rejected, handleRejected);
+      .addCase(getFavNoticesbyCategory.rejected, handleRejected)
+      .addCase(removeFromFavoriteCategory.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.noticesFavorite = payload.result;
+        state.noticesFavorite = state.noticesFavorite.filter(
+          notice => notice._id !== payload._id
+        );
+        state.notices = state.notices.filter(
+          notice => notice._id !== payload._id
+        );
+      })
+      .addCase(removeFromFavoriteCategory.pending, handlePending)
+      .addCase(removeFromFavoriteCategory.rejected, handleRejected);
   },
 });
 

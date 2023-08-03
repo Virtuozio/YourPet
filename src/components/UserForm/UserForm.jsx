@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useFormik } from 'formik';
 import 'flatpickr/dist/flatpickr.min.css';
 import { BsCamera, BsCheckLg, BsX } from 'react-icons/bs';
 import {
@@ -11,42 +11,52 @@ import {
   SubmitButton,
   Error,
   FieldsContainer,
+  Text,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
-import defaultImg from 'assets/Photo default.jpg';
-import { useDispatch } from 'react-redux';
-import {
-  // currentUser,
-  updateUserData,
-} from 'redux/auth/authOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserData } from 'redux/auth/authOperations';
 
-const UserForm = ({ disabled, user }) => {
+import { selectIsLoading, selectUser } from 'redux/auth/authSelectors';
+import Loader from 'components/Loader/Loader';
+
+const UserForm = ({ disabled, setIsFormDisabled }) => {
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const loading = useSelector(selectIsLoading);
 
-  const [initialValues, setInitialValues] = useState({
+  const [errorsVisible, setErrorsVisible] = useState(true);
+  const [preview, setPreview] = useState(user.avatarURL);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const initialValues = {
     avatar: user.avatarURL,
     name: user.name,
     email: user.email,
     birthday: user.birthday,
     phone: user.phone,
     city: user.city,
-  });
-  const [errorsVisible, setErrorsVisible] = useState(true);
-  const [image, setImage] = useState({ preview: '', data: '' });
-  const [showConfirm, setShowConfirm] = useState(false);
+  };
 
-  // const initialValues = {
-  //   avatar: user ? user.avatarURL : '',
-  //   name: user ? user.name : '',
-  //   email: user ? user.email : '',
-  //   birthday: user ? user.birthday : '',
-  //   phone: user ? user.phone : '',
-  //   city: user ? user.city : '',
-  // };
+  const formikProps = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: values => {
+      if (Object.keys(formikProps.errors).length === 0) {
+        const formData = new FormData();
+        for (let key in values) {
+          formData.append(`${key}`, values[key]);
+        }
+        dispatch(updateUserData(formData));
+
+        setIsFormDisabled(prevState => !prevState);
+      }
+    },
+  });
 
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {
-      setImage({ preview: '', data: '' });
+      setPreview(user.avatarURL);
     }
     setShowConfirm(false);
   };
@@ -55,55 +65,25 @@ const UserForm = ({ disabled, user }) => {
     if (!disabled) {
       setErrorsVisible(true);
     } else {
-      setImage({ preview: '', data: '' });
+      setShowConfirm(false);
     }
   }, [disabled]);
 
   const handleFileChange = e => {
-    const img = {
-      preview: URL.createObjectURL(e.currentTarget.files[0]),
-      data: e.currentTarget.files[0],
-    };
-
-    setImage(img);
+    formikProps.setFieldValue('avatar', e.currentTarget.files[0]);
+    setPreview(URL.createObjectURL(e.currentTarget.files[0]));
     setShowConfirm(true);
   };
-
-  const handleChange = event => {
-    setInitialValues(event.target.name, event.target.value);
-  };
-
-  const handleSubmit = values => {
-    let formData = new FormData();
-
-    for (const key in values) {
-      if (key === 'avatar') {
-        formData.append('avatar', image.data);
-      } else {
-        formData.append(`${key}`, values[key]);
-      }
-    }
-    dispatch(updateUserData(formData));
-  };
-
   return (
-    <Formik
-      enableReinitialize
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      onChange={handleChange}
-      validationSchema={validationSchema}
-    >
-      {formikProps => (
-        <Form>
+    <>
+      {user && (
+        <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {disabled ? (
-                <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
+              {!disabled ? (
+                <UserPhoto src={preview} />
               ) : (
-                <UserPhoto
-                  src={image.preview ? image.preview : user.avatarURL}
-                />
+                <UserPhoto src={user.avatarURL} />
               )}
 
               {!disabled && !showConfirm && (
@@ -114,6 +94,7 @@ const UserForm = ({ disabled, user }) => {
                   </FileInputLabel>
                   <FileInput
                     type="file"
+                    name="avatar"
                     id="file"
                     accept="image/*"
                     onChange={handleFileChange}
@@ -126,6 +107,7 @@ const UserForm = ({ disabled, user }) => {
                     marginTop: '15px',
                     display: 'flex',
                     justifyContent: 'center',
+                    alignItems: 'center',
                     cursor: 'pointer',
                   }}
                 >
@@ -134,6 +116,7 @@ const UserForm = ({ disabled, user }) => {
                     style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
                     onClick={handleClose}
                   />
+                  <Text>Confirm</Text>
                   <BsX
                     id="cancel"
                     style={{ fill: '#F43F5E', width: '24px', height: '24px' }}
@@ -145,62 +128,72 @@ const UserForm = ({ disabled, user }) => {
             <FieldsContainer>
               <InputContainer>
                 <label htmlFor="name">Name:</label>
-                <Field
+                <input
                   type="text"
                   name="name"
+                  value={formikProps.values.name}
                   placeholder="Kate"
                   disabled={disabled}
+                  onChange={formikProps.handleChange}
                 />
-                {errorsVisible && (
-                  <ErrorMessage name="name" component={Error} />
+                {formikProps.errors.name && errorsVisible && (
+                  <Error>{formikProps.errors.name}</Error>
                 )}
               </InputContainer>
               <InputContainer>
                 <label htmlFor="email">Email:</label>
-                <Field
+                <input
                   type="email"
                   name="email"
+                  value={formikProps.values.email}
                   placeholder="Kate@mail.com"
                   disabled={disabled}
+                  onChange={formikProps.handleChange}
                 />
-                {errorsVisible && (
-                  <ErrorMessage name="email" component={Error} />
+                {formikProps.errors.email && errorsVisible && (
+                  <Error>{formikProps.errors.email}</Error>
                 )}
               </InputContainer>
               <InputContainer>
                 <label htmlFor="birthday">Birthday:</label>
-                <Field
+                <input
                   name="birthday"
                   type="text"
+                  value={formikProps.values.birthday}
                   placeholder="dd.mm.yyyy"
                   disabled={disabled}
+                  onChange={formikProps.handleChange}
                 />
-                {errorsVisible && (
-                  <ErrorMessage name="birthday" component={Error} />
+                {formikProps.errors.birthday && errorsVisible && (
+                  <Error>{formikProps.errors.birthday}</Error>
                 )}
               </InputContainer>
               <InputContainer>
                 <label htmlFor="phone">Phone:</label>
-                <Field
+                <input
                   type="tel"
                   name="phone"
+                  value={formikProps.values.phone}
                   placeholder="+380..."
                   disabled={disabled}
+                  onChange={formikProps.handleChange}
                 />
-                {errorsVisible && (
-                  <ErrorMessage name="phone" component={Error} />
+                {formikProps.errors.phone && errorsVisible && (
+                  <Error>{formikProps.errors.phone}</Error>
                 )}
               </InputContainer>
               <InputContainer>
                 <label htmlFor="city">City:</label>
-                <Field
+                <input
                   type="text"
                   name="city"
+                  value={formikProps.values.city}
                   placeholder="Ternopil"
                   disabled={disabled}
+                  onChange={formikProps.handleChange}
                 />
-                {errorsVisible && (
-                  <ErrorMessage name="city" component={Error} />
+                {formikProps.errors.city && errorsVisible && (
+                  <Error>{formikProps.errors.city}</Error>
                 )}
               </InputContainer>
               {!disabled && (
@@ -210,9 +203,11 @@ const UserForm = ({ disabled, user }) => {
               )}
             </FieldsContainer>
           </StyledForm>
-        </Form>
+        </form>
       )}
-    </Formik>
+
+      {loading && <Loader />}
+    </>
   );
 };
 

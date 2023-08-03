@@ -30,6 +30,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+/* var(--labels-bg-color);
+var(--btn-bg-color); */
 
 :root {
   --main-font: 'Manrope', sans-serif;

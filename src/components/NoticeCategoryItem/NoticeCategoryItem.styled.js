@@ -83,7 +83,7 @@ export const HeartIcon = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #c5dff6;
+  background-color: var(--labels-bg-color);
 
   border: none;
 `;
@@ -91,13 +91,13 @@ export const HeartIcon = styled.button`
 export const Heart = styled(HiOutlineHeart)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 export const HeartFill = styled(HiHeart)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 export const RemoveNoticeBtn = styled.button`
@@ -110,7 +110,7 @@ display: flex;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #c5dff6;
+  background-color: var(--labels-bg-color);
 
   border: none;
 `
@@ -118,7 +118,7 @@ display: flex;
 export const RemoveIcon = styled(RiDeleteBinLine)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
 `;
 
 
@@ -134,7 +134,7 @@ export const FilterStatus = styled.div`
   top: 16px;
   left: 0;
 
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 `;
@@ -149,7 +149,7 @@ export const LocationItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
   white-space: nowrap; 
@@ -164,7 +164,7 @@ export const LocationItem = styled.div`
 export const Location = styled(HiOutlineLocationMarker)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -179,7 +179,7 @@ export const DateItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
   white-space: nowrap; 
@@ -194,7 +194,7 @@ export const DateItem = styled.div`
 export const AgeCount = styled(HiOutlineClock)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   /* margin-left: 9px; */
   /* margin-right: 8px; */
 `;
@@ -209,7 +209,7 @@ export const SexItem = styled.div`
 
   width: 85px;
   height: 28px;
-  background-color: #cce4fb;
+  background-color: var(--labels-bg-color);
   border-radius: 16px;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
@@ -220,7 +220,7 @@ export const SexItem = styled.div`
 export const Female = styled(GiFemale)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -228,7 +228,7 @@ export const Female = styled(GiFemale)`
 export const Male = styled(GiMale)`
   width: 24px;
   height: 24px;
-  color: #54adff;
+  color: var(--btn-bg-color);
   margin-left: 9px;
   /* margin-right: 8px; */
 `;
@@ -242,11 +242,11 @@ export const LoadMoreBtn = styled.button`
   height: 38px;
   outline: none;
   border-width: 2px;
-  border-color: #54adff;
+  border-color: var(--btn-bg-color);
   border-style: solid;
   border-radius: 40px;
-  color: #54adff;
-  fill: #54adff;
+  color: var(--btn-bg-color);
+  fill: var(--btn-bg-color);
   cursor: pointer;
   margin-bottom: 24px;
 
@@ -260,7 +260,7 @@ export const LoadMoreBtn = styled.button`
 
   &:hover {
     color: #fff;
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: var(--hover-btn-bg-color);
     fill: #fff;
   }
 

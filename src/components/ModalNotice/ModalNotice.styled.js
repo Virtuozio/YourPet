@@ -1,5 +1,35 @@
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
+// import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+
+import { RxCross1 } from 'react-icons/rx';
+import Box from '@mui/material/Box';
+
+
+const ModalBox = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  /* height: 445px; */
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 40px;
+    /* height: 429px; */
+  }
+`;
 
 const Wrapper = styled.div`
   @media screen and (min-width: 768px) {
@@ -7,6 +37,7 @@ const Wrapper = styled.div`
     gap: 24px;
   }
 `;
+
 
 const PetPhoto = styled.img`
   position: relative;
@@ -267,7 +298,34 @@ const Container = styled.div`
   }
 `;
 
+const ModalCloseBtn = styled.button`
+  position: absolute;
+  right: 16px;
+  top: 16px;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  @media screen and (min-width: 768px) {
+    right: 24px;
+    top: 24px;
+  }
+`;
+
+const ModalCloseBtnIcon = styled(RxCross1)`
+  width: 24px;
+  height: 24px;
+  color: #54adff;
+
+  &:hover {
+    color: #ffc107;
+  }
+`;
+
 export {
+  ModalBox,
   Wrapper,
   PetPhoto,
   Title,
@@ -283,4 +341,7 @@ export {
   RemoveButton,
   StyledLink,
   Container,
+  ModalCloseBtn,
+  ModalCloseBtnIcon
+  
 };

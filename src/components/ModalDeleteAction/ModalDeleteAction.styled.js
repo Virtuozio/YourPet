@@ -1,8 +1,32 @@
-import styled from 'styled-components';
-
-import { FiTrash2 } from 'react-icons/fi';
+import styled from '@emotion/styled';
 
 import Box from '@mui/material/Box';
+import { FiTrash2 } from "react-icons/fi";
+
+
+const ModalBox = styled(Box)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  /* height: 445px; */
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+
+  @media screen and (min-width: 768px) {
+    width: 608px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 40px;
+    /* height: 429px; */
+  }
+`;
 
 const Section = styled.div`
   height: 329px;
@@ -127,29 +151,7 @@ const TrashIcon = styled(FiTrash2)`
   color: #fef9f9;
 `;
 
-const ModalBox = styled(Box)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  /* height: 445px; */
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #fff;
-  border-radius: 20px;
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
-  @media screen and (min-width: 768px) {
-    width: 608px;
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 40px;
-    /* height: 429px; */
-  }
-`;
 
 export {
   Section,

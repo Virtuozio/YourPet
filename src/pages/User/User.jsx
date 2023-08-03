@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchPets } from 'redux/pets/petsOperations';
 import { selectIsRegistered } from 'redux/auth/authSelectors';
-import { currentUser } from 'redux/auth/authOperations';
 
 import { BsPlus } from 'react-icons/bs';
 

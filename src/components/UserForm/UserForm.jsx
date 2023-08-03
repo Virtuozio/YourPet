@@ -14,13 +14,9 @@ import {
   Text,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
-import defaultImg from 'assets/Photo default.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  // currentUser,
-  updateUserData,
-} from 'redux/auth/authOperations';
-import { useAuth } from 'hooks';
+import { updateUserData } from 'redux/auth/authOperations';
+
 import { selectIsLoading, selectUser } from 'redux/auth/authSelectors';
 import Loader from 'components/Loader/Loader';
 
@@ -41,12 +37,11 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     phone: user.phone,
     city: user.city,
   };
-  console.log(initialValues);
+
   const formikProps = useFormik({
     initialValues,
     validationSchema,
     onSubmit: values => {
-      console.log('values', formikProps.values);
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
         for (let key in values) {
@@ -70,7 +65,6 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     if (!disabled) {
       setErrorsVisible(true);
     } else {
-      // setPreview(user.avatarURL);
       setShowConfirm(false);
     }
   }, [disabled]);
@@ -86,13 +80,6 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
         <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {/* {disabled ? (
-                <UserPhoto src={preview ? preview : defaultImg} />
-              ) : (
-                <UserPhoto
-                  src={preview ? preview : formikProps.values.avatar}
-                />
-              )} */}
               {!disabled ? (
                 <UserPhoto src={preview} />
               ) : (

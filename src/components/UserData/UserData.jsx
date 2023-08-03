@@ -7,12 +7,10 @@ import { useState } from 'react';
 import { UserCardContainer, EditBtn } from './UserData.styled';
 import { useAuth } from 'hooks';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { currentUser } from 'redux/auth/authOperations';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
-  const dispatch = useDispatch();
+
   const { user } = useAuth();
 
   useEffect(() => {

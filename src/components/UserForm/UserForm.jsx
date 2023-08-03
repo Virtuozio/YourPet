@@ -21,27 +21,27 @@ import {
   updateUserData,
 } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks';
-import { selectIsLoading } from 'redux/auth/authSelectors';
+import { selectIsLoading, selectUser } from 'redux/auth/authSelectors';
 import Loader from 'components/Loader/Loader';
 
-const UserForm = ({ disabled }) => {
+const UserForm = ({ disabled, setIsFormDisabled }) => {
   const dispatch = useDispatch();
-  const { user } = useAuth();
+  const user = useSelector(selectUser);
   const loading = useSelector(selectIsLoading);
 
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState(user.avatarURL);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [currentUser, setCurrentUser] = useState(user);
 
   const initialValues = {
-    avatar: currentUser.avatarURL,
-    name: currentUser.name,
-    email: currentUser.email,
-    birthday: currentUser.birthday,
-    phone: currentUser.phone,
-    city: currentUser.city,
+    avatar: user.avatarURL,
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday,
+    phone: user.phone,
+    city: user.city,
   };
+  console.log(initialValues);
   const formikProps = useFormik({
     initialValues,
     validationSchema,
@@ -53,18 +53,15 @@ const UserForm = ({ disabled }) => {
           formData.append(`${key}`, values[key]);
         }
         dispatch(updateUserData(formData));
+
+        setIsFormDisabled(prevState => !prevState);
       }
     },
   });
-  console.log(formikProps.values);
+
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {
-      setPreview();
-
-      const fileInput = document.getElementById('file');
-      if (fileInput) {
-        fileInput.value = '';
-      }
+      setPreview(user.avatarURL);
     }
     setShowConfirm(false);
   };
@@ -73,26 +70,33 @@ const UserForm = ({ disabled }) => {
     if (!disabled) {
       setErrorsVisible(true);
     } else {
-      setPreview();
+      // setPreview(user.avatarURL);
+      setShowConfirm(false);
     }
   }, [disabled]);
 
   const handleFileChange = e => {
-    formikProps.setFieldValue('avatarURL', e.currentTarget.files[0]);
+    formikProps.setFieldValue('avatar', e.currentTarget.files[0]);
     setPreview(URL.createObjectURL(e.currentTarget.files[0]));
     setShowConfirm(true);
   };
-
   return (
     <>
       {user && (
         <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {disabled ? (
-                <UserPhoto src={user.avatarURL ? user.avatarURL : defaultImg} />
+              {/* {disabled ? (
+                <UserPhoto src={preview ? preview : defaultImg} />
               ) : (
-                <UserPhoto src={preview ? preview : user.avatarURL} />
+                <UserPhoto
+                  src={preview ? preview : formikProps.values.avatar}
+                />
+              )} */}
+              {!disabled ? (
+                <UserPhoto src={preview} />
+              ) : (
+                <UserPhoto src={user.avatarURL} />
               )}
 
               {!disabled && !showConfirm && (

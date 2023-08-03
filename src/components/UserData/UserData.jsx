@@ -7,10 +7,12 @@ import { useState } from 'react';
 import { UserCardContainer, EditBtn } from './UserData.styled';
 import { useAuth } from 'hooks';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { currentUser } from 'redux/auth/authOperations';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
-
+  const dispatch = useDispatch();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -19,22 +21,23 @@ const UserData = () => {
 
   return (
     <>
-      {user && (
-        <UserCardContainer>
-          {isFormDisabled ? (
-            <EditBtn onClick={() => setIsFormDisabled(false)}>
-              <BiEditAlt />
-            </EditBtn>
-          ) : (
-            <EditBtn onClick={() => setIsFormDisabled(true)}>
-              <LiaTimesSolid />
-            </EditBtn>
-          )}
-          <UserForm disabled={isFormDisabled} />
+      <UserCardContainer>
+        {isFormDisabled ? (
+          <EditBtn onClick={() => setIsFormDisabled(false)}>
+            <BiEditAlt />
+          </EditBtn>
+        ) : (
+          <EditBtn onClick={() => setIsFormDisabled(true)}>
+            <LiaTimesSolid />
+          </EditBtn>
+        )}
+        <UserForm
+          disabled={isFormDisabled}
+          setIsFormDisabled={setIsFormDisabled}
+        />
 
-          {isFormDisabled && <Logout />}
-        </UserCardContainer>
-      )}
+        {isFormDisabled && <Logout />}
+      </UserCardContainer>
     </>
   );
 };

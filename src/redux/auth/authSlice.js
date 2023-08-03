@@ -49,13 +49,16 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(updateUserData.pending, (state, action) => {
+      .addCase(updateUserData.pending, state => {
         state.isLoading = true;
       })
       .addCase(updateUserData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
         state.token = action.payload.token;
+      })
+      .addCase(updateUserData.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(currentUser.fulfilled, (state, action) => {
         state.user = action.payload;

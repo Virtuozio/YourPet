@@ -64,7 +64,7 @@ export const Menu = ({ size }) => {
             )}
 
             {size >= 768 && <Nav />}
-            {showModal && (
+            {showModal && isLoggedIn && (
               <Backdrop closeModal={toggleModal}>
                 <ModalApproveAction closeModal={toggleModal} />
               </Backdrop>

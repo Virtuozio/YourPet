@@ -24,7 +24,6 @@ const User = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPets());
-    dispatch(currentUser());
   }, [dispatch]);
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);

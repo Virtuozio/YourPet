@@ -10,6 +10,7 @@ export const AuthContainer = styled.div`
 export const AuthBtn = styled(Link)`
   display: flex;
   width: 165px;
+  max-height: 38px;
   padding: 8px 20px;
   justify-content: center;
   align-items: center;
@@ -46,9 +47,5 @@ export const AuthBtn = styled(Link)`
     svg {
       fill: var(--header-items-color);
     }
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 165px;
   }
 `;

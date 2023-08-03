@@ -1,7 +1,7 @@
 import Logo from 'components/Logo/Logo';
 import Nav from 'components/Nav/Nav';
 import UserNav from 'components/UserNav/UserNav';
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, User } from './Header.styled';
 import icon from 'assets/images/user/user.png';
 
@@ -12,7 +12,6 @@ import { Menu } from 'components/Menu/Menu';
 const Header = ({ handleClick }) => {
   const { isLoggedIn, user } = useAuth();
   const size = useWindowSize();
-  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <Container>
@@ -38,9 +37,7 @@ const Header = ({ handleClick }) => {
           </div>
         )}
 
-        {size[0] < 1200 && (
-          <Menu size={size} openMenu={openMenu} setOpenMenu={setOpenMenu} />
-        )}
+        {size[0] < 1200 && <Menu size={size} />}
       </div>
 
       {size[0] >= 1200 && (

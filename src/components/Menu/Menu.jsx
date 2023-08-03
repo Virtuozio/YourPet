@@ -15,13 +15,16 @@ import { CiLogout } from 'react-icons/ci';
 import Backdrop from 'components/Backdrop/Backdrop';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import useModal from 'hooks/useModal';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MobileMenu } from './MobileMenu';
 
-export const Menu = ({ size, openMenu, setOpenMenu }) => {
+export const Menu = ({ size }) => {
+  const [openMenu, setOpenMenu] = useState(false);
   const { isLoggedIn, user } = useAuth();
   const { toggleModal, showModal } = useModal(false);
+
   let url = useLocation();
+
   const closeMenu = useCallback(() => {
     setOpenMenu(false);
   }, [setOpenMenu]);
@@ -58,12 +61,6 @@ export const Menu = ({ size, openMenu, setOpenMenu }) => {
               <MobileMenu isLoggedIn={isLoggedIn} user={user} />
             ) : (
               <Nav />
-            )}
-            {isLoggedIn && size[0] < 768 && (
-              <LogoutBtn onClick={() => toggleModal()}>
-                Log Out
-                <CiLogout />
-              </LogoutBtn>
             )}
 
             {size >= 768 && <Nav />}

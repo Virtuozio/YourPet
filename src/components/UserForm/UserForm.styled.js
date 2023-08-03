@@ -41,9 +41,10 @@ const UserPhoto = styled.img`
 `;
 
 const FileInput = styled.input`
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
+  // opacity: 0;
+  // width: 0.1px;
+  // height: 0.1px;
+  display: none;
 `;
 
 const FileInputLabel = styled.label`

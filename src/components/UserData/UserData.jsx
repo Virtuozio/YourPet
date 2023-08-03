@@ -30,7 +30,7 @@ const UserData = () => {
               <LiaTimesSolid />
             </EditBtn>
           )}
-          <UserForm disabled={isFormDisabled} user={user} />
+          <UserForm disabled={isFormDisabled} />
 
           {isFormDisabled && <Logout />}
         </UserCardContainer>

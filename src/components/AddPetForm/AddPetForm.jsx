@@ -285,6 +285,7 @@ const AddPetForm = () => {
               touched={touched}
               handleBlur={handleBlur}
               isSubmitting={isSubmitting}
+              setFieldValue={setFieldValue}
             />
           )}
           {currentForm.third && (

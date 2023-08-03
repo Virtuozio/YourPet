@@ -58,7 +58,7 @@ const FormThirdStep = ({
   };
 
   const handleInputBlur = e => {
-    const { name } = e.target;
+    const { name } = e.currentTarget;
     setInputsErrors({ ...inputsErrors, [name]: true });
     handleBlur(e);
   };
@@ -192,6 +192,7 @@ const FormThirdStep = ({
               <FormInput
                 type="number"
                 id="price"
+                name="price"
                 placeholder="Type price of pet"
                 value={values.price}
                 onChange={handleChange}

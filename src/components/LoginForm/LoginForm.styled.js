@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
 import { Form, Field, ErrorMessage } from 'formik';
 
-
 export const Div = styled.div`
   margin: 0 auto;
   margin-top: 44px;
-  background-color: white;
-  border: 1px solid rgba(84, 173, 255, 1);
+  background-color: var(--label-active-color);
+  border: 1px solid var(--btn-bg-color);
   box-shadow: rgba(136, 198, 253, 0.19);
   border-radius: 40px;
   margin-bottom: 100px;
@@ -27,20 +26,19 @@ export const Div = styled.div`
     font-family: Manrope;
     font-weight: 400;
     font-size: 12px;
-    color: rgba(136, 136, 136, 1);
+    color: var(--text-input-color);
     text-align: center;
   }
 
   a {
     font-size: 12px;
-    color: rgba(84, 173, 255, 1);
+    color: var(--btn-bg-color);
   }
 
   @media screen and (min-width: 768px) {
     width: 608px;
     padding: 60px 75px;
     margin-top: 80px;
-
 
     h1 {
       font-family: Manrope;
@@ -55,13 +53,13 @@ export const Div = styled.div`
       font-family: Manrope;
       font-weight: 400;
       font-size: 12px;
-      color: rgba(136, 136, 136, 1);
+      color: var(--text-input-color);
       text-align: center;
     }
 
     a {
       font-size: 12px;
-      color: rgba(84, 173, 255, 1);
+      color: var(--btn-bg-color);
     }
   }
 
@@ -75,7 +73,6 @@ export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 
   :not(:last-child) {
     margin-bottom: 24px;
@@ -99,8 +96,6 @@ export const Icon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 24px;
-  height: 24px; */
   right: 12px;
   top: 12px;
   color: ${({ passwordValue }) =>
@@ -109,7 +104,7 @@ export const Icon = styled.span`
   cursor: pointer;
   transform: ${({ passwordValue }) =>
     passwordValue ? 'translateX(-27px)' : 'none'};
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration) var(--cubic);
 `;
 
 export const IconValid = styled.span`
@@ -120,27 +115,27 @@ export const IconValid = styled.span`
   right: 17px;
   top: 15px;
   color: ${({ error, valid }) =>
-      error
-        ? 'var(--error-color)'
-        : valid
-        ? 'var(--success-color)'
-        : 'var(--btn-bg-color)'};
-  cursor: pointer;
-  transition: 250ms;
+    error
+      ? 'var(--error-color)'
+      : valid
+      ? 'var(--success-color)'
+      : 'var(--btn-bg-color)'};
+  transition: var(--duration);
   opacity: ${({ passwordValue }) => (passwordValue ? 1 : 0)};
 `;
 
 export const InputLine = styled(Field)`
   font-family: Manrope;
   position: relative;
-  color: rgba(136, 136, 136, 1);
+  color: var(--text-input-color);
   font-size: 16px;
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid ${({ error, valid }) =>
+  border: 1px solid
+    ${({ error, value }) =>
       error
         ? 'var(--error-color)'
-        : valid
+        : value
         ? 'var(--success-color)'
         : 'var(--btn-bg-color)'};
   border-radius: 40px;
@@ -169,7 +164,7 @@ export const Btn = styled.button`
   font-size: 20px;
   color: #fff;
   cursor: pointer;
-  background: rgba(84, 173, 255, 1);
+  background: var(--btn-bg-color);
   translate: 0 0;
 
   ::before {
@@ -184,7 +179,7 @@ export const Btn = styled.button`
     border-radius: 40px;
     opacity: 0;
     z-index: -1;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--duration) var(--cubic);
   }
 
   :hover {
@@ -211,15 +206,12 @@ export const Btn = styled.button`
 `;
 
 export const Error = styled(ErrorMessage)`
-color: red;
-font-size: 12px;
-font-weight: 400;
-margin-top: 4px;
-margin-left: 16px;
-
-`
-
-
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 4px;
+  margin-left: 16px;
+`;
 
 export const IconEmail = styled.span`
   position: absolute;
@@ -227,13 +219,8 @@ export const IconEmail = styled.span`
   align-items: center;
   justify-content: center;
   right: -23px;
-
-  /* top: 12px; */
   color: ${({ emailValue }) =>
     emailValue ? 'var(--text-input-color)' : 'var(--btn-bg-color)'};
-
-  cursor: pointer;
-  transform: ${({ emailValue }) =>
-    emailValue ? 'translateX(-27px)' : 'none'};
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: ${({ emailValue }) => (emailValue ? 'translateX(-27px)' : 'none')};
+  transition: transform var(--duration) var(--cubic);
 `;

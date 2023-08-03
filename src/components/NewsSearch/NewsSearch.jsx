@@ -19,12 +19,6 @@ import Image from 'assets/default.png';
 
 const NewsSearch = ({ news }) => {
   const isLoad = useSelector(selectIsLoadingNews);
-  // const [sortNews, setSortNews] = useState([]);
-  // useEffect(() => {
-  //   if (news.length <= 0) return;
-
-  //   setSortNews(news);
-  // }, [news]);
 
   return (
     <>

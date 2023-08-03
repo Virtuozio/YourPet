@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 export const Footer = styled.div``;
 
-// export const Link = styled.a``;
 
 export const Container = styled.div`
   display: flex;

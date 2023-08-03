@@ -20,10 +20,13 @@ import { getNews, getNewsBySearch } from 'redux/news/newsOperations';
 import { useParams } from 'react-router';
 
 const NoticesSearch = ({ handleSearch }) => {
-  const [query, setQuery] = useState('');
-  const { categoryName } = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const [query, setQuery] = useState('');
+
+  const { categoryName } = useParams();
+
   const submitHandler = e => {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.query.value;

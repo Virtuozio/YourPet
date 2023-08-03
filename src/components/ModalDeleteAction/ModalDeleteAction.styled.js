@@ -46,7 +46,7 @@ const Header = styled.p`
   width: 200px;
   text-align: center;
 
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 24px;
@@ -59,7 +59,7 @@ const Header = styled.p`
 `;
 
 const DeleteText = styled.p`
-  color: #111111;
+  color: var(--primary-text-color);
   font-weight: 500;
   font-size: 14px;
   margin-bottom: 44px;
@@ -90,12 +90,12 @@ const BtnCancel = styled.button`
 
   background: transparent;
   border-width: 2px;
-  border-color: #54adff;
+  border-color: var(--btn-bg-color);
   border-style: solid;
   border-radius: 40px;
   font-size: 16px;
 
-  color: #54adff;
+  color: var(--btn-bg-color);
   font-size: 16px;
   font-weight: 700;
 
@@ -105,7 +105,7 @@ const BtnCancel = styled.button`
   &:hover,
   &:focus {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
-    color: #fef9f9;
+    color: var(--label-active-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -119,7 +119,7 @@ const BtnYes = styled.button`
   cursor: pointer;
   padding: 9px 0px;
 
-  background: #54adff;
+  background: var(--btn-bg-color);
   border: none;
   border-radius: 40px;
   font-size: 16px;
@@ -129,7 +129,7 @@ const BtnYes = styled.button`
   align-items: center;
   gap: 8px;
 
-  color: #fef9f9;
+  color: var(--label-active-color);
   font-size: 16px;
   font-weight: 700;
 

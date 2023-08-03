@@ -2,12 +2,19 @@
 
 export function petAgeCount(date) {
   const age = new Date(Date.now() - Date.parse(date)).getFullYear() - 1970 || 0;
-  if (age < 0.5) {
-    return '5 month';
+  if (age < 0.3) {
+    return '3 month';
   }
-  if (age < 1) {
-    return '8 month';
-  } else if (age === 1) {
+  if (age < 0.6) {
+    return '6 month';
+  }
+  if (age < 0.9) {
+    return '9 month';
+  }
+  // if (age < 1) {
+  //   return '8 month';
+  // }
+  else if (age === 1) {
     return '1 year';
   } else if (age > 15) {
     return 'old pet';

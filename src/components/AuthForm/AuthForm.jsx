@@ -23,36 +23,13 @@ import {
 } from './AuthForm.styled';
 
 const AuthForm = ({ values, errors, touched }) => {
-  const formik = useFormikContext();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const validPassword = formik.touched.password && !formik.errors.password;
-  const validConfirmPassword =
-    formik.touched.confirmPassword && !formik.errors.confirmPassword;
-
-  const validateIcon = (touched, errors, values, fieldName) => {
-    const valid = touched[fieldName] && !errors[fieldName];
-
-    if (touched[fieldName] && errors[fieldName]) {
-      return (
-        <IconValid valid={false} passwordValue={password.length}>
-          <RxCross2 style={{ color: 'rgba(255, 99, 71, 1)' }} />
-        </IconValid>
-      );
-    } else if (valid) {
-      return (
-        <IconValid valid passwordValue={password.length}>
-          <MdOutlineDone />
-        </IconValid>
-      );
-    } else {
-      return null;
-    }
-  };
+  const formik = useFormikContext();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevShowPassword => !prevShowPassword);
@@ -103,7 +80,6 @@ const AuthForm = ({ values, errors, touched }) => {
               onChange={onNameChange}
               value={name}
               error={formik.touched.name && formik.errors.name}
-              valid={formik.touched.name && !formik.errors.name}
             />
             <IconName nameValue={name.length}>
               {formik.touched.name && formik.errors.name ? (
@@ -131,7 +107,6 @@ const AuthForm = ({ values, errors, touched }) => {
               onChange={onEmailChange}
               value={email}
               error={formik.touched.email && formik.errors.email}
-              valid={formik.touched.email && !formik.errors.email}
             />
             <IconEmail emailValue={email.length}>
               {formik.touched.email && formik.errors.email ? (
@@ -159,7 +134,6 @@ const AuthForm = ({ values, errors, touched }) => {
               onChange={onPasswordChange}
               value={password}
               error={formik.touched.password && formik.errors.password}
-              valid={validPassword}
             />
             <Icon
               onClick={togglePasswordVisibility}
@@ -169,7 +143,6 @@ const AuthForm = ({ values, errors, touched }) => {
               }}
               passwordValue={password}
               error={formik.touched.password && formik.errors.password}
-              valid={validPassword}
             >
               {showPassword ? (
                 <MdOutlineVisibility />
@@ -177,11 +150,14 @@ const AuthForm = ({ values, errors, touched }) => {
                 <MdOutlineVisibilityOff />
               )}
             </Icon>
-            {validateIcon(
-              formik.touched,
-              formik.errors,
-              formik.values,
-              'password'
+            {formik.touched.password && formik.errors.password ? (
+              <IconValid valid={false} passwordValue={password.length}>
+                <RxCross2 style={{ color: 'rgba(255, 99, 71, 1)' }} />
+              </IconValid>
+            ) : (
+              <IconValid valid passwordValue={password.length}>
+                <MdOutlineDone />
+              </IconValid>
             )}
             <Error name="password" component="span" />
           </InputContainer>
@@ -200,7 +176,6 @@ const AuthForm = ({ values, errors, touched }) => {
               error={
                 formik.touched.confirmPassword && formik.errors.confirmPassword
               }
-              valid={validConfirmPassword}
             />
             <Icon
               onClick={toggleConfirmPasswordVisibility}
@@ -212,7 +187,6 @@ const AuthForm = ({ values, errors, touched }) => {
               error={
                 formik.touched.confirmPassword && formik.errors.confirmPassword
               }
-              valid={validConfirmPassword}
             >
               {showConfirmPassword ? (
                 <MdOutlineVisibility />
@@ -220,11 +194,14 @@ const AuthForm = ({ values, errors, touched }) => {
                 <MdOutlineVisibilityOff />
               )}
             </Icon>
-            {validateIcon(
-              formik.touched,
-              formik.errors,
-              formik.values,
-              'confirmPassword'
+            {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+              <IconValid valid={false} passwordValue={confirmPassword.length}>
+                <RxCross2 style={{ color: 'rgba(255, 99, 71, 1)' }} />
+              </IconValid>
+            ) : (
+              <IconValid valid passwordValue={confirmPassword.length}>
+                <MdOutlineDone />
+              </IconValid>
             )}
             <Error name="confirmPassword" component="span" />
           </InputContainer>

@@ -1,6 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
+
+import {
+  MdOutlineVisibilityOff,
+  MdOutlineVisibility,
+  MdOutlineDone,
+} from 'react-icons/md';
+import { RxCross2 } from 'react-icons/rx';
 
 import {
   Div,
@@ -14,18 +20,11 @@ import {
   Error,
 } from './LoginForm.styled';
 
-import {
-  MdOutlineVisibilityOff,
-  MdOutlineVisibility,
-  MdOutlineDone,
-} from 'react-icons/md';
-import { RxCross2 } from 'react-icons/rx';
-
 const LoginForm = ({ values, errors, touched }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const formik = useFormikContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const formik = useFormikContext();
   const validPassword = formik.touched.password && !formik.errors.password;
 
   const validateIcon = (touched, errors, values, fieldName) => {
@@ -82,7 +81,6 @@ const LoginForm = ({ values, errors, touched }) => {
               onChange={onEmailChange}
               value={email}
               error={formik.touched.email && formik.errors.email}
-              valid={formik.touched.email && !formik.errors.email}
             />
             <IconEmail emailValue={email.length}>
               {formik.touched.email && formik.errors.email ? (
@@ -110,7 +108,6 @@ const LoginForm = ({ values, errors, touched }) => {
               onChange={onPasswordChange}
               value={password}
               error={formik.touched.password && formik.errors.password}
-              valid={validPassword}
             />
             <Icon
               onClick={togglePasswordVisibility}

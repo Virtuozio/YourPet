@@ -19,7 +19,7 @@ export const Backdrop = ({ children, closeModal }) => {
     if (event.target === event.currentTarget) {
       closeModal();
     }
-  }
+  };
 
   return (
     <Overlay onClick={onModalOpen}>

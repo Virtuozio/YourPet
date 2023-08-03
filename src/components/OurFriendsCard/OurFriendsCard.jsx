@@ -20,7 +20,9 @@ const OurFriendsCard = ({ friendData }) => {
   return (
     <>
       <Container>
-        <Company href={friendData.url}>{shortenedTitle}</Company>
+        <Company href={friendData.url} target="_blank">
+          {shortenedTitle}
+        </Company>
         <ContentBox>
           <Logo
             src={friendData.imageUrl ? friendData.imageUrl : KharkivShelter}

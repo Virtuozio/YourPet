@@ -1,25 +1,34 @@
-import LoginForm from 'components/LoginForm/LoginForm';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectError } from 'redux/auth/authSelectors';
 import { logIn } from 'redux/auth/authOperations';
-import { useNavigate } from 'react-router';
+
+import { ModalErrorLogin } from 'components/ModalErrorLogin/ModalErrorLogin';
+import LoginForm from 'components/LoginForm/LoginForm';
+import Backdrop from 'components/Backdrop/Backdrop';
+
 import validationLogInSchema from 'utils/schemas/logInSchema';
 
 const Login = () => {
-  const navigate = useNavigate();
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const err = useSelector(selectError);
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    try {
-      const { email, password } = values;
-      await dispatch(logIn({ email, password }));
-      resetForm();
-      navigate('/user');
-    } catch (error) {
-      console.error('Login failed:', error);
+  useEffect(() => {
+    if (err) {
+      setIsErrorModalOpen(true);
     }
+  }, [err]);
+
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    const { email, password } = values;
+    dispatch(logIn({ email, password }));
     setSubmitting(false);
+  };
+
+  const closeErrorModal = () => {
+    setIsErrorModalOpen(false);
   };
 
   return (
@@ -41,6 +50,11 @@ const Login = () => {
           />
         )}
       </Formik>
+      {isErrorModalOpen && (
+        <Backdrop closeModal={closeErrorModal}>
+          <ModalErrorLogin onClose={closeErrorModal} />
+        </Backdrop>
+      )}
     </>
   );
 };

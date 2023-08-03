@@ -16,7 +16,7 @@ import {
 
 const ModalUnauthorized = ({ open, handleClose }) => {
   return (
-    <div>
+    
       <Modal
         open={open}
         onClose={handleClose}
@@ -45,7 +45,7 @@ const ModalUnauthorized = ({ open, handleClose }) => {
           </BtnsWrapper>
         </ModalBox>
       </Modal>
-    </div>
+  
   );
 };
 

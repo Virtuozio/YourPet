@@ -89,6 +89,18 @@ export const removeFromFavorite = createAsyncThunk(
   }
 );
 
+export const removeFromFavoriteCategory = createAsyncThunk(
+  'notices/removeFromFavoriteWithOutR',
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.delete(`/notices/user/favorite/${id}`);
+      return response.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const fetchFavoriteNotices = createAsyncThunk(
   'notices/fetchFavoriteNotices',
   async (_, thunkAPI) => {
@@ -130,7 +142,7 @@ export const getNoticesBySearch = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(
-        `/notices/users/search?title=${data.input}&category=${data.category}`
+        `/notices/users/search?category=${data.category}&title=${data.input}`
       );
       return res.data;
     } catch (error) {

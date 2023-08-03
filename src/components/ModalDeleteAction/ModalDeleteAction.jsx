@@ -9,14 +9,19 @@ import {
   BtnWrapper,
   TrashIcon,
   DeleteText,
-  ModalBox
+  ModalBox,
+  ModalCloseBtn,
+  ModalCloseBtnIcon
 } from './ModalDeleteAction.styled';
 
 const ModalDeleteAction = ({ deleteModal, deleteModalClose, notice,  handleRemoveOwnNotice}) => {
   return (
-    <Modal open={deleteModal} onClick={deleteModalClose}>
+    <Modal open={deleteModal} onClose={deleteModalClose}>
           <ModalBox>
-            <Section>
+        <Section>
+          <ModalCloseBtn>
+                  <ModalCloseBtnIcon onClick={deleteModalClose} />
+                </ModalCloseBtn>
               <Header>Delete adverstiment?</Header>
               <DeleteText>
                 Are you sure you want to delete <strong>{notice.name}</strong>?

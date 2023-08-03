@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import Box from '@mui/material/Box';
 import { FiTrash2 } from "react-icons/fi";
+import { RxCross1 } from 'react-icons/rx';
 
 
 const ModalBox = styled(Box)`
@@ -151,6 +152,31 @@ const TrashIcon = styled(FiTrash2)`
   color: #fef9f9;
 `;
 
+const ModalCloseBtn = styled.button`
+  position: absolute;
+  right: 16px;
+  top: 16px;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  @media screen and (min-width: 768px) {
+    right: 24px;
+    top: 24px;
+  }
+`;
+
+const ModalCloseBtnIcon = styled(RxCross1)`
+  width: 24px;
+  height: 24px;
+  color: #54adff;
+
+  &:hover {
+    color: #ffc107;
+  }
+`;
 
 
 export {
@@ -162,4 +188,6 @@ export {
   BtnCancel,
   BtnYes,
   DeleteText,
+  ModalCloseBtn,
+  ModalCloseBtnIcon
 };

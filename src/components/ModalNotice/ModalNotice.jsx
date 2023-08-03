@@ -19,14 +19,15 @@ import {
   PhotoContainer,
   AddButton,
   RemoveButton
+  
 } from './ModalNotice.styled';
 
 import Modal from '@mui/material/Modal';
 
-const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDateFormat, favorite, toggleFavoriteMethod, phoneFormat}) => {
+const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDateFormat, favorite, toggleFavoriteMethod}) => {
   return (
     <>
-      <Modal open={openPetInfo} onClick={PetInfoClose}>
+      <Modal open={openPetInfo} onClose={PetInfoClose}>
             <ModalBox>
               <Wrapper>
                 <ModalCloseBtn>
@@ -37,7 +38,7 @@ const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDa
                   <CategoryItem>{categoryFilter(notice.category)}</CategoryItem>
                 </PhotoContainer>
                 <div>
-                  <Title>Сute dog looking for a home</Title>
+                  <Title>{notice.title}</Title>
                   <Info>
                     <Tag>Name:</Tag>
                     <Tag value="true">{notice.name}</Tag>
@@ -55,7 +56,7 @@ const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDa
                     </StyledLink>
                     <Tag>Phone:</Tag>
                     <StyledLink to="tel:+380971234567" privat="true">
-                      {phoneFormat(notice.ownerPhone)}
+                      {notice.ownerPhone}
                     </StyledLink>
                   </Info>
                 </div>

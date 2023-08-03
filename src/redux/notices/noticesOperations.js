@@ -130,7 +130,7 @@ export const getNoticesBySearch = createAsyncThunk(
   async (data, thunkAPI) => {
     try {
       const res = await axios.get(
-        `/notices/users/search?title=${data.input}&category=${data.category}`
+        `/notices/users/search?category=${data.category}&title=${data.input}`
       );
       return res.data;
     } catch (error) {

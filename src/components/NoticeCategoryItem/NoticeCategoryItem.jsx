@@ -126,10 +126,10 @@ const NoticeCategoryItem = ({ notice }) => {
     else return category;
   };
 
-  const phoneFormat = phone => {
-    if (phone === '+380000000000') return 'not specified'
-    return phone
-  }
+  // const phoneFormat = phone => {
+  //   if (phone === '+380000000000') return 'not specified'
+  //   return phone
+  // }
 
 
 
@@ -184,7 +184,6 @@ const NoticeCategoryItem = ({ notice }) => {
             modalDateFormat={modalDateFormat}
             favorite={favorite}
             toggleFavoriteMethod={toggleFavoriteMethod}
-            phoneFormat={phoneFormat}
           />
         </div>
       )}

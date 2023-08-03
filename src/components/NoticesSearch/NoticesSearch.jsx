@@ -36,8 +36,8 @@ const NoticesSearch = ({ handleSearch }) => {
     } else
       dispatch(
         getNoticesBySearch({
-          input: searchQuery,
           category: categoryName,
+          input: searchQuery,
         })
       );
   };

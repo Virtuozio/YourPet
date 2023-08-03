@@ -23,7 +23,7 @@ import {
 
 import Modal from '@mui/material/Modal';
 
-const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDateFormat, favorite, toggleFavoriteMethod}) => {
+const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDateFormat, favorite, toggleFavoriteMethod, phoneFormat}) => {
   return (
     <>
       <Modal open={openPetInfo} onClick={PetInfoClose}>
@@ -51,11 +51,11 @@ const ModalNotice = ({openPetInfo, PetInfoClose, notice, categoryFilter, modalDa
                     <Tag value="true">{notice.sex}</Tag>
                     <Tag>Email:</Tag>
                     <StyledLink to="mailto:user@mail.com" privat="true">
-                      user@mail.com{' '}
+                      {notice.ownerEmail}
                     </StyledLink>
                     <Tag>Phone:</Tag>
                     <StyledLink to="tel:+380971234567" privat="true">
-                      +380971234567{' '}
+                      {phoneFormat(notice.ownerPhone)}
                     </StyledLink>
                   </Info>
                 </div>

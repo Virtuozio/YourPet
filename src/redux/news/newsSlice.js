@@ -34,6 +34,7 @@ const newsSlice = createSlice({
         state.isLoadingNews = false;
         state.errorNews = null;
         state.news = action.payload.newsList;
+        state.totalNews = action.payload.total;
       }),
 });
 

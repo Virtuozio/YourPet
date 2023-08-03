@@ -55,8 +55,6 @@ export const updateUserData = createAsyncThunk(
   'auth/updateUserData',
   async (formData, thunkAPI) => {
     try {
-      // for (const value of formData.values()) {
-      // }
       const res = await axios.patch('/users/update/avatar', formData, {
         withCredentials: false,
         headers: {
@@ -93,7 +91,6 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }

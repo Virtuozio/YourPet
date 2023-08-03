@@ -155,6 +155,14 @@ const Error = styled.p`
   }
 `;
 
+const Text = styled.p`
+  color: #111;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.48px;
+`;
+
 export {
   FieldsContainer,
   UserPhoto,
@@ -164,4 +172,5 @@ export {
   SubmitButton,
   Error,
   StyledForm,
+  Text,
 };

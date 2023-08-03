@@ -11,6 +11,7 @@ import {
   SubmitButton,
   Error,
   FieldsContainer,
+  Text,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
 import defaultImg from 'assets/Photo default.jpg';
@@ -132,6 +133,7 @@ const UserForm = ({ disabled }) => {
                     marginTop: '15px',
                     display: 'flex',
                     justifyContent: 'center',
+                    alignItems: 'center',
                     cursor: 'pointer',
                   }}
                 >
@@ -140,6 +142,7 @@ const UserForm = ({ disabled }) => {
                     style={{ fill: '#54ADFF', width: '24px', height: '24px' }}
                     onClick={handleClose}
                   />
+                  <Text>Confirm</Text>
                   <BsX
                     id="cancel"
                     style={{ fill: '#F43F5E', width: '24px', height: '24px' }}

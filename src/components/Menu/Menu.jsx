@@ -58,7 +58,11 @@ export const Menu = ({ size }) => {
               </div>
             </Top>
             {size[0] < 768 ? (
-              <MobileMenu isLoggedIn={isLoggedIn} user={user} />
+              <MobileMenu
+                isLoggedIn={isLoggedIn}
+                user={user}
+                toggleModal={toggleModal}
+              />
             ) : (
               <Nav />
             )}

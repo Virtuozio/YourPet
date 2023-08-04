@@ -5,11 +5,10 @@ import {
   addToFavorite,
   removeFromFavorite,
   deleteNotice,
-  fetchFavoriteNotices,
   removeFromFavoriteCategory,
 } from 'redux/notices/noticesOperations';
 import { selectFavoriteNotices } from 'redux/notices/noticesSelectors';
-import {toast} from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import { petAgeCount, modalDateFormat } from 'utils/petAgeCount';
 
@@ -49,16 +48,13 @@ const NoticeCategoryItem = ({ notice }) => {
   const [favorite, setFavorite] = useState(false);
 
   const { categoryName } = useParams();
-
   const currentUser = useSelector(selectUser);
   const favNotices = useSelector(selectFavoriteNotices);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const dispatch = useDispatch();
 
-  //Modal options//
   const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [openPetInfo, setOpenPetInfo] = React.useState(false);
@@ -68,7 +64,6 @@ const NoticeCategoryItem = ({ notice }) => {
   const [deleteModal, setDeleteModal] = React.useState(false);
   const deleteModalOpen = () => setDeleteModal(true);
   const deleteModalClose = () => setDeleteModal(false);
-
 
   useEffect(() => {
     const newFunc = favNotices => {
@@ -90,20 +85,15 @@ const NoticeCategoryItem = ({ notice }) => {
       } else if (isLoggedIn && favorite && categoryName !== 'favorite') {
         dispatch(removeFromFavorite(notice._id));
         setFavorite(false);
-        
+
         toast.success('removed from favorites');
       } else if (categoryName === 'favorite') {
         dispatch(removeFromFavoriteCategory(notice._id));
         setFavorite(false);
         scroll.scrollToTop();
-      }
-      
-      else { 
-        // toast.error('You have to be loggedIn');
+      } else {
         setOpen(true);
-        dispatch(fetchFavoriteNotices());
-    }    
-      
+      }
     } catch (e) {
       toast.error('You have to be loggedIn');
     }
@@ -134,16 +124,9 @@ const NoticeCategoryItem = ({ notice }) => {
 
   const categoryFilter = category => {
     if (category === 'for-free') return 'in good hands';
-    if (category === 'lost-found') return 'lost/found'
+    if (category === 'lost-found') return 'lost/found';
     else return category;
   };
-
-  // const phoneFormat = phone => {
-  //   if (phone === '+380000000000') return 'not specified'
-  //   return phone
-  // }
-
-
 
   return (
     <NoticesCategoryItemStyled>
@@ -156,7 +139,7 @@ const NoticeCategoryItem = ({ notice }) => {
           {favorite ? <HeartFill /> : <Heart />}
         </HeartIcon>
 
-        {currentUser._id === notice.owner && (
+        {currentUser.email === notice.ownerEmail && (
           <RemoveNoticeBtn type="button" onClick={deleteModalOpen}>
             <RemoveIcon />
           </RemoveNoticeBtn>
@@ -182,10 +165,10 @@ const NoticeCategoryItem = ({ notice }) => {
 
       {!isLoggedIn && (
         <div>
-          <ModalUnauthorized open={open} handleClose={handleClose } />
+          <ModalUnauthorized open={open} handleClose={handleClose} />
         </div>
       )}
-      
+
       {openPetInfo && (
         <div>
           <ModalNotice
@@ -201,9 +184,13 @@ const NoticeCategoryItem = ({ notice }) => {
       )}
 
       <div>
-        <ModalDeleteAction deleteModal={deleteModal} deleteModalClose={deleteModalClose} notice={notice} handleRemoveOwnNotice={handleRemoveOwnNotice} />
+        <ModalDeleteAction
+          deleteModal={deleteModal}
+          deleteModalClose={deleteModalClose}
+          notice={notice}
+          handleRemoveOwnNotice={handleRemoveOwnNotice}
+        />
       </div>
-    
     </NoticesCategoryItemStyled>
   );
 };

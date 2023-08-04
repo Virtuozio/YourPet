@@ -29,8 +29,12 @@ import {
 } from 'redux/notices/noticesOperations';
 import { animateScroll as scroll } from 'react-scroll';
 
+import Loader from 'components/Loader/Loader';
+import { selectIsLoading } from 'redux/notices/noticesSelectors';
+
 const Notices = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoading = useSelector(selectIsLoading);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -72,6 +76,8 @@ const Notices = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
+
       <Wrapper>
         <Title>Find your favorite pet</Title>
         <NoticesSearch />

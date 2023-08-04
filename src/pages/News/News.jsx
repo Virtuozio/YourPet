@@ -16,13 +16,11 @@ import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Pagination from '@mui/material/Pagination';
 import { animateScroll as scroll } from 'react-scroll';
 
-
 const News = () => {
   const news = useSelector(selectAllNews);
   const totalNews = useSelector(selectTotalNews);
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  // const location = useLocation();
 
   const [query, setQuery] = useState('');
 
@@ -35,11 +33,9 @@ const News = () => {
   const submitHandler = e => {
     e.preventDefault();
     if (query) {
-      dispatch(getNews(`?title=${query}&page=1&limit=9`))
+      dispatch(getNews(`?title=${query}&page=1&limit=9`));
       setPage(1);
- 
-    }
-    else dispatch(getNews(`?page=1&limit=9`));
+    } else dispatch(getNews(`?page=1&limit=9`));
   };
 
   const onInputChange = e => {
@@ -50,8 +46,7 @@ const News = () => {
   const handleClear = () => {
     setQuery('');
     setPage(1);
-    dispatch(getNews(`?page=${page}&limit=9`));
- 
+    dispatch(getNews(`?page=1&limit=9`));
   };
 
   const handlePaginationChange = (e, p) => {

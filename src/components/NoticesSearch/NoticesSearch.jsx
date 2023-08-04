@@ -30,11 +30,10 @@ const NoticesSearch = ({ handleSearch }) => {
   const submitHandler = e => {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.query.value;
-    // if (location.pathname === '/news') {
-    //   handleSearch(searchQuery);
-    //   // dispatch(getNews(`?title=${searchQuery}&page=1&limit=9`));
-    // }
-    // else
+    if (location.pathname === '/news') {
+      handleSearch(searchQuery);
+      // dispatch(getNews(`?title=${searchQuery}&page=1&limit=9`));
+    } else
       dispatch(
         getNoticesBySearch({
           category: categoryName,

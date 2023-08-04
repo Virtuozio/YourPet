@@ -42,7 +42,7 @@ const NoticesFilters = () => {
       >
         {screenWidth >= 768 && 'Filter'} <FilterIcon name="filterBtnIcon" />
       </FilterBtn>
-      {isOpenFilter && <Filters />}
+      <Filters />
     </BtnFilterWrapper>
   );
 };

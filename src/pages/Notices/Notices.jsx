@@ -84,7 +84,7 @@ const Notices = () => {
         <Filters>
           <NoticesCategoriesNav onFilterChange={handleFilterChange} />
           <Container>
-            <NoticesFilters />
+            {false && <NoticesFilters />}
             {isLoggedIn ? (
               <AddPetButton text="Add pet" path="/add-pet" />
             ) : (

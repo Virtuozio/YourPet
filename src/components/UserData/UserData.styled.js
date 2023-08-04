@@ -10,7 +10,7 @@ const PetsContainer = styled.div`
 
 const UserCardContainer = styled.div`
   position: relative;
-  padding: 16px;
+  padding: 20px;
   border-radius: 40px;
   background: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);

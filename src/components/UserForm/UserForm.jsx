@@ -7,11 +7,12 @@ import {
   UserPhoto,
   FileInput,
   FileInputLabel,
-  InputContainer,
   SubmitButton,
   Error,
   FieldsContainer,
   Text,
+  Input,
+  Label,
 } from './UserForm.styled';
 import validationSchema from 'utils/schemas/validationSchema';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,6 +55,12 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     },
   });
 
+  useEffect(() => {
+    if (loading === false) {
+      setPreview(user.avatarURL);
+    }
+  }, [loading, user.avatarURL]);
+
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {
       setPreview(user.avatarURL);
@@ -65,9 +72,12 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     if (!disabled) {
       setErrorsVisible(true);
     } else {
+      setErrorsVisible(false);
+
+      setPreview(user.avatarURL);
       setShowConfirm(false);
     }
-  }, [disabled]);
+  }, [disabled, user.avatarURL, formikProps]);
 
   const handleFileChange = e => {
     formikProps.setFieldValue('avatar', e.currentTarget.files[0]);
@@ -126,76 +136,66 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
               )}
             </div>
             <FieldsContainer>
-              <InputContainer>
-                <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formikProps.values.name}
-                  placeholder="Kate"
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
-                />
-                {formikProps.errors.name && errorsVisible && (
-                  <Error>{formikProps.errors.name}</Error>
-                )}
-              </InputContainer>
-              <InputContainer>
-                <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formikProps.values.email}
-                  placeholder="Kate@mail.com"
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
-                />
-                {formikProps.errors.email && errorsVisible && (
-                  <Error>{formikProps.errors.email}</Error>
-                )}
-              </InputContainer>
-              <InputContainer>
-                <label htmlFor="birthday">Birthday:</label>
-                <input
-                  name="birthday"
-                  type="text"
-                  value={formikProps.values.birthday}
-                  placeholder="dd.mm.yyyy"
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
-                />
-                {formikProps.errors.birthday && errorsVisible && (
-                  <Error>{formikProps.errors.birthday}</Error>
-                )}
-              </InputContainer>
-              <InputContainer>
-                <label htmlFor="phone">Phone:</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formikProps.values.phone}
-                  placeholder="+380..."
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
-                />
-                {formikProps.errors.phone && errorsVisible && (
-                  <Error>{formikProps.errors.phone}</Error>
-                )}
-              </InputContainer>
-              <InputContainer>
-                <label htmlFor="city">City:</label>
-                <input
-                  type="text"
-                  name="city"
-                  value={formikProps.values.city}
-                  placeholder="Ternopil"
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
-                />
-                {formikProps.errors.city && errorsVisible && (
-                  <Error>{formikProps.errors.city}</Error>
-                )}
-              </InputContainer>
+              <Label htmlFor="name">Name:</Label>
+              <Input
+                type="text"
+                name="name"
+                value={formikProps.values.name}
+                placeholder="Kate"
+                disabled={disabled}
+                onChange={formikProps.handleChange}
+              />
+              {formikProps.errors.name && errorsVisible && (
+                <Error>{formikProps.errors.name}</Error>
+              )}
+              <Label htmlFor="email">Email:</Label>
+              <Input
+                type="email"
+                name="email"
+                value={formikProps.values.email}
+                placeholder="Kate@mail.com"
+                disabled={disabled}
+                onChange={formikProps.handleChange}
+              />
+              {formikProps.errors.email && errorsVisible && (
+                <Error>{formikProps.errors.email}</Error>
+              )}
+              <Label htmlFor="birthday">Birthday:</Label>
+              <Input
+                name="birthday"
+                type="text"
+                value={formikProps.values.birthday}
+                placeholder="dd.mm.yyyy"
+                disabled={disabled}
+                onChange={formikProps.handleChange}
+              />
+              {formikProps.errors.birthday && errorsVisible && (
+                <Error>{formikProps.errors.birthday}</Error>
+              )}
+              <Label htmlFor="phone">Phone:</Label>
+              <Input
+                type="tel"
+                name="phone"
+                value={formikProps.values.phone}
+                placeholder="+380..."
+                disabled={disabled}
+                onChange={formikProps.handleChange}
+              />
+              {formikProps.errors.phone && errorsVisible && (
+                <Error>{formikProps.errors.phone}</Error>
+              )}
+              <Label htmlFor="city">City:</Label>
+              <Input
+                type="text"
+                name="city"
+                value={formikProps.values.city}
+                placeholder="Ternopil"
+                disabled={disabled}
+                onChange={formikProps.handleChange}
+              />
+              {formikProps.errors.city && errorsVisible && (
+                <Error>{formikProps.errors.city}</Error>
+              )}
               {!disabled && (
                 <SubmitButton type="submit" disabled={showConfirm}>
                   Save

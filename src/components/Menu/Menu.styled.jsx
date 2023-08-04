@@ -53,6 +53,7 @@ export const MenuBackground = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  scroll: no-scroll;
 `;
 
 export const MenuNavBtn = styled.div`

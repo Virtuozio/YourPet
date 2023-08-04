@@ -14,7 +14,7 @@ export const LogoutBtn = styled.button`
   color: #888888;
   background-color: transparent;
   cursor: pointer;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--duration) var(--cubic);
   svg {
     width: 24px;
     height: 24px;

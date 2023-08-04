@@ -55,9 +55,9 @@ export const getNoticeById = createAsyncThunk(
 
 export const getAllOwnNotices = createAsyncThunk(
   'notices/getAllOwnNotices',
-  async (_, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
-      const response = await axios.get(`/notices/user/added`);
+      const response = await axios.get(`/notices/user/added${data}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

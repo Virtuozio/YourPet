@@ -157,6 +157,7 @@ const noticesSlice = createSlice({
         state.notices = state.notices.filter(
           notice => notice._id !== payload._id
         );
+        state.totalNotices = payload.total;
       })
       .addCase(removeFromFavoriteCategory.pending, handlePending)
       .addCase(removeFromFavoriteCategory.rejected, handleRejected);

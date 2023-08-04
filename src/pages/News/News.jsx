@@ -14,6 +14,8 @@ import Title, {
 } from './News.styled';
 import NewsSearch from '../../components/NewsSearch/NewsSearch';
 import Pagination from '@mui/material/Pagination';
+import { animateScroll as scroll } from 'react-scroll';
+
 
 const News = () => {
   const news = useSelector(selectAllNews);
@@ -26,13 +28,17 @@ const News = () => {
 
   useEffect(() => {
     if (!query) {
-      dispatch(getNews(`?page=${1}&limit=9`));
+      dispatch(getNews(`?page=${page}&limit=9`));
     }
   }, [dispatch, page, query]);
 
   const submitHandler = e => {
     e.preventDefault();
-    if (query) dispatch(getNews(`?title=${query}&page=1&limit=9`));
+    if (query) {
+      dispatch(getNews(`?title=${query}&page=1&limit=9`))
+      setPage(1);
+ 
+    }
     else dispatch(getNews(`?page=1&limit=9`));
   };
 
@@ -45,14 +51,17 @@ const News = () => {
     setQuery('');
     setPage(1);
     dispatch(getNews(`?page=${page}&limit=9`));
+ 
   };
 
   const handlePaginationChange = (e, p) => {
     setPage(p);
     if (query) {
       dispatch(getNews(`?title=${query}&page=${p}&limit=9`));
+      scroll.scrollToTop();
     } else {
       dispatch(getNews(`?page=${p}&limit=9`));
+      scroll.scrollToTop();
     }
   };
 

@@ -65,7 +65,7 @@ const Notices = () => {
     } else if (categoryName === 'favorite' && isLoggedIn) {
       dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
     } else if (categoryName === 'my-pets' && isLoggedIn) {
-      dispatch(getAllOwnNotices());
+      dispatch(getAllOwnNotices(`?page=${currentPage}`));
     }
   }, [categoryName, dispatch, isLoggedIn, currentPage]);
   //

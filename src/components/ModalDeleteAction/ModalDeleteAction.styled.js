@@ -30,7 +30,7 @@ const ModalBox = styled(Box)`
 `;
 
 const Section = styled.div`
-  height: 329px;
+  /* height: 329px; */
 
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ const Section = styled.div`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    height: 296px;
+    /* height: 296px; */
   }
 `;
 
@@ -69,6 +69,7 @@ const DeleteText = styled.p`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     margin-bottom: 48px;
+    width: 393px;
   }
 `;
 

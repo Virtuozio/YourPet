@@ -14,18 +14,20 @@ const ModalBox = styled(Box)`
   transform: translate(-50%, -50%);
   width: 280px;
   /* height: 445px; */
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 50px;
+  padding-bottom: 16px;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
   @media screen and (min-width: 768px) {
     width: 608px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 24px;
     border-radius: 40px;
     /* height: 429px; */
   }
@@ -65,32 +67,49 @@ const CategoryItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 0;
+  left: 20px;
   top: 16px;
   width: 132px;
   height: 32px;
   background-color: var(--labels-bg-color);
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
+
+  @media screen and (min-width: 768px) {
+    left: 0;
+  top: 16px;
+  }
 `;
 
 const PhotoContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content:center;
+  align-items: center;
 `;
 
 const Title = styled.h2`
+display: flex;
+  justify-content: start;
+  align-items: center;
   width: 198px;
   color: #000;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.24px;
   margin: 0;
+  margin-left: 12px;
+  margin-top: 12px;
+  margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
     font-size: 28px;
     letter-spacing: -0.28px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     width: 321px;
+    margin-left: 0px;
+    margin-top: 0px;
+    
   }
 `;
 const Info = styled.div`
@@ -98,8 +117,14 @@ display: grid;
   grid-template-columns: auto auto; 
   grid-template-rows: 19px 19px 19px 
 grid; 
-  grid-template-columns: auto auto; 19px 19px 19px 19px; 
-  gap: 8px 0px; 
+  grid-template-columns: auto auto;  
+  gap: 10px 0px; 
+  margin-left: 12px;
+  @media screen and (min-width: 768px) {
+    
+    margin-left: 0px;
+    
+  }
  `;
 
 const Tag = styled.div`
@@ -116,10 +141,13 @@ const Comment = styled.span`
   display: flex;
   align-items: flex-start;
   width: 256px;
-  margin-top: 13px;
+  margin-top: 12px;
+  margin-left: 12px;
   @media screen and (min-width: 768px) {
     width: 618px;
+    margin-top: 28px;
     margin-bottom: 70px;
+    margin-left: 0px;
   }
 `;
 const Text = styled.p`
@@ -161,6 +189,8 @@ const Button = styled.button.withConfig({
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-left: 12px;
+  margin-right: 12px;
   border-radius: 40px;
   border: 2px solid #54adff;
   background-color: ${({ primary }) =>
@@ -189,6 +219,11 @@ const Button = styled.button.withConfig({
   @media screen and (min-width: 768px) {
     width: 129px;
     height: 40px;
+    margin-left: 0px;
+  margin-right: 0px;
+  &:first-child {
+    margin-bottom: 0px;
+  }
   }
 `;
 
@@ -200,6 +235,8 @@ const AddButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-left: 12px;
+  margin-right: 12px;
   border-radius: 40px;
   border: 2px solid var(--btn-bg-color);
   background-color: transparent;
@@ -237,6 +274,9 @@ const AddButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 129px;
     height: 40px;
+    margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
   }
 `;
 
@@ -248,6 +288,8 @@ const RemoveButton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
+  margin-left: 12px;
+  margin-right: 12px;
   border-radius: 40px;
   border: 2px solid #54adff;
   background-color: ${props =>
@@ -276,6 +318,9 @@ const RemoveButton = styled.button`
   @media screen and (min-width: 768px) {
     width: 190px;
     height: 40px;
+    margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
   }
 `;
 
@@ -286,6 +331,10 @@ const StyledLink = styled(Link)`
   line-height: normal;
   text-decoration-line: ${props => (props.$privat ? 'underline' : 'none')};
   cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 `;
 const Container = styled.div`
   margin-top: 12px;

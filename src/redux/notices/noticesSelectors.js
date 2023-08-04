@@ -12,7 +12,7 @@ export const selectFilter = state => state.searchNotices;
 
 export const selectFavoriteNotices = state => state.notices.noticesFavorite;
 
-export const selectStatusFilter = state => state.filters.status;
+// export const selectStatusFilter = state => state.filters.status;
 export const selectTotalNotices = state => state.notices.totalNotices;
 
 export const selectVisibleNotices = createSelector(

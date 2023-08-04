@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 import { CiFilter } from 'react-icons/ci';
 
-const Btn = styled.button`
+const BtnFilterWrapper = styled.div`
+  position: relative;
+`;
+
+const FilterBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,4 +59,4 @@ const FilterIcon = styled(CiFilter)`
   }
 `;
 
-export { Btn, FilterIcon };
+export { BtnFilterWrapper, FilterBtn, FilterIcon };

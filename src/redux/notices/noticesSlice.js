@@ -12,8 +12,10 @@ import {
   getNoticesBySearch,
   getFavNoticesbyCategory,
   fetchAllFavNotices,
-  removeFromFavoriteCategory
+  removeFromFavoriteCategory,
+  getNoticesByFilter,
 } from './noticesOperations';
+
 const noticesInitialState = {
   notices: [],
   noticesFavorite: [],
@@ -84,13 +86,9 @@ const noticesSlice = createSlice({
       .addCase(removeFromFavorite.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // state.noticesFavorite = payload.result;
         state.noticesFavorite = state.noticesFavorite.filter(
           notice => notice._id !== payload._id
         );
-        // state.notices = state.notices.filter(
-        //   notice => notice._id !== payload._id
-        // );
       })
       .addCase(removeFromFavorite.pending, handlePending)
       .addCase(removeFromFavorite.rejected, handleRejected)
@@ -142,15 +140,12 @@ const noticesSlice = createSlice({
         state.error = null;
         state.notices = payload.noticesList;
         state.totalNotices = payload.total;
-        
-        // state.setFav = true;
       })
       .addCase(getFavNoticesbyCategory.pending, handlePending)
       .addCase(getFavNoticesbyCategory.rejected, handleRejected)
       .addCase(removeFromFavoriteCategory.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        // state.noticesFavorite = payload.result;
         state.noticesFavorite = state.noticesFavorite.filter(
           notice => notice._id !== payload._id
         );
@@ -160,7 +155,16 @@ const noticesSlice = createSlice({
         state.totalNotices = payload.total;
       })
       .addCase(removeFromFavoriteCategory.pending, handlePending)
-      .addCase(removeFromFavoriteCategory.rejected, handleRejected);
+      .addCase(removeFromFavoriteCategory.rejected, handleRejected)
+
+      .addCase(getNoticesByFilter.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.notices = payload.noticesList;
+        state.totalNotices = payload.total;
+      })
+      .addCase(getNoticesByFilter.pending, handlePending)
+      .addCase(getNoticesByFilter.rejected, handleRejected);
   },
 });
 

@@ -162,3 +162,31 @@ export const getFavNoticesbyCategory = createAsyncThunk(
     }
   }
 );
+
+export const getNoticesByFilter = createAsyncThunk(
+  'notices/getNoticesByFilter',
+  async (params, thunkAPI) => {
+    try {
+      const age = params.age;
+      const sex = params.sex;
+
+      if (age && sex) {
+        const response = await axios.get(
+          `/notices/users/filter?date=${age}&sex=${sex}`
+        );
+        return response.data;
+      } else if (age) {
+        const response = await axios.get(`/notices/users/filter?date=${age}`);
+        return response.data;
+      } else if (sex) {
+        const response = await axios.get(`/notices/users/filter?sex=${sex}`);
+        return response.data;
+      } else {
+        const response = await axios.get(`/notices/users/filter`);
+        return response.data;
+      }
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

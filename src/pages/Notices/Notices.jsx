@@ -55,7 +55,7 @@ const Notices = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAllFavNotices());
+    if (isLoggedIn) dispatch(fetchAllFavNotices());
     if (categoryName !== 'favorite' && categoryName !== 'my-pets') {
       if (categoryName === 'lost-found' || categoryName === 'for-free') {
       }

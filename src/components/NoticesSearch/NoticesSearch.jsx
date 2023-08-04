@@ -16,7 +16,7 @@ import {
   getNoticesBySearch,
   getNoticesByCategory,
 } from 'redux/notices/noticesOperations';
-import { getNews, getNewsBySearch } from 'redux/news/newsOperations';
+import { getNews } from 'redux/news/newsOperations';
 import { useParams } from 'react-router';
 
 const NoticesSearch = ({ handleSearch }) => {
@@ -32,7 +32,7 @@ const NoticesSearch = ({ handleSearch }) => {
     const searchQuery = e.currentTarget.elements.query.value;
     if (location.pathname === '/news') {
       handleSearch(searchQuery);
-      dispatch(getNewsBySearch(`?title=${searchQuery}&page=1&limit=9`));
+      // dispatch(getNews(`?title=${searchQuery}&page=1&limit=9`));
     } else
       dispatch(
         getNoticesBySearch({

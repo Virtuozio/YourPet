@@ -149,6 +149,7 @@ export const LoaderLabelImg = styled.label.withConfig({
   background-size: cover;
   background-position: center;
   border-radius: 20px;
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 182px;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNews, getNewsBySearch } from './newsOperations';
+import { getNews } from './newsOperations';
 
 const handlePending = state => {
   state.isLoadingNews = true;
@@ -23,14 +23,6 @@ const newsSlice = createSlice({
       .addCase(getNews.pending, handlePending)
       .addCase(getNews.rejected, handleRejected)
       .addCase(getNews.fulfilled, (state, action) => {
-        state.isLoadingNews = false;
-        state.errorNews = null;
-        state.news = action.payload.newsList;
-        state.totalNews = action.payload.total;
-      })
-      .addCase(getNewsBySearch.pending, handlePending)
-      .addCase(getNewsBySearch.rejected, handleRejected)
-      .addCase(getNewsBySearch.fulfilled, (state, action) => {
         state.isLoadingNews = false;
         state.errorNews = null;
         state.news = action.payload.newsList;

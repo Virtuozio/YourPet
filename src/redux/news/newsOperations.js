@@ -14,15 +14,3 @@ export const getNews = createAsyncThunk(
     }
   }
 );
-
-export const getNewsBySearch = createAsyncThunk(
-  'news/getNewsBySearch',
-  async (data, thunkAPI) => {
-    try {
-      const res = await axios.get(`/news/search${data}`);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);

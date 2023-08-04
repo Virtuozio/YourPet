@@ -1,48 +1,7 @@
-import { SELL, YOUR_PET } from 'utils/constants/typesAddPet';
 import * as yup from 'yup';
 
-const fullFildsAddPetSchema = yup.object().shape({
-  category: yup.string().required('Category is required'),
-  title: yup.string().when('category', {
-    is: value => value !== YOUR_PET,
-    then: yup.string().required('Title is required'),
-  }),
-  name: yup
-    .string()
-    .min(2, 'Too short value')
-    .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
-    .required('Name is required'),
-  date: yup.string().required('Birthday is required'),
-  type: yup
-    .string()
-    .min(2, 'Too short value')
-    .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
-    .required('Type is required'),
-  file: yup
-    .mixed()
-    .required('File is required')
-    .test('fileType', 'Invalid file type', value => {
-      return value instanceof File;
-    }),
-  sex: yup.string().when('category', {
-    is: value => value !== YOUR_PET,
-    then: yup.string().required('Choose sex of pet'),
-  }),
-  location: yup.string().when('category', {
-    is: value => value !== YOUR_PET,
-    then: yup.string().required('Location is required'),
-  }),
-  price: yup.number().when('category', {
-    is: SELL,
-    then: yup
-      .number()
-      .positive('Should be a positive value')
-      .required('Price is required'),
-  }),
-  comments: yup.string().max(120, 'Too long comment'),
-});
+const regex =
+  /^[a-zA-Z\u00C0-\u02AF\u0370-\u03FF\u0400-\u04FF\u0500-\u052F\u2DE0-\u2DFF\uA640-\uA69F\u1C80-\u1C88- ]+$/;
 
 const categoryValidation = yup.object().shape({
   category: yup.string().required('Category is required'),
@@ -53,31 +12,34 @@ const secValidYourPet = yup.object().shape({
     .string()
     .min(2, 'Too short value')
     .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
+    .matches(regex, 'Only letters')
     .required('Name is required'),
   date: yup.string().required('Birthday is required'),
   type: yup
     .string()
     .min(2, 'Too short value')
     .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
+    .matches(regex, 'Only letters')
     .required('Type is required'),
 });
 
 const secValidNoYours = yup.object().shape({
-  title: yup.string().required('Title is required'),
+  title: yup
+    .string()
+    .matches(regex, 'Only letters')
+    .required('Title is required'),
   name: yup
     .string()
     .min(2, 'Too short value')
     .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
+    .matches(regex, 'Only letters')
     .required('Name is required'),
   date: yup.string().required('Birthday is required'),
   type: yup
     .string()
     .min(2, 'Too short value')
     .max(16, 'Too long value, 16 symbols')
-    .matches(/^\p{L}+$/u, 'Only letters')
+    .matches(regex, 'Only letters')
     .required('Type is required'),
 });
 
@@ -120,7 +82,6 @@ const thirdValidLostFoundAndGoodHands = yup.object().shape({
 });
 
 const validationAddPetSchema = {
-  fullFildsAddPetSchema,
   categoryValidation,
   secValidYourPet,
   thirdValidYourPet,

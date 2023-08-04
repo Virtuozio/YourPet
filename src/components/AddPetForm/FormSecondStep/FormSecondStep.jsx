@@ -14,6 +14,7 @@ const FormSecondStep = ({
   touched,
   handleBlur,
   isSubmitting,
+  setFieldValue,
 }) => {
   const datePickerRef = useRef('#birthday-date');
   const [inputsErrors, setInputsErrors] = useState({});
@@ -48,9 +49,20 @@ const FormSecondStep = ({
   }, [isSubmitting, touched]);
 
   const handleInputBlur = e => {
-    const { name } = e.target;
+    const { name, value } = e.target;
+    const newValue = value.trim();
+    setFieldValue(name, newValue);
     setInputsErrors({ ...inputsErrors, [name]: true });
     handleBlur(e);
+  };
+
+  const handleInputTextChange = e => {
+    const element = e.currentTarget;
+    if (element.value[0] === ' ' || element.value[0] === '-') {
+      return;
+    }
+
+    setFieldValue(element.name, element.value);
   };
 
   return (
@@ -64,7 +76,7 @@ const FormSecondStep = ({
             name="title"
             placeholder="Title of add"
             value={values.title}
-            onChange={handleChange}
+            onChange={handleInputTextChange}
             onBlur={handleInputBlur}
             style={
               errors.title && inputsErrors.title && { borderColor: '#f43f5e' }
@@ -84,7 +96,7 @@ const FormSecondStep = ({
           name="name"
           placeholder="Type name pet"
           value={values.name}
-          onChange={handleChange}
+          onChange={handleInputTextChange}
           onBlur={handleInputBlur}
           style={errors.name && inputsErrors.name && { borderColor: '#f43f5e' }}
         />
@@ -118,7 +130,7 @@ const FormSecondStep = ({
           name="type"
           placeholder="Type of pet"
           value={values.type}
-          onChange={handleChange}
+          onChange={handleInputTextChange}
           onBlur={handleInputBlur}
           style={errors.type && inputsErrors.type && { borderColor: '#f43f5e' }}
         />

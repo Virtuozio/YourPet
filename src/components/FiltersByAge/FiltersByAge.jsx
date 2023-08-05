@@ -29,32 +29,12 @@ const FiltersByAge = ({ setFiltersState }) => {
 
   const dispatch = useDispatch();
 
-  // const dropdownRef = useRef(null);
-
-  // useEffect(() => {
-  //   const handleOutsideClick = event => {
-  //     if (
-  //       (dropdownRef.current && !backdrop.current.contains(event.target))
-  //     ) {
-  //       setisOpenList(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleOutsideClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleOutsideClick);
-  //   };
-  // }, []);
-
   const onGeneralListFilterClick = e => {
     setisOpenList(!isOpenList);
   };
 
   const handleChackBoxChange = e => {
     const { name } = e.target;
-    let allRes = '';
-
     const newValue = !checksBoxValue[name];
     let result = '';
     let age = '';
@@ -87,17 +67,13 @@ const FiltersByAge = ({ setFiltersState }) => {
       result = '';
     } else if (moreThen1 && newValue && name === 'moreThen2') {
       result = '2';
-    } else if (moreThen1 && less1 && newValue) {
-      result = '';
     } else if (moreThen1 && moreThen2 && newValue) {
       result = '';
     } else if (moreThen2 && newValue && name === 'less1') {
       result = '4';
     } else if (moreThen2 && newValue && name === 'moreThen1') {
       result = '2';
-    } else if (moreThen2 && moreThen1 && newValue) {
-      result = '';
-    } else if (moreThen2 && less1 && newValue) {
+    } else if (less1 && moreThen2 && newValue) {
       result = '';
     } else if (less1 && moreThen1 && !newValue && name === 'less1') {
       result = '2';
@@ -139,8 +115,6 @@ const FiltersByAge = ({ setFiltersState }) => {
       result = '';
     }
 
-    allRes = result;
-
     setChecksBoxValue(prevState => {
       const newValues = {
         ...prevState,
@@ -158,7 +132,7 @@ const FiltersByAge = ({ setFiltersState }) => {
 
     setFiltersState(prevState => ({
       ...prevState,
-      age: allRes,
+      age: result,
     }));
   };
 

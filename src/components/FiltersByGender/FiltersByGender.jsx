@@ -29,27 +29,12 @@ const FiltersByGender = ({ setFiltersState }) => {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const handleOutsideClick = event => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setisOpenList(false);
-  //     }
-  //   };
-
-  //   document.addEventListener('click', handleOutsideClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleOutsideClick);
-  //   };
-  // }, []);
-
   const onGeneralListFilterClick = e => {
     setisOpenList(!isOpenList);
   };
 
   const handleChackBoxChange = e => {
     const { name } = e.target;
-    let allRes = '';
     let result = '';
 
     const newValue = !checksBoxValue[name];
@@ -63,8 +48,6 @@ const FiltersByGender = ({ setFiltersState }) => {
     } else {
       result = '';
     }
-
-    allRes = result;
 
     setChecksBoxValue(prevState => {
       const newValues = {
@@ -84,7 +67,7 @@ const FiltersByGender = ({ setFiltersState }) => {
 
     setFiltersState(prevState => ({
       ...prevState,
-      sex: allRes,
+      sex: result,
     }));
   };
 

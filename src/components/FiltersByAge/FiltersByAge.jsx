@@ -1,4 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectStatusFilters } from 'redux/notices/noticesSelectors';
+import { setFilters } from 'redux/notices/noticesSlice';
 
 import {
   MdOutlineCheckBoxOutlineBlank,
@@ -19,27 +23,29 @@ import { ArrowDown } from './FiltersByAge.styled';
 
 const FiltersByAge = ({ setFiltersState }) => {
   const [isOpenList, setisOpenList] = useState(false);
+  const filters = useSelector(selectStatusFilters);
 
-  const [checksBoxValue, setChecksBoxValue] = useState({
-    less1: false,
-    moreThen1: false,
-    moreThen2: false,
-  });
-  const dropdownRef = useRef(null);
+  const [checksBoxValue, setChecksBoxValue] = useState(filters);
 
-  useEffect(() => {
-    const handleOutsideClick = event => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setisOpenList(false);
-      }
-    };
+  const dispatch = useDispatch();
 
-    document.addEventListener('click', handleOutsideClick);
+  // const dropdownRef = useRef(null);
 
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleOutsideClick = event => {
+  //     if (
+  //       (dropdownRef.current && !backdrop.current.contains(event.target))
+  //     ) {
+  //       setisOpenList(false);
+  //     }
+  //   };
+
+  //   document.addEventListener('click', handleOutsideClick);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleOutsideClick);
+  //   };
+  // }, []);
 
   const onGeneralListFilterClick = e => {
     setisOpenList(!isOpenList);
@@ -142,6 +148,14 @@ const FiltersByAge = ({ setFiltersState }) => {
       };
       return newValues;
     });
+
+    dispatch(
+      setFilters({
+        ...filters,
+        [name]: newValue,
+      })
+    );
+
     setFiltersState(prevState => ({
       ...prevState,
       age: allRes,
@@ -149,7 +163,7 @@ const FiltersByAge = ({ setFiltersState }) => {
   };
 
   return (
-    <FilterTypeWrapper ref={dropdownRef}>
+    <FilterTypeWrapper>
       <OpenListWrapper onClick={onGeneralListFilterClick}>
         <ArrowDown isOpen={isOpenList} />
         <TitleFilterType>By age</TitleFilterType>

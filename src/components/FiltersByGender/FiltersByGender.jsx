@@ -1,4 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectStatusFilters } from 'redux/notices/noticesSelectors';
+import { setFilters } from 'redux/notices/noticesSlice';
+
 import {
   MdOutlineCheckBox,
   MdOutlineCheckBoxOutlineBlank,
@@ -18,26 +23,25 @@ import { ArrowDown } from 'components/FiltersByAge/FiltersByAge.styled';
 
 const FiltersByGender = ({ setFiltersState }) => {
   const [isOpenList, setisOpenList] = useState(false);
-  const [checksBoxValue, setChecksBoxValue] = useState({
-    female: false,
-    male: false,
-  });
 
-  const dropdownRef = useRef(null);
+  const filters = useSelector(selectStatusFilters);
+  const [checksBoxValue, setChecksBoxValue] = useState(filters);
 
-  useEffect(() => {
-    const handleOutsideClick = event => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setisOpenList(false);
-      }
-    };
+  const dispatch = useDispatch();
 
-    document.addEventListener('click', handleOutsideClick);
+  // useEffect(() => {
+  //   const handleOutsideClick = event => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setisOpenList(false);
+  //     }
+  //   };
 
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
+  //   document.addEventListener('click', handleOutsideClick);
+
+  //   return () => {
+  //     document.removeEventListener('click', handleOutsideClick);
+  //   };
+  // }, []);
 
   const onGeneralListFilterClick = e => {
     setisOpenList(!isOpenList);
@@ -71,6 +75,13 @@ const FiltersByGender = ({ setFiltersState }) => {
       return newValues;
     });
 
+    dispatch(
+      setFilters({
+        ...filters,
+        [name]: newValue,
+      })
+    );
+
     setFiltersState(prevState => ({
       ...prevState,
       sex: allRes,
@@ -78,7 +89,7 @@ const FiltersByGender = ({ setFiltersState }) => {
   };
 
   return (
-    <FilterTypeWrapper ref={dropdownRef}>
+    <FilterTypeWrapper>
       <OpenListWrapper onClick={onGeneralListFilterClick}>
         <ArrowDown isOpen={isOpenList} />
         <TitleFilterType>By gender</TitleFilterType>

@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useWindowSize } from 'hooks/useResize';
+import { getNoticesByFilter } from 'redux/notices/noticesOperations';
 
 import Filters from 'components/Filters/Filters';
 import {
@@ -11,6 +14,16 @@ import {
 const NoticesFilters = () => {
   const [screenWidth] = useWindowSize();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
+
+  const [filtersState, setFiltersState] = useState({});
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (Object.keys(filtersState).length === 0) {
+      return;
+    }
+    dispatch(getNoticesByFilter(filtersState));
+  }, [dispatch, filtersState]);
 
   const dropdownRef = useRef(null);
 
@@ -42,7 +55,7 @@ const NoticesFilters = () => {
       >
         {screenWidth >= 768 && 'Filter'} <FilterIcon name="filterBtnIcon" />
       </FilterBtn>
-      {isOpenFilter && <Filters />}
+      {isOpenFilter && <Filters setFiltersState={setFiltersState} />}
     </BtnFilterWrapper>
   );
 };

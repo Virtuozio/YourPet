@@ -25,11 +25,6 @@ export const register = createAsyncThunk(
     }
   }
 );
-register({
-  name: 'Adrian Cross',
-  email: 'across@mail.com',
-  password: 'examplepwd12345',
-});
 /*
  * POST @ /users/login
  * body: { email, password }

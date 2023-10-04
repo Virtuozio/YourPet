@@ -109,12 +109,14 @@ const AddPetForm = () => {
         nextPageForm();
         setSubmitting(false);
       } else if (currentForm.second) {
+        const dateBackend = new Date(date).toISOString();
+
         if (category === YOUR_PET) {
           typeSchema = 'secValidYourPet';
-          formValues = { name, date, type };
+          formValues = { name, date: dateBackend, type };
         } else {
           typeSchema = 'secValidNoYours';
-          formValues = { title, name, date, type };
+          formValues = { title, name, date: dateBackend, type };
         }
 
         validationAddPetSchema[typeSchema]

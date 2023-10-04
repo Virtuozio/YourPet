@@ -37,82 +37,27 @@ const FiltersByAge = ({ setFiltersState }) => {
     const { name } = e.target;
     const newValue = !checksBoxValue[name];
     let result = '';
-    let age = '';
 
-    switch (name) {
-      case 'less1':
-        age = '1';
-        break;
-      case 'moreThen1':
-        age = '2';
-        break;
-      case 'moreThen2':
-        age = '3';
-        break;
-      default:
-        age = '';
-    }
+    const ageValues = {
+      less1: '1',
+      moreThen1: '2',
+      moreThen2: '3',
+    };
 
-    const { less1, moreThen1, moreThen2 } = checksBoxValue;
+    Object.keys(checksBoxValue).forEach(elem => {
+      if (name === elem && newValue) {
+        result += ageValues[elem];
+      } else if (checksBoxValue[elem] && name !== elem) {
+        result += ageValues[elem];
+      }
+    });
 
-    if (!less1 && !moreThen1 && !moreThen2 && newValue) {
-      result = `${age}`;
-    } else if (less1 && newValue && name === 'moreThen1') {
+    if (result === '23') {
+      result = '2';
+    } else if (result === '12' || result === '' || result === '123') {
       result = '';
-    } else if (less1 && newValue && name === 'moreThen2') {
+    } else if (result === '13') {
       result = '4';
-    } else if (less1 && moreThen1 && newValue) {
-      result = '';
-    } else if (moreThen1 && newValue && name === 'less1') {
-      result = '';
-    } else if (moreThen1 && newValue && name === 'moreThen2') {
-      result = '2';
-    } else if (moreThen1 && moreThen2 && newValue) {
-      result = '';
-    } else if (moreThen2 && newValue && name === 'less1') {
-      result = '4';
-    } else if (moreThen2 && newValue && name === 'moreThen1') {
-      result = '2';
-    } else if (less1 && moreThen2 && newValue) {
-      result = '';
-    } else if (less1 && moreThen1 && !newValue && name === 'less1') {
-      result = '2';
-    } else if (less1 && moreThen1 && !newValue && name === 'moreThen1') {
-      result = '1';
-    } else if (less1 && moreThen2 && !newValue && name === 'less1') {
-      result = '3';
-    } else if (less1 && moreThen2 && !newValue && name === 'moreThen2') {
-      result = '1';
-    } else if (moreThen1 && moreThen2 && !newValue && name === 'moreThen1') {
-      result = '3';
-    } else if (moreThen1 && moreThen2 && !newValue && name === 'moreThen2') {
-      result = '2';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'less1'
-    ) {
-      result = '2';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'moreThen1'
-    ) {
-      result = '4';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'moreThen2'
-    ) {
-      result = '';
-    } else {
-      result = '';
     }
 
     setChecksBoxValue(prevState => {

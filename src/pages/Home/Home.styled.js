@@ -42,7 +42,8 @@ export const Title = styled.h1`
   @media screen and (min-width: 1280px) {
     position: absolute;
     top: 25vh;
-    width: 501px;
+    width: 701px;
+    font-size: 88px;
 
     font-weight: 800;
     line-height: 1.3;
@@ -54,14 +55,13 @@ export const HomeBackgr = styled.div`
   left: -20px;
 
   width: calc(100% + 40px);
-  height: 408px;
+  height: calc(100vh - 200px);
 
   background-image: url(${mobileBg1x});
   background-size: cover;
 
   background-repeat: no-repeat;
   background-position-x: center;
-  background-position-y: -30px;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -69,20 +69,16 @@ export const HomeBackgr = styled.div`
     background-image: url(${mobileBg2x});
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: -30px;
   }
 
   @media screen and (min-width: 420px) {
-    height: 538px;
-
     background-image: url(${mobileBg2x});
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: -60px;
   }
 
   @media screen and (min-width: 550px) {
-    height: 750px;
+    height: calc(100vh - 156px);
   }
 
   @media screen and (min-width: 768px) {
@@ -107,20 +103,21 @@ export const HomeBackgr = styled.div`
       background-position-y: -80px;
     }
   }
-
+  @media screen and (min-width: 1200px) {
+    width: calc(100% + 48px);
+  }
   @media screen and (min-width: 1280px) {
     position: relative;
     z-index: -1;
 
     width: 100%;
-    height: calc(100vh - 55px);
+    height: calc(100vh - 63px);
     left: auto;
 
     background: url(${desktopBg1x});
-    background-size: 100% 100vh;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: -43px;
+    background-position-x: right;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -129,10 +126,11 @@ export const HomeBackgr = styled.div`
       height: calc(100vh - 55px);
 
       background: url(${desktopBg2x});
-      background-size: 100% 100vh;
+      /* background-size: 100% 100vh; */
+      background-size: contain;
       background-repeat: no-repeat;
       background-position-x: center;
-      background-position-y: -55px;
+      /* background-position-y: -55px; */
     }
   }
 `;
@@ -146,7 +144,6 @@ export const NavBurger = styled.div`
   width: 100%;
   height: 100%;
   gap: 20px;
-  // transform: translateX(-100%);
   @media screen and (min-width: 768px) {
     gap: 40px;
   }

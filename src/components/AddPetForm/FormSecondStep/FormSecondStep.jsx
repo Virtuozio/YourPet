@@ -32,7 +32,10 @@ const FormSecondStep = ({
           const formattedDate = selectedDate
             .toLocaleDateString('en-GB')
             .replace(/\//g, '-');
-          handleChange({ target: { name: 'date', value: formattedDate } });
+          // const formattedDate = selectedDate.toISOString();
+          handleChange({
+            target: { name: 'date', value: formattedDate },
+          });
         }
       },
     });

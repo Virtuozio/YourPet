@@ -39,6 +39,7 @@ const FiltersByGender = ({ setFiltersState }) => {
 
     const newValue = !checksBoxValue[name];
     const { male, female } = checksBoxValue;
+
     if (newValue && !male && !female) {
       result = name;
     } else if (!newValue && female && male && name === 'female') {

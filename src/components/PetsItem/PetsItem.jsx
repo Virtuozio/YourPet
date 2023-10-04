@@ -16,6 +16,7 @@ import { deletePet } from 'redux/pets/petsOperations';
 
 const PetsItem = ({ pet }) => {
   const dispatch = useDispatch();
+  const dateForm = new Date(pet.date).toLocaleDateString().split('.').join('-');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,7 +42,7 @@ const PetsItem = ({ pet }) => {
               <b>Name:</b> {pet.name}
             </PetInfo>
             <PetInfo>
-              <b>Date of birth:</b> {pet.date}
+              <b>Date of birth:</b> {dateForm}
             </PetInfo>
             <PetInfo>
               <b>Type:</b> {pet.type}

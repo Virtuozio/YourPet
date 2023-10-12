@@ -71,6 +71,7 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.isRegistered = false;
       });
   },
 });

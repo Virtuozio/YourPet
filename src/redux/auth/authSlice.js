@@ -13,7 +13,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isRegistered: false,
+  isFirstEnter: false,
   error: null,
   isLoading: null,
 };
@@ -21,13 +21,18 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    congratsOff: (state, action) => {
+      state.isFirstEnter = false;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isRegistered = true;
+        state.isFirstEnter = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -77,3 +82,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { congratsOff } = authSlice.actions;

@@ -23,6 +23,14 @@ const noticesInitialState = {
   noticeAdd: {},
   isLoading: false,
   error: null,
+
+  filters: {
+    less1: false,
+    moreThen1: false,
+    moreThen2: false,
+    female: false,
+    male: false,
+  },
 };
 const handlePending = state => {
   state.isLoading = true;
@@ -35,7 +43,11 @@ const handleRejected = (state, action) => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
-
+  reducers: {
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchNotices.fulfilled, (state, { payload }) => {
@@ -167,5 +179,7 @@ const noticesSlice = createSlice({
       .addCase(getNoticesByFilter.rejected, handleRejected);
   },
 });
+
+export const { setFilters } = noticesSlice.actions;
 
 export const noticesReducer = noticesSlice.reducer;

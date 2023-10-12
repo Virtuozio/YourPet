@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchPets } from 'redux/pets/petsOperations';
-import { selectIsRegistered } from 'redux/auth/authSelectors';
+import { selectIsFirstEnter } from 'redux/auth/authSelectors';
+import { congratsOff } from 'redux/auth/authSlice';
 
 import { BsPlus } from 'react-icons/bs';
 
@@ -21,17 +22,21 @@ import {
 const User = () => {
   const [modalOpen, setIsModalOpen] = useState(true);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);
+
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);
+    dispatch(congratsOff());
   };
-  const isRegistered = useSelector(selectIsRegistered);
+
+  const isFirstEnter = useSelector(selectIsFirstEnter);
 
   return (
     <>
-      {isRegistered && modalOpen && (
+      {isFirstEnter && modalOpen && (
         <Backdrop closeModal={closeModal}>
           <ModalCongrats closeModal={closeModal} />
         </Backdrop>

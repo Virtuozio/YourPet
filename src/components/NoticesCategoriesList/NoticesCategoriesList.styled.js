@@ -12,7 +12,12 @@ export const NoticeList = styled.ul`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
+    margin-left: auto;
+    margin-right: auto;
+
     gap: 32px;
+    max-width: 1280px;
   }
 `;
 

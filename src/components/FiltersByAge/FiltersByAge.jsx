@@ -1,4 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectStatusFilters } from 'redux/notices/noticesSelectors';
+import { setFilters } from 'redux/notices/noticesSlice';
 
 import {
   MdOutlineCheckBoxOutlineBlank,
@@ -19,27 +23,11 @@ import { ArrowDown } from './FiltersByAge.styled';
 
 const FiltersByAge = ({ setFiltersState }) => {
   const [isOpenList, setisOpenList] = useState(false);
+  const filters = useSelector(selectStatusFilters);
 
-  const [checksBoxValue, setChecksBoxValue] = useState({
-    less1: false,
-    moreThen1: false,
-    moreThen2: false,
-  });
-  const dropdownRef = useRef(null);
+  const [checksBoxValue, setChecksBoxValue] = useState(filters);
 
-  useEffect(() => {
-    const handleOutsideClick = event => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setisOpenList(false);
-      }
-    };
-
-    document.addEventListener('click', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('click', handleOutsideClick);
-    };
-  }, []);
+  const dispatch = useDispatch();
 
   const onGeneralListFilterClick = e => {
     setisOpenList(!isOpenList);
@@ -47,93 +35,30 @@ const FiltersByAge = ({ setFiltersState }) => {
 
   const handleChackBoxChange = e => {
     const { name } = e.target;
-    let allRes = '';
-
     const newValue = !checksBoxValue[name];
     let result = '';
-    let age = '';
 
-    switch (name) {
-      case 'less1':
-        age = '1';
-        break;
-      case 'moreThen1':
-        age = '2';
-        break;
-      case 'moreThen2':
-        age = '3';
-        break;
-      default:
-        age = '';
+    const ageValues = {
+      less1: '1',
+      moreThen1: '2',
+      moreThen2: '3',
+    };
+
+    Object.keys(checksBoxValue).forEach(elem => {
+      if (name === elem && newValue) {
+        result += ageValues[elem];
+      } else if (checksBoxValue[elem] && name !== elem) {
+        result += ageValues[elem];
+      }
+    });
+
+    if (result === '23') {
+      result = '2';
+    } else if (result === '12' || result === '' || result === '123') {
+      result = '';
+    } else if (result === '13') {
+      result = '4';
     }
-
-    const { less1, moreThen1, moreThen2 } = checksBoxValue;
-
-    if (!less1 && !moreThen1 && !moreThen2 && newValue) {
-      result = `${age}`;
-    } else if (less1 && newValue && name === 'moreThen1') {
-      result = '';
-    } else if (less1 && newValue && name === 'moreThen2') {
-      result = '4';
-    } else if (less1 && moreThen1 && newValue) {
-      result = '';
-    } else if (moreThen1 && newValue && name === 'less1') {
-      result = '';
-    } else if (moreThen1 && newValue && name === 'moreThen2') {
-      result = '2';
-    } else if (moreThen1 && less1 && newValue) {
-      result = '';
-    } else if (moreThen1 && moreThen2 && newValue) {
-      result = '';
-    } else if (moreThen2 && newValue && name === 'less1') {
-      result = '4';
-    } else if (moreThen2 && newValue && name === 'moreThen1') {
-      result = '2';
-    } else if (moreThen2 && moreThen1 && newValue) {
-      result = '';
-    } else if (moreThen2 && less1 && newValue) {
-      result = '';
-    } else if (less1 && moreThen1 && !newValue && name === 'less1') {
-      result = '2';
-    } else if (less1 && moreThen1 && !newValue && name === 'moreThen1') {
-      result = '1';
-    } else if (less1 && moreThen2 && !newValue && name === 'less1') {
-      result = '3';
-    } else if (less1 && moreThen2 && !newValue && name === 'moreThen2') {
-      result = '1';
-    } else if (moreThen1 && moreThen2 && !newValue && name === 'moreThen1') {
-      result = '3';
-    } else if (moreThen1 && moreThen2 && !newValue && name === 'moreThen2') {
-      result = '2';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'less1'
-    ) {
-      result = '2';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'moreThen1'
-    ) {
-      result = '4';
-    } else if (
-      less1 &&
-      moreThen1 &&
-      moreThen2 &&
-      !newValue &&
-      name === 'moreThen2'
-    ) {
-      result = '';
-    } else {
-      result = '';
-    }
-
-    allRes = result;
 
     setChecksBoxValue(prevState => {
       const newValues = {
@@ -142,14 +67,22 @@ const FiltersByAge = ({ setFiltersState }) => {
       };
       return newValues;
     });
+
+    dispatch(
+      setFilters({
+        ...filters,
+        [name]: newValue,
+      })
+    );
+
     setFiltersState(prevState => ({
       ...prevState,
-      age: allRes,
+      age: result,
     }));
   };
 
   return (
-    <FilterTypeWrapper ref={dropdownRef}>
+    <FilterTypeWrapper>
       <OpenListWrapper onClick={onGeneralListFilterClick}>
         <ArrowDown isOpen={isOpenList} />
         <TitleFilterType>By age</TitleFilterType>
